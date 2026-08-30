@@ -1,0 +1,2 @@
+MOCK evidence only. Demo identities, approvals and test outcomes are synthetic.
+No model, test command, merge, tag, push, deployment or release ran to create this evidence.

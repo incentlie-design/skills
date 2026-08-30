@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "eng-delivery-feature",
+  "version": "0.1.0",
+  "category": "engineering",
+  "status": "draft",
+  "summary": "单 feature 的有界多节点交付与本地证据门禁，产出集成候选而非发布授权",
+  "owners": ["repository-maintainer"],
+  "tags": ["feature", "单流水", "交付", "candidate", "gate"],
+  "dependencies": ["product-spec-prd", "product-review-prd", "eng-review-technical", "eng-quality-test", "eng-workspace-governance"],
+  "input_contract": "指定目标 repo、已知 base、原始需求及 AC、写入范围、节点责任人、修订与证据；实际 gate 另需固定 head 和冻结快照",
+  "output_contract": "符合公共契约的 candidate 或 blocked/revise，附 commit、baseline、scope、AC、独立评审/测试证据、依赖冲突、回滚及剩余限制"
+}

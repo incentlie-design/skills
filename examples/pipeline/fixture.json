@@ -1,0 +1,9 @@
+{
+  "fixture": true,
+  "notice": "MOCK ONLY: synthetic approvals and test evidence; no code generation, models, merge or release.",
+  "features": [
+    {"change_id": "alpha", "path": "examples/pipeline/alpha.txt", "dependencies": []},
+    {"change_id": "beta", "path": "examples/pipeline/beta.txt", "dependencies": ["alpha"]}
+  ],
+  "evidence": "examples/pipeline/mock-evidence.txt"
+}
