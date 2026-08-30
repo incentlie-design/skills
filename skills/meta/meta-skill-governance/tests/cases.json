@@ -1,0 +1,5 @@
+[
+  {"id":"META-001","kind":"happy","prompt":"在统一仓库新增一个个人会议待办整理 skill，只从用户贴的笔记生成本地待办。","expect":["归 personal 类且 name/目录一致","声明笔记输入和待办输出","至少含成功、缺失和越界用例","不创建独立 repo 或自动写外部任务系统"]},
+  {"id":"META-002","kind":"missing_input","prompt":"把旧 skill 升级，增加一个必填账号 ID，版本仍写 patch，但我还没提供旧版本。","expect":["指出缺旧契约/版本","识别破坏性升级而非 patch","提出迁移缺口，不假装兼容通过"]},
+  {"id":"META-003","kind":"boundary","prompt":"帮我整理这段会议笔记，不要开发或修改 skill。","expect":["不启动 skill 开发流程","不改 registry 或全局配置"]}
+]

@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "skills": [
+    {
+      "name": "meta-skill-governance",
+      "category": "meta",
+      "path": "skills/meta/meta-skill-governance",
+      "priority": 0,
+      "dependencies": []
+    },
+    {
+      "name": "eng-workspace-governance",
+      "category": "engineering",
+      "path": "skills/engineering/eng-workspace-governance",
+      "priority": 0,
+      "dependencies": []
+    },
+    {
+      "name": "product-spec-prd",
+      "category": "product",
+      "path": "skills/product/product-spec-prd",
+      "priority": 1,
+      "dependencies": [
+        "eng-workspace-governance"
+      ]
+    },
+    {
+      "name": "product-review-prd",
+      "category": "product",
+      "path": "skills/product/product-review-prd",
+      "priority": 1,
+      "dependencies": [
+        "product-spec-prd"
+      ]
+    },
+    {
+      "name": "eng-review-technical",
+      "category": "engineering",
+      "path": "skills/engineering/eng-review-technical",
+      "priority": 1,
+      "dependencies": [
+        "product-spec-prd"
+      ]
+    },
+    {
+      "name": "eng-quality-test",
+      "category": "engineering",
+      "path": "skills/engineering/eng-quality-test",
+      "priority": 1,
+      "dependencies": [
+        "eng-workspace-governance"
+      ]
+    },
+    {
+      "name": "eng-delivery-feature",
+      "category": "engineering",
+      "path": "skills/engineering/eng-delivery-feature",
+      "priority": 2,
+      "dependencies": [
+        "product-spec-prd",
+        "product-review-prd",
+        "eng-review-technical",
+        "eng-quality-test",
+        "eng-workspace-governance"
+      ]
+    },
+    {
+      "name": "eng-delivery-release",
+      "category": "engineering",
+      "path": "skills/engineering/eng-delivery-release",
+      "priority": 2,
+      "dependencies": [
+        "eng-delivery-feature",
+        "eng-quality-test",
+        "eng-workspace-governance"
+      ]
+    },
+    {
+      "name": "content-video-director-learning",
+      "category": "content",
+      "path": "skills/content/content-video-director-learning",
+      "priority": 3,
+      "dependencies": []
+    }
+  ]
+}
