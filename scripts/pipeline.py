@@ -183,7 +183,11 @@ def check_review(node, name, doc):
             and review["reviewed_revision"] == doc["artifact_revision"], "stale review revision")
     require(review["scope"] == doc["scope"], "review scope mismatch")
     require(isinstance(review["findings"], list), "missing review findings")
-    strings(review["non_blocking_suggestions"], "review suggestions", allow_empty=True)
+    suggestions = review["non_blocking_suggestions"]
+    require(isinstance(suggestions, list), "review suggestions: expected list")
+    # P1 reviews preserve value/cost/tradeoff as structured, non-binding suggestions.
+    require(all(nonempty(item) or (isinstance(item, dict) and nonempty(item.get("suggestion")))
+                for item in suggestions), "review suggestions: missing suggestion text")
     ids = set()
     for finding in review["findings"]:
         require(re.fullmatch(r"REV-\d{3,}", finding["id"]) and finding["id"] not in ids, "invalid finding ID")

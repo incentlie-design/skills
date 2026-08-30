@@ -75,6 +75,17 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(candidate["source_digest"], pipeline.feature_digest(self.feature))
         self.assertFalse(candidate["release_authorized"])
 
+    def test_product_review_structured_suggestions_are_preserved(self):
+        suggestion = {"suggestion": "跨设备同步仅作后续选项", "value": "减少重复选择",
+                      "cost": "账号与后端", "tradeoff": "不纳入当前 AC 或任务"}
+        self.feature["nodes"]["product_review"]["review"]["non_blocking_suggestions"] = [suggestion]
+        bind(self.feature)
+        result = self.feature_result()
+        self.assertEqual(result["status"], "candidate")
+        self.assertEqual(result["candidate"]["source"]["nodes"]["product_review"]["review"]["non_blocking_suggestions"], [suggestion])
+        self.feature["nodes"]["product_review"]["review"]["non_blocking_suggestions"] = [{"cost": "missing suggestion"}]
+        self.assertEqual(self.feature_result(bind(self.feature))["status"], "blocked")
+
     def test_missing_unknown_and_blocked_never_pass(self):
         for mutation in ("missing_node", "unknown_node", "missing_status", "unknown_status", "blocked", "missing_evidence"):
             with self.subTest(mutation=mutation):

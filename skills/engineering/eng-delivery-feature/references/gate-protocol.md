@@ -22,6 +22,8 @@
 
 P1 文件可能采用 Markdown 或不同 JSON 排版：以上是显式投影，不声称能直接读取其他 skill 的任意报告。公共 review.scope 可是章节范围；gate v1 要求投影为顶层 `scope` 的完整路径数组，原审阅范围仍留在报告中。覆盖不够必须补 review，不能靠改字段扩大签字范围。跨多个 reviewer 的判断可分别保留原文件，但必需 gate 仍需明确责任 reviewer。
 
+`non_blocking_suggestions` 接受字符串或含非空 `suggestion` 的对象数组；对象的 value/cost/tradeoff/decision 等附加字段原样保留并进入快照摘要。它们不会自动成为必做任务。不能为适配执行器而丢弃产品评审的成本、取舍或不采纳决定。
+
 ## 节点交接格式
 
 九个节点必须齐全：`spec → design → test_plan → {product_review, design_review, test_plan_review} → implementation → {code_review, targeted_test}`。图中三项评审都读取前三项规划产物；实现读取三项评审。
