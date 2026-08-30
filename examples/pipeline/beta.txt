@@ -1,0 +1,2 @@
+MOCK artifact beta: depends on alpha and has a disjoint declared write scope.
+It is not generated feature code and does not prove acceptance.

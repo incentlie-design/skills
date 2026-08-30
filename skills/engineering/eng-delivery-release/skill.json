@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "eng-delivery-release",
+  "version": "0.1.0",
+  "category": "engineering",
+  "status": "draft",
+  "summary": "复用单 feature 候选，校验依赖排序、冻结集成证据与 repo 版本计划；不自动发布",
+  "owners": ["repository-maintainer"],
+  "tags": ["release", "多流水", "集成", "冻结", "版本"],
+  "dependencies": ["eng-delivery-feature", "eng-quality-test", "eng-workspace-governance"],
+  "input_contract": "同 repo 的完整 feature 候选、main base、外部已形成的冻结 head、候选依赖与冲突、版本计划、验证范围、预算和集成证据",
+  "output_contract": "含候选 commit 集、依赖顺序、固定 base/head、冻结摘要、验证范围/结论及版本计划的 integration manifest，或 blocked/revise；不包含发布授权"
+}
