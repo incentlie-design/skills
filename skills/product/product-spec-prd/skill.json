@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "product-spec-prd",
+  "version": "0.1.0",
+  "category": "product",
+  "status": "active",
+  "summary": "将原始需求转成有界 PRD、OpenSpec change 与可验收的责任任务；兼容手工文件流",
+  "owners": ["repository-maintainer"],
+  "tags": ["product", "PRD", "OpenSpec", "需求", "验收", "任务拆解"],
+  "dependencies": ["eng-workspace-governance"],
+  "input_contract": "原始诉求/来源、目标用户与场景、目标 repo/基线、现有相关行为证据、读写范围和允许动作；关键未知返回 blocked/needs_input，不臆造 owner 或成功条件",
+  "output_contract": "同一正整数 artifact_revision（从1开始）的 proposal、spec deltas、design、tasks 及项目扩展 prd/handoff；含 REQ/AC、旅程、非目标、风险/指标、任务 owner/dependencies/write_scope/预算/停止条件，供独立评审及规划消费；uncommitted 仅用于 commit 类字段，不实现应用"
+}
