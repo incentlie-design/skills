@@ -3,7 +3,7 @@
   "name": "eng-delivery-release",
   "version": "0.1.0",
   "category": "engineering",
-  "status": "draft",
+  "status": "active",
   "summary": "复用单 feature 候选，校验依赖排序、冻结集成证据与 repo 版本计划；不自动发布",
   "owners": ["repository-maintainer"],
   "tags": ["release", "多流水", "集成", "冻结", "版本"],

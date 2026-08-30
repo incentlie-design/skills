@@ -45,4 +45,4 @@ python3 scripts/pipeline.py release /path/to/target/.runs/window-1/release.json 
 
 mock 演示没有实际合并；实际命令只校验证据和现有 Git 状态，不运行模型、测试或发布。适用同 repo、普通文件、非交叠候选；删除、重命名、复杂交叠/累计依赖、自动冲突解决不在首版范围，交给人拆分并审查。候选来源证据必须在显式 repo 内可读，否则阻断。
 
-首版保持 draft，原始三个 cases 留给独立执行者；依赖可用性与 P1 报告适配由集成负责人验收，不能把 demo 或单元测试算作真实发版通过。
+当前为本地初版 active；三个原始 cases 与局部 P1 映射已独立演练，见 [验收记录](../../../reports/behavior-pipeline.md)。不能把 mock、局部映射或单元测试算作真实多候选集成、业务端到端或发版通过。

@@ -3,7 +3,7 @@
   "name": "eng-delivery-feature",
   "version": "0.1.0",
   "category": "engineering",
-  "status": "draft",
+  "status": "active",
   "summary": "单 feature 的有界多节点交付与本地证据门禁，产出集成候选而非发布授权",
   "owners": ["repository-maintainer"],
   "tags": ["feature", "单流水", "交付", "candidate", "gate"],

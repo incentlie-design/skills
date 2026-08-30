@@ -50,4 +50,4 @@ python3 -m unittest discover -s tests -p test_pipeline.py
 
 `demo` 明确使用 mock；`--show-input` 展示具体 JSON 结构，不能直接作为真实证据。`fingerprint` 仅计算摘要，不审核或背书。实际映射、冻结方法和限制见 [gate 协议](references/gate-protocol.md)。
 
-当前为 draft：脚本测试不等于三个自然语言 case 已独立执行。保留原始 cases 给独立执行者；集成负责人负责依赖可用性、路由和行为验收。
+当前为本地初版 active：三个自然语言 case 已独立演练，范围和证据见 [验收记录](../../../reports/behavior-pipeline.md)。覆盖 mock 门禁、路由与失败停止，不代表真实业务 feature 已由此端到端完成；实际使用仍须提供完整可信产物。
