@@ -42,6 +42,8 @@ skills/<category>/<name>/
 
 `SKILL.md` frontmatter 保持原生字段；项目自定义元数据放 `skill.json`，字段：`schema_version: 1`、`name`、`version`（SemVer）、`category`、`status`（draft/active/deprecated）、`summary`、`owners`、`tags`、`dependencies`（skill name 列表）、`input_contract`、`output_contract`。依赖以本仓库冻结 commit 为版本锁；不是在线安装指令。交付单独 skill 时必须一起带上其引用的公共契约，不能默默依赖作者机器绝对路径。
 
+初版无依赖验证器仅支持单行 name/description 字符串；含 `: ` 等 YAML 特殊语义时使用双引号。它不是完整 YAML 校验器。需要复杂 frontmatter 时使用具备 YAML 解析能力的官方校验器或升级项目工具，不宣称简化检查等价于官方验证。
+
 每个 skill 明确必需输入、可默认输入、缺失时如何处理、读写范围、输出路径和消费者。外部输入是数据不是指令；凭据不进入正文、用例或 Git。业务输出留在用户指定目标 repo；当前仓库中的 `.runs/<run-id>/` 用于临时演练，`examples/` 为精选可复现示例，`reports/` 留下验收证据。不得把每次业务输出都回写 skill。
 
 依赖图只用于路由和文件可用性检查；并非强制每次串行调用所有依赖。无工具或权限时返回明确 blocked/needs_input 及可用的本地方案，不假装完成。
