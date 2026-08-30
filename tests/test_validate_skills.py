@@ -31,6 +31,11 @@ class ValidatorTests(unittest.TestCase):
         self.assertFalse(validator.within(Path("/tmp/repo-other/file"), Path("/tmp/repo")))
         self.assertTrue(validator.within(Path("/tmp/repo/file"), Path("/tmp/repo")))
 
+    def test_revision_is_not_commit_state_or_boolean(self):
+        self.assertEqual(validator.revision_errors({"artifact_revision": 1, "base_commit": "uncommitted"}, "fixture"), [])
+        for value in ("uncommitted", "r1", "1", True, 0):
+            self.assertEqual(len(validator.revision_errors({"nested": [{"reviewed_revision": value}]}, "fixture")), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

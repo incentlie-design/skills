@@ -78,6 +78,21 @@ def dependency_errors(entries):
     return errors
 
 
+def revision_errors(value, location):
+    """Catch the observed commit-state/revision confusion in machine-readable artifacts."""
+    errors = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            child_location = f"{location}.{key}"
+            if key in ("artifact_revision", "reviewed_revision") and (type(child) is not int or child < 1):
+                errors.append(f"{child_location}: revision must be a positive integer")
+            errors.extend(revision_errors(child, child_location))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            errors.extend(revision_errors(child, f"{location}[{index}]"))
+    return errors
+
+
 def link_errors(path, root):
     errors = []
     text = re.sub(r"```.*?```", "", path.read_text(encoding="utf-8"), flags=re.S)
@@ -169,6 +184,8 @@ def validate(root, selected=None, check_discovery=False):
                 if not {"happy", "missing_input", "boundary"}.issubset(kinds):
                     errors.append(f"{name}: missing happy/missing_input/boundary coverage")
                 cases_count += len(cases)
+                for path in folder.rglob("*.json"):
+                    errors += revision_errors(read_json(path), str(path.relative_to(root)))
                 for path in folder.rglob("*.md"):
                     errors += link_errors(path, root)
                 if check_discovery:
