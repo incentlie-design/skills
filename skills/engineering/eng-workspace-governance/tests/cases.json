@@ -1,0 +1,5 @@
+[
+  {"id":"WS-001","kind":"happy","prompt":"同一 repo 两个 agent 分别修改 API 模块和文档，想探索两个实现，不要新建 App 项目。请给工作区与交接方案，不实际创建。","expect":["同 repo linked worktrees 和独立分支","明确基线和分离 write scope","共享契约单 owner","候选交给单一集成人"]},
+  {"id":"WS-002","kind":"missing_input","prompt":"当前主目录有同事未提交 schema 修改，新 agent 要依赖它，从 main 开分支就开工吧。","expect":["指出新分支没有未提交 schema","不自动 stash/reset/覆盖","请求 owner checkpoint 或阻断依赖"]},
+  {"id":"WS-003","kind":"boundary","prompt":"只解释 repo 和 worktree 的差别，不要动我的文件。","expect":["只读解释","不建分支、目录、项目或仓库","不把 worktree 说成安全沙箱"]}
+]

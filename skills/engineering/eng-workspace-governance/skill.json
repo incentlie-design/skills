@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "eng-workspace-governance",
+  "version": "0.1.0",
+  "category": "engineering",
+  "status": "active",
+  "summary": "单 repo 内的 project/session/agent/worktree/branch 协作边界",
+  "owners": ["repository-maintainer"],
+  "tags": ["git", "worktree", "repo", "agent", "session", "project", "directory", "branch"],
+  "dependencies": [],
+  "input_contract": "目标 repo、基线、dirty state、任务与 writer 所有权",
+  "output_contract": "隔离工作区、任务交接、候选 commit 和集成边界"
+}

@@ -1,0 +1,10 @@
+.worktrees/
+.runs/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+!.env.example
+node_modules/
+.venv/
