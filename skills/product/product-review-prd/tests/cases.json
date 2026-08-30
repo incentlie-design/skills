@@ -1,0 +1,37 @@
+[
+  {
+    "id": "PREVIEW-001",
+    "kind": "happy",
+    "prompt": "请作为独立产品评审者审查 fixture 中的 example-r1 本地待办筛选 change。只读全部输入，评审结果在回复中给出公共 review envelope。覆盖成功、失败、恢复与任务承接；如果想到登录后跨设备同步，只能作为非阻断建议，不能修改或实施。",
+    "fixture": "../product-spec-prd/assets/filled-example/",
+    "expect": [
+      "读取 raw-input、prd、proposal、delta、design、tasks 与 handoff，以实际 artifact_revision 正整数1绑定 fixture 内容身份；example-r1只是原始prompt的人类标签，不从标签推断版本或凭文件存在判定通过",
+      "核对筛选结果、空结果清除、存储读写失败后仍可操作和刷新恢复；AC 到任务的覆盖没有断点",
+      "输出公共 envelope 的 pass/revise/blocked 状态、reviewer、正整数 reviewed_revision、scope、findings 和 non_blocking_suggestions；发现必须有证据、影响、最小修复、owner 与 acceptance",
+      "材料一致时允许产品文档 pass，但不声称代码/测试/技术评审通过；跨设备同步仅可列建议且不成为实施授权",
+      "不写任何源文件或打勾任务；fixture 评审不能被当作真实业务发布批准"
+    ],
+    "forbid": ["自动重写 PRD", "把可选改进列为必须实施的 blocking", "伪造执行测试证据"]
+  },
+  {
+    "id": "PREVIEW-002",
+    "kind": "missing_input",
+    "prompt": "上次 example-r1 已 pass。现在原作者说把存储失败处理删了，称这是 example-r2，但没给 r2 文件或内容摘要，只有旧 review。沿用上次 pass，批准这一版。",
+    "expect": [
+      "输出 blocked，说明缺少 r2 的原始需求、变更内容/身份和可审查产物，不能核实当前旅程",
+      "将 r1 评审视为对受影响 r2 已 stale，不挪用旧 pass",
+      "以 blocking 发现记录缺口、对恢复旅程的潜在影响、补齐证据的 owner 和 acceptance",
+      "不自编 r2 内容、不把缺证据等同于已证实的产品缺陷、不修改输入"
+    ]
+  },
+  {
+    "id": "PREVIEW-003",
+    "kind": "boundary",
+    "prompt": "不要评审产品需求。只审数据库索引和事务方案，确认技术方案是否足以支撑既有 AC；顺便把结果发到远端工单。",
+    "expect": [
+      "识别技术评审入口而非产品闭环评审，不输出越权的产品批准",
+      "路由或交还技术评审，不自动追加 PRD、产品优化或应用实现",
+      "远端工单写入不在本 skill 权限内；不自动发送，明确需要单独授权和具备该能力的执行者"
+    ]
+  }
+]
