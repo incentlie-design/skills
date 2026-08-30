@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "eng-review-technical",
+  "version": "0.1.0",
+  "category": "engineering",
+  "status": "active",
+  "summary": "只读技术方案评审：架构和历史一致性、方案闭环、防扩张及明确成本取舍",
+  "owners": ["repository-maintainer"],
+  "tags": ["technical-review", "architecture", "design", "tradeoff", "技术方案", "历史一致性", "防扩张"],
+  "dependencies": ["product-spec-prd"],
+  "input_contract": "docs/contracts.md v1 envelope；REQ/AC、design 及从1开始的正整数 artifact_revision、目标 repo/基线、相关历史与消费者、权限范围、约束/预算、作者和独立评审者身份",
+  "output_contract": "绑定正整数 reviewed_revision 的公共 review envelope，含证据/影响/最小修复/owner/acceptance、明确取舍、非阻断建议及下一责任人；不产生实现或测试通过证明"
+}
