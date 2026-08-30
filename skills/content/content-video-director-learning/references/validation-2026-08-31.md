@@ -7,7 +7,8 @@
 - repo: .（已分配的 director linked worktree）
 - branch: agent/skill-system/director
 - base_commit: a9b20de16e8e1603606f09db3a940186a15e1708
-- artifact_revision: uncommitted（验证记录写入时）；最终 commit 见提交交接。
+- artifact_revision: 1
+- output_commit: uncommitted（验证记录写入时）；最终 commit 见提交交接。
 - content_summary: 一个 0.1.0 active 技能、原始 3 个行为 case、维护规则、5 张种子卡、模板、索引与真实来源记录。
 - write_scope: skills/content/content-video-director-learning/；knowledge/video-director/
 - dependencies: []（与该基线 registry 一致）

@@ -14,7 +14,7 @@ description: Research advertising video direction from bounded first-party sourc
 - 可选：受众、广告目标、平台、片长、预算、现有器材、来源 URL、已有卡。默认中文摘要，练习用手机、桌面道具和现有安全环境；时长、镜头数量等训练限制标为原创选择，不冒充平台要求。
 - 默认一轮最多 **6 个不同来源页面、6 条检索式、5 张新增/更新卡**；用户给更小预算则采用更小值。先收窄问题再搜，不递归爬全站。失败页面也计入；同页分段读取不算新页面，仍记录请求和失败。达到足够证据可提前停止。
 - 本仓库示例在 [知识库索引](../../../knowledge/video-director/index.md)；其他业务任务写用户目标 repo，不自动回写此技能或种子库。没有网络权限时仅用已有卡或用户授权素材；旧卡访问日不能冒充今日已复核。
-- 输出给学习者和下次刷新者：`cards/*.md`、`index.md`、可复用 `card-template.md`、`runs/<run-id>.md`。遵循 [交接契约](../../../docs/contracts.md)，记录 `schema_version: 1`、`run_id`、`change_id`、`repo`、`base_commit`、`artifact_revision`；未提交写 `uncommitted` 并附内容摘要。
+- 输出给学习者和下次刷新者：`cards/*.md`、`index.md`、可复用 `card-template.md`、`runs/<run-id>.md`。遵循 [交接契约](../../../docs/contracts.md)，记录 `schema_version: 1`、`run_id`、`change_id`、`repo`、`base_commit`、`artifact_revision`；revision 是从 1 开始的正整数，只有 commit 类字段未提交时写 `uncommitted` 并附内容摘要。
 - 允许公开网页只读访问，以及授权目录中的本地追加/明确刷新。写前解析真实路径，拒绝路径穿越或符号链接逃逸；保留他人 dirty 内容。技能和公共文件、全局安装、自动提交/推送均非业务默认权限。
 
 ## 最短闭环
