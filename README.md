@@ -65,6 +65,7 @@ python3 scripts/pipeline.py --help
 - [公共交接契约](docs/contracts.md)：REQ/AC/task/review/candidate/test-report。
 - [后续迭代 backlog](docs/backlog.md)：有触发条件和验收的优化项。
 - [CHANGELOG](CHANGELOG.md)：版本变更与兼容性记录。
+- [首版验收报告](reports/validation-20260831.md)：27 个原始行为场景、1 次治理定向复验、22 项通过的程序测试，以及明确未执行的检查。
 - `reports/`：本轮真实验收、覆盖范围与未执行检查；业务运行临时文件放 `.runs/`，不进入 Git。
 
 工作分支允许局部 unit/feature 和 smoke；跨 feature 批次再做受影响 integration；只有明确发版才做 release regression。默认一次验收、最多两次定向修复，批次完整验收最多两轮。完成外部契约即交付，不无限优化内部实现。
