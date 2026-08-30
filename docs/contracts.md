@@ -1,6 +1,6 @@
 # 跨 skill 交接契约 v1
 
-所有运行绑定 `schema_version=1`、`run_id`、`change_id`、`repo`、`base_commit`、`artifact_revision`。路径相对目标 repo；commit 未形成前写 `uncommitted`，同时附内容摘要，不能编造 hash。
+所有运行绑定 `schema_version=1`、`run_id`、`change_id`、`repo`、`base_commit`、`artifact_revision`。`artifact_revision` 是从 1 开始的正整数，`reviewed_revision` 与它同型；它不是 Git 提交状态或版本字符串。路径相对目标 repo；commit 未形成前只能在 commit 类字段写 `uncommitted`，同时附内容摘要，不能编造 hash，也不能把 `artifact_revision` 写成 `uncommitted`。实际已提交候选仍必须给出真实完整 commit。
 
 ## 核心产物
 
