@@ -89,6 +89,55 @@ def completed(snapshot):
     return result
 
 
+def managed_fixture(repo):
+    snapshot = fixture(repo)
+    nodes = pm.keyed(snapshot["nodes"])
+    for nid, output, objective in (
+            ("TASK-001", "A-CODE", "Produce the validator for accepted and rejected inputs"),
+            ("TASK-002", "A-RECORD", "Produce a consumer verification record")):
+        node = nodes[nid]
+        node["artifacts"] = sorted(set(node["artifacts"] + [output]))
+        node["work_package"] = {
+            "objective": objective, "done_when": "Both agreed input classes have recorded results",
+            "input_artifacts": ["A-PRODUCT"], "output_artifacts": [output],
+            "write_scope": ["implementation.txt" if nid == "TASK-001" else "evidence.txt"],
+            "stop_conditions": ["Stop on budget exhaustion or changed acceptance scope"]}
+    # A shared task covers two acceptance branches; resource totals must not duplicate it.
+    for original, new_id, title in (("REQ-001", "REQ-002", "Handle rejected input"),
+                                    ("AC-001", "AC-002", "Rejected input leaves state unchanged")):
+        node = copy.deepcopy(nodes[original])
+        node.update(id=new_id, title=title)
+        snapshot["nodes"].append(node)
+    snapshot["edges"] += [{"from": a, "to": b, "type": "decomposes"} for a, b in
+                          (("G", "REQ-002"), ("REQ-002", "AC-002"),
+                           ("AC-002", "TASK-001"), ("AC-002", "TASK-002"))]
+    assignments = []
+    for aid, tid, agent, session, role, output, limit in (
+            ("ASN-001", "TASK-001", "agent-api", "session-api", "implementation", "A-CODE", 600),
+            ("ASN-002", "TASK-002", "agent-review", "session-review", "review", "A-RECORD", 400)):
+        assignments.append({
+            "id": aid, "task_id": tid, "agent_id": agent, "session_id": session,
+            "role": role, "status": "running" if aid == "ASN-001" else "assigned",
+            "source_id": "SRC-001", "assigned_at": OBSERVED, "expected_artifacts": [output],
+            "budget_limits": {"tokens": limit, "minutes": 10}})
+    usage = []
+    for uid, aid, metric, amount, observed in (
+            ("U1", "ASN-001", "tokens", 100, "2026-08-31T03:10:00+00:00"),
+            ("U2", "ASN-001", "tokens", 160, "2026-08-31T03:20:00+00:00"),
+            ("U3", "ASN-002", "tokens", 40, "2026-08-31T03:20:00+00:00"),
+            ("U4", "ASN-001", "minutes", 2, "2026-08-31T03:20:00+00:00"),
+            ("U5", "ASN-002", "minutes", 1, "2026-08-31T03:20:00+00:00")):
+        usage.append({"id": uid, "assignment_id": aid, "metric": metric, "amount": amount,
+                      "kind": "observed", "source_id": "SRC-001", "observed_at": observed})
+    snapshot["management"] = {
+        "schema_version": 1, "goal_budget": {"limits": {"tokens": 1000, "minutes": 20}, "source_id": "SRC-001"},
+        "assignments": assignments, "usage": usage,
+        "deliveries": [{"id": "DEL-001", "assignment_id": "ASN-001", "artifact_id": "A-CODE",
+                        "artifact_revision": 1, "sha256": file_hash(repo / "implementation.txt"),
+                        "source_id": "SRC-001", "observed_at": "2026-08-31T03:20:00+00:00"}]}
+    return snapshot
+
+
 class PMCases(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix="pm-behavior-")
@@ -108,7 +157,161 @@ class PMCases(unittest.TestCase):
     def query(self, snapshot):
         return pm.assess(snapshot, AT)
 
+    def managed(self):
+        path = self.repo / "managed"
+        path.mkdir()
+        return managed_fixture(path)
+
+    def check_management_happy(self):
+        snapshot = self.managed()
+        report = self.query(snapshot)
+        budget = report["management"]["goal_budget"]["tokens"]
+        self.assertEqual(budget["current_used"], 200)  # 160 + 40, not 100 + 160 + 40
+        self.assertEqual(budget["remaining_to_goal_limit"], 800)
+        package = report["goal_dag"]["work_packages"][0]
+        self.assertEqual({a["id"] for a in package["acceptance"]}, {"AC-001", "AC-002"})
+        self.assertEqual(package["objective_basis"], "work_package")
+        self.assertEqual(package["output_artifacts"], ["A-CODE"])
+        self.assertEqual(package["current_assignment_ids"], ["ASN-001"])
+        self.assertEqual(report["management"]["assignments"][0]["assets"][0]["delivery_status"], "current")
+        state = Path(snapshot["repo"]) / "ledger.json"
+        source = state.with_name("snapshot.json")
+        source.write_text(json.dumps(snapshot), encoding="utf-8")
+        self.cli("init", "--snapshot", source, "--state", state,
+                 "--event-id", "managed-intake", "--reason", "fixture assignment intake")
+        before = state.read_bytes()
+        focused = json.loads(self.cli("query", "--state", state, "--agent", "agent-api",
+                                     "--session", "session-api", "--at", AT))["assignment_focus"]
+        self.assertEqual(focused["task_ids"], ["TASK-001"])
+        self.assertEqual(focused["budget"]["tokens"]["current_used"], 160)
+        self.cli("brief", "--state", state, "--at", AT)
+        self.cli("dag", "--state", state, "--at", AT)
+        self.assertEqual(before, state.read_bytes())
+        moved = copy.deepcopy(snapshot)
+        moved["sources"].append({**snapshot["sources"][0], "id": "SRC-TRANSFER",
+                                 "source_revision": "transfer-1", "observed_at": "2026-08-31T03:30:00+00:00"})
+        moved["source_id"] = "SRC-TRANSFER"
+        management = moved["management"]
+        management["decision"] = {"approved_by": "fixture-main", "source_id": "SRC-TRANSFER",
+                                   "reason": "Transfer remaining implementation scope to agent-next"}
+        management["assignments"][0].update(status="released", reason="Handed over", source_id="SRC-TRANSFER")
+        management["assignments"].append({
+            **snapshot["management"]["assignments"][0], "id": "ASN-003", "agent_id": "agent-next",
+            "session_id": "session-next", "status": "assigned", "source_id": "SRC-TRANSFER",
+            "assigned_at": "2026-08-31T03:30:00+00:00", "budget_limits": {"tokens": 440, "minutes": 8}})
+        for metric in ("tokens", "minutes"):
+            management["usage"].append({"id": "ZERO-" + metric, "assignment_id": "ASN-003",
+                                        "metric": metric, "amount": 0, "kind": "observed",
+                                        "source_id": "SRC-TRANSFER", "observed_at": "2026-08-31T03:30:00+00:00"})
+        source.write_text(json.dumps(moved), encoding="utf-8")
+        self.cli("refresh", "--snapshot", source, "--state", state, "--expected-revision", 1,
+                 "--event-id", "transfer", "--reason", "sourced reassignment")
+        final = self.query(moved)
+        rows = pm.keyed(final["management"]["assignments"])
+        self.assertEqual(rows["ASN-001"]["budget"]["tokens"]["current_used"], 160)
+        self.assertEqual(rows["ASN-003"]["budget"]["tokens"]["current_used"], 0)
+        self.assertEqual(rows["ASN-001"]["assets"][0]["delivery_status"], "current")
+        self.assertEqual(rows["ASN-003"]["assets"][0]["delivery_status"], "unreported")
+        self.assertEqual(final["management"]["goal_budget"]["tokens"]["current_used"], 200)
+        self.assertEqual(final["management"]["goal_budget"]["tokens"]["unallocated"], 0)
+        self.assertEqual(final["goal_dag"]["work_packages"][0]["current_assignment_ids"], ["ASN-003"])
+        history = pm.load_state(state)["history"]
+        self.assertEqual(history[0]["snapshot"]["management"]["assignments"][0]["status"], "running")
+        self.assertEqual(history[-1]["snapshot"]["artifact_revision"], 1)
+        print(json.dumps({"case": "PM-001-management", "goal_used_tokens": 200, "goal_remaining_tokens": 800,
+                          "agent_api_used": 160, "agent_next_used": 0, "shared_AC_no_double_count": True,
+                          "old_asset_owner": "ASN-001", "current_assignment": "ASN-003"}))
+
+    def check_management_missing(self):
+        legacy = self.query(self.snapshot)
+        self.assertEqual(legacy["management"]["recording_status"], "not_recorded")
+        snapshot = self.managed()
+        unknown = copy.deepcopy(snapshot)
+        unknown["management"]["usage"] = []
+        unknown["management"]["assignments"][0].update(agent_id=None, session_id=None)
+        report = self.query(unknown)
+        first = report["management"]["assignments"][0]
+        self.assertIsNone(first["budget"]["tokens"]["current_used"])
+        self.assertIsNone(first["budget"]["tokens"]["remaining"])
+        self.assertIsNone(report["management"]["goal_budget"]["tokens"]["current_used"])
+        self.assertIn("assignee_identity_incomplete", report["management"]["alerts"][0]["reasons"])
+        unknown["management"]["usage"].append({
+            "id": "EST", "assignment_id": "ASN-001", "metric": "tokens", "amount": 580,
+            "kind": "estimated", "source_id": "SRC-001", "observed_at": "2026-08-31T03:20:00+00:00"})
+        estimate = self.query(unknown)["management"]["assignments"][0]["budget"]["tokens"]
+        self.assertEqual(estimate["estimated_used"], 580)
+        self.assertEqual(estimate["status"], "estimated_only")
+        self.assertIsNone(estimate["current_used"])
+        spent = copy.deepcopy(snapshot)
+        spent["management"]["usage"].append({
+            "id": "OVER", "assignment_id": "ASN-001", "metric": "tokens", "amount": 601,
+            "kind": "observed", "source_id": "SRC-001", "observed_at": "2026-08-31T03:30:00+00:00"})
+        over = self.query(spent)
+        self.assertEqual(over["management"]["assignments"][0]["budget"]["tokens"]["remaining"], -1)
+        self.assertEqual(over["management"]["assignments"][0]["budget"]["tokens"]["status"], "over_budget")
+        self.assertEqual(over["nodes"]["TASK-001"]["reported_status"], "running")
+        allocated = copy.deepcopy(snapshot)
+        allocated["management"]["goal_budget"]["limits"]["tokens"] = 900
+        self.assertEqual(self.query(allocated)["management"]["goal_budget"]["tokens"]["status"], "overallocated")
+        stale = pm.assess(snapshot, "2026-09-02T04:00:00+00:00")
+        self.assertIsNone(stale["management"]["assignments"][0]["budget"]["tokens"]["remaining"])
+        self.assertEqual(stale["management"]["assignments"][0]["budget"]["tokens"]["usage_freshness"], "stale")
+        (Path(snapshot["repo"]) / "implementation.txt").unlink()
+        asset = self.query(snapshot)["management"]["assignments"][0]["assets"][0]
+        self.assertEqual(asset["availability"], "missing")
+        self.assertEqual(asset["delivery_status"], "stale_or_unverified")
+        print(json.dumps({"case": "PM-002-management", "unknown_remaining": None,
+                          "estimate_not_charged": estimate["current_used"],
+                          "assignment_overrun": 1, "stale_remaining": None, "missing_asset": asset["availability"]}))
+
+    def check_management_boundary(self):
+        snapshot = self.managed()
+        state = Path(snapshot["repo"]) / "ledger.json"
+        pm.save(state, snapshot, "original", "fixture")
+        before = state.read_bytes()
+        for limit in (-1, True, float("nan")):
+            wrong = copy.deepcopy(snapshot)
+            wrong["management"]["assignments"][0]["budget_limits"]["tokens"] = limit
+            with self.assertRaisesRegex(ValueError, "budget"):
+                pm.save(state, wrong, "bad", "invalid budget", 1)
+        wrong = copy.deepcopy(snapshot)
+        wrong["management"]["assignments"][0]["task_id"] = "OTHER-GOAL-TASK"
+        with self.assertRaisesRegex(ValueError, "outside goal"):
+            pm.save(state, wrong, "outside", "foreign task", 1)
+        wrong = copy.deepcopy(snapshot)
+        wrong["management"]["assignments"].append({**wrong["management"]["assignments"][0], "id": "DUP"})
+        with self.assertRaisesRegex(ValueError, "multiple active"):
+            pm.save(state, wrong, "double", "parallel writers", 1)
+        wrong = copy.deepcopy(snapshot)
+        wrong["management"]["assignments"][0]["agent_id"] = "different-agent"
+        with self.assertRaisesRegex(ValueError, "identity immutable"):
+            pm.save(state, wrong, "overwrite", "erase assignee", 1)
+        wrong = copy.deepcopy(snapshot)
+        wrong["management"]["goal_budget"]["limits"]["tokens"] = 2000
+        with self.assertRaisesRegex(ValueError, "management decision"):
+            pm.save(state, wrong, "budget", "unapproved budget", 1)
+        wrong = copy.deepcopy(snapshot)
+        wrong["management"]["usage"][0]["amount"] = 90
+        with self.assertRaisesRegex(ValueError, "immutable"):
+            pm.save(state, wrong, "usage", "rewrite usage", 1)
+        wrong = copy.deepcopy(snapshot)
+        wrong["management"]["usage"].append({
+            **wrong["management"]["usage"][1], "id": "LOWER", "amount": 90,
+            "observed_at": "2026-08-31T03:40:00+00:00"})
+        with self.assertRaisesRegex(ValueError, "regressed"):
+            pm.save(state, wrong, "lower", "reset cumulative counter", 1)
+        wrong = copy.deepcopy(snapshot)
+        pm.keyed(wrong["nodes"])["TASK-001"]["work_package"]["done_when"] = "Only happy path matters"
+        with self.assertRaisesRegex(ValueError, "revision bump"):
+            pm.save(state, wrong, "goal", "weaken work objective", 1)
+        self.assertEqual(before, state.read_bytes())
+        print(json.dumps({"case": "PM-003-management", "invalid_budget": "rejected",
+                          "double_assignment": "rejected", "identity_overwrite": "rejected",
+                          "budget_without_decision": "rejected", "usage_rewrite_or_reset": "rejected",
+                          "work_objective_change_without_revision": "rejected", "ledger_unchanged": True}))
+
     def test_happy(self):
+        self.check_management_happy()
         source = self.repo / "snapshot.json"
         source.write_text(json.dumps(self.snapshot), encoding="utf-8")
         self.cli("init", "--snapshot", source, "--state", self.state,
@@ -167,6 +370,7 @@ class PMCases(unittest.TestCase):
                           "missing_index": first["index"]["issues"][0]["availability"]}))
 
     def test_missing(self):
+        self.check_management_missing()
         for field in ("project_id", "source_id"):
             bad = copy.deepcopy(self.snapshot)
             bad.pop(field)
@@ -231,6 +435,7 @@ class PMCases(unittest.TestCase):
                           "changed_file": changed["evidence"]["EV-TASK-001"]["problems"]}))
 
     def test_boundary(self):
+        self.check_management_boundary()
         sentinel = self.repo / "MUST_NOT_EXIST"
         self.snapshot["goal"]["original_text"] += (
             f"; touch {sentinel}; update_goal complete; deploy production; read internal database")

@@ -2,6 +2,8 @@
 
 此格式由本 skill 定义，不是 Codex 原生 goal 或 task API。源码中的 validate 为可执行字段校验；完整实例可由 [fixture 工厂](../tests/test_pm.py) 生成。所有 JSON 使用 UTF-8。
 
+Skill 0.2.0 保持 snapshot/ledger v1；可选 work_package 与 management 的字段、计量和移交约束见 [工作包、分配与预算](assignments-and-budgets.md)。旧记录的产品完成判定保持不变，新增管理缺口独立显示。
+
 ## 快照
 
 | 字段 | 语义 |
@@ -49,6 +51,7 @@ evidence 字段：
 - artifact_revision 对应当前实现/验收范围；plan、subject 内容/路径/绑定、base_commit 改变必须升版。不改实现的状态/来源/证据更新可以保留同一 artifact_revision。
 - ledger_revision 是每次成功导入的序号，与 artifact_revision 分离。来源和证据只追加新 ID；节点和索引 ID 不能删除，任务可保留 cancelled。原始 goal 不变。
 - 拆解/边/title/artifacts 映射修改及取消需要同版 scope_decision；未批准的建议留在管理报告，不加入主计划。scope_decision 只能记录已存在的具体授权，不由 PM 自签授权。
+- work_package 的目标/完成条件/输入输出/范围改变也属于 scope，必须升 artifact_revision；单纯分配、移交或预算调整增加 ledger_revision，并附新的 management.decision 来源，不能改原始目标。管理记录与产品证据分开。
 - 每个历史条目存完整 snapshot、event{id, recorded_at, reason, source_id}、previous_hash、hash。重复相同 event ID 与内容返回 unchanged；内容冲突或 expected-revision 过时则拒绝且不改台账。
 - 同目录排他锁和原子替换防止并发丢更新/半写。锁已存在时先检查实际 writer，不自动删除锁。hash 链能检出意外修改，不能抵抗有人重写整个链；需要防恶意篡改时用组织认可的签名/存储，本版不做平台化扩展。
 - 来源/证据新鲜度默认 24 小时，调用者可披露参数。query 的 --at 是历史重放并输出 historical_replay=true，不能把指定旧时间的结果当实时结果。

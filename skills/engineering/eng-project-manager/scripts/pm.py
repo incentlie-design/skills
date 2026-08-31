@@ -4,6 +4,7 @@ import argparse
 import copy
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -17,6 +18,9 @@ CATEGORIES = ("product_docs", "technical_docs", "requirements", "issues")
 KINDS = ("goal", "requirement", "acceptance", "task")
 STATES = ("draft", "ready", "running", "review", "done", "blocked", "cancelled")
 IDENTITY = ("project_id", "goal_id", "main_task_id", "repo", "mode")
+METRICS = ("tokens", "minutes", "commands", "cost_usd")
+ACTIVE_ASSIGNMENTS = ("assigned", "running")
+ASSIGNMENT_STATES = ("proposed", "assigned", "running", "completed", "released", "cancelled")
 
 
 def require(test, message):
@@ -198,11 +202,13 @@ def validate(snapshot):
         require(alignment["status"] in ("aligned", "drift", "unreviewed") and
                 alignment["source_id"] in sources and positive(alignment["artifact_revision"])
                 and nonempty(alignment["note"]), "invalid alignment")
+    validate_management(snapshot)
     return snapshot
 
 
 def plan_content(snapshot):
     return {"nodes": [{k: n[k] for k in ("id", "kind", "title", "artifacts")}
+                      | {"work_package": n.get("work_package")}
                       for n in snapshot["nodes"]], "edges": snapshot["edges"]}
 
 
@@ -239,6 +245,314 @@ def transition(old, new):
                 and decision.get("artifact_revision") == new["artifact_revision"]
                 and new["artifact_revision"] > old["artifact_revision"],
                 "scope change requires explicit sourced decision and new revision")
+    transition_management(old, new)
+
+
+def number(value, metric):
+    return (type(value) in (int, float) and math.isfinite(value) and value >= 0 and
+            (metric not in ("tokens", "commands") or type(value) is int))
+
+
+def limits_valid(limits):
+    require(isinstance(limits, dict) and limits.keys() <= set(METRICS), "invalid budget metrics")
+    require(all(v is None or number(v, k) for k, v in limits.items()), "invalid budget limit")
+
+
+def validate_management(snapshot):
+    nodes, artifacts, sources = (keyed(snapshot[k]) for k in ("nodes", "artifacts", "sources"))
+    children = graph(snapshot, "decomposes")
+    for node in nodes.values():
+        package = node.get("work_package")
+        if package is None:
+            continue
+        require(node["kind"] == "task", "work_package belongs to task")
+        for field in ("objective", "done_when"):
+            require(nonempty(package[field]), "work_package requires " + field)
+        for field in ("input_artifacts", "output_artifacts"):
+            require(isinstance(package[field], list) and
+                    set(package[field]) <= artifacts.keys(), "invalid work_package artifacts")
+        require(package["output_artifacts"] and
+                set(package["output_artifacts"]) <= set(node["artifacts"]),
+                "work_package outputs must be bound by task evidence")
+        require(isinstance(package["stop_conditions"], list) and package["stop_conditions"]
+                and all(nonempty(s) for s in package["stop_conditions"]),
+                "work_package stop conditions required")
+        require(isinstance(package["write_scope"], list), "write_scope must be array")
+        for path in package["write_scope"]:
+            local_path(Path(snapshot["repo"]), path)
+    management = snapshot.get("management")
+    if management is None:
+        return
+    require(management["schema_version"] == 1, "invalid management schema")
+    assignments = keyed(management["assignments"])
+    goal_budget = management.get("goal_budget")
+    if goal_budget:
+        limits_valid(goal_budget["limits"])
+        require(goal_budget["source_id"] in sources, "goal budget source missing")
+    active_implementers = set()
+    for assignment in assignments.values():
+        task = assignment["task_id"]
+        require(task in nodes and nodes[task]["kind"] == "task", "assignment task outside goal")
+        require(assignment["status"] in ASSIGNMENT_STATES and
+                assignment["role"] in ("implementation", "review", "coordination"),
+                "invalid assignment role/status")
+        for field in ("agent_id", "session_id"):
+            require(assignment[field] is None or nonempty(assignment[field]), "invalid assignee identity")
+        require(assignment["source_id"] in sources, "assignment source missing")
+        timestamp(assignment["assigned_at"])
+        require(isinstance(assignment["expected_artifacts"], list) and
+                all(a in artifacts and task in artifacts[a]["tasks"]
+                    for a in assignment["expected_artifacts"]), "assignment artifact/task mismatch")
+        limits_valid(assignment["budget_limits"])
+        if assignment["status"] in ACTIVE_ASSIGNMENTS and assignment["role"] == "implementation":
+            require(not children[task], "active implementation must target a leaf work package")
+            require(task not in active_implementers, "multiple active implementation assignments")
+            active_implementers.add(task)
+        if assignment["status"] in ("released", "cancelled"):
+            require(nonempty(assignment.get("reason")), "released/cancelled assignment needs reason")
+    observations = {}
+    for observation in keyed(management["usage"]).values():
+        aid, metric = observation["assignment_id"], observation["metric"]
+        require(aid in assignments and assignments[aid]["status"] != "proposed",
+                "usage requires an actual assignment")
+        require(metric in METRICS and number(observation["amount"], metric), "invalid usage amount")
+        require(observation["kind"] in ("observed", "estimated") and
+                observation["source_id"] in sources, "invalid usage source/kind")
+        when = timestamp(observation["observed_at"])
+        require(when >= timestamp(assignments[aid]["assigned_at"]), "usage predates assignment")
+        observations.setdefault((aid, metric, observation["kind"]), []).append(observation)
+    for key, values in observations.items():
+        values.sort(key=lambda v: timestamp(v["observed_at"]))
+        for previous, current in zip(values, values[1:]):
+            if timestamp(previous["observed_at"]) == timestamp(current["observed_at"]):
+                require(previous["amount"] == current["amount"], "conflicting usage at same time")
+            if key[2] == "observed":
+                require(current["amount"] >= previous["amount"], "cumulative usage regressed")
+    for delivery in keyed(management["deliveries"]).values():
+        aid = delivery["assignment_id"]
+        require(aid in assignments and assignments[aid]["status"] != "proposed",
+                "delivery requires an actual assignment")
+        require(delivery["artifact_id"] in assignments[aid]["expected_artifacts"],
+                "delivery is not an expected assignment artifact")
+        require(delivery["source_id"] in sources and positive(delivery["artifact_revision"]) and
+                sha(delivery["sha256"]), "invalid delivery provenance")
+        require(timestamp(delivery["observed_at"]) >= timestamp(assignments[aid]["assigned_at"]),
+                "delivery predates assignment")
+
+
+def transition_management(old, new):
+    before, after = old.get("management"), new.get("management")
+    if before is None and after is None:
+        return
+    require(after is not None, "management history cannot be removed")
+    before = before or {"assignments": [], "usage": [], "deliveries": []}
+    for field in ("assignments", "usage", "deliveries"):
+        prior, current = keyed(before[field]), keyed(after[field])
+        require(prior.keys() <= current.keys(), "management records cannot be removed: " + field)
+        for key in prior:
+            if field != "assignments":
+                require(prior[key] == current[key], "usage/delivery observations are immutable")
+            else:
+                for fixed in ("task_id", "agent_id", "session_id", "role", "assigned_at"):
+                    require(prior[key][fixed] == current[key][fixed],
+                            "assignment identity immutable; release and create a new assignment")
+                if prior[key]["status"] in ("completed", "released", "cancelled"):
+                    require(prior[key]["status"] == current[key]["status"],
+                            "terminal assignment cannot be reopened")
+    if (before["assignments"] != after["assignments"] or
+            before.get("goal_budget") != after.get("goal_budget")):
+        decision = after.get("decision", {})
+        added_sources = keyed(new["sources"]).keys() - keyed(old["sources"]).keys()
+        require(nonempty(decision.get("approved_by")) and nonempty(decision.get("reason")) and
+                decision.get("source_id") in added_sources,
+                "assignment/budget change requires a new sourced management decision")
+
+
+def observation_freshness(observation, snapshot, at, max_age_hours, source_states):
+    source = keyed(snapshot["sources"])[observation["source_id"]]
+    if snapshot["mode"] == "real" and source["kind"] == "fixture":
+        return "fixture"
+    own = freshness({"observed_at": observation["observed_at"], "completeness": "complete"},
+                    at, max_age_hours)
+    return source_states[source["id"]] if own == "fresh" else own
+
+
+def budget_accounts(assignment, management, snapshot, at, max_age_hours, source_states):
+    accounts = {}
+    source = keyed(snapshot["sources"])[assignment["source_id"]]
+    limit_current = observation_freshness(
+        {"source_id": source["id"], "observed_at": source["observed_at"]},
+        snapshot, at, max_age_hours, source_states) == "fresh"
+    for metric in METRICS:
+        values = [u for u in management["usage"]
+                  if u["assignment_id"] == assignment["id"] and u["metric"] == metric]
+        latest = {}
+        for kind in ("observed", "estimated"):
+            candidates = [u for u in values if u["kind"] == kind]
+            latest[kind] = max(candidates, key=lambda u: timestamp(u["observed_at"])) if candidates else None
+        observed, estimated = latest["observed"], latest["estimated"]
+        limit = assignment["budget_limits"].get(metric)
+        used = observed["amount"] if observed else None
+        state = (observation_freshness(observed, snapshot, at, max_age_hours, source_states)
+                 if observed else "unreported")
+        current = state == "fresh"
+        remaining = round(limit - used, 8) if current and limit is not None and limit_current else None
+        status = ("over_budget" if remaining is not None and remaining < 0 else
+                  "exhausted" if remaining == 0 else
+                  "unknown_limit" if limit is None else
+                  "stale_limit" if not limit_current else
+                  "estimated_only" if not observed and estimated else
+                  state if not current else "within_budget")
+        accounts[metric] = {
+            "limit": limit, "limit_current": limit_current, "reported_used": used, "usage_freshness": state,
+            "current_used": used if current else None, "remaining": remaining, "status": status,
+            "usage_id": observed["id"] if observed else None,
+            "source_id": observed["source_id"] if observed else None,
+            "observed_at": observed["observed_at"] if observed else None,
+            "estimated_used": estimated["amount"] if estimated else None,
+            "estimate_source_id": estimated["source_id"] if estimated else None,
+            "estimate_freshness": observation_freshness(
+                estimated, snapshot, at, max_age_hours, source_states) if estimated else None}
+    return accounts
+
+
+def aggregate_budgets(assignments, goal_limits=None, goal_limit_fresh=True):
+    """Sum unique assignment accounts, never repeated AC paths or cumulative observations."""
+    rows = {a["id"]: a for a in assignments if a["status"] != "proposed"}
+    result = {}
+    for metric in METRICS:
+        missing = [a["id"] for a in rows.values() if a["budget"][metric]["current_used"] is None]
+        known = sum(a["budget"][metric]["current_used"] or 0 for a in rows.values())
+        used = round(known, 8) if rows and not missing else None
+        active = [a for a in rows.values() if a["status"] in ACTIVE_ASSIGNMENTS]
+        allocated = (sum(a["budget"][metric]["limit"] for a in active)
+                     if all(a["budget"][metric]["limit"] is not None and
+                            a["budget"][metric]["limit_current"] for a in active) else None)
+        reserved = (sum(max(a["budget"][metric]["remaining"], 0) for a in active)
+                    if all(a["budget"][metric]["remaining"] is not None for a in active) else None)
+        limit = (goal_limits or {}).get(metric)
+        balance = round(limit - used, 8) if limit is not None and used is not None and goal_limit_fresh else None
+        result[metric] = {
+            "goal_limit": limit, "goal_limit_current": goal_limit_fresh,
+            "current_used": used, "known_current_usage_subtotal": round(known, 8),
+            "unknown_usage_assignments": missing, "active_allocated_limit": allocated,
+            "remaining_to_goal_limit": balance, "active_remaining_allocation": reserved,
+            "unallocated": round(balance - reserved, 8) if balance is not None and reserved is not None else None,
+            "status": "over_budget" if balance is not None and balance < 0 else
+                      "overallocated" if balance is not None and reserved is not None and reserved > balance else
+                      "exhausted" if balance == 0 else "incomplete" if used is None else "recorded"}
+    return result
+
+
+def management_view(snapshot, report, at, max_age_hours):
+    management = snapshot.get("management")
+    data = management or {"assignments": [], "usage": [], "deliveries": []}
+    source_states, nodes = report["source_states"], keyed(snapshot["nodes"])
+    artifacts = {a["id"]: a for rows in report["index"].values() for a in rows}
+    rows, alerts = [], []
+    for assignment in data["assignments"]:
+        row = copy.deepcopy(assignment)
+        row["task_status"] = report["nodes"][row["task_id"]]["status"]
+        row["assignment_freshness"] = source_states[row["source_id"]]
+        row["budget"] = budget_accounts(row, data, snapshot, at, max_age_hours, source_states)
+        row["assets"] = []
+        for aid in row["expected_artifacts"]:
+            artifact = artifacts[aid]
+            receipts = [d for d in data["deliveries"]
+                        if d["assignment_id"] == row["id"] and d["artifact_id"] == aid]
+            delivery = max(receipts, key=lambda d: timestamp(d["observed_at"])) if receipts else None
+            delivery_state = "unreported"
+            if delivery:
+                observed_state = observation_freshness(delivery, snapshot, at, max_age_hours, source_states)
+                delivery_state = ("current" if observed_state == "fresh" and
+                                  delivery["artifact_revision"] == artifact["artifact_revision"] and
+                                  delivery["sha256"] == artifact["actual_sha256"] and
+                                  artifact["availability"] == "present" else "stale_or_unverified")
+            row["assets"].append({
+                "artifact_id": aid, "path": artifact["resolved_path"], "category": artifact["category"],
+                "availability": artifact["availability"], "artifact_revision": artifact["artifact_revision"],
+                "delivery": copy.deepcopy(delivery), "delivery_status": delivery_state,
+                "evidence_ids": artifact["evidence_ids"]})
+            artifact.setdefault("assigned_to", []).append({
+                "assignment_id": row["id"], "agent_id": row["agent_id"], "session_id": row["session_id"],
+                "status": row["status"], "delivery_status": delivery_state})
+        reasons = []
+        if row["agent_id"] is None or row["session_id"] is None:
+            reasons.append("assignee_identity_incomplete")
+        if row["assignment_freshness"] != "fresh":
+            reasons.append("assignment_source_" + row["assignment_freshness"])
+        if not row["expected_artifacts"]:
+            reasons.append("expected_assets_unrecorded")
+        if not any(v is not None for v in row["budget_limits"].values()):
+            reasons.append("budget_limits_unrecorded")
+        if row["status"] in (*ACTIVE_ASSIGNMENTS, "completed"):
+            reasons += ["budget_" + metric + "_" + b["status"] for metric, b in row["budget"].items()
+                        if metric in row["budget_limits"] and b["status"] != "within_budget"]
+        if row["status"] == "completed" and any(a["delivery_status"] != "current" for a in row["assets"]):
+            reasons.append("completed_assignment_missing_current_delivery")
+        if reasons:
+            alerts.append({"assignment_id": row["id"], "task_id": row["task_id"],
+                           "owner": nodes[row["task_id"]]["owner"], "reasons": reasons})
+        rows.append(row)
+    goal_budget = data.get("goal_budget", {})
+    goal_source = keyed(snapshot["sources"]).get(goal_budget.get("source_id"))
+    goal_limit_current = bool(goal_source and observation_freshness(
+        {"source_id": goal_source["id"], "observed_at": goal_source["observed_at"]},
+        snapshot, at, max_age_hours, source_states) == "fresh")
+    budget = aggregate_budgets(rows, goal_budget.get("limits"),
+                              goal_limit_current)
+    groups = {}
+    for field in ("agent_id", "session_id"):
+        groups[field] = []
+        for identity in sorted({r[field] for r in rows}, key=lambda v: v or ""):
+            assigned = [r for r in rows if r[field] == identity]
+            groups[field].append({
+                field: identity, "assignment_ids": [r["id"] for r in assigned],
+                "task_ids": sorted({r["task_id"] for r in assigned}),
+                "current_task_ids": sorted({r["task_id"] for r in assigned if r["status"] in ACTIVE_ASSIGNMENTS}),
+                "artifact_ids": sorted({a for r in assigned for a in r["expected_artifacts"]}),
+                "budget": aggregate_budgets(assigned)})
+    packages = []
+    for nid, node in nodes.items():
+        if node["kind"] != "task":
+            continue
+        related = [r for r in rows if r["task_id"] in [nid] + report["nodes"][nid]["descendants"]]
+        package = node.get("work_package", {})
+        ancestors = report["nodes"][nid]["ancestors"]
+        packages.append({
+            "task_id": nid, "objective": package.get("objective", node["title"]),
+            "objective_basis": "work_package" if package else "legacy_title_only",
+            "done_when": package.get("done_when"),
+            "requirement_ids": [n for n in ancestors if nodes[n]["kind"] == "requirement"],
+            "acceptance": [{"id": n, "criterion": nodes[n]["title"], "status": report["nodes"][n]["status"]}
+                           for n in ancestors if nodes[n]["kind"] == "acceptance"],
+            "input_artifacts": package.get("input_artifacts", []),
+            "output_artifacts": package.get("output_artifacts", node["artifacts"]),
+            "write_scope": package.get("write_scope"), "stop_conditions": package.get("stop_conditions"),
+            "owner": node["owner"], "status": report["nodes"][nid]["status"],
+            "assignment_ids": [r["id"] for r in related],
+            "current_assignment_ids": [r["id"] for r in related if r["status"] in ACTIVE_ASSIGNMENTS],
+            "budget": aggregate_budgets(related)})
+    unmanaged = [p["task_id"] for p in packages if not p["current_assignment_ids"] and
+                 nodes[p["task_id"]]["status"] not in ("done", "cancelled")]
+    goal_dag = {"goal_id": snapshot["goal_id"], "original_objective": snapshot["goal"]["original_text"],
+                "constraints": snapshot["goal"]["constraints"], "goal_status": report["goal_status"],
+                "requirements": [{"id": n["id"], "objective": n["title"]} for n in nodes.values()
+                                 if n["kind"] == "requirement"],
+                "edges": snapshot["edges"], "work_packages": packages,
+                "work_package_gaps": [p["task_id"] for p in packages if p["objective_basis"] == "legacy_title_only"]}
+    return {"recording_status": "recorded" if management else "not_recorded",
+            "assignments": rows, "by_agent": groups["agent_id"], "by_session": groups["session_id"],
+            "goal_budget": budget, "unassigned_tasks": unmanaged, "alerts": alerts}, goal_dag
+
+
+def management_focus(report, agent_id=None, session_id=None):
+    rows = [a for a in report["management"]["assignments"]
+            if (agent_id is None or a["agent_id"] == agent_id) and
+               (session_id is None or a["session_id"] == session_id)]
+    return {"agent_id": agent_id, "session_id": session_id, "assignments": rows,
+            "task_ids": sorted({a["task_id"] for a in rows}), "budget": aggregate_budgets(rows),
+            "status": "matched" if rows else "not_recorded"}
 
 
 def read_json(path):
@@ -477,7 +791,7 @@ def assess(snapshot, at=None, max_age_hours=24):
         next_actions = [{"node": root, "owner": nodes[root]["owner"],
                          "session_id": nodes[root]["session_id"],
                          "action": "reconcile_goal_alignment_sources_and_acceptance"}]
-    return {"identity": {k: snapshot[k] for k in IDENTITY},
+    report = {"identity": {k: snapshot[k] for k in IDENTITY},
             "artifact_revision": snapshot["artifact_revision"], "as_of": at.isoformat(),
             "source_id": snapshot["source_id"], "source_freshness": primary_freshness,
             "source_states": source_status, "goal_status": goal_status,
@@ -487,6 +801,8 @@ def assess(snapshot, at=None, max_age_hours=24):
             "progress_basis": "AC evidence + dependency closure + source freshness + goal alignment; no task percentage",
             "nodes": observations, "evidence": evidence_states, "index": index,
             "next_actions": next_actions}
+    report["management"], report["goal_dag"] = management_view(snapshot, report, at, max_age_hours)
+    return report
 
 
 def mermaid(snapshot, report):
@@ -494,6 +810,13 @@ def mermaid(snapshot, report):
     ids = {n["id"]: "n" + str(i) for i, n in enumerate(snapshot["nodes"])}
     for node in snapshot["nodes"]:
         label = node["id"] + " " + node["title"] + " [" + report["nodes"][node["id"]]["status"] + "]"
+        if node.get("work_package"):
+            label += " / 目标: " + node["work_package"]["objective"]
+        assigned = [a for a in report["management"]["assignments"]
+                    if a["task_id"] == node["id"] and a["status"] in ACTIVE_ASSIGNMENTS]
+        if assigned:
+            label += " / " + ", ".join((a["agent_id"] or "?") + "@" + (a["session_id"] or "?")
+                                      for a in assigned)
         label = label.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;").replace(">", "&gt;").replace("\n", " ")
         lines.append(f'  {ids[node["id"]]}["{label}"]')
     for edge in snapshot["edges"]:
@@ -522,6 +845,54 @@ def markdown_index(report):
     return "\n".join(lines)
 
 
+def markdown_brief(report):
+    def cell(value):
+        return ("未记录" if value is None else str(value)).replace("|", "&#124;").replace("\n", " ")
+    def row(values):
+        return "| " + " | ".join(cell(v) for v in values) + " |"
+    goal, management = report["goal_dag"], report["management"]
+    lines = [f'Goal {goal["goal_id"]}: {cell(goal["original_objective"])}',
+             f'状态: {report["goal_status"]}; 来源: {report["source_freshness"]}; 时间: {report["as_of"]}',
+             f'分配记录: {management["recording_status"]}; 所有预算为来源报告，不是自动计费。',
+             "", "## DAG 工作目标", "",
+             "| TASK | 具体目标 | 完成条件 | REQ / AC | 当前分配 |",
+             "| --- | --- | --- | --- | --- |"]
+    for package in goal["work_packages"]:
+        lines.append(row((package["task_id"], package["objective"], package["done_when"],
+                          ", ".join(package["requirement_ids"] + [a["id"] for a in package["acceptance"]]),
+                          ", ".join(package["current_assignment_ids"]) or "未分配")))
+    lines += ["", "## agent / session 与资产", "",
+              "| 分配 / TASK | agent | session | 分配状态 | 预期资产 / 文件 / 交付记录 |",
+              "| --- | --- | --- | --- | --- |"]
+    for assignment in management["assignments"]:
+        assets = "; ".join(a["artifact_id"] + ": " + a["availability"] + "/" + a["delivery_status"]
+                           for a in assignment["assets"])
+        lines.append(row((assignment["id"] + " / " + assignment["task_id"], assignment["agent_id"],
+                          assignment["session_id"], assignment["status"], assets or "未记录")))
+    lines += ["", "## 预算", "",
+              "| 分配 | 单位 | 上限 | 来源报告已用 | 当前剩余 | 状态 |",
+              "| --- | --- | --- | --- | --- | --- |"]
+    for assignment in management["assignments"]:
+        shown = False
+        for metric, budget in assignment["budget"].items():
+            if metric in assignment["budget_limits"] or budget["usage_id"] or budget["estimated_used"] is not None:
+                lines.append(row((assignment["id"], metric, budget["limit"], budget["reported_used"],
+                                  budget["remaining"], budget["status"])))
+                shown = True
+        if not shown:
+            lines.append(row((assignment["id"], "—", None, None, None, "not_recorded")))
+    for metric, budget in management["goal_budget"].items():
+        if budget["goal_limit"] is not None:
+            lines.append(row(("GOAL（不与分配预算重复相加）", metric, budget["goal_limit"],
+                              budget["current_used"], budget["remaining_to_goal_limit"], budget["status"])))
+    lines += ["", "未分配任务: " + (", ".join(management["unassigned_tasks"]) or "无"),
+              "工作目标/完成条件未完整记录: " + (", ".join(goal["work_package_gaps"]) or "无")]
+    for alert in management["alerts"]:
+        lines.append("- " + cell(alert["assignment_id"]) + ": " + cell(", ".join(alert["reasons"])))
+    lines += ["", markdown_index(report)]
+    return "\n".join(lines)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
@@ -535,13 +906,15 @@ def main():
         cmd.add_argument("--reason", required=True)
         if name == "refresh":
             cmd.add_argument("--expected-revision", required=True, type=int)
-    for name in ("query", "dag", "index"):
+    for name in ("query", "dag", "index", "brief"):
         cmd = commands.add_parser(name)
         cmd.add_argument("--state", required=True, type=Path)
         cmd.add_argument("--at", help="ISO timestamp; explicit historical replay, never live freshness")
         cmd.add_argument("--max-age-hours", type=float, default=24)
         if name == "query":
             cmd.add_argument("--node")
+            cmd.add_argument("--agent", help="filter assignment records by exact agent ID")
+            cmd.add_argument("--session", help="filter assignment records by exact session ID")
     args = parser.parse_args()
     try:
         if args.command == "validate":
@@ -562,9 +935,16 @@ def main():
             if args.command == "index":
                 print(markdown_index(result))
                 return 0
+            if args.command == "brief":
+                print(markdown_brief(result))
+                return 0
             if args.node:
                 require(args.node in result["nodes"], "unknown node")
                 result["focus"] = result["nodes"][args.node]
+                result["focus"]["work_package"] = next(
+                    (p for p in result["goal_dag"]["work_packages"] if p["task_id"] == args.node), None)
+            if args.agent or args.session:
+                result["assignment_focus"] = management_focus(result, args.agent, args.session)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     except (ValueError, KeyError, TypeError, AttributeError, OSError) as error:
