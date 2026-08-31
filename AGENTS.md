@@ -31,7 +31,7 @@
 | 分类 | Skills |
 | --- | --- |
 | meta / 规范治理 | `meta-skill-governance` |
-| engineering / 工程实践 | `eng-workspace-governance`、`eng-quality-test`、`eng-review-technical`、`eng-delivery-feature`、`eng-delivery-release` |
+| engineering / 工程实践 | `eng-workspace-governance`、`eng-quality-test`、`eng-review-technical`、`eng-project-manager`、`eng-delivery-feature`、`eng-delivery-release` |
 | product / 产品需求 | `product-spec-prd`、`product-review-prd` |
 | content / 内容制作 | `content-video-director-learning` |
 | personal / 个人效率 | 预留分类，目前无 skill；不建占位 skill |

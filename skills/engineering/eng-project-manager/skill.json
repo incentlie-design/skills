@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "eng-project-manager",
+  "version": "0.1.0",
+  "category": "engineering",
+  "status": "draft",
+  "summary": "长程 goal 的来源保真接入、DAG 管理、revision 对账、阻塞查询与四层产物索引",
+  "owners": ["repository-maintainer"],
+  "tags": ["project-manager", "goal", "DAG", "progress", "blockers", "项目经理", "进展", "产物索引"],
+  "dependencies": [],
+  "input_contract": "docs/contracts.md v1 envelope + eng-project-manager/v1 snapshot；明确 project_id/goal_id/main_task_id/repo、原始目标/约束、来源/时间/revision、REQ/AC/task 与 typed edges、owner/session、产物/证据；未知 native goal ID 显式用有来源本地 ID，不伪造跨会话访问",
+  "output_contract": "用户目标 repo 中仅追加本地台账；query JSON、typed DAG/Mermaid、产品文档/技术文档/需求列表/问题列表索引、来源新鲜度/目标遗漏/阻塞/下一 owner；verified 与 claimed/stale/not_run/fixture 分离；管理交接 pass/revise/blocked 不变更原生 goal"
+}
