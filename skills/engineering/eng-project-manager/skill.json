@@ -3,7 +3,7 @@
   "name": "eng-project-manager",
   "version": "0.1.0",
   "category": "engineering",
-  "status": "draft",
+  "status": "active",
   "summary": "长程 goal 的来源保真接入、DAG 管理、revision 对账、阻塞查询与四层产物索引",
   "owners": ["repository-maintainer"],
   "tags": ["project-manager", "goal", "DAG", "progress", "blockers", "项目经理", "进展", "产物索引"],
