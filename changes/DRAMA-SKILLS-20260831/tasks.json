@@ -493,7 +493,7 @@
         "episode-editing-rhythm",
         "episode-assembly-subtitle"
       ],
-      "lessons": "不能声音介绍老大画面已到老二；绑定line_id/shot_id，不按句号机械切图。只减gap应保留approved语音take、音色、原时长记录；整体变速要用户目标明确并同步图片与字幕。字幕原生画幅安全区、宽度与逐词变黄；无timing时只出provisional不得猜精确时间。",
+      "lessons": "不能声音介绍老大画面已到老二；绑定line_id/shot_id，不按句号机械切图。只减gap应保留approved语音take、音色、原时长记录；整体变速要用户目标明确并同步图片与字幕。字幕安全区与宽度依brief；逐词高亮及黄色仅作为项目可选preset。无timing时只出provisional不得猜精确时间。",
       "inputs": [
         "task-specific source knowledge",
         "common content-production handoff v1"
@@ -823,4 +823,3 @@
     }
   ]
 }
-
