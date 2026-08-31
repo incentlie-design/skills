@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "drama-episode-writing",
+  "version": "0.1.0",
+  "category": "drama",
+  "status": "draft",
+  "summary": "从确定的单集任务编写完整短剧场景、对白与节拍交接，保留人物选择、因果和系列边界",
+  "owners": ["repository-maintainer"],
+  "tags": ["短剧", "单集剧本", "对白", "旁白", "beat-sheet", "line-register"],
+  "dependencies": [],
+  "input_contract": "已定单集范围与人物问题、起止状态、人物欲望/关系、来源或原创授权、相关正典及保护事件、目标时长或提议授权；落盘另需目标repo/基线/write_scope；缺关键输入返回blocked/needs_input，不从记忆假造批准稿",
+  "output_contract": "同一正整数artifact_revision的episode-script、beat-sheet、line-register与公共handoff；稳定scene/beat/line/character引用、逐字口播及分离的指导、旁白知识依据、因果/选择/代价、估时与保护事件、来源/推断/未知项及下游影响；仅候选，不注册、生成媒体或自批"
+}
