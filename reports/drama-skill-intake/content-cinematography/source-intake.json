@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-c05-intake-r1",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "task_id": "DRAMA-SKILL-C05",
+  "source_repo": "drama-agents",
+  "source_repo_location": "/Users/jiajun.lai/Documents/workspaces/drama-agents",
+  "source_commit": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+  "source_version": "0.1.0",
+  "source_scope_dirty": false,
+  "read_date": "2026-08-31",
+  "files": [
+    {
+      "path": ".agents/skills/episode-cinematography-direction/SKILL.md",
+      "sha256": "22c730607699027d5f8ae9b97c32c25a3520bbf2670fc24e44b8c7c46a8bd12d",
+      "sections": ["Episode Cinematography Direction"],
+      "use": "叙事功能与观众对齐先于光学/构图；避免为展示正脸改变人物行为；摄影候选不等于媒体或批准。"
+    },
+    {
+      "path": ".agents/skills/episode-cinematography-direction/references/contract.md",
+      "sha256": "246143bccb2dec33271c44cd8dafb6953b4fad73e935e209b25fe0ef76550ed2",
+      "sections": ["Decision sequence", "Required recommendation", "Hard failures", "Ownership gate"],
+      "use": "抽取轴线/锚点、注意力、焦点、动机及剪辑入出点；识别固定9:16和app gate为旧项目约束。"
+    },
+    {
+      "path": ".agents/skills/episode-cinematography-direction/references/cinematography-plan.schema.json",
+      "sha256": "43c9bde31356e53de6a21ae6048e2cf2a426d4161aada28eba3f1732ce9ce9c7",
+      "sections": ["required", "$defs"],
+      "use": "只确认旧消费者/身份/运行时字段，不复制schema或验证器。"
+    }
+  ],
+  "retained_method": [
+    "信息变化、观众对齐、人物各自注意力先于构图",
+    "远景、背影/肩背、侧脸、物件、反应服务不同叙事功能",
+    "机位绑定轴线与锚点，景别/焦段/距离/焦点独立决策",
+    "运镜有事件动机和起止；入出状态供分镜/剪辑消费"
+  ],
+  "new_synthesis": [
+    "通用内容入口，按电影/广告/纪录片的事实与传播目标选择覆盖",
+    "目标画幅独立构图，9:16不是默认；无意义运动不是通用要求，明确动机的手持仍可采用",
+    "必要输入按具体决定补齐，缺媒体时允许provisional语义设计，不强制全套episode/audio/asset包"
+  ],
+  "not_migrated": [
+    "Episode/Series schema及应用Registry/Ledger/CAS/Outbox",
+    "默认DAG、双消费者必需性门禁和评测注册表",
+    "强制9:16、全局固定机位、特定国家/人群/身份/供应商预设",
+    "完整小说、私人媒体、密钥或旧app runtime验证器"
+  ],
+  "compatibility": "新draft是方法与文件交接候选，不是旧CinematographyPlanCandidate schema的drop-in替代。旧源与安装均未修改。",
+  "source_truth_boundary": "source_commit与摘要为实际本地读取结果；new_synthesis为本次归纳，不冒充研究事实或实拍验证。开发来源绝对路径只留在此报告，Skill运行不依赖该路径。",
+  "shared_files_owner": "DRAMA-SKILLS-20260831 coordinator",
+  "registration": "not_run; registry/AGENTS/README/CHANGELOG/docs/scripts/.agents均未修改"
+}

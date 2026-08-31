@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skills-20260831-c08",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "task_id": "DRAMA-SKILL-C08",
+  "artifact_kind": "candidate-handoff",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/fa3c/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "original_main_baseline": "cd990aaec765fcbd1731af970233484377c873aa",
+  "branch": "codex/drama-skill-c08-audio-production",
+  "worktree": "/Users/jiajun.lai/.codex/worktrees/fa3c/skill-creator",
+  "owner": "dedicated-session:content-audio-production",
+  "status": "pass",
+  "status_scope": "Local draft candidate handoff supported by structural smoke and independent provider-free three-case execution; not final integration approval.",
+  "lifecycle": "candidate",
+  "skill": {
+    "name": "content-audio-production",
+    "category": "content",
+    "version": "0.1.0",
+    "status": "draft",
+    "dependencies": []
+  },
+  "commits": {
+    "cases_before_implementation": "1d06b79742884fdc453e75d5ef73809227607f35",
+    "candidate_head": "87b6e507f15bd429cdfffbdc8f70e5719d34aed4",
+    "binding_scope": "Frozen Skill and original prompts. This report is committed afterward; the containing final commit is supplied in the task's final response, not fabricated recursively here."
+  },
+  "write_scope": [
+    "skills/content/content-audio-production/",
+    "reports/drama-skill-intake/content-audio-production/"
+  ],
+  "scope_check": "No shared registry, routing, docs, scripts, discovery, or source-library files edited.",
+  "artifacts": [
+    "skills/content/content-audio-production/SKILL.md",
+    "skills/content/content-audio-production/skill.json",
+    "skills/content/content-audio-production/tests/cases.json",
+    "skills/content/content-audio-production/references/handoff-format.md",
+    "skills/content/content-audio-production/references/listening-and-repair.md"
+  ],
+  "evidence": [
+    "reports/drama-skill-intake/content-audio-production/raw-prompts.json",
+    "reports/drama-skill-intake/content-audio-production/structural-smoke.json",
+    "reports/drama-skill-intake/content-audio-production/reviewer-output.md",
+    "reports/drama-skill-intake/content-audio-production/source-ledger.md",
+    "reports/drama-skill-intake/content-audio-production/report.md"
+  ],
+  "sources": {
+    "ledger": "reports/drama-skill-intake/content-audio-production/source-ledger.md",
+    "main_sources": [
+      "episode-audio-performance",
+      "series-audio-bible"
+    ],
+    "drama_agents_commit": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+    "personal_elevenlabs_revision": "unknown",
+    "source_policy": "Read-only method extraction; no source scripts, novels, private media, credentials, provider calls or runtime validators migrated."
+  },
+  "validation": {
+    "structural": {
+      "status": "pass",
+      "exit_code": 0,
+      "behavior_cases_executed": 0,
+      "evidence": "structural-smoke.json"
+    },
+    "behavior": {
+      "status": "pass",
+      "execution_mode": "Independent provider-free text exercise; reviewer saw frozen Skill, linked contracts and raw prompts only.",
+      "behavior_cases_executed": 3,
+      "reviewer": "/root/audio_production_review",
+      "reviewed_revision": 1,
+      "reviewed_commit": "87b6e507f15bd429cdfffbdc8f70e5719d34aed4",
+      "evidence": "reviewer-output.md",
+      "cases": [
+        {
+          "id": "TC-001",
+          "kind": "happy",
+          "execution": "executed",
+          "status": "pass",
+          "result": "Three actual plans; five lines/speakers/voice revisions preserved, instructions non-spoken, cultural cue held, media checks not_run."
+        },
+        {
+          "id": "TC-002",
+          "kind": "missing_input",
+          "execution": "executed",
+          "status": "pass",
+          "observed_handoff_status": "blocked",
+          "result": "No fabricated acceptance or normalize claim; bounded evidence request and conditional repair hypotheses."
+        },
+        {
+          "id": "TC-003",
+          "kind": "boundary",
+          "execution": "executed",
+          "status": "pass",
+          "observed_routing": "not_triggered",
+          "result": "Voice identity/provider/registration request routed out; no media or global writes."
+        }
+      ],
+      "findings": [],
+      "final_acceptance_owner": "DRAMA-SKILLS-20260831 main integration task",
+      "final_acceptance": "pending",
+      "limitation": "Reviewer did not independently hash the worktree; author structural hashes bind the frozen files. Pass is limited to this text exercise."
+    },
+    "budget": {
+      "initial_cases": 3,
+      "rounds_executed": 1,
+      "targeted_repairs_used": 0,
+      "targeted_repairs_max": 2,
+      "commands_per_round_max": 3,
+      "minutes_per_round_max": 10,
+      "command_accounting": "One author structural command, one reviewer read command, one final report/scope/commit guard command.",
+      "paid_media_calls": 0
+    },
+    "not_run": [
+      "Real audio generation, listening, loudness/peak measurement, pronunciation/naturalness evaluation or picture/subtitle sync.",
+      "Provider API compatibility, paid probes, any external upload or model call.",
+      "Client loading/discovery and registry-based validation; Skill intentionally remains unregistered.",
+      "Whole-repository regression, frozen integration validation, installation, merge to main, push or publication."
+    ]
+  },
+  "unresolved_issues": [],
+  "minimal_gaps": [
+    {
+      "owner": "main integration task",
+      "action": "Review cross-Skill boundaries and this candidate, then perform shared registration/routing and bounded integration validation if accepted."
+    },
+    {
+      "owner": "future authorized production executor",
+      "action": "Actual media quality remains untested; use real take/stem/timeline evidence when a production task is authorized."
+    }
+  ],
+  "next_owner": "DRAMA-SKILLS-20260831 main integration task",
+  "next_actions": "Inspect local candidate and evidence; preserve draft until final review. This session remains available for user-directed iteration.",
+  "stopping_condition": "Candidate plus limited evidence complete; no further generation, tasks, integration, publishing, installation or worktree cleanup.",
+  "rollback": "No source or shared state changed. Exclude this candidate from integration; any later reversal should use an explicit scoped revert, not reset."
+}

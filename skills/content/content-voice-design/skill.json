@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "content-voice-design",
+  "version": "0.1.0",
+  "category": "content",
+  "status": "draft",
+  "summary": "跨旁白、电影、广告与游戏设计可比较的年龄、音色和地域口音，记录身份不变量、试读条件与真实选择证据",
+  "owners": ["repository-maintainer"],
+  "tags": ["content", "voice", "accent", "音色", "口音", "年龄", "选型"],
+  "dependencies": [],
+  "input_contract": "用途/听众、角色或旁白身份与来源、目标语言、保留/改变目标；可选地域经历、情绪/身体状态、试读文本、供应商与旧批准记录。比较需媒体refs/试听证据/生成条件，Remix需来源权限，锁定需确切候选及选型决定。缺失只阻断相应动作，保留unknown/needs_input；默认供应商无关、仅文档。",
+  "output_contract": "voice-bible、voice-design-prompt、comparison-lock-record，可按任务合并；各含artifact_kind、目标scope、输入refs/revision、身份ID、事实/用户决定/创作推断/未知、消费者与handoff。落盘沿用公共envelope及正整数artifact_revision，未提交用uncommitted+digest；status=pass/revise/blocked限实际scope。记录候选/生成/试听/选型/外部注册的分别证据，不凭prompt或voice ID伪造锁定，不覆盖approved资产；制作/混音/注册由下游负责。"
+}

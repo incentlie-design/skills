@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-c07-20260831-handoff",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/eb6e/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "artifact_kind": "candidate-handoff",
+  "task_id": "DRAMA-SKILL-C07",
+  "status": "pass",
+  "status_scope": "Scoped local draft candidate and independent offline document exercise only; not final integration acceptance",
+  "task_state": "review",
+  "skill": {"name": "content-voice-design", "category": "content", "version": "0.1.0", "status": "draft", "dependencies": []},
+  "baseline": {
+    "original_checkout_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+    "original_checkout_state": "clean detached HEAD",
+    "foundation_sync": "git merge --ff-only 8271786fd12cc4a35339d56fb26d8635af50fa0c succeeded",
+    "head_commit": "7fec5a8fb780f5de162fc913fb4a67652d85edb7",
+    "head_meaning": "Frozen Skill code candidate; evidence commit is later and its actual hash is supplied in final response to avoid self-referential hash",
+    "worktree": "/Users/jiajun.lai/.codex/worktrees/eb6e/skill-creator",
+    "branch": "codex/drama-skill-c07-content-voice-design"
+  },
+  "owner": "dedicated-session:content-voice-design",
+  "write_scope": ["skills/content/content-voice-design/", "reports/drama-skill-intake/content-voice-design/"],
+  "shared_files_changed": [],
+  "artifacts": [
+    "skills/content/content-voice-design/SKILL.md",
+    "skills/content/content-voice-design/skill.json",
+    "skills/content/content-voice-design/tests/cases.json",
+    "skills/content/content-voice-design/references/handoff-fields.md",
+    "skills/content/content-voice-design/references/elevenlabs.md"
+  ],
+  "source_evidence": "reports/drama-skill-intake/content-voice-design/sources.json",
+  "input_refs": [
+    {"path": "changes/DRAMA-SKILLS-20260831/brief.md", "revision": "8271786fd12cc4a35339d56fb26d8635af50fa0c"},
+    {"path": "changes/DRAMA-SKILLS-20260831/tasks.json", "entity": "DRAMA-SKILL-C07", "revision": "8271786fd12cc4a35339d56fb26d8635af50fa0c"},
+    {"path": "docs/content-production-contract.md", "revision": "8271786fd12cc4a35339d56fb26d8635af50fa0c"}
+  ],
+  "delivered_behavior": [
+    "Separate source facts, user decisions, creative voice proposals and unknowns; age through texture/breath/effort rather than extreme pitch or slow speed",
+    "Natural regional accent direction with individual variation; no nationality-wide phoneme replacement recipe",
+    "Distinguish Design/Remix/TTS; preserve full comparison context and selection evidence without fake listening or external registration",
+    "Produce voice-bible, voice-design-prompt and comparison-lock-record as versioned, scoped file handoffs",
+    "Keep provider specifics optional and historical; pure audio editing does not trigger new voice design"
+  ],
+  "validation": {
+    "round": 1,
+    "repairs_used": 0,
+    "max_targeted_repairs": 2,
+    "structural_smoke": "pass",
+    "structural_evidence": "reports/drama-skill-intake/content-voice-design/smoke.json",
+    "behavior_cases_defined": 3,
+    "behavior_cases_executed": 3,
+    "behavior_mode": "Independent offline forward execution of three original prompts; no media",
+    "cases": [
+      {"id": "TC-001", "kind": "happy", "execution": "executed", "test_result": "pass", "business_result": "design_ready; not_generated/not_listened/not_locked", "evidence": "reports/drama-skill-intake/content-voice-design/independent-exercise.md#TC-001"},
+      {"id": "TC-002", "kind": "missing_input", "execution": "executed", "test_result": "pass", "business_result": "Diagnosis delivered; lock and executable Remix correctly blocked by missing evidence/ownership", "evidence": "reports/drama-skill-intake/content-voice-design/independent-exercise.md#TC-002"},
+      {"id": "TC-003", "kind": "boundary", "execution": "executed", "test_result": "pass", "business_result": "Audio-edit handoff; no new voice design, clone, paid call, overwrite or Registry write", "evidence": "reports/drama-skill-intake/content-voice-design/independent-exercise.md#TC-003"}
+    ],
+    "reviewer": "/root/c07_independent_exercise",
+    "reviewed_revision": 1,
+    "reviewed_commit": "7fec5a8fb780f5de162fc913fb4a67652d85edb7",
+    "review_status": "pass",
+    "review_scope": "Frozen skill usability in three offline document cases, not final integration",
+    "review_output": "reports/drama-skill-intake/content-voice-design/independent-exercise.md",
+    "review_ledger": "reports/drama-skill-intake/content-voice-design/reviewer-execution-ledger.md",
+    "reviewer_inputs": "Frozen SKILL.md plus two references and public contracts, three exact original prompts only; no expect or author answers",
+    "reviewer_write_scope": [],
+    "author_role": "Implementation, structural smoke and evidence recording; no self-signed final acceptance",
+    "command_budget": {"maximum": 3, "reviewer_read_commands": 1, "author_structure_commands": 1, "package_audit_commands": 1, "commands_executed": 3, "minutes_maximum": 10},
+    "package_audit": {
+      "status": "pass",
+      "exit_code": 0,
+      "scope": "Report JSON/revisions/paths; all five frozen Skill hashes; six source digests unchanged; changes confined to assigned directories",
+      "errors": []
+    },
+    "paid_media_calls": 0,
+    "not_run": [
+      "Real audio generation/listening and acoustic or accent-naturalness evaluation",
+      "Current ElevenLabs model/API/price/ownership verification or web/API audio parity",
+      "Supplier voice saving, asset registration, real production TTS or mixing",
+      "Registry integration and client skill discovery/loading",
+      "Whole-repository regression, global installation, push or publication"
+    ]
+  },
+  "findings": [],
+  "non_blocking_suggestions": [],
+  "minimal_gap": "No blocking defect observed within the exercised document scope. Main task must review cross-skill boundaries, register the draft and validate discovery/integration before treating it as available.",
+  "open_questions": ["Actual voice quality and current provider behavior require a separate authorized media task; they are not promised by this candidate."],
+  "consumers": ["DRAMA-SKILLS-20260831 integration owner", "future content audio-production/continuity consumers"],
+  "handoff": {
+    "next_owner": "DRAMA-SKILLS-20260831 integration owner",
+    "state": "draft candidate, awaiting final acceptance",
+    "allowed_next_steps": ["Review this candidate and source migration", "Integrate approved files and update shared registry/README/AGENTS/CHANGELOG/discovery in the main task's scope"],
+    "not_authorized_here": ["merge main", "push", "install", "publish", "delete worktree", "mutate source installations", "generate paid media"],
+    "preserve": ["Independent session", "candidate branch/worktree", "personal elevenlabs-voice-design installation", "all source libraries"]
+  }
+}

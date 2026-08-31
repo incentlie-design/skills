@@ -1,0 +1,53 @@
+{
+  "status": "pass",
+  "official_quick_validate": "Skill is valid!",
+  "checks": [
+    "native frontmatter",
+    "metadata JSON and draft version",
+    "three case structures",
+    "raw prompts equal preimplementation cases with expect removed",
+    "repository-relative reference targets",
+    "no author-machine runtime paths"
+  ],
+  "behavior_cases_executed": 0,
+  "candidate_commit": "bbc1fe9e12782d739f8cadcb328b4db6743cc08d",
+  "artifact_revision": 1,
+  "skill_files": [
+    {
+      "path": "skills/drama/drama-storyboard-production/SKILL.md",
+      "sha256": "fbaa17168fc4d02a969c5bbceed261bd69a9e4523207388d0909cf3ac5d85a5a"
+    },
+    {
+      "path": "skills/drama/drama-storyboard-production/references/output-contract.md",
+      "sha256": "4569b64e8e27ab4fa7937cd834b35b566c5a8074b1ff5ff78f52efc3d3f2d600"
+    },
+    {
+      "path": "skills/drama/drama-storyboard-production/skill.json",
+      "sha256": "374f76179d4b63eb2ed58b1596c7c1ff9c775e379c80d67ccbe61aa1975669da"
+    },
+    {
+      "path": "skills/drama/drama-storyboard-production/tests/cases.json",
+      "sha256": "fc0119eb8404815426b122ea0c7b949964b42eba57e0ae1f3072453b31b2f7a7"
+    }
+  ],
+  "bundle_sha256": "a7a060894da1f6a1f879b141f96d49d7b281d0f591aadbb0640f864f43ca6fa7",
+  "digest_algorithm": "sha256 of sorted repo-relative path + NUL + file sha256 + newline",
+  "reference_targets": [
+    "docs/contracts.md",
+    "docs/content-production-contract.md",
+    "skills/drama/drama-storyboard-production/references/output-contract.md",
+    "docs/contracts.md",
+    "docs/content-production-contract.md"
+  ],
+  "elapsed_seconds": 0.019,
+  "command": "python3 - <<'PY'\nfrom pathlib import Path\nimport json, hashlib, importlib.util, re, time\nstarted=time.time()\nroot=Path.cwd()\np=root/'skills/drama/drama-storyboard-production'\nspec=importlib.util.spec_from_file_location('official_quick_validate','/Users/jiajun.lai/.codex/skills/.system/skill-creator/scripts/quick_validate.py')\nmodule=importlib.util.module_from_spec(spec); spec.loader.exec_module(module)\nok,message=module.validate_skill(p)\nassert ok,message\nmeta=json.loads((p/'skill.json').read_text())\nassert all(k in meta for k in ['schema_version','name','version','category','status','summary','owners','tags','dependencies','input_contract','output_contract'])\nassert (meta['schema_version'],meta['name'],meta['version'],meta['category'],meta['status'],meta['dependencies'])==(1,p.name,'0.1.0','drama','draft',[])\ncases=json.loads((p/'tests/cases.json').read_text())\nassert len(cases)==3 and {c['kind'] for c in cases}=={'happy','missing_input','boundary'}\nassert len({c['id'] for c in cases})==3\nassert all(isinstance(c['prompt'],str) and c['prompt'] and isinstance(c['expect'],list) and c['expect'] for c in cases)\nraw=json.loads((root/'reports/drama-skill-intake/drama-storyboard-production/raw-prompts.json').read_text())\nassert raw==[{'id':c['id'],'prompt':c['prompt']} for c in cases]\nlinks=[]\nfor file in p.rglob('*.md'):\n text=file.read_text()\n assert '/Users/' not in text\n for link in re.findall(r'\\]\\(([^)]+)\\)',text):\n  assert not link.startswith(('/', 'http:', 'https:')),link\n  assert (file.parent/link.split('#')[0]).is_file(),link\n  links.append(str((file.parent/link).resolve().relative_to(root)))\nfiles=[{'path':str(f.relative_to(root)),'sha256':hashlib.sha256(f.read_bytes()).hexdigest()} for f in sorted(p.rglob('*')) if f.is_file()]\nbundle=hashlib.sha256(''.join(f[ 'path']+'\\0'+f['sha256']+'\\n' for f in files).encode()).hexdigest()\nsource_root=Path('/Users/jiajun.lai/Documents/workspaces/drama-agents')\nsource_paths=['.agents/skills/episode-visual-storyboard/SKILL.md','.agents/skills/episode-visual-storyboard/references/provisional-visual-contract.md','.agents/skills/episode-visual-storyboard/references/directing-evaluation.md','.agents/skills/episode-scene-breakdown/SKILL.md','.agents/skills/episode-scene-breakdown/references/contract.md','knowledge/visual/storyboard-and-shot-design.md']\nsources=[{'path':str(source_root/f),'sha256':hashlib.sha256((source_root/f).read_bytes()).hexdigest()} for f in source_paths]\nprint(json.dumps({'status':'pass','official_quick_validate':message,'checks':['native frontmatter','metadata JSON and draft version','three case structures','raw prompts equal preimplementation cases with expect removed','repository-relative reference targets','no author-machine runtime paths'],'behavior_cases_executed':0,'candidate_commit':'bbc1fe9e12782d739f8cadcb328b4db6743cc08d','artifact_revision':1,'skill_files':files,'bundle_sha256':bundle,'digest_algorithm':'sha256 of sorted repo-relative path + NUL + file sha256 + newline','reference_targets':links,'source_files':sources,'elapsed_seconds':round(time.time()-started,3)},ensure_ascii=False,indent=2))\nPY",
+  "exit_code": 0,
+  "validation_round": 1,
+  "not_run": [
+    "registry-integrated validation",
+    "automatic client discovery/loading",
+    "media generation or image inspection",
+    "paid provider calls",
+    "full repository regression"
+  ]
+}

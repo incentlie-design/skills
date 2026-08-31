@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "run_id": "DRAMA-SKILL-C01-round-1",
+  "candidate_commit": "acef6cb8e80d1212bd372fe0d16e91b46ab38524",
+  "artifact_revision": 1,
+  "executed_at": "2026-08-31T07:36:27.930316+00:00",
+  "status": "pass",
+  "checks": {
+    "required_metadata": true,
+    "identity": true,
+    "draft_version_dependencies": true,
+    "metadata_types": true,
+    "three_case_kinds": true,
+    "case_structure": true,
+    "blind_prompt_identity": true,
+    "no_machine_runtime_paths": true,
+    "unregistered_as_assigned": true,
+    "no_nested_repository": true,
+    "references_and_revisions": true,
+    "official_frontmatter": true
+  },
+  "errors": [],
+  "official_quick_validate": {
+    "status": "pass",
+    "message": "Skill is valid!"
+  },
+  "cases_defined": 3,
+  "behavior_cases_executed": 0,
+  "file_sha256": {
+    "skills/content/content-cultural-research/SKILL.md": "819877507ea18f7be49165d69cab1051f678fb6e4565e191fa7949245b10a031",
+    "skills/content/content-cultural-research/references/evidence-and-adaptation.md": "a74fd6125cca23c1034a16d138975bfeb9639a5e9c41e6a0025a14d4e91b5036",
+    "skills/content/content-cultural-research/skill.json": "2f4c4f2418aa71b2664719d3ff038dda9eb9dc76591af1b81b45af6382423452",
+    "skills/content/content-cultural-research/tests/cases.json": "cff9ed85c432d7aaa4d5de2b5169a5c0b1977b99d2d690fa58e1d1aab3a0d9f2"
+  },
+  "package_digest_sha256": "4efbd4b8891871494cefefdbdf698b9b1c0489862ed9640544d346a8cc7fd5ff",
+  "digest_definition": "SHA256 of UTF-8 JSON path-to-file-SHA256 map with sorted keys and compact separators",
+  "not_run": [
+    "registry/discovery integration validation",
+    "external research",
+    "media generation",
+    "client loading"
+  ],
+  "command": "python3 - <<'PY'\nimport hashlib, importlib.util, json, re, sys\nfrom datetime import datetime, timezone\nfrom pathlib import Path\nsys.dont_write_bytecode = True\nroot = Path.cwd()\nfolder = root / 'skills/content/content-cultural-research'\ndef module(name, path):\n spec = importlib.util.spec_from_file_location(name, path)\n obj = importlib.util.module_from_spec(spec)\n spec.loader.exec_module(obj)\n return obj\nv = module('repo_validate', root / 'scripts/validate_skills.py')\nmeta = v.read_json(folder / 'skill.json')\nfm = v.frontmatter((folder / 'SKILL.md').read_text())\ncases = v.read_json(folder / 'tests/cases.json')\nraw = v.read_json(root / 'reports/drama-skill-intake/content-cultural-research/original-prompts.json')\nchecks = {\n 'required_metadata': not (v.REQUIRED - meta.keys()),\n 'identity': fm['name'] == meta['name'] == folder.name and meta['category'] == 'content',\n 'draft_version_dependencies': meta['schema_version'] == 1 and meta['status'] == 'draft' and meta['version'] == '0.1.0' and meta['dependencies'] == [],\n 'metadata_types': all(isinstance(meta[k], str) and meta[k].strip() for k in ('summary','input_contract','output_contract')) and all(isinstance(meta[k], list) and meta[k] and all(isinstance(x,str) and x.strip() for x in meta[k]) for k in ('owners','tags')),\n 'three_case_kinds': len(cases) == 3 and {c['kind'] for c in cases} == {'happy','missing_input','boundary'},\n 'case_structure': len({c['id'] for c in cases}) == 3 and all({'id','kind','prompt','expect'} <= c.keys() and isinstance(c['prompt'],str) and c['prompt'].strip() and isinstance(c['expect'],list) and c['expect'] and all(isinstance(x,str) and x.strip() for x in c['expect']) for c in cases),\n 'blind_prompt_identity': raw == [{'id':c['id'],'prompt':c['prompt']} for c in cases],\n 'no_machine_runtime_paths': all('/Users/' not in p.read_text() for p in folder.rglob('*') if p.is_file()),\n 'unregistered_as_assigned': not any(e['name'] == folder.name for e in v.read_json(root / 'registry.json')['skills']) and not (root / '.agents/skills' / folder.name).exists(),\n 'no_nested_repository': not list(folder.rglob('.git'))\n}\nerrors = []\nfor p in folder.rglob('*.md'): errors.extend(v.link_errors(p,root))\nfor p in folder.rglob('*.json'): errors.extend(v.revision_errors(v.read_json(p),str(p.relative_to(root))))\nchecks['references_and_revisions'] = not errors\ntry:\n official = module('official_quick_validate', Path('/Users/jiajun.lai/.codex/skills/.system/skill-creator/scripts/quick_validate.py'))\n valid, message = official.validate_skill(folder)\n checks['official_frontmatter'] = valid\n official_result = {'status':'pass' if valid else 'fail','message':message}\nexcept ModuleNotFoundError as exc:\n official_result = {'status':'not_run','reason':str(exc)}\nfiles = {str(p.relative_to(root)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(folder.rglob('*')) if p.is_file()}\nresult = {'schema_version':1,'run_id':'DRAMA-SKILL-C01-round-1','candidate_commit':'acef6cb8e80d1212bd372fe0d16e91b46ab38524','artifact_revision':1,'executed_at':datetime.now(timezone.utc).isoformat(),'status':'pass' if all(checks.values()) else 'fail','checks':checks,'errors':errors,'official_quick_validate':official_result,'cases_defined':len(cases),'behavior_cases_executed':0,'file_sha256':files,'package_digest_sha256':hashlib.sha256(json.dumps(files,sort_keys=True,separators=(',',':')).encode()).hexdigest(),'digest_definition':'SHA256 of UTF-8 JSON path-to-file-SHA256 map with sorted keys and compact separators','not_run':['registry/discovery integration validation','external research','media generation','client loading']}\nprint(json.dumps(result,ensure_ascii=False,indent=2))\nassert all(checks.values()), result\nPY",
+  "exit_code": 0,
+  "wall_time_seconds": 0.158450167
+}

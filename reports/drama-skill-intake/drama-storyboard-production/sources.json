@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "task_id": "DRAMA-SKILL-D03",
+  "source_repo": "/Users/jiajun.lai/Documents/workspaces/drama-agents",
+  "source_commit": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+  "source_paths_clean_when_read": true,
+  "files": [
+    {
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents/.agents/skills/episode-visual-storyboard/SKILL.md",
+      "sha256": "71fff315e54bec0a759ad99fb16c58d19c0f42f0fa885ee4e245887cf45d62ef"
+    },
+    {
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents/.agents/skills/episode-visual-storyboard/references/provisional-visual-contract.md",
+      "sha256": "5cde32f56c522470b60d96a8495442c78d86896e0ac813e8b3f801c515cf6d6f"
+    },
+    {
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents/.agents/skills/episode-visual-storyboard/references/directing-evaluation.md",
+      "sha256": "af0b79070ac4d70728e5a4b30eae855dcff3af51478dfdc171caf55b7b158126"
+    },
+    {
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents/.agents/skills/episode-scene-breakdown/SKILL.md",
+      "sha256": "0438c815066ed0ad79bf24244a97a52f1c6419be0ec007af14e418f80a64e6fe"
+    },
+    {
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents/.agents/skills/episode-scene-breakdown/references/contract.md",
+      "sha256": "42789a6d12b3d12e0228a5a112dd8ba9446216e12f19a0dc6cc71525f696db78"
+    },
+    {
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents/knowledge/visual/storyboard-and-shot-design.md",
+      "sha256": "5c7cebf73b3eee91fc4e558c1933c935197654c6e9b4b1211f7d85fc3a14242c"
+    }
+  ],
+  "extracted_methods": [
+    "scene ownership and chronological continuity",
+    "planning board versus independently usable native final frames",
+    "shot function before coverage; explicit speaker/listener/reaction ownership",
+    "per-frame attention/body/prop topology and exact selected asset references",
+    "multi-state action frames and provisional versus measured audio timing"
+  ],
+  "not_migrated": [
+    "runtime scripts, schemas, read receipts, Registry/CAS/Ledger/provider jobs",
+    "fixed 9:16, project culture or no-shake defaults",
+    "mandatory locked audio for provider-free text planning",
+    "cover motif counts and deterministic directing score thresholds"
+  ],
+  "migration": "Source-method extraction only; not a drop-in replacement or source deprecation. No source writes, private media, novels or credentials copied."
+}

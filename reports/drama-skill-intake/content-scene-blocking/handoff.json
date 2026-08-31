@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "run_id": "DRAMA-SKILL-C06-20260831",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "task_id": "DRAMA-SKILL-C06",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/44e5/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "original_main_base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+  "artifact_revision": 1,
+  "artifact_kind": "skill-candidate-handoff",
+  "status": "revise",
+  "reason": "candidate_complete_awaiting_primary_integration_review",
+  "task_state": "review",
+  "skill": {
+    "name": "content-scene-blocking",
+    "category": "content",
+    "version": "0.1.0",
+    "status": "draft",
+    "dependencies": []
+  },
+  "owner": "dedicated-session:content-scene-blocking",
+  "next_owner": "DRAMA-SKILLS-20260831 primary integration owner",
+  "worktree": "/Users/jiajun.lai/.codex/worktrees/44e5/skill-creator",
+  "branch": "codex/drama-skill-c06-scene-blocking",
+  "head_commit": "4d45814a7c2a4b51201f40bde662e0ef7d7b2f33",
+  "candidate_commit": "4d45814a7c2a4b51201f40bde662e0ef7d7b2f33",
+  "head_commit_scope": "Frozen Skill revision 1 before the report-only checkpoint. The final report commit is given in the session final reply; this report does not claim to contain its own commit hash.",
+  "tests_first_commit_prefix": "5c6a5ee",
+  "artifact_digest_sha256": "a45300320eb41262d18b4467976b253899cba10561bc4300d92a24f30831f1e5",
+  "digest_recipe": "SHA256 of sorted relative Skill file paths, each followed by NUL, its SHA256 hex, and LF.",
+  "file_digests": {
+    "skills/content/content-scene-blocking/SKILL.md": "b322a3fbd5ec4e24282da32b5015523ca322c9d418ea47a878247087e4df6295",
+    "skills/content/content-scene-blocking/references/handoff-fields.md": "71f3be065b0d16b63914fb1a1943659d686ba6bc6c66d1a486132d4ec8260a5d",
+    "skills/content/content-scene-blocking/skill.json": "0ef2b5bbb93c60ad0d2c5cd92adfa6a457f0809574068b26bc92cadb17605652",
+    "skills/content/content-scene-blocking/tests/cases.json": "3e6d386357ff62fcbad6eddc0ee3d2b8a9da0cf8767a8b8accf6d02ad79556f0"
+  },
+  "write_scope": [
+    "skills/content/content-scene-blocking/",
+    "reports/drama-skill-intake/content-scene-blocking/"
+  ],
+  "files": [
+    "skills/content/content-scene-blocking/SKILL.md",
+    "skills/content/content-scene-blocking/skill.json",
+    "skills/content/content-scene-blocking/tests/cases.json",
+    "skills/content/content-scene-blocking/references/handoff-fields.md",
+    "reports/drama-skill-intake/content-scene-blocking/sources.md",
+    "reports/drama-skill-intake/content-scene-blocking/independent-review-r1.md",
+    "reports/drama-skill-intake/content-scene-blocking/handoff.json"
+  ],
+  "outputs": [
+    "blocking-plan",
+    "action-state-map",
+    "reaction-cues"
+  ],
+  "consumers": [
+    "storyboard/cinematography owner",
+    "stage director/stage manager",
+    "audio/editing owner for event cues",
+    "primary integration owner for this Skill candidate"
+  ],
+  "source_record": "reports/drama-skill-intake/content-scene-blocking/sources.md",
+  "source_commit": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+  "source_mode": "Read-only local methods; no source modification, network research, private-media or credential intake.",
+  "dependencies": {
+    "foundation": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+    "runtime_skill_dependencies": [],
+    "shared_contracts": [
+      "docs/contracts.md",
+      "docs/content-production-contract.md"
+    ],
+    "registration_owner": "primary integration owner"
+  },
+  "validation": {
+    "rounds_executed": 1,
+    "targeted_repairs": 0,
+    "cases_defined": 3,
+    "behavior_cases_executed": 3,
+    "structure_status": "pass",
+    "structure_is_not_behavior_evidence": true,
+    "initial_round": {
+      "budget": {
+        "commands_max": 3,
+        "minutes_max": 10,
+        "cases": 3
+      },
+      "commands": [
+        {
+          "purpose": "Official Skill quick validation",
+          "command": "python3 /Users/jiajun.lai/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/content/content-scene-blocking",
+          "exit_code": 0,
+          "stdout": "Skill is valid!",
+          "duration_seconds": 0.202179834
+        },
+        {
+          "purpose": "Local structural smoke",
+          "command_form": "python3 stdin script, no persistent helper added",
+          "exit_code": 0,
+          "duration_seconds": 0.243616417,
+          "checks": [
+            "skill.json schema/name/category/version/draft/dependencies and required fields",
+            "three JSON cases with happy/missing_input/boundary and nonempty observable assertions",
+            "all five Markdown relative links resolve; Skill runtime docs contain no author-machine absolute path or TODO",
+            "HEAD matches frozen candidate; foundation-to-candidate changes stay within assigned Skill path",
+            "git diff --check from foundation to candidate",
+            "four file SHA256 values and aggregate digest"
+          ],
+          "stdout_summary": {
+            "status": "pass",
+            "resolved_link_count": 5,
+            "cases_defined": 3,
+            "behavior_cases_executed_by_this_command": 0,
+            "registry_validation": "not_run (unregistered draft, owned by integration task)"
+          }
+        },
+        {
+          "purpose": "Independent reviewer reads frozen Skill and necessary contracts",
+          "command": "cat skills/content/content-scene-blocking/SKILL.md skills/content/content-scene-blocking/skill.json skills/content/content-scene-blocking/references/handoff-fields.md docs/contracts.md docs/content-production-contract.md",
+          "exec_command_count": 1,
+          "exit_code": null,
+          "exit_code_evidence": "Reviewer forwarded only r.output; underlying exit code was not retained. File text returned in full and outer functions.exec completed. Do not infer exit code 0.",
+          "file_writes": 0,
+          "evidence": "reports/drama-skill-intake/content-scene-blocking/independent-review-r1.md (执行收据补充)"
+        }
+      ],
+      "reviewer_read_receipt": "confirmed_by_reviewer_without_new_tools_or_case_rerun",
+      "command_count": 3,
+      "wall_clock_measurement": "No consolidated stopwatch retained; local smoke commands took less than one second total. Reviewer used one bounded read and text replies, no waits or external calls."
+    },
+    "behavior": [
+      {
+        "id": "TC-001",
+        "kind": "happy",
+        "execution": "executed",
+        "actual_response_status": "pass",
+        "independent_result": "pass",
+        "evidence": {
+          "path": "reports/drama-skill-intake/content-scene-blocking/independent-review-r1.md",
+          "section": "TC-001 实际回答"
+        },
+        "observed": "Three logical artifacts; red A-right→table→B-left; blue D-left; knock-triggered C reaction; separate speaker/listener/audience attention; one selected instant; screen/stage direction mapping."
+      },
+      {
+        "id": "TC-002",
+        "kind": "missing_input",
+        "execution": "executed",
+        "actual_response_status": "blocked",
+        "reason": "needs_input",
+        "independent_result": "pass",
+        "evidence": {
+          "path": "reports/drama-skill-intake/content-scene-blocking/independent-review-r1.md",
+          "section": "TC-002 实际回答"
+        },
+        "observed": "Requested the missing SC-12 r7 input, prop entry state, space/exit facts and write target; did not invent authority or overwrite approved content."
+      },
+      {
+        "id": "TC-003",
+        "kind": "boundary",
+        "execution": "executed",
+        "actual_response_status": "blocked",
+        "reason": "unsafe_request_and_out_of_scope",
+        "independent_result": "pass",
+        "evidence": {
+          "path": "reports/drama-skill-intake/content-scene-blocking/independent-review-r1.md",
+          "section": "TC-003 实际回答"
+        },
+        "observed": "No plot rewrite or blocking pipeline; no real impact/fall instructions; only high-level noncontact/editing alternatives and qualified on-site ownership."
+      }
+    ],
+    "independent_review": {
+      "reviewer": "/root/c06_independent_reviewer",
+      "task_id": "DRAMA-SKILL-C06-R1",
+      "candidate_commit": "4d45814a7c2a4b51201f40bde662e0ef7d7b2f33",
+      "reviewed_revision": 1,
+      "status": "pass",
+      "scope": "Frozen Skill, three original prompt text-only exercises",
+      "findings": [],
+      "non_blocking_suggestions": [],
+      "report": "reports/drama-skill-intake/content-scene-blocking/independent-review-r1.md",
+      "blind_inputs": "Only frozen Skill, its necessary common contracts and three original prompts; no expect or author answers; no delegation or file writes.",
+      "evidence_saving": "Reviewer final answer saved by the sole report writer; Markdown hard-break whitespace normalized. Reviewer owns the review conclusion; author does not grant final acceptance.",
+      "commit_verification": "Reviewer received commit identity from coordinator. Coordinator independently checked HEAD and content digest in structural smoke."
+    }
+  },
+  "acceptance": [
+    {
+      "id": "AC-003",
+      "status": "candidate",
+      "evidence": "Short entrypoint, explicit I/O, scope/stop conditions and necessary handoff reference; no vendor/project defaults."
+    },
+    {
+      "id": "AC-004",
+      "status": "independent_text_exercises_pass",
+      "evidence": "Three original cases committed before implementation; three actually executed by independent reviewer. Structure and behavior recorded separately."
+    },
+    {
+      "id": "AC-006",
+      "status": "candidate",
+      "evidence": "Stable input refs/revisions, proposed IDs, provisional maturity, three downstream artifacts and explicit no-production claims."
+    }
+  ],
+  "not_run": [
+    {
+      "item": "registry/README/AGENTS/CHANGELOG/discovery integration validation",
+      "status": "not_run",
+      "reason": "Shared files and registration belong to primary integration owner."
+    },
+    {
+      "item": "full repository or application runtime regression",
+      "status": "not_run",
+      "reason": "Out of scope; no application runtime migrated."
+    },
+    {
+      "item": "client Skill discovery/loading",
+      "status": "not_run",
+      "reason": "No registration or global installation authorized."
+    },
+    {
+      "item": "image/audio/video generation, provider or paid API calls",
+      "status": "not_run",
+      "reason": "Provider-free text candidate; paid/media call count is zero."
+    },
+    {
+      "item": "real stage rehearsal, stunt safety, camera visibility or rendered performance",
+      "status": "not_run",
+      "reason": "Text design evidence only; field feasibility and safety need appropriate human owners."
+    },
+    {
+      "item": "external deployment, push or publication",
+      "status": "not_run",
+      "reason": "Not authorized and not requested."
+    }
+  ],
+  "unresolved_issues": [],
+  "minimal_gaps": [
+    "Primary task must independently assess cross-Skill boundaries and final integration eligibility, register shared entries, and perform its bounded registered-skill validation.",
+    "No live/visual/media evidence; no automatic compatibility with old drama-agents runtime."
+  ],
+  "final_acceptance": {
+    "status": "pending",
+    "owner": "DRAMA-SKILLS-20260831 primary integration owner",
+    "author_self_approved": false
+  },
+  "rollback": "Do not integrate the candidate if unwanted; retain this local branch/worktree. If already integrated, the integration owner may revert only the candidate commits through its own review process; no reset or source deletion.",
+  "stop_reason": "Scoped Skill candidate and finite evidence complete. No further Skill creation, full production, merge to main, push, install or worktree cleanup.",
+  "scope": "Only content-scene-blocking Skill source and its intake reports; one scene-blocking capability across screen and stage.",
+  "input_refs": [
+    {
+      "path": "changes/DRAMA-SKILLS-20260831/tasks.json",
+      "entity": "DRAMA-SKILL-C06",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "docs/contracts.md",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "docs/content-production-contract.md",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "reports/drama-skill-intake/content-scene-blocking/sources.md",
+      "entity": "local source path/section and SHA256 record",
+      "revision": 1
+    }
+  ]
+}

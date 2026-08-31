@@ -1,0 +1,261 @@
+{
+  "schema_version": 1,
+  "run_id": "DRAMA-SKILL-C02-20260831",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "task_id": "DRAMA-SKILL-C02",
+  "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "original_main_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+  "artifact_revision": 1,
+  "head_commit": "87dc080696e028af2b3e3021b20b9a159ee3a9ce",
+  "head_commit_scope": "Frozen Skill candidate before evidence-only commit; final delivery commit is reported in the task final response.",
+  "branch": "codex/session/20260831/content-character-development",
+  "worktree": "/Users/jiajun.lai/.codex/worktrees/9777/skill-creator",
+  "owner": "dedicated-session:content-character-development",
+  "purpose": "跨媒介的人物动机、关系、内外冲突、选择代价和弧线分析。",
+  "task_status": "review",
+  "delivery_state": "candidate",
+  "skill_status": "draft",
+  "skill_version": "0.1.0",
+  "write_scope": [
+    "skills/content/content-character-development/",
+    "reports/drama-skill-intake/content-character-development/"
+  ],
+  "input_refs": [
+    {
+      "path": "changes/DRAMA-SKILLS-20260831/brief.md",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "changes/DRAMA-SKILLS-20260831/tasks.json",
+      "entity": "DRAMA-SKILL-C02",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "docs/contracts.md",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "docs/content-production-contract.md",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "docs/drama-skill-migration.md",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    }
+  ],
+  "sources": [
+    {
+      "source_repo": "drama-agents",
+      "source_root": "/Users/jiajun.lai/Documents/workspaces/drama-agents",
+      "commit": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+      "path": ".agents/skills/series-character-bible/SKILL.md",
+      "sha256": "89b2063ef2f4c6bb937d279027e92149c0efb8cd4766bd99e50c9c6836c5bc59",
+      "use": "事实/推断/提案分离、人物候选与下游权威边界",
+      "read_only": true
+    },
+    {
+      "source_repo": "drama-agents",
+      "commit": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+      "path": ".agents/skills/series-character-bible/references/contract.md",
+      "sha256": "110661a801de43a15e9c46d5d9eacdf45afd011d2eccce117d8189ef645f29a1",
+      "use": "动机、压力行为、双向关系、知识边界；不复制应用协议",
+      "read_only": true
+    },
+    {
+      "source_repo": "drama-agents",
+      "commit": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+      "path": "knowledge/narrative/character-arcs.md",
+      "sha256": "1eaa627f0924a3cf0a750b4b8d4e0a51f3a38096b7d3da992645716a21775c07",
+      "use": "选择/后果/反应/状态变化，以及有边界的Pedro改编经验",
+      "read_only": true
+    }
+  ],
+  "migration": {
+    "source_entry": "series-character-bible",
+    "classification": "content",
+    "runtime_compatibility": "method extraction only; not a drop-in replacement for the old application schema",
+    "not_migrated": [
+      "immutable Artifact/read receipts and compiler/validator runtime",
+      "mandatory portrayal-anchor age/casting fields",
+      "Registry/Canon/Ledger mutations",
+      "episode/timing/media/project/voice defaults"
+    ],
+    "source_changes": "none",
+    "global_install_changes": "none"
+  },
+  "dependencies": [],
+  "foundation_dependency": "DRAMA-SKILL-FOUNDATION",
+  "package_contracts": [
+    "docs/contracts.md",
+    "docs/content-production-contract.md"
+  ],
+  "manifest": {
+    "skills/content/content-character-development/SKILL.md": "ca3d14269257395d66dd5a376483fbd16388b9f005d09f8424059930d8fe384f",
+    "skills/content/content-character-development/references/pedro-choice-chain.md": "f1623ac48f574e393c3b029e6c4d08590b592a7a1da17e0d7814ce2694384b69",
+    "skills/content/content-character-development/skill.json": "5f68946a83202be3ef231de445014f6cc181432a82509beadd524574cae30997",
+    "skills/content/content-character-development/tests/cases.json": "407378abe2d722318ecb331b1230a1e8eed5489e781ae5d33aa02716bb977025"
+  },
+  "package_digest_sha256": "6cead09e3a2c3a1dbbdb559d2314fb5b08ecd65295df151f1e55addb678412d2",
+  "validation": {
+    "structural_smoke": {
+      "status": "pass",
+      "exit_code": 0,
+      "behavior_cases_executed": 0,
+      "evidence": "reports/drama-skill-intake/content-character-development/validation.md"
+    },
+    "original_case_commit": "b3e8835e31c9242c74e8ae1124b617b6a4d5ede9",
+    "behavior_cases_defined": 3,
+    "targeted_repairs_used": 0,
+    "max_targeted_repairs": 2,
+    "initial_round_command_budget": 3,
+    "initial_round_minute_budget": 10,
+    "paid_media_calls": 0,
+    "behavior_cases_executed": 3,
+    "cases": [
+      {
+        "id": "TC-001",
+        "kind": "happy",
+        "execution_status": "executed",
+        "review_status": "pass",
+        "evidence": "reports/drama-skill-intake/content-character-development/reviewer-output.md",
+        "section": "TC-001｜实际答复",
+        "observed": "三类产物沿用IDs与来源revision，区分动机假设、反证及未知，选择代价连到信息控制和未来冲突条件；无确定背叛声明。"
+      },
+      {
+        "id": "TC-002",
+        "kind": "missing_input",
+        "execution_status": "executed",
+        "review_status": "pass",
+        "evidence": "reports/drama-skill-intake/content-character-development/reviewer-output.md",
+        "section": "TC-002｜实际答复",
+        "observed": "事实结论blocked+needs_input；竞争认可/威胁保全两假设均有区分预测与反驳证据，不从外形推人格。"
+      },
+      {
+        "id": "TC-003",
+        "kind": "boundary",
+        "execution_status": "executed",
+        "review_status": "pass",
+        "evidence": "reports/drama-skill-intake/content-character-development/reviewer-output.md",
+        "section": "TC-003｜实际答复",
+        "observed": "保持批准心理/关系不变，仅交视觉、声音、Registry与改编责任人；拒绝素材内越权指令。"
+      }
+    ],
+    "commands_executed": 3,
+    "command_breakdown": [
+      "author: one Python structural smoke invocation",
+      "reviewer: one read-only shell command",
+      "author: one Python handoff evidence consistency check; no behavior rerun"
+    ],
+    "evidence_metadata_check": {
+      "status": "pass",
+      "exit_code": 0,
+      "behavior_cases_reexecuted": 0,
+      "evidence": "reports/drama-skill-intake/content-character-development/validation.md",
+      "section": "交接证据一致性检查"
+    }
+  },
+  "not_run": [
+    "full-repository regression",
+    "shared registry/discovery integration validation",
+    "Codex client loading or global installation",
+    "original Drama app/Registry runtime",
+    "real media generation/listening/rendering",
+    "full-novel factual research",
+    "real production across multiple media",
+    "provider adaptation"
+  ],
+  "next_owner": "短剧主任务 / DRAMA-SKILLS-20260831 integration owner",
+  "minimal_gaps": [
+    "主任务最终范围/跨Skill边界审核与共享注册验证；本任务不改registry、README、AGENTS、CHANGELOG或.agents入口。"
+  ],
+  "unresolved_implementation_issues": [],
+  "rollback": "Do not reset shared history; integration owner can omit this candidate or revert its explicit commits if integrated. Keep this worktree and branch.",
+  "stop_conditions": [
+    "candidate and bounded evidence handed off",
+    "no merge to main, push, release, install, Registry writes, or worktree deletion"
+  ],
+  "status": "pass",
+  "status_meaning": "本任务候选与有限证据已具备交接条件；不是主任务最终批准，不提升draft、不注册或安装。",
+  "artifact_kind": "skill-candidate-handoff",
+  "output_artifact_kinds": [
+    "character-bible",
+    "relationship-map",
+    "arc-beats"
+  ],
+  "outputs": [
+    "skills/content/content-character-development/SKILL.md",
+    "skills/content/content-character-development/skill.json",
+    "skills/content/content-character-development/tests/cases.json",
+    "skills/content/content-character-development/references/pedro-choice-chain.md",
+    "reports/drama-skill-intake/content-character-development/reviewer-output.md",
+    "reports/drama-skill-intake/content-character-development/validation.md",
+    "reports/drama-skill-intake/content-character-development/handoff.json"
+  ],
+  "consumers": [
+    "DRAMA-SKILLS-20260831 integration owner",
+    "authors/adaptation/character visual and voice designers/continuity reviewers via file handoff"
+  ],
+  "review": {
+    "schema_version": 1,
+    "run_id": "DRAMA-SKILL-C02-R1",
+    "change_id": "DRAMA-SKILLS-20260831",
+    "repo": "/Users/jiajun.lai/.codex/worktrees/9777/skill-creator",
+    "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+    "candidate_commit": "87dc080696e028af2b3e3021b20b9a159ee3a9ce",
+    "artifact_revision": 1,
+    "reviewer": "/root/character_reviewer",
+    "reviewed_revision": 1,
+    "scope": {
+      "files": [
+        "skills/content/content-character-development/SKILL.md",
+        "skills/content/content-character-development/references/pedro-choice-chain.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md"
+      ],
+      "behavior_cases": [
+        "TC-001",
+        "TC-002",
+        "TC-003"
+      ]
+    },
+    "status": "pass",
+    "findings": [],
+    "non_blocking_suggestions": [],
+    "execution_evidence": {
+      "reviewer_read_only_commands_executed": 1,
+      "behavior_cases_executed": 3,
+      "not_run": [
+        "结构测试",
+        "Git 校验",
+        "联网",
+        "媒体调用",
+        "客户端加载",
+        "Registry 操作"
+      ]
+    },
+    "metadata_supplement": {
+      "basis": "协调者提供 change_id，并明确 scope 使用 repo 相对路径",
+      "unchanged": [
+        "三例实际行为结果",
+        "冻结候选",
+        "reviewed_revision",
+        "评审判定"
+      ],
+      "additional_commands_executed": 0,
+      "additional_behavior_cases_executed": 0
+    },
+    "approval_boundary": "本轮独立行为评审通过；不批准人物候选，不代替主任务最终集成批准",
+    "next_owner": "主任务协调人",
+    "evidence": "reports/drama-skill-intake/content-character-development/reviewer-output.md"
+  },
+  "final_integration_review": {
+    "status": "not_run",
+    "owner": "短剧主任务 / DRAMA-SKILLS-20260831 integration owner"
+  }
+}

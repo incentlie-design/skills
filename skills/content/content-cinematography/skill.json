@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "content-cinematography",
+  "version": "0.1.0",
+  "category": "content",
+  "status": "draft",
+  "summary": "按叙事功能与注意力设计跨电影、广告、纪录片的景别、机位、原生画幅、动机运镜和视觉节奏，交接可解释的摄影候选。",
+  "owners": ["repository-maintainer"],
+  "tags": ["摄影", "镜头语言", "cinematography", "camera-treatment", "shot-language", "coverage", "framing"],
+  "dependencies": [],
+  "input_contract": "必需场景/段落来源、叙事或传播目标、不可改的事实/动作/对白/身份；按决策补空间/注意力/轴线/道具状态、选定资产refs与revision、画幅/器材/时长。缺关键事实或冲突来源则blocked+needs_input；概念可provisional，无音频不阻断语义设计。落盘需授权目标repo/路径和公共envelope；咨询不伪造运行记录。",
+  "output_contract": "按请求交付camera-treatment和/或shot-language-notes，含目标/范围、input_refs、正整数artifact_revision、稳定scene/beat/line/entity/shot引用、事实/用户决定/推断、观众知识、覆盖/机位/各画幅构图、焦点/动机运镜/切点及状态、open_questions、consumers与handoff。handoff采用pass|revise|blocked并标provisional|design-ready；输出给导演/摄影/分镜/调度/剪辑，候选不等于已审批、已注册、已生成。仅写授权输出目录的新revision，不改剧本/身份或生成媒体。"
+}

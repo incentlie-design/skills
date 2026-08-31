@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "run_id": "C09-intake-r1",
+  "change_id": "DRAMA-SKILL-C09",
+  "repo": "skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "candidate_commit": "82cefc46ff8482fc212001723fcb6f6c12530c2c",
+  "artifact_kind": "test-report",
+  "executor": "dedicated-session:content-editing-rhythm",
+  "scope": "unregistered skill local structure only",
+  "round": 1,
+  "command": 1,
+  "local_structure_status": "pass",
+  "official_quick_validate": {
+    "status": "pass",
+    "output": "Skill is valid!"
+  },
+  "checks": [
+    "single-line frontmatter",
+    "metadata",
+    "3 case shape",
+    "positive revisions",
+    "relative Markdown links"
+  ],
+  "behavior_cases_executed": 0,
+  "registry_check": "not_run: integration owner",
+  "errors": [],
+  "skill_content_sha256": "f2da65f0bda012bf0c5e832e650237d82f931236b046c322b349b1681dcbc6fe",
+  "file_sha256": {
+    "skills/content/content-editing-rhythm/SKILL.md": "06e642e9f1799bd1d194e28fa1a3eab579456faebe3bf68cedfbb00ff8e7b1e2",
+    "skills/content/content-editing-rhythm/references/output-contract.md": "c081f7e262c0f132c45126ad718645de49b5fef957d516cee6f7015d889cdb32",
+    "skills/content/content-editing-rhythm/skill.json": "4522dc2f77a1fc09577a0110ebc767abfae246a38c4c88dec9e78df478cd3363",
+    "skills/content/content-editing-rhythm/tests/cases.json": "d1d2960fec681d51dcff528d94c139552642317afa320aad8674ae4e015c99fa"
+  },
+  "tool_exit_code": 0,
+  "execution_kind": "executed",
+  "limitations": [
+    "结构检查不证明行为通过",
+    "注册及发现入口由主任务验证",
+    "不包含媒体、客户端加载、付费接口或全仓回归"
+  ],
+  "evidence": "exec_command chunk e74d9a, python3 inline checker and bundled quick_validate.validate_skill"
+}

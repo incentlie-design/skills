@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-d02-intake-20260831",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/4bb5/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "candidate_commit": "bda25eef0c269985b1ffa5c1996e338f58fa110b",
+  "round": 1,
+  "command_label": "single python3 heredoc: parse actual rehearsal Markdown and JSON; compare all spoken text/speaker/mode/IDs, sum planned beat ranges, count CJK, match frozen Skill hashes and read-only source hashes, check owned paths",
+  "executed": true,
+  "exit_code": 0,
+  "wall_time_seconds": 0.378953333,
+  "stdout": {
+    "status": "pass",
+    "script_register_exact_match": true,
+    "unique_spoken_lines": 19,
+    "scenes": 3,
+    "beats": 4,
+    "narration_lines": 1,
+    "reply_json_blocks_valid": 3,
+    "spoken_cjk_count": 136,
+    "rehearsal_claim_cjk_range": [
+      160,
+      170
+    ],
+    "range_claim_matches": false,
+    "planned_beat_duration_sum_seconds": [
+      103,
+      125
+    ],
+    "skill_unchanged_from_frozen_commit": true,
+    "source_file_digests_unchanged": true,
+    "write_scope_clean": true,
+    "behavior_cases_executed_by_this_command": 0,
+    "limits": "仅机械比对，不判断戏剧质量，不测实际表演时长；final acceptance remains integration owner"
+  },
+  "interpretation": {
+    "mechanical_integrity": "pass",
+    "numeric_estimation": "revise: 原始TC-001粗估160–170汉字与实际136不符；不改写原始演练记录，已转原独立reviewer作有界勘误",
+    "behavior_cases_executed": 0,
+    "final_acceptance": "not_signed_by_implementer"
+  },
+  "first_round_budget": {
+    "combined_shell_commands": 3,
+    "composition": [
+      "reviewer read-only batch:1",
+      "author structure smoke:1",
+      "author evidence consistency check:1"
+    ],
+    "observed_seconds_after_smoke": 415,
+    "scope_note": "首轮三例只执行一次；后续仅原reviewer对字数偏差作零工具勘误，不扩行为回归"
+  }
+}
