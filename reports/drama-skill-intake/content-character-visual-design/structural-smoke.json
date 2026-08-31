@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-c04-20260831",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/b2ef/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "artifact_kind": "structural-smoke",
+  "candidate_commit": "af84c6003a6556c1a5bad9c53c25430e19b21556",
+  "round": 1,
+  "execution": "executed",
+  "command": "python3 -B - (inline scoped harness; imports read-only helpers from scripts/validate_skills.py, invokes bundled quick_validate.py and scoped git diff --check)",
+  "command_exit_code": 0,
+  "elapsed_seconds": 0.285664833,
+  "scope": ["frontmatter", "metadata field/type/name/category/version/status", "three case kinds and assertion structure", "positive revision fields", "local Markdown references", "runtime absolute-path absence", "whitespace"],
+  "local_structure": {"status": "pass", "errors": [], "cases_defined": 3, "behavior_cases_executed": 0},
+  "official_quick_validate": {"exit_code": 0, "stdout": "Skill is valid!", "stderr": ""},
+  "whitespace_exit_code": 0,
+  "sha256": {
+    "skills/content/content-character-visual-design/SKILL.md": "a71f3383d96885f8437eebbb9f377125cb5d1dd6d15f8a99cec6485f2312d510",
+    "skills/content/content-character-visual-design/references/design-method.md": "8f6211e1e5a2342967717e0d64bc543913705c39042b2a6bbe798ec60aece562",
+    "skills/content/content-character-visual-design/skill.json": "9fc653076cfb1d5f76fe6d43894b281e6e6c12503b562e7b651fbba64ee8fad4",
+    "skills/content/content-character-visual-design/tests/cases.json": "96f84955dacfe31ce13b9577eff865679b733e9734fdff163bdb9f8d996116ce"
+  },
+  "not_run": ["registry/discovery validation (integration owner)", "full repository regression", "media generation", "image consistency assessment", "client loading"]
+}
