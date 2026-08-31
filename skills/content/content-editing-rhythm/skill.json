@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "content-editing-rhythm",
+  "version": "0.1.0",
+  "category": "content",
+  "status": "draft",
+  "summary": "跨媒介剪辑节奏、音画身份对应、字幕布局/可选逐词高亮和局部同步修订设计",
+  "owners": ["repository-maintainer"],
+  "tags": ["editing", "rhythm", "subtitle", "sync", "剪辑节奏", "音画同步", "字幕"],
+  "dependencies": [],
+  "input_contract": "目标/范围、台词与镜头及稳定 line_id/shot_id 映射、已选来源与已知 revision；局部修改需当前 timeline 与保留项。精确同步需 take/voice refs、源时长/区间、时基及相应粒度 timing；布局需原生画幅/安全区与文字。可选高亮样式、字体/阅读约束；整体变速须明确目标与范围。缺 timing 仅 provisional，不猜精确值。落盘需授权 repo/目录和公共 envelope，咨询不伪造运行绑定。",
+  "output_contract": "按公共内容契约交 edit-rhythm-plan、subtitle-spec、sync-change-plan 的适用候选，包含 artifact_kind/revision、scope、input_refs、timing_basis、开放问题、消费者与 handoff。具体字段见 references/output-contract.md；before/after 及分段 time_map 关联 line/shot/take/word，保留原文件时长、身份和审批来源，记录局部影响与 stale refs。status=pass/revise/blocked 只表示交接完备度；provisional/candidate 是产物就绪度，不代表执行或批准。不渲染、不重录、不注册、不发布。"
+}
