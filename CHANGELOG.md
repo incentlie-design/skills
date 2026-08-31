@@ -1,5 +1,13 @@
 # Changelog
 
+## 短剧 Skill 整理 foundation — 2026-08-31（候选开发中）
+
+- 新增 drama 分类；跨媒介专业仍使用 content，已有工程/产品/内容入口不更名。
+- 规划 14 个独立 Skill 任务，来源整理覆盖旧生产 23 个入口、narrated-drama 三入口及个人音色设计。
+- 新增最小内容交接与兼容映射；不修改旧runtime、安装或注册状态。
+- 分类校验器兼容新增类别；公共 docs/contracts.md v1 和现有 Skill 版本保持不变。
+- 新 Skill 的 0.1.0 状态与最终候选 commit 以独立验收/集成报告为准，不因本条记录宣称已可用。
+
 ## eng-project-manager 0.1.0 — 2026-08-31（本地验收完成，未远端发布）
 
 - 新增 engineering 入口：接入既有 goal、原始目标与 typed DAG；查询阻塞、依赖影响、目标覆盖和下一 owner。

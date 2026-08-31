@@ -20,7 +20,10 @@ P3：`content-video-director-learning`。业务独立，P0 完成后可作为旁
 | personal | personal | 个人检索、规划、知识工作 | personal-knowledge-retrieve（仅示例） |
 | engineering | eng | 工作区、测试、实现、交付 | eng-workspace-governance |
 | product | product | 需求定义与产品决策 | product-spec-prd |
-| content | content | deck、PPT、视频、内容研究 | content-video-director-learning |
+| content | content | 跨媒介通用内容专业：文化、人物、摄影、声音，以及deck/PPT/内容研究 | content-video-director-learning |
+| drama | drama | 短剧专用：改编拆集、单集剧本、分镜生产、连续性与生产计划 | drama-episode-writing |
+
+分类以能力的约束来源判断，而不是来源项目判断：镜头语言、文化分析、声音设计虽从短剧经验抽取，仍属于 content。只有依赖短剧拆集、短时长、连续剧叙事和生产交接的入口放 drama。product 保持产品需求含义，不把通用专业另起为含糊的 pro。既有 content 名字和路径不因新增分类而迁移。
 
 名字使用 `<domain>-<capability>-<action-or-object>`，2–5 个有区分度的词块，英文小写/数字/连字符、少于 64 字符；目录名必须与 frontmatter name 一致。不要加入版本号、作者、日期、工具可替换细节或 `ultimate` 一类强度词。日期仅进入任务/运行 ID。
 

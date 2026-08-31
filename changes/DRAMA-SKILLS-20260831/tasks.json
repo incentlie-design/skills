@@ -1,0 +1,826 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skills-20260831",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
+  "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+  "artifact_revision": 1,
+  "tasks": [
+    {
+      "task_id": "DRAMA-SKILL-C01",
+      "name": "content-cultural-research",
+      "category": "content",
+      "title": "文化与本地化研究",
+      "purpose": "有界文化适配判断、证据采集与设计约束；适用于小说、游戏、电影、广告。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:content-cultural-research",
+      "write_scope": [
+        "skills/content/content-cultural-research/",
+        "reports/drama-skill-intake/content-cultural-research/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "production-cultural-research",
+        "episode-localization-direction"
+      ],
+      "lessons": "不是每部小说都必须外部调研；先判断时代/地域/改编距离、争议风险与已知证据；明确预算、停搜条件、相互冲突来源及 not_applicable。输入只有本地材料时不假装搜索，允许外部查证需明确授权/联网。原著事实、用户要求、研究事实、创作推断分别标注。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "culture-brief",
+        "source-ledger",
+        "adaptation-constraints"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-C02",
+      "name": "content-character-development",
+      "category": "content",
+      "title": "人物理解与心理弧线",
+      "purpose": "跨媒介的人物动机、关系、内外冲突、选择代价和弧线分析。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:content-character-development",
+      "write_scope": [
+        "skills/content/content-character-development/",
+        "reports/drama-skill-intake/content-character-development/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "series-character-bible"
+      ],
+      "lessons": "Pedro不能成为推动剧情的工具人；以渴望认可→选择→牺牲→自我辩护→背叛伏笔建立完整人物。不以外形代替人物理解。不决定全剧拆集或视觉锁定。证据不足时提出可区分的假设，不冒充原文。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "character-bible",
+        "relationship-map",
+        "arc-beats"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-C03",
+      "name": "content-visual-worldbuilding",
+      "category": "content",
+      "title": "视觉风格与世界场景",
+      "purpose": "跨媒介视觉风格、灯光色彩、材质、地点和道具设计。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:content-visual-worldbuilding",
+      "write_scope": [
+        "skills/content/content-visual-worldbuilding/",
+        "reports/drama-skill-intake/content-visual-worldbuilding/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "series-visual-style-bible",
+        "series-location-prop-design",
+        "episode-lighting-color-direction"
+      ],
+      "lessons": "统一项目风格权威、历史环境/服饰材料的适用性。银树不能默认霓虹发光，奇幻强度必须由世界规则决定。场景空间、固定地标、尺度、材质、道具持有与状态清晰。皮肤/材质与灯光关联；风格不是只贴电影级标签。文化事实用来源，不默认菲律宾或土著。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "visual-style-bible",
+        "location-prop-definitions"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-C04",
+      "name": "content-character-visual-design",
+      "category": "content",
+      "title": "人物视觉与服饰资产",
+      "purpose": "将人物正典转换为稳定身份、年龄、皮肤、服饰和可引用视觉定义。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:content-character-visual-design",
+      "write_scope": [
+        "skills/content/content-character-visual-design/",
+        "reports/drama-skill-intake/content-character-visual-design/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "series-character-visual-development",
+        "series-costume-visual-design"
+      ],
+      "lessons": "稳定资产ID、明确选中版本，而非取最新文件；同脸不同衣不能当不同人。年龄/晒感/毛孔/表情纹细节与风格一致。身份不变量与镜头可变状态分离，不强迫每镜头正脸。服饰地域/阶层/时代必须有来源或用户风格决定；禁止照搬v020为通用默认。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "character-visual-bible",
+        "wardrobe-variants",
+        "identity-prompt"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-C05",
+      "name": "content-cinematography",
+      "category": "content",
+      "title": "镜头语言与视听方向",
+      "purpose": "跨电影、广告、纪录片的景别、视角、镜头功能、运镜及视觉节奏设计。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:content-cinematography",
+      "write_scope": [
+        "skills/content/content-cinematography/",
+        "reports/drama-skill-intake/content-cinematography/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "episode-cinematography-direction"
+      ],
+      "lessons": "先定义镜头叙事功能和注意力再定构图；远景/背影/侧脸/物件/反应镜丰富表达；人物不为参考图扭身直视镜头。镜头运动需动机，不默认晃动或推拉；横竖屏各自原生构图。不要擅自修改对白、剧情、演员身份或在此生成媒体。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "camera-treatment",
+        "shot-language-notes"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-C06",
+      "name": "content-scene-blocking",
+      "category": "content",
+      "title": "场面调度与动作表演",
+      "purpose": "人物站位、视线、反应、道具接触和动作因果；跨影视与舞台。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:content-scene-blocking",
+      "write_scope": [
+        "skills/content/content-scene-blocking/",
+        "reports/drama-skill-intake/content-scene-blocking/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "episode-action-choreography",
+        "episode-performance-direction",
+        "episode-scene-breakdown"
+      ],
+      "lessons": "反应要指向真正刺激源，不能所有人看国王；棍子数量/持有人/接触/进出画明确；左右手/屏幕方向/动作前后状态记录。一次画面一个决定性动作，不把三个时刻塞一帧。对白speaker动作、听者reaction和attention separate。不重写故事结构或创造现实危险动作指导。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "blocking-plan",
+        "action-state-map",
+        "reaction-cues"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-C07",
+      "name": "content-voice-design",
+      "category": "content",
+      "title": "角色音色与口音设计",
+      "purpose": "跨旁白、电影、广告、游戏的年龄/音色/地域口音设计、比较与锁定。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:content-voice-design",
+      "write_scope": [
+        "skills/content/content-voice-design/",
+        "reports/drama-skill-intake/content-voice-design/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "series-audio-bible",
+        "personal:elevenlabs-voice-design"
+      ],
+      "lessons": "提炼已安装elevenlabs-voice-design但不覆盖；Voice Design/Remix/TTS区分；年龄靠沙哑/气息/力度，不只是降调和拖慢。口音要自然、允许地区变体，音素替换不能机械地套给所有菲律宾人。网页/API对比绑定模型/参数/文本/上下文/后期；不伪造听过音频，不未经授权付费调用，不克隆指定真人。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "voice-bible",
+        "voice-design-prompt",
+        "comparison-lock-record"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-C08",
+      "name": "content-audio-production",
+      "category": "content",
+      "title": "台词表演与声音编排",
+      "purpose": "跨媒介的台词表演、叙述/对白/SFX/环境/音乐分轨设计和音频生产交接。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:content-audio-production",
+      "write_scope": [
+        "skills/content/content-audio-production/",
+        "reports/drama-skill-intake/content-audio-production/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "episode-audio-performance",
+        "series-audio-bible"
+      ],
+      "lessons": "绑定稳定line_id与speaker/voice引用，情绪标签与要说的词分开；不能把one connected thought等指导读出口。人物出场用声音/动作刻画，情绪递进不靠拖长停顿。叙述/对白响度一致性、短语内突降及跨stem脱节诊断；民族音乐设计要文化来源不贴音符，不调用未授权模型。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "audio-script",
+        "performance-plan",
+        "sound-cue-sheet"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-C09",
+      "name": "content-editing-rhythm",
+      "category": "content",
+      "title": "剪辑节奏与字幕同步",
+      "purpose": "跨短剧、电影、广告的语音画面节奏、字幕高亮与局部修订设计。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:content-editing-rhythm",
+      "write_scope": [
+        "skills/content/content-editing-rhythm/",
+        "reports/drama-skill-intake/content-editing-rhythm/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "episode-editing-rhythm",
+        "episode-assembly-subtitle"
+      ],
+      "lessons": "不能声音介绍老大画面已到老二；绑定line_id/shot_id，不按句号机械切图。只减gap应保留approved语音take、音色、原时长记录；整体变速要用户目标明确并同步图片与字幕。字幕原生画幅安全区、宽度与逐词变黄；无timing时只出provisional不得猜精确时间。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "edit-rhythm-plan",
+        "subtitle-spec",
+        "sync-change-plan"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-D01",
+      "name": "drama-series-adaptation",
+      "category": "drama",
+      "title": "短剧全剧改编与拆集",
+      "purpose": "小说/传说导入→故事理解、整体弧线、短剧集数拆分和来源映射。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:drama-series-adaptation",
+      "write_scope": [
+        "skills/drama/drama-series-adaptation/",
+        "reports/drama-skill-intake/drama-series-adaptation/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "series-story-intelligence",
+        "series-story-architecture",
+        "narrated-drama-brief"
+      ],
+      "lessons": "因果链、角色关系、观众信息曲线与后续回收，禁止切碎章节当拆集。单集叙述视角必须有知识边界，国王不能无依据知道远行细节。保护未来救援等原著正典。适配可继承已研究文化约束，不强制每次联网。没有原文不能生成自称忠实改编的成稿。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "series-brief",
+        "story-bible",
+        "series-outline",
+        "episode-map"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-D02",
+      "name": "drama-episode-writing",
+      "category": "drama",
+      "title": "短剧单集剧本与对白",
+      "purpose": "从确定的单集任务产出有起承转合、情绪递进的完整短剧剧本。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:drama-episode-writing",
+      "write_scope": [
+        "skills/drama/drama-episode-writing/",
+        "reports/drama-skill-intake/drama-episode-writing/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "episode-contract-planner",
+        "narrative knowledge"
+      ],
+      "lessons": "开场钩子→动机/冲突→选择/代价→高潮→闭场钩子，结构不能变僵硬模板。信息密度不等于说快；Pedro旅程保留欲望/努力/失误/变化，不一集倒下。梦境有现实疲态/休息→感官转场→梦中因果→惊醒余波；旁白讲清因果但不替代关键人物声音。连续台词不是零停顿。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "episode-script",
+        "beat-sheet",
+        "line-register"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-D03",
+      "name": "drama-storyboard-production",
+      "category": "drama",
+      "title": "短剧分镜与生成提示词",
+      "purpose": "将已定剧本和资产转成时间顺序分镜、可生成帧与音画绑定。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:drama-storyboard-production",
+      "write_scope": [
+        "skills/drama/drama-storyboard-production/",
+        "reports/drama-skill-intake/drama-storyboard-production/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "episode-visual-storyboard",
+        "episode-scene-breakdown"
+      ],
+      "lessons": "storyboard示意页与成片素材区分；允许单页多格但每个成片frame须明确layout，默认依brief而不是黑边/模糊补画。生成前绑定authoritative character/style/location refs；多帧展开一个镜头时明确动作状态变化。每帧schema覆盖叙事作用/主体/角度/注意力/道具/背景/禁止项。不绕过上游缺失直接脑补成片。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "scene-breakdown",
+        "storyboard",
+        "frame-prompts",
+        "shot-register"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-D04",
+      "name": "drama-continuity-review",
+      "category": "drama",
+      "title": "短剧连续性与阶段评审",
+      "purpose": "独立评审跨集正典、叙事知识边界、资产与声音引用、分镜音画连续性。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:drama-continuity-review",
+      "write_scope": [
+        "skills/drama/drama-continuity-review/",
+        "reports/drama-skill-intake/drama-continuity-review/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "series-continuity-supervisor",
+        "episode-review-eval"
+      ],
+      "lessons": "评审要具体定位角色/line/shot/引用revision；局部问题给最小修改集合，不每次全部推倒重来或全量QC。区分文稿可评、媒体尚未生成无法评；报告实际可检范围。阐明approved内容何时stale、影响下游哪些产物，但不写Registry或自动重做。不得作者自签最终通过。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "continuity-review",
+        "impact-set",
+        "stage-readiness"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    },
+    {
+      "task_id": "DRAMA-SKILL-D05",
+      "name": "drama-production-planning",
+      "category": "drama",
+      "title": "短剧生产计划与增量返修",
+      "purpose": "规划从导入到前置包的短剧Skill调用DAG与反馈局部返修。",
+      "status": "ready",
+      "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+      "owner": "dedicated-session:drama-production-planning",
+      "write_scope": [
+        "skills/drama/drama-production-planning/",
+        "reports/drama-skill-intake/drama-production-planning/"
+      ],
+      "read_set": [
+        "AGENTS.md",
+        "docs/skill-standard.md",
+        "docs/contracts.md",
+        "docs/content-production-contract.md",
+        "changes/DRAMA-SKILLS-20260831/brief.md",
+        "changes/DRAMA-SKILLS-20260831/tasks.json"
+      ],
+      "sources": [
+        "narrated-drama-skill",
+        "artifact-manifest-lock (boundary only)",
+        "knowledge/workflow"
+      ],
+      "lessons": "按串行多集收缩复杂度；控制器持有全剧context，单集上下文读取明确版本，Skill不自建agent runtime/Outbox/CAS。依输入与缺口选择专业能力，而不是固定全调。流程状态来自实际产物/执行证据，不能用schema或fixture假装已过；provider-free前置包不等于成片。最少人工门禁仅重大创作取舍/成本权限；返修先影响分析、approved资产按差异更新。",
+      "inputs": [
+        "task-specific source knowledge",
+        "common content-production handoff v1"
+      ],
+      "outputs": [
+        "production-plan",
+        "skill-dispatches",
+        "revision-impact",
+        "handoff"
+      ],
+      "depends_on": [
+        "DRAMA-SKILL-FOUNDATION"
+      ],
+      "acceptance": [
+        "精确触发与不触发边界，不绑定Ibong/菲律宾/9:16为通用默认",
+        "明确必需与可选输入、消费者、来源/版本、不足时停止条件",
+        "短SKILL.md+metadata+至少happy/missing_input/boundary三例+必要方法/契约",
+        "独立执行者只看原始case而非预期答案；报告真实输出、未测项和候选commit",
+        "只写本Skill，任何共享契约/Registry修改反馈主任务"
+      ],
+      "validation_budget": {
+        "initial_cases": 3,
+        "targeted_repairs_max": 2,
+        "commands_per_round_max": 3,
+        "minutes_per_round_max": 10,
+        "paid_media_calls": 0
+      },
+      "stop_conditions": [
+        "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
+        "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
+      ],
+      "session": null
+    }
+  ]
+}
+

@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 from urllib.parse import unquote, urlsplit
 
-PREFIXES = {"meta": "meta", "personal": "personal", "engineering": "eng", "product": "product", "content": "content"}
+PREFIXES = {"meta": "meta", "personal": "personal", "engineering": "eng", "product": "product", "content": "content", "drama": "drama"}
 REQUIRED = {"schema_version", "name", "version", "category", "status", "summary", "owners", "tags", "dependencies", "input_contract", "output_contract"}
 
 

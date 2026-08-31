@@ -67,6 +67,9 @@ python3 scripts/pipeline.py --help
 - [公共交接契约](docs/contracts.md)：REQ/AC/task/review/candidate/test-report。
 - [后续迭代 backlog](docs/backlog.md)：有触发条件和验收的优化项。
 - [CHANGELOG](CHANGELOG.md)：版本变更与兼容性记录。
+- [短剧/通用专业整理](changes/DRAMA-SKILLS-20260831/brief.md)：14 个独立 Skill 候选的任务边界；未集成候选不算当前可用。
+- [旧入口迁移映射](docs/drama-skill-migration.md)：旧生产系统、narrated-drama 与个人音色 Skill 的保留/拆分/合并关系，不自动替换安装。
+- [内容生产交接](docs/content-production-contract.md)：来源、身份/台词/镜头引用、设计与真实生成证据的边界。
 - [首版验收报告](reports/validation-20260831.md)：27 个原始行为场景、1 次治理定向复验、22 项通过的程序测试，以及明确未执行的检查。
 - [项目经理 skill 独立验收与产出索引](reports/eng-project-manager/independent-review.md)：专属任务、原始目标核对、DAG、四层文件索引、六个程序场景及真实接入重放；[候选验证](reports/eng-project-manager/validation.md) 保留历史证据。
 - `reports/`：本轮真实验收、覆盖范围与未执行检查；业务运行临时文件放 `.runs/`，不进入 Git。
