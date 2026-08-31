@@ -4,7 +4,7 @@
   "change_id": "DRAMA-SKILLS-20260831",
   "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
   "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
-  "artifact_revision": 2,
+  "artifact_revision": 3,
   "tasks": [
     {
       "task_id": "DRAMA-SKILL-C01",
@@ -12,7 +12,7 @@
       "category": "content",
       "title": "文化与本地化研究",
       "purpose": "有界文化适配判断、证据采集与设计约束；适用于小说、游戏、电影、广告。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-cultural-research",
       "write_scope": [
@@ -79,7 +79,7 @@
       "category": "content",
       "title": "人物理解与心理弧线",
       "purpose": "跨媒介的人物动机、关系、内外冲突、选择代价和弧线分析。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-character-development",
       "write_scope": [
@@ -145,7 +145,7 @@
       "category": "content",
       "title": "视觉风格与世界场景",
       "purpose": "跨媒介视觉风格、灯光色彩、材质、地点和道具设计。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-visual-worldbuilding",
       "write_scope": [
@@ -212,7 +212,7 @@
       "category": "content",
       "title": "人物视觉与服饰资产",
       "purpose": "将人物正典转换为稳定身份、年龄、皮肤、服饰和可引用视觉定义。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-character-visual-design",
       "write_scope": [
@@ -279,7 +279,7 @@
       "category": "content",
       "title": "镜头语言与视听方向",
       "purpose": "跨电影、广告、纪录片的景别、视角、镜头功能、运镜及视觉节奏设计。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-cinematography",
       "write_scope": [
@@ -344,7 +344,7 @@
       "category": "content",
       "title": "场面调度与动作表演",
       "purpose": "人物站位、视线、反应、道具接触和动作因果；跨影视与舞台。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-scene-blocking",
       "write_scope": [
@@ -412,7 +412,7 @@
       "category": "content",
       "title": "角色音色与口音设计",
       "purpose": "跨旁白、电影、广告、游戏的年龄/音色/地域口音设计、比较与锁定。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-voice-design",
       "write_scope": [
@@ -479,7 +479,7 @@
       "category": "content",
       "title": "台词表演与声音编排",
       "purpose": "跨媒介的台词表演、叙述/对白/SFX/环境/音乐分轨设计和音频生产交接。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-audio-production",
       "write_scope": [
@@ -546,7 +546,7 @@
       "category": "content",
       "title": "剪辑节奏与字幕同步",
       "purpose": "跨短剧、电影、广告的语音画面节奏、字幕高亮与局部修订设计。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-editing-rhythm",
       "write_scope": [
@@ -613,7 +613,7 @@
       "category": "drama",
       "title": "短剧全剧改编与拆集",
       "purpose": "小说/传说导入→故事理解、整体弧线、短剧集数拆分和来源映射。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-series-adaptation",
       "write_scope": [
@@ -682,7 +682,7 @@
       "category": "drama",
       "title": "短剧单集剧本与对白",
       "purpose": "从确定的单集任务产出有起承转合、情绪递进的完整短剧剧本。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-episode-writing",
       "write_scope": [
@@ -749,7 +749,7 @@
       "category": "drama",
       "title": "短剧分镜与生成提示词",
       "purpose": "将已定剧本和资产转成时间顺序分镜、可生成帧与音画绑定。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-storyboard-production",
       "write_scope": [
@@ -817,7 +817,7 @@
       "category": "drama",
       "title": "短剧连续性与阶段评审",
       "purpose": "独立评审跨集正典、叙事知识边界、资产与声音引用、分镜音画连续性。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-continuity-review",
       "write_scope": [
@@ -884,7 +884,7 @@
       "category": "drama",
       "title": "短剧生产计划与增量返修",
       "purpose": "规划从导入到前置包的短剧Skill调用DAG与反馈局部返修。",
-      "status": "accepted",
+      "status": "completed",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-production-planning",
       "write_scope": [
@@ -948,6 +948,8 @@
       "evidence": "reports/drama-skill-intake/drama-production-planning/handoff.json"
     }
   ],
-  "delivery_status": "accepted_for_local_source_integration",
-  "integration_report": "reports/drama-skill-intake/integration-report.md"
+  "delivery_status": "integrated_and_validated_local_source",
+  "integration_report": "reports/drama-skill-intake/integration-report.md",
+  "source_commit": "b6c02f6043c57849226ff6939d00c4f24f1e3d4e",
+  "integration_evidence": "reports/drama-skill-intake/integration-evidence.json"
 }

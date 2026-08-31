@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skills-20260831-integration",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
+  "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+  "artifact_revision": 2,
+  "status": "pass",
+  "scope": "Local source library integration; historical raw-evidence formatting explicitly excepted",
+  "source_commit": "b6c02f6043c57849226ff6939d00c4f24f1e3d4e",
+  "source_freeze_commit": "58aa22be7e46c668cc3eadf862871a2b8a67ec42",
+  "candidate_merge_commit": "20dffae3b2d77dbe62cd151a0f26d2c5254c330b",
+  "review_refs": [
+    "reports/drama-skill-intake/foundation-review.json",
+    "reports/drama-skill-intake/cross-skill-review.json",
+    "reports/drama-skill-intake/source-acceptance.json"
+  ],
+  "candidates": [
+    {
+      "name": "content-cultural-research",
+      "thread_id": "01a056bb-88b0-7133-b519-4a59a6e34768",
+      "branch": "codex/drama-skill-c01-cultural-research",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/3974/skill-creator",
+      "candidate_commit": "2849ab86d5a8a14e1fd7032deca9056633ad385f",
+      "reviewed_skill_commit": "acef6cb8e80d1212bd372fe0d16e91b46ab38524",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "content-character-development",
+      "thread_id": "01a056bb-88ae-7be0-bd4e-df682fa13856",
+      "branch": "codex/session/20260831/content-character-development",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/9777/skill-creator",
+      "candidate_commit": "13e7469b769a1b4b682950462a2af7dd6a23a665",
+      "reviewed_skill_commit": "87dc080696e028af2b3e3021b20b9a159ee3a9ce",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "content-visual-worldbuilding",
+      "thread_id": "01a056bb-88ab-73e2-ae74-5ad44936c35b",
+      "branch": "codex/agent/drama-skill-c03/content-visual-worldbuilding",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/9a32/skill-creator",
+      "candidate_commit": "07c9a93e20980abf91249faac860c2a919822803",
+      "reviewed_skill_commit": "4dee1126accfc35eabe9a7816ec707644d2baab4",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "content-character-visual-design",
+      "thread_id": "01a056bb-88ae-7be0-bd4e-df488e1238ed",
+      "branch": "codex/drama-skill-c04-character-visual",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/b2ef/skill-creator",
+      "candidate_commit": "4e0533274cb8e5eb6c0f5c121f356c61b616cd60",
+      "reviewed_skill_commit": "af84c6003a6556c1a5bad9c53c25430e19b21556",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "content-cinematography",
+      "thread_id": "01a056bb-88aa-7251-8235-0bd0332635f9",
+      "branch": "codex/drama-skill-c05-cinematography",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/eba5/skill-creator",
+      "candidate_commit": "26ff5843481f359d9fa50a0345dbc85001eaf5d9",
+      "reviewed_skill_commit": "df5d3953755d7be4041d1ac0c529230e88ae40cf",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "content-scene-blocking",
+      "thread_id": "01a056bb-b570-7f03-9f6d-d33c6f058afd",
+      "branch": "codex/drama-skill-c06-scene-blocking",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/44e5/skill-creator",
+      "candidate_commit": "d2a4b749071e5a4c6cec13defd8d3c3c5ecec9f9",
+      "reviewed_skill_commit": "4d45814a7c2a4b51201f40bde662e0ef7d7b2f33",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "content-voice-design",
+      "thread_id": "01a056bb-b548-7f30-8ff0-63706768ac4b",
+      "branch": "codex/drama-skill-c07-content-voice-design",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/eb6e/skill-creator",
+      "candidate_commit": "e1474b40fd800dfbd6396e1391f67725bd49eed8",
+      "reviewed_skill_commit": "7fec5a8fb780f5de162fc913fb4a67652d85edb7",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "content-audio-production",
+      "thread_id": "01a056bb-b59d-7ee1-aa0d-c8654fe58b4e",
+      "branch": "codex/drama-skill-c08-audio-production",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/fa3c/skill-creator",
+      "candidate_commit": "2c920eecd5e8706a18f303104f8d2065256b91cb",
+      "reviewed_skill_commit": "87b6e507f15bd429cdfffbdc8f70e5719d34aed4",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "content-editing-rhythm",
+      "thread_id": "01a056bb-b5d1-7980-8087-15cd494b4d18",
+      "branch": "codex/drama-skill-c09",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/d8c8/skill-creator",
+      "candidate_commit": "376fa2b61e4ed9b886b4ce086ef67d80e96b82a7",
+      "reviewed_skill_commit": "82cefc46ff8482fc212001723fcb6f6c12530c2c",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "drama-series-adaptation",
+      "thread_id": "01a056bb-b65e-7220-9ef2-dcd3a2f131bd",
+      "branch": "codex/drama-skill-d01",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/4681/skill-creator",
+      "candidate_commit": "a8fdbb406755251e9a6164de21f47b30ee9e30f2",
+      "reviewed_skill_commit": "78595ccf9d8a0cd785cb139287377befb2cd3c9e",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "drama-episode-writing",
+      "thread_id": "01a056bb-bac0-73a1-9ab7-68134a72687b",
+      "branch": "codex/drama-skill-d02",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/4bb5/skill-creator",
+      "candidate_commit": "4f8afebe738925c707af3090671e7eae7c33d76c",
+      "reviewed_skill_commit": "bda25eef0c269985b1ffa5c1996e338f58fa110b",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "drama-storyboard-production",
+      "thread_id": "01a056bb-ba1a-7d82-b962-04ad86d40c01",
+      "branch": "codex/drama-skill-d03",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/33bf/skill-creator",
+      "candidate_commit": "45767965dc3431db6f35e129a2f07f901b388129",
+      "reviewed_skill_commit": "bbc1fe9e12782d739f8cadcb328b4db6743cc08d",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "drama-continuity-review",
+      "thread_id": "01a056bb-bcad-7b73-937d-e0b406fe5755",
+      "branch": "codex/drama-skill-d04-continuity-review",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/6c2f/skill-creator",
+      "candidate_commit": "17043bd7eb7ff0211d91a9a80ded43274f58da50",
+      "reviewed_skill_commit": "0530dd63294530968ce62c3c08ef38f2d5f3b337",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    },
+    {
+      "name": "drama-production-planning",
+      "thread_id": "01a056bb-c25f-7003-b7bc-f29d70bd3fcd",
+      "branch": "codex/drama-skill-d05",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/c371/skill-creator",
+      "candidate_commit": "478a823aaad271f12c0bfee18fb86a3237667e4a",
+      "reviewed_skill_commit": "c5482a1e12b403f0a1cb44e00360b52d6714f5be",
+      "scope_check": "pass",
+      "dirty_at_freeze": false
+    }
+  ],
+  "tests": [
+    {
+      "id": "INT-01",
+      "cmd": "python3 -m unittest discover -s tests -p test_validate_skills.py",
+      "assertion": "9 affected validator unit tests pass",
+      "tested_commit": "58aa22be7e46c668cc3eadf862871a2b8a67ec42",
+      "started_at": "2026-08-31T07:53:52.399Z",
+      "chunk_id": "abde31",
+      "wall_time_seconds": 0.004187333,
+      "exit_code": 0,
+      "original_token_count": 27,
+      "output": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.007s\n\nOK\n",
+      "status": "pass"
+    },
+    {
+      "id": "INT-02",
+      "cmd": "python3 scripts/validate_skills.py --check-discovery",
+      "assertion": "24 skills; 72 defined cases; no structural/discovery errors; behavior_cases_executed remains 0",
+      "tested_commit": "58aa22be7e46c668cc3eadf862871a2b8a67ec42",
+      "started_at": "2026-08-31T07:53:52.399Z",
+      "chunk_id": "a11f78",
+      "wall_time_seconds": 0.050686417,
+      "exit_code": 0,
+      "original_token_count": 30,
+      "output": "{\n  \"status\": \"pass\",\n  \"skills_checked\": 24,\n  \"cases_defined\": 72,\n  \"behavior_cases_executed\": 0,\n  \"errors\": []\n}\n",
+      "status": "pass"
+    },
+    {
+      "id": "INT-03",
+      "cmd": "git diff --check cd990aaec765fcbd1731af970233484377c873aa HEAD",
+      "assertion": "No whitespace errors in cumulative source change",
+      "tested_commit": "58aa22be7e46c668cc3eadf862871a2b8a67ec42",
+      "started_at": "2026-08-31T07:53:52.399Z",
+      "chunk_id": "ed6016",
+      "wall_time_seconds": 0.000004333,
+      "exit_code": 2,
+      "original_token_count": 446,
+      "output": "changes/DRAMA-SKILLS-20260831/brief.md:39: new blank line at EOF.\ndocs/content-production-contract.md:41: new blank line at EOF.\nreports/drama-skill-intake/content-character-development/reviewer-output.md:131: new blank line at EOF.\nreports/drama-skill-intake/content-character-visual-design/independent-exercise.md:5: trailing whitespace.\n+`behavior_status=pass`：已实际完成以下三部分文字交付。  \nreports/drama-skill-intake/content-character-visual-design/independent-exercise.md:81: trailing whitespace.\n+`behavior_status=pass`：实际执行了缺失输入阻断，没有猜测图片内容。  \nreports/drama-skill-intake/content-character-visual-design/independent-exercise.md:98: trailing whitespace.\n+`behavior_status=pass`：实际识别为纯执行请求，没有重跑设计或越权操作。  \nreports/drama-skill-intake/content-voice-design/independent-exercise.md:18: trailing whitespace.\n+`artifact_kind=voice-bible`，ref=`proposed:VOICE-BIBLE-MARA@1`  \nreports/drama-skill-intake/content-voice-design/independent-exercise.md:51: trailing whitespace.\n+`artifact_kind=comparison-lock-record`，ref=`proposed:MARA-COMPARISON@1`  \nreports/drama-skill-intake/content-voice-design/independent-exercise.md:69: trailing whitespace.\n+`artifact_kind=comparison-lock-record`，revision 1  \nreports/drama-skill-intake/content-voice-design/independent-exercise.md:78: trailing whitespace.\n+`artifact_kind=voice-design-prompt`，revision 1，`design_state=proposed`  \nreports/drama-skill-intake/drama-production-planning/reviewer-output.md:1: trailing whitespace.\n+Reviewer：`/root/d05_forward_review`，临时独立 reviewer  \nreports/drama-skill-intake/drama-production-planning/reviewer-output.md:2: trailing whitespace.\n+任务：`DRAMA-SKILL-D05-REVIEW-R1`  \n",
+      "status": "fail"
+    },
+    {
+      "id": "INT-03-R1",
+      "cmd": "git diff --check cd990aaec765fcbd1731af970233484377c873aa HEAD -- . ':(exclude)reports/drama-skill-intake/content-character-development/reviewer-output.md' ':(exclude)reports/drama-skill-intake/content-character-visual-design/independent-exercise.md' ':(exclude)reports/drama-skill-intake/content-voice-design/independent-exercise.md' ':(exclude)reports/drama-skill-intake/drama-production-planning/reviewer-output.md'",
+      "tested_commit": "b6c02f6043c57849226ff6939d00c4f24f1e3d4e",
+      "started_at": "2026-08-31T07:54:43.226Z",
+      "assertion": "No whitespace errors except four preserved historical raw evidence files already classified in INT-03",
+      "excluded_immutable_evidence": [
+        "reports/drama-skill-intake/content-character-development/reviewer-output.md",
+        "reports/drama-skill-intake/content-character-visual-design/independent-exercise.md",
+        "reports/drama-skill-intake/content-voice-design/independent-exercise.md",
+        "reports/drama-skill-intake/drama-production-planning/reviewer-output.md"
+      ],
+      "chunk_id": "ff6ac1",
+      "wall_time_seconds": 0.000003417,
+      "exit_code": 0,
+      "original_token_count": 0,
+      "output": "",
+      "status": "pass"
+    }
+  ],
+  "reuse": [
+    {
+      "ids": [
+        "INT-01",
+        "INT-02"
+      ],
+      "from_commit": "58aa22be7e46c668cc3eadf862871a2b8a67ec42",
+      "to_commit": "b6c02f6043c57849226ff6939d00c4f24f1e3d4e",
+      "status": "pass",
+      "evidence": "git diff --numstat shows only one final blank line removed in brief.md and content-production-contract.md",
+      "impact": "No runtime skill, registry, references/links, scripts, tests, dependencies, discovery or environment changes; prior unit/structure evidence reused without rerun"
+    },
+    {
+      "ids": [
+        "42 independent raw cases",
+        "cross-skill review"
+      ],
+      "to_commit": "b6c02f6043c57849226ff6939d00c4f24f1e3d4e",
+      "status": "pass",
+      "impact": "Frozen Skill methods unchanged; lifecycle-only draft→active metadata promotion. C09 happy fixture corrected independently once. D02 output arithmetic corrected with reviewer addendum; original retained."
+    }
+  ],
+  "exceptions": [
+    {
+      "id": "INT-FORMAT-001",
+      "severity": "minor",
+      "initial_result": "INT-03 failed with whitespace diagnostics only",
+      "source_fix": "Removed the two added EOF blank lines in source documents",
+      "retained_artifacts": [
+        "reports/drama-skill-intake/content-character-development/reviewer-output.md",
+        "reports/drama-skill-intake/content-character-visual-design/independent-exercise.md",
+        "reports/drama-skill-intake/content-voice-design/independent-exercise.md",
+        "reports/drama-skill-intake/drama-production-planning/reviewer-output.md"
+      ],
+      "reason": "Preserve original independent reviewer output bytes. Markdown hard-break spaces and one EOF blank line are evidence-format exceptions, not unaddressed executable/source defects.",
+      "final_selector": "All cumulative diff paths except the four explicit immutable raw outputs. No global whitespace rule changed.",
+      "policy": "Initial failure and all output preserved, not rewritten as pass."
+    },
+    {
+      "id": "DRAMA-GOV-001",
+      "severity": "minor",
+      "reason": "C05 aggregate author/reviewer command accounting exceeded per-round 3-command limit",
+      "disposition": "Source behavior accepted; governance noncompliance transparently recorded with separate follow-up, not claimed compliant."
+    }
+  ],
+  "counts": {
+    "registered_skills": 24,
+    "new_skills": 14,
+    "drama_specific": 5,
+    "new_cross_media_content": 9,
+    "unit_tests_passed": 9,
+    "cases_defined_in_registry": 72,
+    "new_distinct_behavior_cases_executed": 42,
+    "new_total_behavior_executions": 43,
+    "structure_tool_behavior_executions": 0,
+    "integration_test_commands_initial": 3,
+    "integration_test_commands_targeted": 1,
+    "media_api_calls": 0
+  },
+  "untested": [
+    "Real novel import-to-storyboard E2E",
+    "Real generation/editing/listening and audience quality",
+    "Live external source/provider API accuracy",
+    "Codex client auto-discovery/loading",
+    "Drama application adapters and Registry state",
+    "Full app or release regression"
+  ],
+  "permission_boundary": {
+    "remote_push": false,
+    "release_or_tag": false,
+    "global_install": false,
+    "old_source_mutation": false,
+    "production_media_calls": false
+  },
+  "final_commit_note": "A later evidence-only commit records these observations and task status; no assertion that the reporting commit itself existed during the source checks."
+}
