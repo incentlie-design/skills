@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-series-adaptation-20260831-r1",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "task_id": "DRAMA-SKILL-D01",
+  "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "artifact_kind": "skill-candidate-handoff",
+  "status": "revise",
+  "status_reason": "范围内draft候选与有限证据已完成；等待主任务最终审核和统一注册，作者不自签最终通过",
+  "delivery_state": "candidate",
+  "skill": {
+    "name": "drama-series-adaptation",
+    "category": "drama",
+    "version": "0.1.0",
+    "status": "draft",
+    "dependencies": []
+  },
+  "git": {
+    "original_main_baseline": "cd990aaec765fcbd1731af970233484377c873aa",
+    "foundation_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+    "sync": "工作区初始干净且detached；创建本地分支后git merge --ff-only foundation成功；未reset",
+    "head_commit": "78595ccf9d8a0cd785cb139287377befb2cd3c9e",
+    "head_scope": "冻结的四个Skill文件代码候选；本报告及行为证据随后单独提交，最终报告commit由任务最终回复提供，避免自引用hash",
+    "branch": "codex/drama-skill-d01",
+    "worktree": "/Users/jiajun.lai/.codex/worktrees/4681/skill-creator",
+    "shared_files_changed_by_this_task": [],
+    "rollback": "如需回退，由集成人在新变更中revert本候选及报告提交；不reset共享历史或删除worktree"
+  },
+  "owner": "dedicated-session:drama-series-adaptation",
+  "next_owner": "DRAMA-SKILLS-20260831主任务集成人",
+  "write_scope": [
+    "skills/drama/drama-series-adaptation/",
+    "reports/drama-skill-intake/drama-series-adaptation/"
+  ],
+  "input_refs": [
+    {"path": "changes/DRAMA-SKILLS-20260831/brief.md", "revision": 1, "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"},
+    {"path": "changes/DRAMA-SKILLS-20260831/tasks.json", "entity": "DRAMA-SKILL-D01", "revision": 1, "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"},
+    {"path": "docs/skill-standard.md", "revision": 1, "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"},
+    {"path": "docs/contracts.md", "revision": 1, "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"},
+    {"path": "docs/content-production-contract.md", "revision": 1, "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"},
+    {"path": "docs/drama-skill-migration.md", "revision": "unknown", "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"},
+    {"path": "reports/drama-skill-intake/drama-series-adaptation/sources.json", "revision": 1, "purpose": "三项旧入口与必要knowledge方法的真实source commits和SHA-256；只读未修改"}
+  ],
+  "outputs": [
+    "skills/drama/drama-series-adaptation/SKILL.md",
+    "skills/drama/drama-series-adaptation/skill.json",
+    "skills/drama/drama-series-adaptation/references/output-contract.md",
+    "skills/drama/drama-series-adaptation/tests/cases.json",
+    "reports/drama-skill-intake/drama-series-adaptation/sources.json",
+    "reports/drama-skill-intake/drama-series-adaptation/independent-results.md",
+    "reports/drama-skill-intake/drama-series-adaptation/test-report.json",
+    "reports/drama-skill-intake/drama-series-adaptation/handoff.json"
+  ],
+  "acceptance_evidence": [
+    {"id": "AC-003", "evidence": "30行SKILL入口与必要输出契约，覆盖series-brief/story-bible/series-outline/episode-map、因果/选择/信息时点/后续正典；无固定国家/画幅/供应商"},
+    {"id": "AC-004", "evidence": "先定义3类原始case；结构smoke通过；独立reviewer实际执行3例，完整输出和作者断言对照分离；0次定向修复"},
+    {"id": "AC-006", "evidence": "公共envelope、真实refs/revision、proposed实体ID、知识表、源事件去向与计划回收；未声称已注册/已生成/已试听"}
+  ],
+  "tests": {
+    "structure_smoke": "pass",
+    "happy": {"id": "TC-001", "execution": "executed", "observed_assertions": "pass"},
+    "missing_input": {"id": "TC-002", "execution": "executed", "observed_assertions": "pass", "actual_reply": "blocked+needs_input"},
+    "boundary": {"id": "TC-003", "execution": "executed", "observed_assertions": "pass", "actual_reply": "单句文本候选，TTS/注册blocked"},
+    "report": "reports/drama-skill-intake/drama-series-adaptation/test-report.json",
+    "assessment_limit": "pass为预定义断言与真实独立产物的作者对照，不是最终验收；结构smoke不替代行为执行"
+  },
+  "review": {
+    "reviewer": "/root/d01_forward_review",
+    "reviewed_revision": 1,
+    "reviewed_commit": "78595ccf9d8a0cd785cb139287377befb2cd3c9e",
+    "scope": "只读冻结Skill及公共契约、三条原始prompt的前向独立执行；不看expect/作者答案；不再委派",
+    "evidence": "reports/drama-skill-intake/drama-series-adaptation/independent-results.md",
+    "reported_ambiguities": [],
+    "final_review_status": "not_run",
+    "final_review_owner": "DRAMA-SKILLS-20260831主任务集成人"
+  },
+  "not_run": [
+    "主任务最终独立审核、统一registry/README/AGENTS/CHANGELOG/发现入口更新及注册验证",
+    "客户端自动发现、全局安装、旧应用schema兼容接线、全仓回归",
+    "真实长篇完整改编与真实单集写作/播放验证",
+    "联网文化研究、媒体模型/付费接口、TTS/试听/生成/注册"
+  ],
+  "minimal_gaps": [
+    "主任务审核本候选后统一登记；在此之前保持draft，不宣称可由客户端自动发现",
+    "行为证据仅三个合成场景，不证明真实长篇规模、非线性叙事或既有批准方案局部修订均已实测"
+  ],
+  "stop_conditions_met": "一个Skill候选+来源+三类真实有限证据已交付；不继续扩大功能或执行真实一集短剧",
+  "permissions_observed": "未合main、未push、未安装/发布、未改共享文件或只读来源、未删除worktree、未创建其他持久任务",
+  "consumer": "DRAMA-SKILLS-20260831主任务集成人",
+  "handoff": "使用最终回复提供的本分支最终commit连同冻结代码候选78595ccf9d8a0cd785cb139287377befb2cd3c9e审核；候选不等于已注册或已发布"
+}
