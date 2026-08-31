@@ -2,7 +2,7 @@
 
 统一管理个人 skills 的源仓库：一个 repo、分类目录、共享契约、独立 worktree、有界测试。不会为每个 skill 新建仓库，也不会为每次探索创建新项目。
 
-当前登记 24 个本地源 Skill：23 个为 `0.1.0` / `active`；当前集成分支接纳 `eng-project-manager 0.2.0` 分配/资产/预算候选，独立验收尚在进行。原有 10 个入口及新接纳的短剧专用 5 个、通用内容专业 9 个均保留。`active` 表示已完成本库有界源码/行为验收，不表示媒体生成质量、应用接线或当前客户端自动加载已经验证。
+当前登记 24 个本地源 Skill，均为 `active`：项目经理 `eng-project-manager` 为 `0.2.0`，其他 23 个为 `0.1.0`。原有 10 个入口及新接纳的短剧专用 5 个、通用内容专业 9 个均保留。`active` 表示已完成本库有界源码/行为验收，不表示媒体生成质量、应用接线或当前客户端自动加载已经验证。
 
 ## Skill 清单与路由
 
@@ -55,7 +55,7 @@
 使用 $drama-production-planning，检查已有产物缺口，安排串行多集前置制作；不要执行生成。
 ```
 
-本项目 `.agents/skills/` 使用相对 symlink 指向 `skills/`，只保留一份源文件。Codex 官方说明支持该 repo 发现目录和 symlink；如当前会话尚未显示新 skill，可新开任务/重启客户端，或明确提供上表 `SKILL.md` 路径。没有修改用户级 skills 或把本项目 skills 安装到其他项目。[官方加载规则](https://learn.chatgpt.com/docs/build-skills)
+本项目 `.agents/skills/` 使用相对 symlink 指向 `skills/`，只保留一份源文件。Codex 官方说明支持该 repo 发现目录和 symlink；如当前会话尚未显示新 skill，可重启客户端或明确提供上表 `SKILL.md` 路径。用户级安装需单独授权；项目经理本次按用户要求复用 `~/.agents/skills/eng-project-manager`，指向主仓库源文件，具体版本与证据见 [集成与注册记录](reports/eng-project-manager-resources/integration.md)。[官方加载规则](https://learn.chatgpt.com/docs/build-skills)
 
 检索示例（在项目根目录执行）：
 
@@ -95,7 +95,7 @@ python3 scripts/pipeline.py --help
 - [内容生产交接](docs/content-production-contract.md)：来源、身份/台词/镜头引用、设计与真实生成证据的边界。
 - [首版验收报告](reports/validation-20260831.md)：27 个原始行为场景、1 次治理定向复验、22 项通过的程序测试，以及明确未执行的检查。
 - [项目经理 skill 独立验收与产出索引](reports/eng-project-manager/independent-review.md)：专属任务、原始目标核对、DAG、四层文件索引、六个程序场景及真实接入重放；[候选验证](reports/eng-project-manager/validation.md) 保留历史证据。
-- [项目经理 0.2.0 增量候选验证](reports/eng-project-manager-resources/validation.md)：agent/session 分配、资产、预算与 DAG 工作目标；[实际展示样例](reports/eng-project-manager-resources/example.md) 为明确标记的 fixture，新版本独立验收 pending。
+- [项目经理 0.2.0 集成与注册](reports/eng-project-manager-resources/integration.md)：agent/session 分配、资产、预算与 DAG 工作目标已完成独立有界验收；[实际展示样例](reports/eng-project-manager-resources/example.md) 为明确标记的 fixture，[作者候选报告](reports/eng-project-manager-resources/validation.md) 保留历史状态。
 - `reports/`：本轮真实验收、覆盖范围与未执行检查；业务运行临时文件放 `.runs/`，不进入 Git。
 
 工作分支允许局部 unit/feature 和 smoke；跨 feature 批次再做受影响 integration；只有明确发版才做 release regression。默认一次验收、最多两次定向修复，批次完整验收最多两轮。完成外部契约即交付，不无限优化内部实现。

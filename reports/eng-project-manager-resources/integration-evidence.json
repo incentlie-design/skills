@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "run_id": "PM-SKILL-002-integration-20260831",
+  "change_id": "PM-SKILL-002",
+  "artifact_revision": 1,
+  "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
+  "base_commit": "cfe624f79152cb4680b1ab70db615b6278c62285",
+  "candidate_commit": "3c502bb7720d002842ee0b4ecd803c7f5464a281",
+  "tested_head": "8d2b607aaeef9cc0cda30c53e9d590065dfa7c20",
+  "content_summary": "Project manager 0.2.0 integration retaining all current main skills; README/CHANGELOG conflicts resolved without runtime changes",
+  "implementation_hashes": {
+    "SKILL.md": "42cab20b03ee37f11fa2adf76ef550cb1e60fefb6697553067474af7bad1ef36",
+    "scripts/pm.py": "ad3fbee160826d795bbf1d9f18e5b15f4a50a155ed047e165638aa3f8508bc3e",
+    "references/contract.md": "5515c4f37ac172316e2e324aae0c3a2cfe7becc0912c0c6c997d6e17f67ab1e9",
+    "references/assignments-and-budgets.md": "4d3e1333aee8fdbe60d97a75f29ec2d51dc85d8ed2126f5260f08148e6d4b7d4",
+    "references/usage.md": "b0418c3c4c4dd72b540c13d12a98367bc731e33e866fc14b4db32452c06da698",
+    "tests/cases.json": "7fcb256bf487e2686c6cffdb08646c1c90df5ef25199afa83725f95bc36e80ea",
+    "tests/test_pm.py": "dcc4311474d0c5da3c042e43675a877b99470d5f4fc811e5846c666e2a974e72"
+  },
+  "checks": [
+    {
+      "command": "python3 skills/engineering/eng-project-manager/tests/test_pm.py",
+      "exit_code": 0,
+      "tests": 3,
+      "seconds": 1.112,
+      "output": "test_boundary (__main__.PMCases.test_boundary) ... ok\ntest_happy (__main__.PMCases.test_happy) ... ok\ntest_missing (__main__.PMCases.test_missing) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 1.112s\n\nOK\n{\"case\": \"PM-003-management\", \"invalid_budget\": \"rejected\", \"double_assignment\": \"rejected\", \"identity_overwrite\": \"rejected\", \"budget_without_decision\": \"rejected\", \"usage_rewrite_or_reset\": \"rejected\", \"work_objective_change_without_revision\": \"rejected\", \"ledger_unchanged\": true}\n{\"case\": \"PM-003\", \"cross_goal\": \"rejected\", \"unauthorized_scope\": \"rejected\", \"stale_writer\": \"rejected\", \"path_escape\": \"rejected\", \"history_tamper\": \"detected\", \"sentinel_created\": false, \"authorized_revision_history\": 2}\n{\"case\": \"PM-001-management\", \"goal_used_tokens\": 200, \"goal_remaining_tokens\": 800, \"agent_api_used\": 160, \"agent_next_used\": 0, \"shared_AC_no_double_count\": true, \"old_asset_owner\": \"ASN-001\", \"current_assignment\": \"ASN-003\"}\n{\"case\": \"PM-001\", \"initial_blocked_by\": [\"TASK-001\"], \"all_tasks_without_AC\": \"incomplete\", \"refresh_evidence\": \"stale\", \"final\": \"simulated_complete\", \"ledger_revisions\": 4, \"missing_index\": \"missing\"}\n{\"case\": \"PM-002-management\", \"unknown_remaining\": null, \"estimate_not_charged\": null, \"assignment_overrun\": 1, \"stale_remaining\": null, \"missing_asset\": \"missing\"}\n{\"case\": \"PM-002\", \"missing_identity\": \"rejected_without_write\", \"cycle\": \"rejected\", \"owner\": \"assign_owner\", \"ancestor_block_and_fail\": \"G/REQ preserved; goal incomplete\", \"not_run\": \"not_run\", \"missing_evidence\": \"missing_evidence\", \"changed_file\": [\"stale_binding:A-CODE\"]}\n"
+    },
+    {
+      "command": "python3 scripts/validate_skills.py --check-discovery",
+      "exit_code": 0,
+      "output": {
+        "status": "pass",
+        "skills_checked": 24,
+        "cases_defined": 72,
+        "behavior_cases_executed": 0,
+        "errors": []
+      }
+    },
+    {
+      "command": "python3 /Users/jiajun.lai/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/engineering/eng-project-manager",
+      "exit_code": 0,
+      "output": "Skill is valid!\n"
+    }
+  ],
+  "independent_review": {
+    "reviewer": "01a05360-3ad2-7211-a3b5-48d7fe3189df",
+    "status": "pass",
+    "findings": [],
+    "cases_executed": 3,
+    "cli_calls": 19,
+    "top_level_exit_code": 0,
+    "report": "independent/review.md",
+    "report_sha256": "52b9efc7d9d8a0568f30434e8ba0742e533ecf97ebd6dc565480b5921f1f5db7",
+    "source": "independent/independent_acceptance.py",
+    "source_sha256": "1478c492b42d8a9984098336ab15d5298cbee8b7d21d33613d7633092cac46fe",
+    "execution": "independent/execution.json",
+    "execution_sha256": "d444f4019624b9bd36409a208f7e193a66c2662d0148a8ef59b18891a868e192"
+  },
+  "sealing_checks": {
+    "implementation_hashes_unchanged": true,
+    "independent_archives_exact": true,
+    "metadata_version": "0.2.0",
+    "metadata_status": "active",
+    "structure_exit_code": 0,
+    "skills_checked": 24,
+    "cases_defined": 72,
+    "scope": "metadata and documentation sealing only; runtime tests not repeated"
+  },
+  "registration": {
+    "entry": "/Users/jiajun.lai/.agents/skills/eng-project-manager",
+    "target": "/Users/jiajun.lai/Documents/workspaces/skill-creator/skills/engineering/eng-project-manager",
+    "kind": "existing_symlink",
+    "disabled": false,
+    "pre_integration_version": "0.1.0",
+    "desired_version": "0.2.0",
+    "official_source": "https://learn.chatgpt.com/docs/build-skills"
+  },
+  "limits": [
+    "Behavior data are fixtures, not real account usage",
+    "No other skills behavior regression",
+    "No push, remote publication, new tasks or subagents"
+  ]
+}

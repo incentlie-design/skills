@@ -3,7 +3,7 @@
   "name": "eng-project-manager",
   "version": "0.2.0",
   "category": "engineering",
-  "status": "draft",
+  "status": "active",
   "summary": "长程 goal 的 DAG 工作目标、agent/session 分配沿革、交付资产与有来源预算管理",
   "owners": ["repository-maintainer"],
   "tags": ["project-manager", "goal", "DAG", "assignments", "agent", "session", "budget", "项目经理", "产物索引"],

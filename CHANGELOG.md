@@ -1,5 +1,12 @@
 # Changelog
 
+## eng-project-manager 0.2.0 接纳与用户级入口 — 2026-08-31
+
+- 既有父任务独立设计并执行三个增量场景，结论 pass、无阻断发现；未使用作者测试工厂。证据绑定原候选与集成 head 相同的入口、脚本和契约，不复用 0.1.0 的验收签字。
+- 在当前 main 的 24 个 Skill 基础上集成；只解决 README/CHANGELOG 文档冲突，保留其余 23 个 Skill。冻结 head 的作者三场景、结构和官方格式检查均通过。
+- 状态提升为 active，按用户“合并并注册到 Codex”的要求复用已有用户级 symlink，目标仍是主仓库源文件，不复制或迁移业务产物。无 push、远端发布、新任务或 subagent。
+- 独立源码/结果、冻结载荷与入口说明见 [本地集成记录](reports/eng-project-manager-resources/integration.md)。下方 draft/pending 为候选历史，不作为当前状态。
+
 ## 短剧与通用专业 Skills 0.1.0 — 2026-08-31（本地源码接纳，未远端发布）
 
 - 新增并登记 14 个独立 Skill：5 个 drama-*、9 个 content-*；每个保留独立任务、分支、linked worktree 和候选提交。
