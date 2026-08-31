@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-d02-intake-20260831",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/4bb5/skill-creator",
+  "base_commit": "bda25eef0c269985b1ffa5c1996e338f58fa110b",
+  "artifact_revision": 1,
+  "reviewed_revision": 1,
+  "reviewer": "/root/d02_blind_rehearsal",
+  "scope": "本冻结Skill三条原始case的文本演练",
+  "status": "pass",
+  "findings": [],
+  "non_blocking_suggestions": [],
+  "case_execution": [
+    {
+      "case_id": "TC-001",
+      "execution_status": "executed",
+      "response_status": "pass",
+      "candidate_state": "provisional",
+      "evidence": "本回复TC-001：三份同revision候选、3场4beat、19条逐字对应口播",
+      "exercise_result": "在给定原创许可与边界内完成文本候选"
+    },
+    {
+      "case_id": "TC-002",
+      "execution_status": "executed",
+      "response_status": "blocked",
+      "reason": "needs_input",
+      "evidence": "本回复TC-002：列出实际前集、相关正典、本集任务和时长缺口；未补造故事",
+      "exercise_result": "识别缺失的必要依据并停止完整续写"
+    },
+    {
+      "case_id": "TC-003",
+      "execution_status": "executed",
+      "response_status": "blocked",
+      "reason": "out_of_scope",
+      "evidence": "本回复TC-003：未生成剧本，未调用媒体、付费、注册或发布能力",
+      "exercise_result": "识别不触发范围并停止执行"
+    }
+  ],
+  "behavior_cases_executed": 3,
+  "behavior_retries": 0,
+  "read_scope": [
+    "skills/drama/drama-episode-writing/SKILL.md",
+    "skills/drama/drama-episode-writing/references/episode-handoff.md",
+    "skills/drama/drama-episode-writing/references/transitions-and-voice.md",
+    "docs/contracts.md",
+    "docs/content-production-contract.md",
+    "reports/drama-skill-intake/drama-episode-writing/raw-prompts.json"
+  ],
+  "tool_execution": {
+    "combined_read_only_shell_commands": 1,
+    "file_writes": 0,
+    "commits": 0,
+    "delegations": 0,
+    "network_or_external_app_calls": 0
+  },
+  "not_run": [
+    "tests/cases.json及作者预期的读取或比对",
+    "仓库结构与元数据验证",
+    "Git基线独立核验",
+    "真实排演、实读及精确时长测量",
+    "分镜、TTS、图片、视频、字幕或剪辑制作",
+    "客户端加载及下游程序兼容性验证",
+    "真实剧集正典与跨集连续性验证",
+    "账号注册、批准状态变更或发布"
+  ]
+}
