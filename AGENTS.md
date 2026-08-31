@@ -33,8 +33,8 @@
 | meta / 规范治理 | `meta-skill-governance` |
 | engineering / 工程实践 | `eng-workspace-governance`、`eng-quality-test`、`eng-review-technical`、`eng-project-manager`、`eng-delivery-feature`、`eng-delivery-release` |
 | product / 产品需求 | `product-spec-prd`、`product-review-prd` |
-| content / 内容制作 | `content-video-director-learning` |
-| drama / 短剧专用 | 分类已支持；候选见 changes/DRAMA-SKILLS-20260831/tasks.json，未集成前不登记为可用 |
+| content / 通用内容专业 | `content-video-director-learning`、`content-cultural-research`、`content-character-development`、`content-visual-worldbuilding`、`content-character-visual-design`、`content-cinematography`、`content-scene-blocking`、`content-voice-design`、`content-audio-production`、`content-editing-rhythm` |
+| drama / 短剧专用 | `drama-series-adaptation`、`drama-episode-writing`、`drama-storyboard-production`、`drama-continuity-review`、`drama-production-planning` |
 | personal / 个人效率 | 预留分类，目前无 skill；不建占位 skill |
 
 新增、重命名、停用时同步本表、README、registry；分类和名字的变更视为路由迁移。当前维护入口使用标准文件名 `AGENTS.md` 和 `README.md`，不创建大小写重复副本。

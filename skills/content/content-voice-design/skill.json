@@ -3,7 +3,7 @@
   "name": "content-voice-design",
   "version": "0.1.0",
   "category": "content",
-  "status": "draft",
+  "status": "active",
   "summary": "跨旁白、电影、广告与游戏设计可比较的年龄、音色和地域口音，记录身份不变量、试读条件与真实选择证据",
   "owners": ["repository-maintainer"],
   "tags": ["content", "voice", "accent", "音色", "口音", "年龄", "选型"],

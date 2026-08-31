@@ -3,7 +3,7 @@
   "name": "drama-storyboard-production",
   "version": "0.1.0",
   "category": "drama",
-  "status": "draft",
+  "status": "active",
   "summary": "将已定单集片段与选定资产编成时间顺序场景、分镜、状态帧提示词及音画引用；交付候选而非媒体或应用注册",
   "owners": ["repository-maintainer"],
   "tags": ["drama", "分镜", "storyboard", "frame-prompts", "scene-breakdown", "音画绑定"],

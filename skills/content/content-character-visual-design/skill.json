@@ -3,7 +3,7 @@
   "name": "content-character-visual-design",
   "version": "0.1.0",
   "category": "content",
-  "status": "draft",
+  "status": "active",
   "summary": "从人物正典提炼稳定视觉身份、年龄与皮肤表达、服饰变体和分层身份提示词；仅交付可引用候选",
   "owners": ["repository-maintainer"],
   "tags": ["人物视觉", "服饰资产", "character", "identity", "wardrobe", "reference", "连续性"],

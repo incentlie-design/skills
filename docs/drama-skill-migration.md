@@ -1,5 +1,7 @@
 # 既有短剧 Skill 整理与兼容映射
 
+本轮已在 skill-creator 登记 14 个新源入口，详见 [集成验收报告](../reports/drama-skill-intake/integration-report.md)。
+
 本表是 source-library 重组，不会自动更改旧应用路由或已安装 Skill。旧源仍保留，当前没有弃用期限；新入口不能冒充旧 JSON schema 的 drop-in replacement。主控/Registry/运行时接线属于后续单独优化票。
 
 只读来源：drama-agents/.agents/skills 和 knowledge（main 052fc44）；drama-skills/narrated-drama-*；个人 elevenlabs-voice-design。绝对开发路径只在变更工单记载，交付 Skill 的运行说明不得依赖作者机器。
@@ -41,4 +43,3 @@
 - MIG-02：用户选择目标安装范围后，才创建导出/安装和旧入口兼容别名；不得静默全局覆盖。
 - MIG-03：项目preset管理：文化/语言/画幅/人物版本/voice lock 单独保存，不进通用Skill默认值。
 - MIG-04：积累真实跨题材使用证据后，再决定需不需要拆出独立服装、灯光或音乐Skill；本轮不为未来能力造空目录。
-

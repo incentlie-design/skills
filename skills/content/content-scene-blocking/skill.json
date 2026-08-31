@@ -3,7 +3,7 @@
   "name": "content-scene-blocking",
   "version": "0.1.0",
   "category": "content",
-  "status": "draft",
+  "status": "active",
   "summary": "跨影视与舞台的人物站位、视线反应、道具接触及动作状态交接候选",
   "owners": ["repository-maintainer"],
   "tags": ["content", "blocking", "performance", "场面调度", "动作因果", "道具连续性", "舞台"],

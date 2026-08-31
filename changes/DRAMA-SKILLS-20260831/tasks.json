@@ -4,7 +4,7 @@
   "change_id": "DRAMA-SKILLS-20260831",
   "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
   "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
-  "artifact_revision": 1,
+  "artifact_revision": 2,
   "tasks": [
     {
       "task_id": "DRAMA-SKILL-C01",
@@ -12,7 +12,7 @@
       "category": "content",
       "title": "文化与本地化研究",
       "purpose": "有界文化适配判断、证据采集与设计约束；适用于小说、游戏、电影、广告。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-cultural-research",
       "write_scope": [
@@ -62,7 +62,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-88b0-7133-b519-4a59a6e34768",
+        "host_id": "local",
+        "branch": "codex/drama-skill-c01-cultural-research",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/3974/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "2849ab86d5a8a14e1fd7032deca9056633ad385f",
+      "reviewed_skill_commit": "acef6cb8e80d1212bd372fe0d16e91b46ab38524",
+      "evidence": "reports/drama-skill-intake/content-cultural-research/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-C02",
@@ -70,7 +79,7 @@
       "category": "content",
       "title": "人物理解与心理弧线",
       "purpose": "跨媒介的人物动机、关系、内外冲突、选择代价和弧线分析。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-character-development",
       "write_scope": [
@@ -119,7 +128,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-88ae-7be0-bd4e-df682fa13856",
+        "host_id": "local",
+        "branch": "codex/session/20260831/content-character-development",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/9777/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "13e7469b769a1b4b682950462a2af7dd6a23a665",
+      "reviewed_skill_commit": "87dc080696e028af2b3e3021b20b9a159ee3a9ce",
+      "evidence": "reports/drama-skill-intake/content-character-development/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-C03",
@@ -127,7 +145,7 @@
       "category": "content",
       "title": "视觉风格与世界场景",
       "purpose": "跨媒介视觉风格、灯光色彩、材质、地点和道具设计。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-visual-worldbuilding",
       "write_scope": [
@@ -177,7 +195,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-88ab-73e2-ae74-5ad44936c35b",
+        "host_id": "local",
+        "branch": "codex/agent/drama-skill-c03/content-visual-worldbuilding",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/9a32/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "07c9a93e20980abf91249faac860c2a919822803",
+      "reviewed_skill_commit": "4dee1126accfc35eabe9a7816ec707644d2baab4",
+      "evidence": "reports/drama-skill-intake/content-visual-worldbuilding/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-C04",
@@ -185,7 +212,7 @@
       "category": "content",
       "title": "人物视觉与服饰资产",
       "purpose": "将人物正典转换为稳定身份、年龄、皮肤、服饰和可引用视觉定义。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-character-visual-design",
       "write_scope": [
@@ -235,7 +262,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-88ae-7be0-bd4e-df488e1238ed",
+        "host_id": "local",
+        "branch": "codex/drama-skill-c04-character-visual",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/b2ef/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "4e0533274cb8e5eb6c0f5c121f356c61b616cd60",
+      "reviewed_skill_commit": "af84c6003a6556c1a5bad9c53c25430e19b21556",
+      "evidence": "reports/drama-skill-intake/content-character-visual-design/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-C05",
@@ -243,7 +279,7 @@
       "category": "content",
       "title": "镜头语言与视听方向",
       "purpose": "跨电影、广告、纪录片的景别、视角、镜头功能、运镜及视觉节奏设计。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-cinematography",
       "write_scope": [
@@ -291,7 +327,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-88aa-7251-8235-0bd0332635f9",
+        "host_id": "local",
+        "branch": "codex/drama-skill-c05-cinematography",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/eba5/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "26ff5843481f359d9fa50a0345dbc85001eaf5d9",
+      "reviewed_skill_commit": "df5d3953755d7be4041d1ac0c529230e88ae40cf",
+      "evidence": "reports/drama-skill-intake/content-cinematography/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-C06",
@@ -299,7 +344,7 @@
       "category": "content",
       "title": "场面调度与动作表演",
       "purpose": "人物站位、视线、反应、道具接触和动作因果；跨影视与舞台。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-scene-blocking",
       "write_scope": [
@@ -350,7 +395,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-b570-7f03-9f6d-d33c6f058afd",
+        "host_id": "local",
+        "branch": "codex/drama-skill-c06-scene-blocking",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/44e5/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "d2a4b749071e5a4c6cec13defd8d3c3c5ecec9f9",
+      "reviewed_skill_commit": "4d45814a7c2a4b51201f40bde662e0ef7d7b2f33",
+      "evidence": "reports/drama-skill-intake/content-scene-blocking/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-C07",
@@ -358,7 +412,7 @@
       "category": "content",
       "title": "角色音色与口音设计",
       "purpose": "跨旁白、电影、广告、游戏的年龄/音色/地域口音设计、比较与锁定。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-voice-design",
       "write_scope": [
@@ -408,7 +462,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-b548-7f30-8ff0-63706768ac4b",
+        "host_id": "local",
+        "branch": "codex/drama-skill-c07-content-voice-design",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/eb6e/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "e1474b40fd800dfbd6396e1391f67725bd49eed8",
+      "reviewed_skill_commit": "7fec5a8fb780f5de162fc913fb4a67652d85edb7",
+      "evidence": "reports/drama-skill-intake/content-voice-design/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-C08",
@@ -416,7 +479,7 @@
       "category": "content",
       "title": "台词表演与声音编排",
       "purpose": "跨媒介的台词表演、叙述/对白/SFX/环境/音乐分轨设计和音频生产交接。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-audio-production",
       "write_scope": [
@@ -466,7 +529,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-b59d-7ee1-aa0d-c8654fe58b4e",
+        "host_id": "local",
+        "branch": "codex/drama-skill-c08-audio-production",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/fa3c/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "2c920eecd5e8706a18f303104f8d2065256b91cb",
+      "reviewed_skill_commit": "87b6e507f15bd429cdfffbdc8f70e5719d34aed4",
+      "evidence": "reports/drama-skill-intake/content-audio-production/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-C09",
@@ -474,7 +546,7 @@
       "category": "content",
       "title": "剪辑节奏与字幕同步",
       "purpose": "跨短剧、电影、广告的语音画面节奏、字幕高亮与局部修订设计。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:content-editing-rhythm",
       "write_scope": [
@@ -524,7 +596,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-b5d1-7980-8087-15cd494b4d18",
+        "host_id": "local",
+        "branch": "codex/drama-skill-c09",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/d8c8/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "376fa2b61e4ed9b886b4ce086ef67d80e96b82a7",
+      "reviewed_skill_commit": "82cefc46ff8482fc212001723fcb6f6c12530c2c",
+      "evidence": "reports/drama-skill-intake/content-editing-rhythm/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-D01",
@@ -532,7 +613,7 @@
       "category": "drama",
       "title": "短剧全剧改编与拆集",
       "purpose": "小说/传说导入→故事理解、整体弧线、短剧集数拆分和来源映射。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-series-adaptation",
       "write_scope": [
@@ -584,7 +665,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-b65e-7220-9ef2-dcd3a2f131bd",
+        "host_id": "local",
+        "branch": "codex/drama-skill-d01",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/4681/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "a8fdbb406755251e9a6164de21f47b30ee9e30f2",
+      "reviewed_skill_commit": "78595ccf9d8a0cd785cb139287377befb2cd3c9e",
+      "evidence": "reports/drama-skill-intake/drama-series-adaptation/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-D02",
@@ -592,7 +682,7 @@
       "category": "drama",
       "title": "短剧单集剧本与对白",
       "purpose": "从确定的单集任务产出有起承转合、情绪递进的完整短剧剧本。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-episode-writing",
       "write_scope": [
@@ -642,7 +732,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-bac0-73a1-9ab7-68134a72687b",
+        "host_id": "local",
+        "branch": "codex/drama-skill-d02",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/4bb5/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "4f8afebe738925c707af3090671e7eae7c33d76c",
+      "reviewed_skill_commit": "bda25eef0c269985b1ffa5c1996e338f58fa110b",
+      "evidence": "reports/drama-skill-intake/drama-episode-writing/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-D03",
@@ -650,7 +749,7 @@
       "category": "drama",
       "title": "短剧分镜与生成提示词",
       "purpose": "将已定剧本和资产转成时间顺序分镜、可生成帧与音画绑定。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-storyboard-production",
       "write_scope": [
@@ -701,7 +800,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-ba1a-7d82-b962-04ad86d40c01",
+        "host_id": "local",
+        "branch": "codex/drama-skill-d03",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/33bf/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "45767965dc3431db6f35e129a2f07f901b388129",
+      "reviewed_skill_commit": "bbc1fe9e12782d739f8cadcb328b4db6743cc08d",
+      "evidence": "reports/drama-skill-intake/drama-storyboard-production/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-D04",
@@ -709,7 +817,7 @@
       "category": "drama",
       "title": "短剧连续性与阶段评审",
       "purpose": "独立评审跨集正典、叙事知识边界、资产与声音引用、分镜音画连续性。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-continuity-review",
       "write_scope": [
@@ -759,7 +867,16 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-bcad-7b73-937d-e0b406fe5755",
+        "host_id": "local",
+        "branch": "codex/drama-skill-d04-continuity-review",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/6c2f/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "17043bd7eb7ff0211d91a9a80ded43274f58da50",
+      "reviewed_skill_commit": "0530dd63294530968ce62c3c08ef38f2d5f3b337",
+      "evidence": "reports/drama-skill-intake/drama-continuity-review/handoff.json"
     },
     {
       "task_id": "DRAMA-SKILL-D05",
@@ -767,7 +884,7 @@
       "category": "drama",
       "title": "短剧生产计划与增量返修",
       "purpose": "规划从导入到前置包的短剧Skill调用DAG与反馈局部返修。",
-      "status": "ready",
+      "status": "accepted",
       "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
       "owner": "dedicated-session:drama-production-planning",
       "write_scope": [
@@ -819,7 +936,18 @@
         "完成候选commit+有限证据后停止，禁止自合main/安装/发布",
         "缺关键来源/需要共享契约改变时给明确hand-off，不无限重试"
       ],
-      "session": null
+      "session": {
+        "thread_id": "01a056bb-c25f-7003-b7bc-f29d70bd3fcd",
+        "host_id": "local",
+        "branch": "codex/drama-skill-d05",
+        "worktree": "/Users/jiajun.lai/.codex/worktrees/c371/skill-creator"
+      },
+      "dispatch_base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+      "candidate_commit": "478a823aaad271f12c0bfee18fb86a3237667e4a",
+      "reviewed_skill_commit": "c5482a1e12b403f0a1cb44e00360b52d6714f5be",
+      "evidence": "reports/drama-skill-intake/drama-production-planning/handoff.json"
     }
-  ]
+  ],
+  "delivery_status": "accepted_for_local_source_integration",
+  "integration_report": "reports/drama-skill-intake/integration-report.md"
 }

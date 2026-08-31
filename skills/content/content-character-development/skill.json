@@ -3,7 +3,7 @@
   "name": "content-character-development",
   "version": "0.1.0",
   "category": "content",
-  "status": "draft",
+  "status": "active",
   "summary": "以可定位证据分析跨媒介人物动机、双向关系、选择代价与心理弧线，区分事实、假设和创作提案。",
   "owners": ["repository-maintainer"],
   "tags": ["人物理解", "心理弧线", "character-bible", "motivation", "relationship-map", "arc-beats"],

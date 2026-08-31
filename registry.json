@@ -88,6 +88,104 @@
       "path": "skills/content/content-video-director-learning",
       "priority": 3,
       "dependencies": []
+    },
+    {
+      "name": "content-cultural-research",
+      "category": "content",
+      "path": "skills/content/content-cultural-research",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "content-character-development",
+      "category": "content",
+      "path": "skills/content/content-character-development",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "content-visual-worldbuilding",
+      "category": "content",
+      "path": "skills/content/content-visual-worldbuilding",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "content-character-visual-design",
+      "category": "content",
+      "path": "skills/content/content-character-visual-design",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "content-cinematography",
+      "category": "content",
+      "path": "skills/content/content-cinematography",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "content-scene-blocking",
+      "category": "content",
+      "path": "skills/content/content-scene-blocking",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "content-voice-design",
+      "category": "content",
+      "path": "skills/content/content-voice-design",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "content-audio-production",
+      "category": "content",
+      "path": "skills/content/content-audio-production",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "content-editing-rhythm",
+      "category": "content",
+      "path": "skills/content/content-editing-rhythm",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "drama-series-adaptation",
+      "category": "drama",
+      "path": "skills/drama/drama-series-adaptation",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "drama-episode-writing",
+      "category": "drama",
+      "path": "skills/drama/drama-episode-writing",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "drama-storyboard-production",
+      "category": "drama",
+      "path": "skills/drama/drama-storyboard-production",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "drama-continuity-review",
+      "category": "drama",
+      "path": "skills/drama/drama-continuity-review",
+      "priority": 3,
+      "dependencies": []
+    },
+    {
+      "name": "drama-production-planning",
+      "category": "drama",
+      "path": "skills/drama/drama-production-planning",
+      "priority": 3,
+      "dependencies": []
     }
   ]
 }

@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skills-20260831-followups",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
+  "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+  "artifact_revision": 1,
+  "tickets": [
+    {
+      "id": "REV-CROSS-001",
+      "priority": "P2",
+      "owner": [
+        "content-audio-production",
+        "drama-storyboard-production"
+      ],
+      "trigger": "First consumer integration of an internal-monologue line",
+      "problem": "internal/narration terminology currently relies on context; not closed enums",
+      "scope": "Preserve original mode, identity and diegetic audibility in adapter",
+      "acceptance": "Other characters do not react to inaudible thought; line and voice refs unchanged",
+      "status": "backlog",
+      "evidence": "reports/drama-skill-intake/cross-skill-review.json"
+    },
+    {
+      "id": "REV-CROSS-002",
+      "priority": "P2",
+      "owner": "drama-continuity-review",
+      "trigger": "First shared-contact prop transfer continuity exercise",
+      "problem": "Simultaneous holder wording may overflag justified handover",
+      "scope": "Clarify contradictory final holders without supported transition, not legitimate contact",
+      "acceptance": "Contact/release transfer not counted as duplicated prop",
+      "status": "backlog",
+      "evidence": "reports/drama-skill-intake/cross-skill-review.json"
+    },
+    {
+      "id": "DRAMA-GOV-001",
+      "priority": "P2",
+      "owner": "meta-skill-governance",
+      "trigger": "Next independently delegated validation round",
+      "problem": "Parent and reviewer command budgets were counted separately in C05 (3+3)",
+      "scope": "Allocate one aggregate budget across parent/reviewer; record read-only acquisition separately but include in total",
+      "acceptance": "Before dispatch declare remaining shared budget, report actual total and stop instead of automatic renewal",
+      "status": "backlog",
+      "evidence": "reports/drama-skill-intake/content-cinematography/handoff.json"
+    }
+  ],
+  "migration_followups": "docs/drama-skill-migration.md#后续单独票",
+  "not_automatically_scheduled": true
+}

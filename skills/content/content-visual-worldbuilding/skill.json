@@ -3,7 +3,7 @@
   "name": "content-visual-worldbuilding",
   "version": "0.1.0",
   "category": "content",
-  "status": "draft",
+  "status": "active",
   "summary": "跨媒介统一视觉风格、动机光与材料规则，定义可复用地点空间和有状态道具，交付可追溯设计候选",
   "owners": ["repository-maintainer"],
   "tags": ["视觉风格", "世界构建", "灯光色彩", "场景", "道具", "材质", "visual-style", "worldbuilding"],

@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skills-20260831-source-acceptance",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
+  "base_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+  "artifact_revision": 1,
+  "status": "pass",
+  "reviewer": "primary-integrator; independent of the fourteen Skill implementations",
+  "reviewed_revision": 1,
+  "scope": [
+    "Read original independent exercise artifacts and candidate handoffs",
+    "Freeze candidate revisions and verify private file ownership",
+    "Reuse independent cross-skill static contract review",
+    "Accept source methods only; runtime lifecycle remains subject to integration structural checks"
+  ],
+  "counts": {
+    "skills": 14,
+    "distinct_cases_executed": 42,
+    "total_case_executions": 43,
+    "media_calls": 0
+  },
+  "skills": [
+    {
+      "task_id": "DRAMA-SKILL-C01",
+      "name": "content-cultural-research",
+      "candidate_commit": "2849ab86d5a8a14e1fd7032deca9056633ad385f",
+      "reviewed_skill_commit": "acef6cb8e80d1212bd372fe0d16e91b46ab38524",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/content-cultural-research/rehearsal-round-1.md",
+      "handoff": "reports/drama-skill-intake/content-cultural-research/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "区分原著、研究与创作推断；有界判断研究必要性；缺来源不编造。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-C02",
+      "name": "content-character-development",
+      "candidate_commit": "13e7469b769a1b4b682950462a2af7dd6a23a665",
+      "reviewed_skill_commit": "87dc080696e028af2b3e3021b20b9a159ee3a9ce",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/content-character-development/reviewer-output.md",
+      "handoff": "reports/drama-skill-intake/content-character-development/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "动机→选择→代价→关系/弧线，不以相貌推出性格或预定背叛。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-C03",
+      "name": "content-visual-worldbuilding",
+      "candidate_commit": "07c9a93e20980abf91249faac860c2a919822803",
+      "reviewed_skill_commit": "4dee1126accfc35eabe9a7816ec707644d2baab4",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/content-visual-worldbuilding/reviewer-output.md",
+      "handoff": "reports/drama-skill-intake/content-visual-worldbuilding/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "保留选定低版本风格，解释材料/灯光/尺度，道具/场景状态可消费。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-C04",
+      "name": "content-character-visual-design",
+      "candidate_commit": "4e0533274cb8e5eb6c0f5c121f356c61b616cd60",
+      "reviewed_skill_commit": "af84c6003a6556c1a5bad9c53c25430e19b21556",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/content-character-visual-design/independent-exercise.md",
+      "handoff": "reports/drama-skill-intake/content-character-visual-design/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "身份不变量、年龄/材质与服饰允许变体；背影不强制回头露疤。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-C05",
+      "name": "content-cinematography",
+      "candidate_commit": "26ff5843481f359d9fa50a0345dbc85001eaf5d9",
+      "reviewed_skill_commit": "df5d3953755d7be4041d1ac0c529230e88ae40cf",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/content-cinematography/reviewer-round-1.md",
+      "handoff": "reports/drama-skill-intake/content-cinematography/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "原生画幅、轴线、视角、叙事功能；纪录片观察不伪装心理事实。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-C06",
+      "name": "content-scene-blocking",
+      "candidate_commit": "d2a4b749071e5a4c6cec13defd8d3c3c5ecec9f9",
+      "reviewed_skill_commit": "4d45814a7c2a4b51201f40bde662e0ef7d7b2f33",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/content-scene-blocking/independent-review-r1.md",
+      "handoff": "reports/drama-skill-intake/content-scene-blocking/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "明确目光对象、反应触发、单一道具持有/接触/释放，缺位置依据不编造。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-C07",
+      "name": "content-voice-design",
+      "candidate_commit": "e1474b40fd800dfbd6396e1391f67725bd49eed8",
+      "reviewed_skill_commit": "7fec5a8fb780f5de162fc913fb4a67652d85edb7",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/content-voice-design/independent-exercise.md",
+      "handoff": "reports/drama-skill-intake/content-voice-design/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "年龄/口音/音色分维度；候选、生成、试听、选中分别记录；不承诺未经试听的效果。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-C08",
+      "name": "content-audio-production",
+      "candidate_commit": "2c920eecd5e8706a18f303104f8d2065256b91cb",
+      "reviewed_skill_commit": "87b6e507f15bd429cdfffbdc8f70e5719d34aed4",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/content-audio-production/reviewer-output.md",
+      "handoff": "reports/drama-skill-intake/content-audio-production/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "line/speaker/voice引用、可说文本与指导隔离、多声音层与局部修复；无假响度数据。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-C09",
+      "name": "content-editing-rhythm",
+      "candidate_commit": "376fa2b61e4ed9b886b4ce086ef67d80e96b82a7",
+      "reviewed_skill_commit": "82cefc46ff8482fc212001723fcb6f6c12530c2c",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/content-editing-rhythm/reviewer-round2.md",
+      "handoff": "reports/drama-skill-intake/content-editing-rhythm/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 4,
+      "judgment": "局部删除区间精确传播至画面/音频/逐词字幕，不扩成全局变速；修正fixture后通过。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-D01",
+      "name": "drama-series-adaptation",
+      "candidate_commit": "a8fdbb406755251e9a6164de21f47b30ee9e30f2",
+      "reviewed_skill_commit": "78595ccf9d8a0cd785cb139287377befb2cd3c9e",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/drama-series-adaptation/independent-results.md",
+      "handoff": "reports/drama-skill-intake/drama-series-adaptation/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "来源→因果→拆集→伏笔回收、叙述者可知范围；未读全本不捏造忠实改编。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-D02",
+      "name": "drama-episode-writing",
+      "candidate_commit": "4f8afebe738925c707af3090671e7eae7c33d76c",
+      "reviewed_skill_commit": "bda25eef0c269985b1ffa5c1996e338f58fa110b",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/drama-episode-writing/round-1-rehearsal.md",
+      "handoff": "reports/drama-skill-intake/drama-episode-writing/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "完整行动/代价/转场链和19条对应台词；字数/口播估时已以独立补正为准，未验证实际时长。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-D03",
+      "name": "drama-storyboard-production",
+      "candidate_commit": "45767965dc3431db6f35e129a2f07f901b388129",
+      "reviewed_skill_commit": "bbc1fe9e12782d739f8cadcb328b4db6743cc08d",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/drama-storyboard-production/reviewer-output.md",
+      "handoff": "reports/drama-skill-intake/drama-storyboard-production/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "scene/shot/frame分层、四帧局部动作状态、offscreen说话人映射；示意多格与成片画幅分开。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-D04",
+      "name": "drama-continuity-review",
+      "candidate_commit": "17043bd7eb7ff0211d91a9a80ded43274f58da50",
+      "reviewed_skill_commit": "0530dd63294530968ce62c3c08ef38f2d5f3b337",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/drama-continuity-review/reviewer-output.md",
+      "handoff": "reports/drama-skill-intake/drama-continuity-review/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "定位身份/可知/道具/音色问题及最小影响面，不自改素材或沿用过期审批。"
+    },
+    {
+      "task_id": "DRAMA-SKILL-D05",
+      "name": "drama-production-planning",
+      "candidate_commit": "478a823aaad271f12c0bfee18fb86a3237667e4a",
+      "reviewed_skill_commit": "c5482a1e12b403f0a1cb44e00360b52d6714f5be",
+      "status": "pass",
+      "raw_behavior": "reports/drama-skill-intake/drama-production-planning/reviewer-output.md",
+      "handoff": "reports/drama-skill-intake/drama-production-planning/handoff.json",
+      "distinct_cases": 3,
+      "case_executions": 3,
+      "judgment": "默认串行多集、按缺口选Skill、精确局部返工；草案与实际执行/注册区别明确。"
+    }
+  ],
+  "findings": [],
+  "corrections": [
+    {
+      "id": "C09-FIXTURE-001",
+      "scope": "tests/cases.json happy input only",
+      "before": "source take bounds and original playback rate absent",
+      "after": "explicit source intervals and rate; repeat one case once",
+      "skill_runtime_changed": false,
+      "evidence": "reports/drama-skill-intake/content-editing-rhythm/reviewer-round2.md"
+    },
+    {
+      "id": "D02-EVIDENCE-001",
+      "scope": "execution output arithmetic correction only",
+      "before": "estimated spoken Chinese characters 160–170 / 53–57s",
+      "after": "measured character count 136 / estimated 45.3s at 3 char/s; total planned beat duration 103–125s remains unverified",
+      "skill_runtime_changed": false,
+      "evidence": "reports/drama-skill-intake/drama-episode-writing/round-1-review-addendum.json"
+    }
+  ],
+  "process_deviations": [
+    {
+      "id": "DRAMA-GOV-001",
+      "severity": "minor",
+      "scope": "C05 command budget accounting",
+      "observed": "author reports 3 structural commands; independent reviewer reports 3 read-only shell commands; aggregate 6",
+      "limit": "3 commands per round",
+      "disposition": "Recorded as a non-blocking governance variance, not full compliance. No additional behavior round, paid call, destructive operation or global regression. Fix budget accounting in a separate governance ticket.",
+      "evidence": "reports/drama-skill-intake/content-cinematography/handoff.json"
+    }
+  ],
+  "non_blocking_suggestions": [
+    "REV-CROSS-001",
+    "REV-CROSS-002",
+    "DRAMA-GOV-001"
+  ],
+  "limitations": [
+    "Textual exercises, not a real novel end-to-end run",
+    "No actual images, voices, videos, subjective listening or editing render validation",
+    "No live provider API or current document verification",
+    "No client auto-discovery verification",
+    "No existing Drama runtime or registry adapters changed"
+  ]
+}

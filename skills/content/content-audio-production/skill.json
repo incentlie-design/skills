@@ -3,7 +3,7 @@
   "name": "content-audio-production",
   "version": "0.1.0",
   "category": "content",
-  "status": "draft",
+  "status": "active",
   "summary": "跨媒介台词表演、叙述/对白与声音分层计划、音频连续性诊断及最小修复交接",
   "owners": ["repository-maintainer"],
   "tags": ["audio", "performance", "dialogue", "narration", "sound-design", "台词表演", "声音编排"],

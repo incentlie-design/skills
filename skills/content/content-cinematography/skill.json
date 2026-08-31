@@ -3,7 +3,7 @@
   "name": "content-cinematography",
   "version": "0.1.0",
   "category": "content",
-  "status": "draft",
+  "status": "active",
   "summary": "按叙事功能与注意力设计跨电影、广告、纪录片的景别、机位、原生画幅、动机运镜和视觉节奏，交接可解释的摄影候选。",
   "owners": ["repository-maintainer"],
   "tags": ["摄影", "镜头语言", "cinematography", "camera-treatment", "shot-language", "coverage", "framing"],

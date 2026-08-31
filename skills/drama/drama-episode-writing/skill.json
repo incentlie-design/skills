@@ -3,7 +3,7 @@
   "name": "drama-episode-writing",
   "version": "0.1.0",
   "category": "drama",
-  "status": "draft",
+  "status": "active",
   "summary": "从确定的单集任务编写完整短剧场景、对白与节拍交接，保留人物选择、因果和系列边界",
   "owners": ["repository-maintainer"],
   "tags": ["短剧", "单集剧本", "对白", "旁白", "beat-sheet", "line-register"],

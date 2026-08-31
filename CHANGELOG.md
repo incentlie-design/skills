@@ -1,5 +1,16 @@
 # Changelog
 
+## 短剧与通用专业 Skills 0.1.0 — 2026-08-31（本地源码接纳，未远端发布）
+
+- 新增并登记 14 个独立 Skill：5 个 drama-*、9 个 content-*；每个保留独立任务、分支、linked worktree 和候选提交。
+- 汇入旧生产 23 个入口、narrated-drama 三入口及个人音色经验的专业方法；旧安装/旧应用保留，迁移映射见 docs/drama-skill-migration.md。
+- 统一最小内容交接、版本引用、台词/镜头/资产标识、缺输入与越界处理；历史画幅、口音和黄色字幕仅是项目约束或可选 preset。
+- 42 个不同原始 case 由独立执行者演练，43 次执行（剪辑 fixture 一次定向补齐重演）；单集剧本字数/估时记录补正保留原始证据。静态跨 Skill 评审无重大或阻断项。
+- 同步 registry、AGENTS、README、相对发现入口及生命周期状态。独立演练记录中的 draft/final_acceptance=not_run 是历史候选状态，不回写旧日志。
+- 一个命令预算聚合的非阻断流程偏差、两个交接措辞改进进入独立优化票，不以无限重试掩盖。冻结集成检查与确切提交见 reports/drama-skill-intake/integration-evidence.json。
+
+兼容性：只新增源入口与分类；现有 10 个 Skill 源码不变，docs/contracts.md v1 不变。新 Skill 不兼容替代旧应用 JSON schema 的承诺；没有改动 Drama runtime、Registry、全局安装、远端或正式 tag。回退参照本次报告的基线，在新分支形成 revert 候选，不重写 main 历史。
+
 ## 短剧 Skill 整理 foundation — 2026-08-31（候选开发中）
 
 - 新增 drama 分类；跨媒介专业仍使用 content，已有工程/产品/内容入口不更名。

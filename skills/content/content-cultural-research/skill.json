@@ -3,7 +3,7 @@
   "name": "content-cultural-research",
   "version": "0.1.0",
   "category": "content",
-  "status": "draft",
+  "status": "active",
   "summary": "先判断文化研究必要性，再以有界证据形成跨媒介的本地化适配约束；区分本地整理、外部查证与创作推断",
   "owners": ["repository-maintainer"],
   "tags": ["culture", "localization", "research", "文化适配", "来源冲突", "本地化"],

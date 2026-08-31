@@ -3,7 +3,7 @@
   "name": "drama-series-adaptation",
   "version": "0.1.0",
   "category": "drama",
-  "status": "draft",
+  "status": "active",
   "summary": "将可读小说/传说转成来源可追溯的全剧弧线与拆集候选，保护知识边界、人物选择和跨集正典回收",
   "owners": ["repository-maintainer"],
   "tags": ["drama", "小说改编", "短剧拆集", "因果链", "叙述视角", "正典", "series outline"],

@@ -3,7 +3,7 @@
   "name": "drama-production-planning",
   "version": "0.1.0",
   "category": "drama",
-  "status": "draft",
+  "status": "active",
   "summary": "按输入与缺口规划短剧串行多集前置包，以真实证据对账，并按引用差异派发局部返修",
   "owners": ["repository-maintainer"],
   "tags": ["drama", "production-planning", "DAG", "revision-impact", "handoff", "短剧", "串行多集", "局部返修"],

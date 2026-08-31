@@ -3,7 +3,7 @@
   "name": "content-editing-rhythm",
   "version": "0.1.0",
   "category": "content",
-  "status": "draft",
+  "status": "active",
   "summary": "跨媒介剪辑节奏、音画身份对应、字幕布局/可选逐词高亮和局部同步修订设计",
   "owners": ["repository-maintainer"],
   "tags": ["editing", "rhythm", "subtitle", "sync", "剪辑节奏", "音画同步", "字幕"],
