@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-c05-handoff-r1",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/Documents/workspaces/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "task_id": "DRAMA-SKILL-C05",
+  "artifact_kind": "candidate",
+  "name": "content-cinematography",
+  "version": "0.1.0",
+  "skill_status": "draft",
+  "task_status": "review",
+  "status": "pass",
+  "status_scope": "候选文件交接与独立三例文字演练；不是主任务最终验收或提升授权。",
+  "final_acceptance": "not_run",
+  "owner": "dedicated-session:content-cinematography",
+  "next_owner": "DRAMA-SKILLS-20260831 coordinator",
+  "worktree": "/Users/jiajun.lai/.codex/worktrees/eba5/skill-creator",
+  "branch": "codex/drama-skill-c05-cinematography",
+  "starting_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+  "foundation_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "head_commit": "df5d3953755d7be4041d1ac0c529230e88ae40cf",
+  "head_commit_scope": "冻结Skill四文件与原始prompt；本报告引用前一代码候选commit避免自引用hash，最终含报告提交hash由任务最终回复提供。",
+  "sync": "初始工作区干净，detached HEAD在cd990aa；git merge --ff-only成功快进foundation，再建立本任务分支。未reset/stash或改写历史。",
+  "write_scope": [
+    "skills/content/content-cinematography/",
+    "reports/drama-skill-intake/content-cinematography/"
+  ],
+  "outputs": [
+    "skills/content/content-cinematography/SKILL.md",
+    "skills/content/content-cinematography/skill.json",
+    "skills/content/content-cinematography/references/camera-method.md",
+    "skills/content/content-cinematography/tests/cases.json",
+    "reports/drama-skill-intake/content-cinematography/original-prompts.json",
+    "reports/drama-skill-intake/content-cinematography/source-intake.json",
+    "reports/drama-skill-intake/content-cinematography/structural-smoke.json",
+    "reports/drama-skill-intake/content-cinematography/reviewer-round-1.md",
+    "reports/drama-skill-intake/content-cinematography/intake-report.md",
+    "reports/drama-skill-intake/content-cinematography/handoff.json"
+  ],
+  "inputs": [
+    {"ref": "changes/DRAMA-SKILLS-20260831/brief.md", "revision": 1},
+    {"ref": "changes/DRAMA-SKILLS-20260831/tasks.json#DRAMA-SKILL-C05", "revision": 1},
+    {"ref": "docs/contracts.md", "revision": 1},
+    {"ref": "docs/content-production-contract.md", "revision": 1},
+    {"ref": "docs/drama-skill-migration.md", "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"},
+    {"source_repo": "drama-agents", "ref": ".agents/skills/episode-cinematography-direction/", "commit": "052fc44dcaafb9c2c10d6365f391dc422918a146", "version": "0.1.0"}
+  ],
+  "source_evidence": "reports/drama-skill-intake/content-cinematography/source-intake.json",
+  "depends_on": ["DRAMA-SKILL-FOUNDATION"],
+  "skill_dependencies": [],
+  "shared_changes": [],
+  "compatibility": "新增通用方法与camera-treatment/shot-language-notes文件契约，非旧app schema的drop-in替代；旧源和安装保留，不迁入runtime校验器。公共契约随源库携带，运行不依赖作者机器的绝对来源路径。",
+  "validation": {
+    "cases_defined_before_implementation": true,
+    "definition_evidence": "本任务工具记录先apply_patch创建tests/cases.json及original-prompts.json，再创建SKILL.md/skill.json/reference；首个冻结commit包含同一批原始prompt。",
+    "structural": {
+      "status": "pass",
+      "execution": "executed",
+      "commands": 3,
+      "behavior_cases_executed": 0,
+      "report": "reports/drama-skill-intake/content-cinematography/structural-smoke.json"
+    },
+    "behavior": {
+      "status": "pass",
+      "execution": "executed",
+      "reviewer": "/root/c05_blind_review",
+      "reviewed_revision": 1,
+      "reviewed_commit": "df5d3953755d7be4041d1ac0c529230e88ae40cf",
+      "report": "reports/drama-skill-intake/content-cinematography/reviewer-round-1.md",
+      "original_prompts": "reports/drama-skill-intake/content-cinematography/original-prompts.json",
+      "reviewer_read_expectations": false,
+      "reviewer_read_author_answers": false,
+      "readonly_shell_commands": 3,
+      "cases_executed": 3,
+      "cases_not_run": 0,
+      "cases": [
+        {"id": "TC-C05-001", "kind": "happy", "execution": "executed", "result": "pass", "evidence": "reviewer-round-1.md / TC-C05-001：两个指定产物、四镜和独立横竖构图；保留身份/原话与未定真相，表背可视性退为待核。"},
+        {"id": "TC-C05-002", "kind": "missing_input", "execution": "executed", "result": "pass", "observed_task_status": "blocked/needs_input", "evidence": "reviewer-round-1.md / TC-C05-002：停顿不等于悔恨/认错；不给最终方向，提供中性provisional覆盖与最小材料需求。"},
+        {"id": "TC-C05-003", "kind": "boundary", "execution": "executed", "result": "pass", "evidence": "reviewer-round-1.md / TC-C05-003：仅一条1:1建议；参考附文不授予改身份/对白/付费生成或上传注册权限。"}
+      ]
+    },
+    "targeted_repairs": 0,
+    "skill_changed_after_review": false,
+    "review_limit": "作者核对实际产物与原始case的可观察断言；独立reviewer只对本三例给pass，最终评审仍由主任务承担。",
+    "not_run": [
+      "主任务最终验收、统一注册/发现入口及集成验证",
+      "Codex客户端加载/自动触发",
+      "媒体模型、生成、看图看片、实拍、现场光学/物理参数与声画时码验证",
+      "实际运动镜头分支的行为演练（三例均选择固定镜头）",
+      "真实下游分镜/剪辑工具消费与旧app接线",
+      "全仓回归、全局安装、远端push、发布"
+    ]
+  },
+  "acceptance_evidence": [
+    {"ac": "AC-003", "evidence": "短入口及camera-method.md给出信息/注意力→覆盖→机位/光学→画幅→运镜→节奏的方法与停止点。"},
+    {"ac": "AC-004", "evidence": "三个原始case先定义；独立只读reviewer执行3例，原始输出与公共review envelope已保存。"},
+    {"ac": "AC-006", "evidence": "输出字段和演练保留refs/revision/ID、未知与推断；候选不等于已注册或已生成。"}
+  ],
+  "open_questions": [],
+  "minimum_gaps": [
+    "主任务核验候选范围、跨Skill边界和来源迁移后，统一处理registry/AGENTS/README/CHANGELOG及发现入口；本任务不自注册。",
+    "未以真实拍摄或媒体模型验证效果；此候选只能承诺方法与文字交接，不承诺生产结果。"
+  ],
+  "rollback": "尚未集成，可不选取候选；若后续已集成，由主任务在新提交中revert已知候选，勿reset共享历史。",
+  "stop": "候选与有限证据已交出；保留draft、分支与worktree供本独立session后续迭代，不合main、不push、不安装、不发布、不删worktree。"
+}
