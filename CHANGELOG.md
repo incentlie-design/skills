@@ -1,5 +1,14 @@
 # Changelog
 
+## eng-project-manager 0.2.0 — 2026-08-31（draft candidate）
+
+- 按用户补充新增可选 work_package：每 goal 的 DAG 工作目标、完成条件、输入输出资产、修改范围和停止条件。
+- 新增有来源的 agent/session 分配与移交历史、预期资产与实际交付、预算上限及累计实测/估算用量；按任务/agent/session 去重汇总，旧执行者的成本和产出不移给新执行者。
+- query 增加 --agent/--session 和 goal_dag/management 输出，新增只读 brief；明确未知预算、过期用量、超支及超额分配，不自动调度、分派或改变原生预算。
+- 兼容性：0.1.0 → 0.2.0 MINOR，v1 snapshot/ledger 与旧行为保留，新字段可选；旧台账缺管理明细显式 not_recorded。工作目标改变仍升 artifact_revision；纯分配/预算调整只增 ledger_revision 并记录新决策来源。
+- 无重命名、分类、依赖或公共契约变更，registry/AGENTS 路由无需迁移。候选基线 cd990aaec765fcbd1731af970233484377c873aa；回退用新 revert 候选，不重写历史。已安装用户入口仍指向主仓库已验收 0.1.0，不把上一版独立验收沿用到本版。
+- 作者三个扩充场景与旧版三个兼容场景通过，结构和官方格式检查通过；新一轮独立接受 pending。实际输出、载荷 hash 和展示样例见 [增量候选报告](reports/eng-project-manager-resources/validation.md)。
+
 ## eng-project-manager 0.1.0 — 2026-08-31（本地验收完成，未远端发布）
 
 - 新增 engineering 入口：接入既有 goal、原始目标与 typed DAG；查询阻塞、依赖影响、目标覆盖和下一 owner。
