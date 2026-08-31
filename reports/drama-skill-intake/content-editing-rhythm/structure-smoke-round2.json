@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "run_id": "C09-intake-r2",
+  "change_id": "DRAMA-SKILL-C09",
+  "repo": "skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 2,
+  "candidate_commit": "35a6081fcd3bde5bc3ad0e3fe87af5b18a2be293",
+  "artifact_kind": "test-report",
+  "round": 2,
+  "command": 1,
+  "status": "pass",
+  "runtime_files_unchanged_from": "82cefc46ff8482fc212001723fcb6f6c12530c2c",
+  "runtime_files": [
+    "skills/content/content-editing-rhythm/SKILL.md",
+    "skills/content/content-editing-rhythm/skill.json",
+    "skills/content/content-editing-rhythm/references/output-contract.md"
+  ],
+  "TC-002_TC-003": "unchanged including prompt and expect; round1 evidence reusable",
+  "TC-001": "only source ranges and playback_rate added to prompt; expect unchanged",
+  "checks": [
+    "case JSON",
+    "positive revisions",
+    "Markdown links",
+    "runtime/unchanged case byte comparison",
+    "assigned write scope"
+  ],
+  "behavior_cases_executed": 0,
+  "skill_content_sha256": "ee0d68b422a9f7c5d9702d08cfb49518fe9462c6d4843edc065c3ba66345b295",
+  "file_sha256": {
+    "skills/content/content-editing-rhythm/SKILL.md": "06e642e9f1799bd1d194e28fa1a3eab579456faebe3bf68cedfbb00ff8e7b1e2",
+    "skills/content/content-editing-rhythm/references/output-contract.md": "c081f7e262c0f132c45126ad718645de49b5fef957d516cee6f7015d889cdb32",
+    "skills/content/content-editing-rhythm/skill.json": "4522dc2f77a1fc09577a0110ebc767abfae246a38c4c88dec9e78df478cd3363",
+    "skills/content/content-editing-rhythm/tests/cases.json": "5d9196b27eb06fd5aaa3082fbee09de9a947809126064637a223f5affd9763bd"
+  },
+  "changed_paths": [
+    "reports/drama-skill-intake/content-editing-rhythm/intake.md",
+    "reports/drama-skill-intake/content-editing-rhythm/reviewer-round1.md",
+    "reports/drama-skill-intake/content-editing-rhythm/source-map.json",
+    "reports/drama-skill-intake/content-editing-rhythm/structure-smoke.json",
+    "skills/content/content-editing-rhythm/SKILL.md",
+    "skills/content/content-editing-rhythm/references/output-contract.md",
+    "skills/content/content-editing-rhythm/skill.json",
+    "skills/content/content-editing-rhythm/tests/cases.json"
+  ],
+  "execution_kind": "executed",
+  "tool_exit_code": 0,
+  "evidence": "exec_command chunk 0db015; Python read-only assertions",
+  "limitations": [
+    "本命令behavior_cases_executed=0；独立行为输出另存",
+    "不含注册发现、媒体、客户端加载或全仓回归"
+  ]
+}
