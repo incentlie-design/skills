@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-d05-20260831",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/c371/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "artifact_kind": "structure-smoke-report",
+  "head_commit": "c5482a1e12b403f0a1cb44e00360b52d6714f5be",
+  "scope": "only drama-production-planning local structure; no registry validation",
+  "status": "pass",
+  "round": 1,
+  "commands_executed": 2,
+  "behavior_cases_executed": 0,
+  "checks": [
+    {
+      "id": "SMOKE-001",
+      "command": "python3 /Users/jiajun.lai/.codex/skills/.system/skill-creator/scripts/quick_validate.py skills/drama/drama-production-planning",
+      "exit_code": 0,
+      "stdout": "Skill is valid!\n",
+      "scope": "bundled Skill Creator validator: frontmatter/naming"
+    },
+    {
+      "id": "SMOKE-002",
+      "command": "PYTHONDONTWRITEBYTECODE=1 python3 - <<'PY'\nimport ast,hashlib,json,re,subprocess\nfrom pathlib import Path\nroot=Path.cwd()\nns={'__name__':'skill_contract_functions','__file__':str(root/'scripts/validate_skills.py')}\nexec(compile((root/'scripts/validate_skills.py').read_text(),str(root/'scripts/validate_skills.py'),'exec'),ns)\nfolder=root/'skills/drama/drama-production-planning'\nfm=ns['frontmatter']((folder/'SKILL.md').read_text())\nmeta=json.loads((folder/'skill.json').read_text())\nassert not ns['REQUIRED']-meta.keys()\nassert fm['name']==meta['name']==folder.name\nassert meta['category']=='drama' and meta['version']=='0.1.0' and meta['status']=='draft'\nassert meta['schema_version']==1 and meta['dependencies']==[]\nassert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)+',fm['name']) and len(fm['name'])<64\nassert len(fm['description'])<=1024\nfor key in ('summary','input_contract','output_contract'): assert isinstance(meta[key],str) and meta[key].strip()\nfor key in ('owners','tags'): assert isinstance(meta[key],list) and meta[key] and all(isinstance(x,str) and x.strip() for x in meta[key])\ncases=json.loads((folder/'tests/cases.json').read_text())\nassert len(cases)==3 and {c['kind'] for c in cases}=={'happy','missing_input','boundary'}\nassert len({c['id'] for c in cases})==3\nfor c in cases:\n assert isinstance(c['prompt'],str) and c['prompt'].strip()\n assert isinstance(c['expect'],list) and c['expect'] and all(isinstance(x,str) and x.strip() for x in c['expect'])\nraw=json.loads((root/'reports/drama-skill-intake/drama-production-planning/raw-prompts.json').read_text())\nassert raw==[{'id':c['id'],'prompt':c['prompt']} for c in cases]\nerrors=[]\nfor p in folder.rglob('*.md'):\n errors+=ns['link_errors'](p,root)\n assert '/Users/' not in p.read_text(), p\nfor p in folder.rglob('*.json'): errors+=ns['revision_errors'](json.loads(p.read_text()),str(p.relative_to(root)))\nassert not errors,errors\nbase='8271786fd12cc4a35339d56fb26d8635af50fa0c'\npaths=subprocess.check_output(['git','diff','--name-only',base,'HEAD'],text=True).splitlines()\nassert all(p.startswith(('skills/drama/drama-production-planning/','reports/drama-skill-intake/drama-production-planning/')) for p in paths)\nassert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()\ndigests={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(folder.rglob('*')) if p.is_file()}\nprint(json.dumps({'status':'pass','scope':'unregistered skill-local structure and relative references','base_commit':base,'head_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'checks':['frontmatter and required metadata','three case kinds and observable assertions','raw prompts exactly match originals','public links resolve inside repo','positive revision values','no author-machine paths in runtime markdown','changed paths within write_scope','clean frozen worktree'],'cases_defined':3,'behavior_cases_executed':0,'registry_and_discovery':'not_run - parent-owned','digests':digests},ensure_ascii=False,indent=2))\nPY",
+      "command_note": "Read-only inline Python; loaded scripts/validate_skills.py functions without invoking registry-wide validate(). Assertions checked only the candidate Skill and its original raw prompts.",
+      "exit_code": 0,
+      "result": {
+        "status": "pass",
+        "scope": "unregistered skill-local structure and relative references",
+        "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+        "head_commit": "c5482a1e12b403f0a1cb44e00360b52d6714f5be",
+        "checks": [
+          "frontmatter and required metadata",
+          "three case kinds and observable assertions",
+          "raw prompts exactly match originals",
+          "public links resolve inside repo",
+          "positive revision values",
+          "no author-machine paths in runtime markdown",
+          "changed paths within write_scope",
+          "clean frozen worktree"
+        ],
+        "cases_defined": 3,
+        "behavior_cases_executed": 0,
+        "registry_and_discovery": "not_run - parent-owned",
+        "digests": {
+          "skills/drama/drama-production-planning/SKILL.md": "3b7458fc1e25b9b30ae2c1767eeb0b1e4012f86fe761b58cee1c617a9b1264c8",
+          "skills/drama/drama-production-planning/references/planning-records.md": "4fc660fdddfa202123fc269defc290e897dc801b8bdbd34e7e4af9fd5e34f09b",
+          "skills/drama/drama-production-planning/skill.json": "a924fdea3ba2226775e145bbbf05cdd06fc8ae8ba5b6e1d2006eacef042ee9c6",
+          "skills/drama/drama-production-planning/tests/cases.json": "4c74dd7802781115ad6822978acd408f77c7cca817ef01fdb9c0d3b19abfed01"
+        }
+      }
+    }
+  ],
+  "not_run": [
+    "registry/discovery validation (shared files owned by parent)",
+    "client skill loading",
+    "media generation, audio listening, render/quality checks",
+    "business Skill calls and runtime integration",
+    "whole-repository regression"
+  ],
+  "inputs": [
+    {
+      "path": "skills/drama/drama-production-planning/",
+      "revision": 1,
+      "commit": "c5482a1e12b403f0a1cb44e00360b52d6714f5be"
+    }
+  ],
+  "open_questions": [],
+  "consumers": [
+    "independent-reviewer",
+    "parent-integrator"
+  ],
+  "handoff": {
+    "status": "pass",
+    "meaning": "structure smoke only; behavior evidence reported separately; no final approval"
+  }
+}
