@@ -1,0 +1,14 @@
+{
+  "base_commit": "78667f7cb54adb7e5a85c8c7d3b418e7634b7786",
+  "artifact_revision": 1,
+  "files": {
+    "skills/engineering/eng-project-manager/SKILL.md": "969f72007a6144d596af1e6ca900d89e3ecaf966ecf52ea84815b06103ffa48f",
+    "skills/engineering/eng-project-manager/references/contract.md": "c23cdcaec7f8924e4328d8215687018fdf601ae1ceb4efc379c98caacdd66e6c",
+    "skills/engineering/eng-project-manager/references/usage.md": "0e12776a59676fe1b79c778d1227caf76b64cd030ca2c39131a6ddd33a0c3a8c",
+    "skills/engineering/eng-project-manager/scripts/pm.py": "58e399a57e64e56b0bf42b1da8cd39c5df720f8547d9f72aee4ee0a845a9970d",
+    "skills/engineering/eng-project-manager/skill.json": "e2a49b0a1506adf4837bfda88d7821349371d0d9bec7476aed328090d045563d",
+    "skills/engineering/eng-project-manager/tests/cases.json": "a4ea4ccf3ab5b6a955971ce0921a12807736b3a165aa1c86d5cd5d66093a1b8f",
+    "skills/engineering/eng-project-manager/tests/replay_real.py": "3d9d46903b5862cc03262a5e6d9d1fe25696169195a2e75cadb45125e5d179d2",
+    "skills/engineering/eng-project-manager/tests/test_pm.py": "cb73d5fa3d98fa8caede9dccc2dc856e0e44cd02b5a64b02e474aec71ad87ad3"
+  }
+}

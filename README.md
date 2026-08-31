@@ -2,7 +2,7 @@
 
 统一管理个人 skills 的源仓库：一个 repo、分类目录、共享契约、独立 worktree、有界测试。不会为每个 skill 新建仓库，也不会为每次探索创建新项目。
 
-本轮交付 9 个 `0.1.0` 本地初版 skills。实现顺序按依赖安排；P3 导演研究独立，可在基础规范完成后并行。
+当前登记 10 个 skills：原有 9 个本地初版，新增 `eng-project-manager 0.1.0` 为待独立验收的 draft candidate。实现顺序按依赖安排；P3 导演研究独立，可在基础规范完成后并行。
 
 ## Skill 清单与路由
 
@@ -14,6 +14,7 @@
 | P1 | product | [product-review-prd](skills/product/product-review-prd/SKILL.md) | 产品闭环、防扩张与有边界的优化建议 |
 | P1 | engineering | [eng-review-technical](skills/engineering/eng-review-technical/SKILL.md) | 技术闭环、历史一致性、架构与成本取舍 |
 | P1 | engineering | [eng-quality-test](skills/engineering/eng-quality-test/SKILL.md) | 增量测试规划、评审、用例、执行和报告 |
+| P1 | engineering | [eng-project-manager](skills/engineering/eng-project-manager/SKILL.md) | 长程 goal 的接入、DAG/阻塞查询、刷新对账与四层产物索引；不改原生 goal |
 | P2.1 | engineering | [eng-delivery-feature](skills/engineering/eng-delivery-feature/SKILL.md) | 单一 feature 的需求→设计/测试→评审→实现→候选 |
 | P2.2 | engineering | [eng-delivery-release](skills/engineering/eng-delivery-release/SKILL.md) | 多 feature 候选、repo 版本与冻结集成批次 |
 | P3 | content | [content-video-director-learning](skills/content/content-video-director-learning/SKILL.md) | 广告拍摄方法研究、来源采集与本地方法卡 |
@@ -28,6 +29,7 @@
 使用 $product-spec-prd，把以下原始需求整理成一个可交接的 change，先不实现。
 使用 $eng-review-technical，评审 changes/C1/design.md，模式为实现优先。
 使用 $eng-quality-test，为这个局部 feature 制定增量计划，不进入发版回归。
+使用 $eng-project-manager，接入指定主任务的 goal 和交接快照，核对原始目标、依赖阻塞及主要产物。
 使用 $eng-delivery-feature，按已确认的 C1 需求走单 feature 闭环。
 使用 $content-video-director-learning，检索“产品质感布光”，最多读 4 个公开页面。
 ```
@@ -44,7 +46,7 @@ python3 -m unittest discover -s tests
 python3 scripts/pipeline.py --help
 ```
 
-验证器使用 Python 标准库。它检查登记、受限 frontmatter 格式、依赖、链接和 cases 结构，**不会把定义用例算作执行通过**；独立行为执行证据另见 reports。官方 quick_validate 需要 PyYAML，本机缺此依赖的限制会在验收报告中单独记录。
+验证器使用 Python 标准库。它检查登记、受限 frontmatter 格式、依赖、链接和 cases 结构，**不会把定义用例算作执行通过**；独立行为执行证据另见 reports。官方 quick_validate 另需 PyYAML；本次项目经理 skill 检查通过，首版当时的依赖限制保留在原验收报告中。
 
 ## 最小闭环
 
@@ -66,6 +68,7 @@ python3 scripts/pipeline.py --help
 - [后续迭代 backlog](docs/backlog.md)：有触发条件和验收的优化项。
 - [CHANGELOG](CHANGELOG.md)：版本变更与兼容性记录。
 - [首版验收报告](reports/validation-20260831.md)：27 个原始行为场景、1 次治理定向复验、22 项通过的程序测试，以及明确未执行的检查。
+- [项目经理 skill 候选验证](reports/eng-project-manager/validation.md)：三场景实测、真实父目标接入/刷新/查询和逐项验收映射；[范围与预算](reports/eng-project-manager-intent.md)。
 - `reports/`：本轮真实验收、覆盖范围与未执行检查；业务运行临时文件放 `.runs/`，不进入 Git。
 
 工作分支允许局部 unit/feature 和 smoke；跨 feature 批次再做受影响 integration；只有明确发版才做 release regression。默认一次验收、最多两次定向修复，批次完整验收最多两轮。完成外部契约即交付，不无限优化内部实现。

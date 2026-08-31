@@ -52,6 +52,13 @@
       ]
     },
     {
+      "name": "eng-project-manager",
+      "category": "engineering",
+      "path": "skills/engineering/eng-project-manager",
+      "priority": 1,
+      "dependencies": []
+    },
+    {
       "name": "eng-delivery-feature",
       "category": "engineering",
       "path": "skills/engineering/eng-delivery-feature",
