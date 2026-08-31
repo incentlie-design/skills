@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-c07-20260831-intake",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/eb6e/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "artifact_kind": "source-intake-record",
+  "scope": "Read-only method extraction for voice identity and accent; not source/runtime migration",
+  "sources": [
+    {
+      "id": "SRC-001",
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents/.agents/skills/series-audio-bible/SKILL.md",
+      "declared_version": "0.2.0",
+      "repo_head_at_read": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+      "sha256": "866c8a039e23a5444a4de183bff82ec10e541069d9a63db4255843533003c7a6",
+      "sections_used": ["role-specific identity", "separate voice dimensions", "candidate not rendered/registered"],
+      "adaptation": "Retain identity-source consistency and silent/nonspoken boundaries; do not require four application authority objects or migrate compile/validate/evaluate runtime."
+    },
+    {
+      "id": "SRC-002",
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents/.agents/skills/series-audio-bible/references/contract.md",
+      "declared_version": "0.2.0",
+      "repo_head_at_read": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+      "sha256": "fd47e05c7aa6ce10fd00fb2d95a3e08abcc42b06e5afd715fc7da55a388ce932",
+      "sections_used": ["Role-specific audio identity", "Professional proposal", "Downstream projections"],
+      "adaptation": "Keep narrator knowledge limits, natural accent and pronunciation intents; replace application artifact wrapper/Registry schema with existing public content handoff. Sound motifs remain downstream audio-production ownership."
+    },
+    {
+      "id": "SRC-003",
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents/knowledge/audio/voice-and-accent.md",
+      "declared_version": "unknown",
+      "repo_head_at_read": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+      "sha256": "321da65ba9d8282bfa5d74920fc14171906208b438f0e893327d0d127668d980",
+      "sections_used": ["1. Voice Registry", "2. 年龄设计", "3. 菲律宾英语方向", "4. 角色差异", "5. Design / Remix / TTS"],
+      "adaptation": "Extract age texture/breath/effort and complete comparison conditions. Philippine traits, fixed preview length and story cast examples are not universal defaults; Registry operations remain external."
+    },
+    {
+      "id": "SRC-004",
+      "path": "/Users/jiajun.lai/.codex/skills/elevenlabs-voice-design/SKILL.md",
+      "declared_version": "unknown",
+      "sha256": "b3c75bc07bf15791f868302331bc1f98b05ea5988076a7e14b01eeb1f23f3e6a",
+      "sections_used": ["Choose the correct API", "Build the design prompt", "Write preview text", "Compare and lock", "Preserve reproducibility"],
+      "adaptation": "Optional provider reference only; retain mode/ownership distinction, uniform preview, parameter binding and raw/processed separation. Do not copy generator, credentials, hardcoded settings, saving or registry mutation instructions as authority. Installed skill left unchanged."
+    },
+    {
+      "id": "SRC-005",
+      "path": "/Users/jiajun.lai/.codex/skills/elevenlabs-voice-design/references/voice-design-spec.md",
+      "declared_version": "elevenlabs-voice-design.v1",
+      "sha256": "e7be041170093ab4c3a9f2d9cf95e77f90183f3b7192d5fda9cce34ed75cb9ef",
+      "sections_used": ["Structured specification", "Compiled description", "Constraints"],
+      "adaptation": "Preserve separation of description, preview and execution settings. Do not migrate vendor schema or frozen example values into generic contracts."
+    },
+    {
+      "id": "SRC-006",
+      "path": "/Users/jiajun.lai/.codex/skills/elevenlabs-voice-design/references/official-guidance.md",
+      "declared_version": "snapshot dated 2026-08-18",
+      "sha256": "5053261cf82a0fca2f2a3b946836c0569fd537e94f7ee2504d8d31fd1519ddc0",
+      "sections_used": ["Primary source entrypoints", "Historical guidance snapshot"],
+      "adaptation": "Carry primary documentation links as future verification entrypoints; no current API/model/price claims, no network verification during this intake."
+    }
+  ],
+  "governance_read": [
+    "AGENTS.md",
+    "skills/meta/meta-skill-governance/SKILL.md",
+    "docs/skill-standard.md",
+    "docs/contracts.md",
+    "docs/content-production-contract.md",
+    "skills/engineering/eng-workspace-governance/SKILL.md",
+    "skills/engineering/eng-workspace-governance/references/workspaces.md",
+    "changes/DRAMA-SKILLS-20260831/brief.md",
+    "changes/DRAMA-SKILLS-20260831/tasks.json#DRAMA-SKILL-C07",
+    "docs/drama-skill-migration.md",
+    "skills/product/product-review-prd/SKILL.md",
+    "skills/product/product-review-prd/skill.json",
+    "/Users/jiajun.lai/.codex/skills/.system/skill-creator/SKILL.md"
+  ],
+  "not_migrated": ["complete narratives", "private media", "API keys", "provider executor scripts", "application validators and Registry runtime", "source-project presets as generic defaults"],
+  "source_writes": 0,
+  "web_research_executed": false,
+  "dependencies_rationale": "[]: consume versioned files and public repository contracts, not mandatory invocation of all professional skills or the personal installation.",
+  "open_questions": ["Current provider behavior remains unverified; verify only when a later authorized provider task requires it."],
+  "consumers": ["DRAMA-SKILLS-20260831 integration owner"],
+  "handoff": {"next_owner": "DRAMA-SKILLS-20260831 integration owner", "external_source_overwrite_allowed": false}
+}
