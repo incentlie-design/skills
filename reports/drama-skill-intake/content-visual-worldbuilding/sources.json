@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-c03-20260831",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/9a32/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "artifact_kind": "source-migration",
+  "scope": "read-only method extraction for content-visual-worldbuilding",
+  "source_roots": [
+    {
+      "alias": "drama-agents",
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-agents",
+      "commit": "052fc44dcaafb9c2c10d6365f391dc422918a146",
+      "working_tree": "clean at inspection"
+    },
+    {
+      "alias": "drama-skills",
+      "path": "/Users/jiajun.lai/Documents/workspaces/drama-skills",
+      "commit": "0dbf346a754a33c571d1746d9768545641d273cc",
+      "working_tree": "clean at inspection"
+    }
+  ],
+  "files": [
+    {
+      "source": "drama-agents/.agents/skills/series-visual-style-bible/SKILL.md",
+      "sha256": "7a4a56a15b7bf23062e3a216b76c04f981fa2708ed631ddc35c89f375f28a072"
+    },
+    {
+      "source": "drama-agents/.agents/skills/series-visual-style-bible/references/contract.md",
+      "sha256": "3cd5a8048ca526645ff4381a0c7efcbe3640f25f2db3be740ef69cacae0561ad"
+    },
+    {
+      "source": "drama-agents/.agents/skills/series-location-prop-design/SKILL.md",
+      "sha256": "56c0dec46ec94c718d80b37da0dbf84a27d88268cde740f7bdd283a91e7590ed"
+    },
+    {
+      "source": "drama-agents/.agents/skills/series-location-prop-design/references/contract.md",
+      "sha256": "40730aae427ef85d853e29c3a5ee7cb6f29420071271dc9d14c11472a26a3631"
+    },
+    {
+      "source": "drama-agents/.agents/skills/episode-lighting-color-direction/SKILL.md",
+      "sha256": "e8bb1ffeefee3238d52bf155f7ab0e590aa42250796e998eb90f4ce1a378c451"
+    },
+    {
+      "source": "drama-agents/.agents/skills/episode-lighting-color-direction/references/contract.md",
+      "sha256": "cd2b2ddef3964bf370d140ba81cbb54ed1ca86c463f633272d2eb317d6b3c09d"
+    },
+    {
+      "source": "drama-agents/knowledge/visual/human-material-lighting.md",
+      "sha256": "82a8c345ed09a62b67293c69c28b711ac81b5095acef24650626e6938f5f8a5e"
+    },
+    {
+      "source": "drama-agents/knowledge/visual/continuity-and-reference-governance.md",
+      "sha256": "d40625cefaf86f6594048cff6b4a204dd8042f7d5b5119cff5e764931e562020"
+    },
+    {
+      "source": "drama-agents/knowledge/narrative/ibong-adarna-episode-lessons.md",
+      "sha256": "84207d519a051940e6df504e4cce98f975c6a4c9eaf49dc47ada60100e9758f0"
+    },
+    {
+      "source": "drama-skills/narrated-drama-assets/SKILL.md",
+      "sha256": "5e17b4068d769319f127792bfe2db091bc6fac93aabf62de1506b11d901ae69a"
+    },
+    {
+      "source": "drama-skills/narrated-drama-assets/references/asset-contract.md",
+      "sha256": "2c9e02b13ebb2aebd7e42f1c8015bff9725b9d1471ad69b4a517c94b7466815f"
+    }
+  ],
+  "method_migration": [
+    {
+      "sources": [
+        "series-visual-style-bible"
+      ],
+      "retained": "Single caller-selected style ref/revision; rendering, skin/material, motivated light, palette and forbidden drift policies.",
+      "excluded": "Exact app artifact receipts, Registry proposals, compiler/evaluator code, mandatory four-authority gate and fixed native 9:16."
+    },
+    {
+      "sources": [
+        "series-location-prop-design"
+      ],
+      "retained": "Connected location topology, anchors/portals/orientation/materials; prop shape, scale, narrative role, handling, aging and allowed transitions; state separate from identity.",
+      "excluded": "Mandatory five-artifact runtime gate, DESIGN_READY-to-FINAL_LOCKED promotion and Registry wrappers."
+    },
+    {
+      "sources": [
+        "episode-lighting-color-direction"
+      ],
+      "retained": "Story-linked color progression; source motivation/direction/quality, exposure hierarchy, skin/material response, transitions and reality anchors.",
+      "excluded": "Fixed episode orchestration and claims of final measured exposure or provider/grade execution."
+    },
+    {
+      "sources": [
+        "knowledge/visual/human-material-lighting.md",
+        "knowledge/visual/continuity-and-reference-governance.md",
+        "knowledge/narrative/ibong-adarna-episode-lessons.md"
+      ],
+      "retained": "Material-specific light response; selected references over newest filenames; holder/hand/contact consistency; silver appearance is not automatic emission; fantasy needs a world mechanism.",
+      "excluded": "Philippines/indigenous/historical framing, specific tree species, fixed palette/photoreal skin or 9:16 as general rules. Historical claims in these project notes were not independently verified and are not reused as factual authority."
+    },
+    {
+      "sources": [
+        "narrated-drama-assets"
+      ],
+      "retained": "Stable IDs; location landmarks, scale, time/weather variants; prop holder/state; original facts separate from proposed completion; definitions separate from media outputs.",
+      "excluded": "working.yaml/index updates, generation/replay execution and approval/promotion routines."
+    }
+  ],
+  "untouched_sources": [
+    "All source files remained read-only; no private media, complete novel or secret copied."
+  ],
+  "not_read": [
+    "ElevenLabs voice source: irrelevant to this visual-only task",
+    "old source application validators and full app JSON schemas: no runtime migration needed"
+  ],
+  "runtime_dependencies": "Only repository-relative public contracts and the local design method reference; no dependence on development source paths."
+}

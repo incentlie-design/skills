@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "run_id": "drama-skill-c03-20260831",
+  "change_id": "DRAMA-SKILLS-20260831",
+  "repo": "/Users/jiajun.lai/.codex/worktrees/9a32/skill-creator",
+  "base_commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c",
+  "artifact_revision": 1,
+  "artifact_kind": "candidate-handoff",
+  "task_id": "DRAMA-SKILL-C03",
+  "status": "pass",
+  "status_meaning": "Independent three-case text exercise passed; this draft candidate is ready for the main task's final review, not approved for registration, installation or release.",
+  "lifecycle": "review",
+  "skill_status": "draft",
+  "skill_version": "0.1.0",
+  "main_baseline_commit": "cd990aaec765fcbd1731af970233484377c873aa",
+  "head_commit": "4dee1126accfc35eabe9a7816ec707644d2baab4",
+  "head_commit_role": "Frozen code candidate and actual HEAD before the final report-only commit; the final delivery commit is given in the task final response.",
+  "candidate_commit": "4dee1126accfc35eabe9a7816ec707644d2baab4",
+  "cases_definition_commit": "26305f90ded5d7cb3eda875cbf3b42aded3c04b9",
+  "branch": "codex/agent/drama-skill-c03/content-visual-worldbuilding",
+  "worktree": "/Users/jiajun.lai/.codex/worktrees/9a32/skill-creator",
+  "owner": "dedicated-session:content-visual-worldbuilding",
+  "purpose": "Cross-media visual style, motivated light/color, materials, locations and stateful prop design.",
+  "write_scope": [
+    "skills/content/content-visual-worldbuilding/",
+    "reports/drama-skill-intake/content-visual-worldbuilding/"
+  ],
+  "input_refs": [
+    {
+      "path": "changes/DRAMA-SKILLS-20260831/brief.md",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "changes/DRAMA-SKILLS-20260831/tasks.json",
+      "entity": "DRAMA-SKILL-C03",
+      "revision": 1,
+      "commit": "8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "docs/contracts.md",
+      "revision": "v1"
+    },
+    {
+      "path": "docs/content-production-contract.md",
+      "revision": "v1"
+    },
+    {
+      "path": "docs/skill-standard.md",
+      "revision": "foundation 8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "docs/drama-skill-migration.md",
+      "revision": "foundation 8271786fd12cc4a35339d56fb26d8635af50fa0c"
+    },
+    {
+      "path": "reports/drama-skill-intake/content-visual-worldbuilding/sources.json",
+      "revision": 1
+    }
+  ],
+  "outputs": [
+    "skills/content/content-visual-worldbuilding/SKILL.md",
+    "skills/content/content-visual-worldbuilding/skill.json",
+    "skills/content/content-visual-worldbuilding/tests/cases.json",
+    "skills/content/content-visual-worldbuilding/references/design-method.md",
+    "reports/drama-skill-intake/content-visual-worldbuilding/structure-smoke.json",
+    "reports/drama-skill-intake/content-visual-worldbuilding/sources.json",
+    "reports/drama-skill-intake/content-visual-worldbuilding/reviewer-output.md",
+    "reports/drama-skill-intake/content-visual-worldbuilding/report.md",
+    "reports/drama-skill-intake/content-visual-worldbuilding/handoff.json"
+  ],
+  "expected_business_outputs": [
+    "visual-style-bible",
+    "location-prop-definitions"
+  ],
+  "dependencies": {
+    "skills": [],
+    "files": [
+      "docs/contracts.md",
+      "docs/content-production-contract.md"
+    ],
+    "integration": [
+      "DRAMA-SKILL-FOUNDATION"
+    ],
+    "runtime_adapters": "none; not a drop-in replacement for old app schemas"
+  },
+  "review": {
+    "schema_version": 1,
+    "run_id": "DRAMA-SKILL-C03-REVIEW",
+    "change_id": "DRAMA-SKILLS-20260831",
+    "repo": "/Users/jiajun.lai/.codex/worktrees/9a32/skill-creator",
+    "base_commit": "4dee1126accfc35eabe9a7816ec707644d2baab4",
+    "artifact_revision": 1,
+    "reviewer": "visual_worldbuilding_blind_review",
+    "agent": "/root/visual_worldbuilding_blind_review",
+    "reviewed_revision": 1,
+    "status": "pass",
+    "scope": [
+      "Frozen skill and its method/public contract references",
+      "Three raw-prompt provider-free text exercises; no expected assertions or author answers"
+    ],
+    "findings": [],
+    "non_blocking_suggestions": [],
+    "output_path": "reports/drama-skill-intake/content-visual-worldbuilding/reviewer-output.md",
+    "metadata_note": "Initial dispatch omitted change_id; original unknown is retained in raw output. The same reviewer corrected it to DRAMA-SKILLS-20260831 without any reread or rerun.",
+    "final_acceptance": "pending main-task integration review"
+  },
+  "tests": {
+    "structure": {
+      "status": "pass",
+      "evidence": "reports/drama-skill-intake/content-visual-worldbuilding/structure-smoke.json",
+      "behavior_cases_executed": 0
+    },
+    "behavior": {
+      "status": "pass",
+      "cases_defined": 3,
+      "cases_executed": 3,
+      "reviewer": "visual_worldbuilding_blind_review",
+      "evidence": "reports/drama-skill-intake/content-visual-worldbuilding/reviewer-output.md",
+      "cases": [
+        {
+          "id": "TC-001",
+          "kind": "happy",
+          "execution": "executed",
+          "result": "pass",
+          "produced_handoff_status": "pass",
+          "evidence_section": "TC-001",
+          "observed": "Two design artifacts share selected r2; proposed geometry/materials explicit; reflective silver and stateful lamp preserved."
+        },
+        {
+          "id": "TC-002",
+          "kind": "missing_input",
+          "execution": "executed",
+          "result": "pass",
+          "produced_handoff_status": "blocked",
+          "evidence_section": "TC-002",
+          "observed": "Missing style authority, world mechanism and culture evidence explicitly blocked; no invented historical sources."
+        },
+        {
+          "id": "TC-003",
+          "kind": "boundary",
+          "execution": "executed",
+          "result": "pass",
+          "produced_handoff_status": "blocked",
+          "evidence_section": "TC-003",
+          "observed": "No provider, Registry, approved-asset overwrite or camera changes executed; scoped handoff only."
+        }
+      ]
+    },
+    "budget": {
+      "initial_cases": 3,
+      "repair_rounds_used": 0,
+      "repair_rounds_max": 2,
+      "round_1_validation_shell_commands": 3,
+      "round_1_validation_shell_commands_detail": "2 author structure commands + 1 reviewer read command",
+      "commands_per_round_max": 3,
+      "minutes_per_round_max": 10,
+      "elapsed_wall_time": "Not instrumented as a single measurement; no repeated exercise or timeout.",
+      "media_calls": 0,
+      "paid_calls": 0,
+      "reviewer_metadata_correction_tool_calls": 0
+    },
+    "not_run": [
+      "Shared registry/discovery validation (main-task owned)",
+      "Codex client loading or global installation",
+      "Historical/cultural external fact audit",
+      "Real image/video generation and visual-result QA",
+      "Application schema/runtime integration",
+      "Full repository regression"
+    ]
+  },
+  "acceptance": {
+    "AC-003": "Implemented bounded I/O, selection authority, material applicability, source/proposal split, topology/state and motivated lighting methods.",
+    "AC-004": "Three original cases committed before implementation; independent blind outputs preserved; no behavioral repair required.",
+    "AC-006": "Stable references/revisions, proposed IDs, candidate/production separation covered by frozen skill and text exercise.",
+    "AC-001": "Dedicated branch/worktree retained; writes confined to assigned directories.",
+    "AC-005": "Shared registration deliberately left to main task; not part of this writer's changes."
+  },
+  "unresolved_issues": [],
+  "minimum_remaining_gap": "Main task must review scope/cross-skill compatibility and perform authorized shared registration/discovery validation before promotion; keep draft.",
+  "next_owner": "Main drama-skill-intake integrator (source task 019ff151-3a5d-7321-9624-ebd87e178486)",
+  "shared_files_changed": [],
+  "rollback": "Leave this candidate unintegrated, or have the integrator revert the known candidate commits on a new branch; do not reset shared history.",
+  "stop_condition": "Candidate and bounded evidence complete. No merge to main, push, installation, paid media call, additional persistent task or worktree deletion."
+}
