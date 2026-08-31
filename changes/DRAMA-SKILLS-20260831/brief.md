@@ -36,4 +36,3 @@
 ## 任务
 
 详见 tasks.json。共享文件 owner 为本主任务（短剧主agent），write_scope：AGENTS.md、README.md、CHANGELOG.md、registry.json、docs/skill-standard.md、docs/content-production-contract.md、docs/drama-skill-migration.md、scripts/validate_skills.py、tests/test_validate_skills.py、.agents/skills 新入口、changes/DRAMA-SKILLS-20260831/、reports/drama-skill-intake/ 汇总。
-

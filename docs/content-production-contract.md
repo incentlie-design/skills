@@ -38,4 +38,3 @@
 遵循公共 status=pass/revise/blocked；数据缺失保留 needs_input 原因。作者自查不替代独立评审。区分 defined、executed、not_run；结构验证的 behavior_cases_executed=0 不能改写成行为成功。
 
 各 Skill 至少一个正常、一个缺失输入、一个越界原始 case。首轮三例、最多两次定向修复；完成本范围即停止。未调用图片/音频/视频或客户端加载必须明确说明。不需要把每一个业务环节都变成 agent 或固定 DAG 节点。
-
