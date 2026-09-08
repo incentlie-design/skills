@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "name": "eng-workspace-governance",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "category": "engineering",
   "status": "active",
-  "summary": "单 repo 内的 project/session/agent/worktree/branch 协作边界",
-  "owners": ["repository-maintainer"],
-  "tags": ["git", "worktree", "repo", "agent", "session", "project", "directory", "branch"],
-  "dependencies": [],
-  "input_contract": "目标 repo、基线、dirty state、任务与 writer 所有权",
-  "output_contract": "隔离工作区、任务交接、候选 commit 和集成边界"
+  "summary": "Owns reproducible multi-repository workspace topology, exact refs, dependency order, and handoff context.",
+  "owners": ["public-governance-maintainers"],
+  "tags": ["workspace", "multi-repository", "manifest", "dependency-dag", "handoff"],
+  "dependencies": ["eng-repo-governance"],
+  "input_contract": "Workspace identity, repository facts and exact commits, dependency edges, source evidence, change set, and launch context.",
+  "output_contract": "Owned workspace handoff slice with manifest revision, exact repository tuple, dependency order, launch context, and unresolved constraints."
 }

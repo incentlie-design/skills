@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "scenarios": [
+    {
+      "id": "single-repo-assigned-change",
+      "request": "Assign a contributor to create a local change in one repository from an exact base and hand off the commit.",
+      "expected_route": ["eng-agent-governance", "eng-repo-governance"],
+      "expected_owner_actions": [
+        "Agent governance owns the assignment, budget, lease, handoff, and release.",
+        "Repository governance owns branch, worktree, commit, and exact base/head evidence."
+      ],
+      "stop": "Stop at the local handoff commit; push and cleanup require separate authority.",
+      "forbid": ["project status duplication", "implicit remote write"]
+    },
+    {
+      "id": "cross-repo-release-window",
+      "request": "Select eligible candidates for a release window spanning dependent api and web repositories, assign execution, integrate locally, and record the gate.",
+      "expected_route": ["eng-project-governance", "eng-workspace-governance", "eng-repo-governance", "eng-agent-governance"],
+      "expected_owner_actions": [
+        "Project governance owns candidate and window selection plus the gate decision.",
+        "Workspace governance owns exact repository tuples and dependency order.",
+        "Repository governance owns the per-repository integration mechanics.",
+        "Agent governance owns assignments, independence, budgets, and released leases."
+      ],
+      "stop": "Stop when the exact local integration heads and gate decision are recorded; publication and deployment are not implied.",
+      "forbid": ["floating repository refs", "agent-owned release selection"]
+    },
+    {
+      "id": "external-task-revision-conflict",
+      "request": "An assigned coordinator wants to update the canonical external WorkItem, but its expected revision is stale.",
+      "expected_route": ["eng-agent-governance", "eng-project-governance"],
+      "expected_owner_actions": [
+        "Agent governance reports the blocked assignment and preserves its budget and lease state.",
+        "Project governance re-reads through TaskSource and owns the conflict decision."
+      ],
+      "stop": "Stop without an external write until a new expected revision and authority are supplied.",
+      "forbid": ["blind overwrite", "second task state machine"]
+    },
+    {
+      "id": "post-handoff-cleanup",
+      "request": "After a completed handoff, release ownership and consider deleting the local branch and worktree.",
+      "expected_route": ["eng-agent-governance", "eng-repo-governance"],
+      "expected_owner_actions": [
+        "Agent governance releases the ownership lease and reports clean or dirty state.",
+        "Repository governance resolves exact cleanup targets and checks recovery, integration, and authority."
+      ],
+      "stop": "Stop at a cleanup candidate unless exact targets, clean/recovery evidence, and explicit cleanup authority are present.",
+      "forbid": ["agent-performed Git cleanup", "automatic deletion"]
+    }
+  ]
+}

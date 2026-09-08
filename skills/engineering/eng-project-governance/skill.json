@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "eng-project-governance",
+  "version": "1.0.0",
+  "category": "engineering",
+  "status": "active",
+  "summary": "Owns canonical work-item, milestone, candidate, release-window, pipeline-gate, and closure decisions.",
+  "owners": ["public-governance-maintainers"],
+  "tags": ["project", "work-item", "release", "milestone", "task-adapter"],
+  "dependencies": ["eng-workspace-governance"],
+  "input_contract": "Raw intake or work-item reference, one system of record, artifact revisions, AC, dependencies, project profile, and write or release authority.",
+  "output_contract": "Owned project handoff slice plus canonical WorkItem decisions, milestones, selected candidates, gates, status, conflicts, and next owner."
+}

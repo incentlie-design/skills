@@ -1,0 +1,32 @@
+[
+  {
+    "id": "repo-happy-local-handoff",
+    "kind": "happy",
+    "prompt": "From exact commit abc123 in one clean repository, create the profile-resolved contributor worktree, make the scoped local commit, and hand it off without pushing.",
+    "expect": [
+      "Inventories the common Git directory, refs, worktrees, and dirty state before mutation.",
+      "Uses the supplied branch profile and records exact base and resulting head in the repository slice.",
+      "Stops after the local handoff commit and does not infer push or cleanup authority."
+    ]
+  },
+  {
+    "id": "repo-missing-base-and-owner",
+    "kind": "missing_input",
+    "prompt": "Commit these edits and merge them, but the base is unspecified and an existing dirty path has no known owner.",
+    "expect": [
+      "Returns needs_input or blocked with the missing exact base and dirty-path ownership.",
+      "Performs no checkout, commit, merge, stash, reset, or cleanup.",
+      "Does not choose a floating default branch as a substitute."
+    ]
+  },
+  {
+    "id": "repo-boundary-read-only",
+    "kind": "boundary",
+    "prompt": "Show repository status, the last three commits, and the current diff; make no changes.",
+    "expect": [
+      "Recognizes the request as read-only and does not require the mutation workflow.",
+      "Does not create a branch, worktree, commit, tag, or handoff packet.",
+      "Stops after reporting the requested facts."
+    ]
+  }
+]

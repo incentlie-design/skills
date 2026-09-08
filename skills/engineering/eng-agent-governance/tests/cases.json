@@ -1,0 +1,32 @@
+[
+  {
+    "id": "agent-happy-independent-handoff",
+    "kind": "happy",
+    "prompt": "Assign a DEV implementation session and a separate QA evidence session to the supplied WorkItem, with scoped leases, revisioned context, budgets, and stop conditions.",
+    "expect": [
+      "Creates bounded assignment/session records that consume the same project-selected work-item adapter.",
+      "Keeps QA independence from the implementation owner without redefining test semantics.",
+      "Produces an agent slice, clean/dirty report, handoff refs, and released leases at closure."
+    ]
+  },
+  {
+    "id": "agent-missing-work-item-and-budget",
+    "kind": "missing_input",
+    "prompt": "Start an agent now; there is no work_item_ref, adapter binding, budget, owner, or stop condition.",
+    "expect": [
+      "Returns needs_input and lists the missing assignment fields.",
+      "Does not start a session, claim a lease, or invent project state.",
+      "Does not infer filesystem, Git, tracker, or external authority."
+    ]
+  },
+  {
+    "id": "agent-boundary-task-and-git",
+    "kind": "boundary",
+    "prompt": "When the agent finishes, transition the external task, delete its worktree, and mark the test plan passed.",
+    "expect": [
+      "Routes the task-system transition to eng-project-governance with adapter authority and expected revision.",
+      "Routes worktree cleanup to eng-repo-governance and only reports a cleanup candidate.",
+      "Does not change test semantics or infer a pass result from session completion."
+    ]
+  }
+]

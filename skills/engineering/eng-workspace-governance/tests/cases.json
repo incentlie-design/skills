@@ -1,5 +1,32 @@
 [
-  {"id":"WS-001","kind":"happy","prompt":"同一 repo 两个 agent 分别修改 API 模块和文档，想探索两个实现，不要新建 App 项目。请给工作区与交接方案，不实际创建。","expect":["同 repo linked worktrees 和独立分支","明确基线和分离 write scope","共享契约单 owner","候选交给单一集成人"]},
-  {"id":"WS-002","kind":"missing_input","prompt":"当前主目录有同事未提交 schema 修改，新 agent 要依赖它，从 main 开分支就开工吧。","expect":["指出新分支没有未提交 schema","不自动 stash/reset/覆盖","请求 owner checkpoint 或阻断依赖"]},
-  {"id":"WS-003","kind":"boundary","prompt":"只解释 repo 和 worktree 的差别，不要动我的文件。","expect":["只读解释","不建分支、目录、项目或仓库","不把 worktree 说成安全沙箱"]}
+  {
+    "id": "workspace-happy-two-repos",
+    "kind": "happy",
+    "prompt": "Create a reproducible workspace handoff for web and api repositories at the supplied exact commits; web depends on api and each source fact is provided.",
+    "expect": [
+      "Produces unique repository tuples and a workspace slice bound to the manifest revision.",
+      "Validates the DAG and orders api before web.",
+      "Delegates any repository mutation to eng-repo-governance and stops at the workspace handoff."
+    ]
+  },
+  {
+    "id": "workspace-missing-exact-ref",
+    "kind": "missing_input",
+    "prompt": "Plan a three-repository workspace, but one repository supplies only its default branch name and no exact commit.",
+    "expect": [
+      "Returns needs_input for the missing exact commit and its source.",
+      "Does not substitute the current remote or local branch tip.",
+      "Does not claim a reproducible tuple or integration order is ready."
+    ]
+  },
+  {
+    "id": "workspace-boundary-single-repo-git",
+    "kind": "boundary",
+    "prompt": "Create a branch and commit in one repository; no other repository participates.",
+    "expect": [
+      "Routes the Git mutation to eng-repo-governance.",
+      "Does not create a workspace manifest or duplicate branch/worktree rules.",
+      "Stops without adding task or agent state."
+    ]
+  }
 ]

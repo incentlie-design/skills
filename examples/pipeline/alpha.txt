@@ -1,2 +1,0 @@
-MOCK artifact alpha: stand-in for a spec, design, test plan and implementation.
-It is not generated feature code and does not prove acceptance.

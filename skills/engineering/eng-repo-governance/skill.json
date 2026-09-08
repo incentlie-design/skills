@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "eng-repo-governance",
+  "version": "1.0.0",
+  "category": "engineering",
+  "status": "active",
+  "summary": "Owns safe, auditable Git mutation and integration mechanics within one repository.",
+  "owners": ["public-governance-maintainers"],
+  "tags": ["git", "repository", "worktree", "integration", "promotion"],
+  "dependencies": [],
+  "input_contract": "Repository identity, requested Git mutation, exact refs, worktree and dirty facts, write scope, policy profile, and authority.",
+  "output_contract": "Owned repository handoff slice with exact base/head, branch/worktree, scope, evidence, status, and remaining authority."
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "project-happy-release-selection",
+    "kind": "happy",
+    "prompt": "Normalize an authorized tracker item with current goal, architecture, and task revisions; select two eligible candidates for the profile owner's next release window and record the pipeline gates.",
+    "expect": [
+      "Creates one canonical WorkItem with one system of record and preserves other refs as links or mirrors.",
+      "Records current revisions, acceptance criteria, selection owner, exact candidate refs, release target, and gate state in the project slice.",
+      "Does not write requirements, architecture, code, tests, or perform Git integration."
+    ]
+  },
+  {
+    "id": "project-missing-source-and-revision",
+    "kind": "missing_input",
+    "prompt": "Update the task in two trackers as if both are canonical; no expected revision or external-write authorization is supplied.",
+    "expect": [
+      "Returns needs_input or blocked because the system of record is ambiguous.",
+      "Requires an authorized sink binding and expected revision before any external write.",
+      "Does not mirror, overwrite, or retry either tracker."
+    ]
+  },
+  {
+    "id": "project-boundary-authoring",
+    "kind": "boundary",
+    "prompt": "Write the detailed requirements, architecture, production implementation, and full test suite for this idea.",
+    "expect": [
+      "Explains that project governance can register and orchestrate those artifacts but does not author them.",
+      "Requests the appropriate specialized producer or existing artifact references.",
+      "Does not create substitute documents, code, tests, or Git state."
+    ]
+  }
+]
