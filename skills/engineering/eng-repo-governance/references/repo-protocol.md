@@ -52,7 +52,7 @@ Project governance owns candidate and release-window selection. This Skill confi
 Build an explicit push allowlist from branch roles; never infer it from all local branches or worktrees.
 
 - Stable branches are synchronized after the exact promoted head passes its gates and push authority is present. Do not force-update them.
-- Archive branches are synchronized when their recovery point must survive local loss or precede a destructive transition. Treat a published archive ref as immutable.
+- Archive branches are synchronized only when their recovery point must survive local loss, the destination visibility is approved, and the archived tree passed an exposure review. Treat a published archive ref as immutable; use a restricted backup when it is not suitable for the main remote.
 - Integration branches are synchronized only when remote CI, review, or another integrator must consume the frozen head.
 - Contributor, review, aggregate, session, or agent branches are synchronized only for a cross-machine/owner handoff, PR, remote CI, or an explicit recovery decision. Ordinary local work and already-integrated branches remain local.
 - Release branches are synchronized only for an actual release workflow. Tags are a separate publication decision; do not bulk-push them.

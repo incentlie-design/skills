@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "name": "eng-repo-governance",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "category": "engineering",
   "status": "active",
   "summary": "Owns safe, auditable Git mutation and integration mechanics within one repository.",

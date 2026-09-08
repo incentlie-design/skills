@@ -30,12 +30,12 @@ The canonical repository is [incentlie-design/skills](https://github.com/incentl
 | Ref role | Synchronize to GitHub when | Default |
 | --- | --- | --- |
 | `main` | The exact local head passed the required gates and was promoted to the stable branch | Push after each authorized stable promotion; never force-push |
-| `archive/*` | A named recovery baseline must survive local machine loss, especially before a destructive structural change | Push once, keep immutable; do not silently move or delete |
+| `archive/*` | A named recovery baseline must survive local machine loss, the remote visibility is approved, and the archived tree passed an exposure review | Conditional push to an approved remote; keep immutable and do not silently move or delete |
 | `integrate/*`, `codex/integrate/*` | Remote CI, review, or another integrator must consume the exact frozen head | Local-only otherwise; remove remotely only with separate cleanup authority |
 | `session/*`, `codex/session/*`, `agent/*`, `codex/agent/*`, `review/*`, `aggregate/*` | An unmerged handoff must cross machines/owners, a PR or remote CI requires it, or it is approved as recovery-worthy work | Local-only after ordinary work; do not upload merely because a worktree exists |
 | `release/*` | A real release-stabilization workflow explicitly uses a remote branch | Do not create or push for routine delivery |
 
-For the first publication of this rebuilt repository, the intended branch set is `main` plus `archive/2026-09-08/main-before-public-governance-rebuild`. The already-integrated rebuild session branch and unrelated historical worktree branches are not part of that initial set.
+For the first publication of this rebuilt repository, only `main` is required. `archive/2026-09-08/main-before-public-governance-rebuild` is conditional because it contains the complete removed tree: synchronize it only after the owner confirms remote visibility and approves that historical content for exposure; otherwise retain it locally or in a restricted backup. The already-integrated rebuild session branch and unrelated historical worktree branches are not part of the initial set.
 
 Before any push, fetch or query remote refs, bind validation to the exact local head, confirm the branch contains no unintended or sensitive files, and obtain push authority. Push explicit refs only—never use `--all`, `--mirror`, bulk tag upload, remote deletion, or force update as a convenience. Tags are published separately only for an authorized version release.
 
