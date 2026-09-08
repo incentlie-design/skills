@@ -1,0 +1,286 @@
+{
+  "schema_version": 1,
+  "work_item_ref": "local:project-task-adapter-bootstrap",
+  "adapter_binding": "repo-project-artifact@project-r4",
+  "context_revisions": [
+    "goal-r1",
+    "architecture-r1",
+    "tasks-r1"
+  ],
+  "closure_owner": "PIC",
+  "assignments": [
+    {
+      "assignment_id": "assignment-pic-01",
+      "role": "PIC",
+      "session_id": "session-pic-01",
+      "owner": "/root/pic",
+      "capabilities": [
+        "coordination",
+        "dependency-visibility",
+        "candidate-selection",
+        "integration",
+        "closure-accounting"
+      ],
+      "read_scope": [
+        "repository"
+      ],
+      "write_scope": [
+        "project/governance/**",
+        "README.md",
+        ".gitignore",
+        "tests/test_project_task_loop.py"
+      ],
+      "acceptance_criteria": [
+        "AC-08",
+        "AC-09",
+        "AC-10"
+      ],
+      "budget": {
+        "unit": "work-package",
+        "limit": 1,
+        "consumed": 1
+      },
+      "independence": "May integrate contributor commits but may not supply the independent QA gate.",
+      "leases": [
+        {
+          "resource_id": "path:project/governance",
+          "start": "2026-09-09",
+          "review_at": "candidate-handoff",
+          "released": true
+        },
+        {
+          "resource_id": "branch:codex/project-task-adapter-bootstrap-pic",
+          "start": "2026-09-09",
+          "review_at": "candidate-handoff",
+          "released": true
+        }
+      ],
+      "stop_conditions": [
+        "clean local aggregate candidate and independent QA acceptance",
+        "blocked",
+        "budget exhausted"
+      ],
+      "forbidden_actions": [
+        "push",
+        "publish",
+        "deploy",
+        "merge main",
+        "history rewrite",
+        "branch deletion",
+        "worktree deletion",
+        "self-approval of QA"
+      ],
+      "status": "complete",
+      "handoff_ref": "project/governance/handoff-project-task-adapter-bootstrap.json",
+      "stopped_on": "clean local aggregate candidate and independent QA acceptance"
+    },
+    {
+      "assignment_id": "assignment-schema-01",
+      "role": "Spec/DEV",
+      "session_id": "session-schema-01",
+      "owner": "schema-contract-dev",
+      "capabilities": [
+        "schema",
+        "contract",
+        "documentation",
+        "validation"
+      ],
+      "read_scope": [
+        "AGENTS.md",
+        "docs/governance-contract.md",
+        "skills/engineering/eng-project-governance/**",
+        "project/governance/**"
+      ],
+      "write_scope": [
+        "project.yaml",
+        "contracts/project.schema.json",
+        "docs/project-task-adapters.md",
+        "scripts/validate_project.py",
+        "tests/test_project_schema.py"
+      ],
+      "acceptance_criteria": [
+        "AC-01",
+        "AC-02",
+        "AC-03",
+        "AC-06",
+        "AC-07"
+      ],
+      "budget": {
+        "unit": "work-package",
+        "limit": 1,
+        "consumed": 1
+      },
+      "independence": "Writer for D1 only; no overlap with D2 or QA.",
+      "leases": [
+        {
+          "resource_id": "scope:D1",
+          "start": "2026-09-09",
+          "review_at": "handoff",
+          "released": true
+        }
+      ],
+      "stop_conditions": [
+        "assigned AC complete with a committed handoff",
+        "blocked",
+        "budget exhausted"
+      ],
+      "forbidden_actions": [
+        "write outside declared scope",
+        "change public Skill registry or ownership",
+        "external write",
+        "push",
+        "cleanup",
+        "integrate another branch"
+      ],
+      "status": "complete",
+      "handoff": {
+        "base": "60bebbe1eb5d79c5b887017c41b59ea41d47a108",
+        "head": "1783c51bc97b11fdc28871f85dfb22864ab6c106",
+        "branch": "codex/project-task-adapter-bootstrap-schema",
+        "worktree": "/private/tmp/skill-creator-project-task-adapter-schema",
+        "clean": true,
+        "remaining_work": "PIC integration and independent QA"
+      }
+    },
+    {
+      "assignment_id": "assignment-adapter-01",
+      "role": "DEV",
+      "session_id": "session-adapter-01",
+      "owner": "local-adapter-dev",
+      "capabilities": [
+        "Python implementation",
+        "SQLite transactions",
+        "adapter testing"
+      ],
+      "read_scope": [
+        "AGENTS.md",
+        "docs/governance-contract.md",
+        "skills/engineering/eng-project-governance/references/work-items-and-adapters.md",
+        "project/governance/**"
+      ],
+      "write_scope": [
+        "task_adapters/**",
+        "tests/test_local_task_adapter.py"
+      ],
+      "acceptance_criteria": [
+        "AC-03",
+        "AC-04",
+        "AC-05",
+        "AC-06",
+        "AC-07"
+      ],
+      "budget": {
+        "unit": "work-package",
+        "limit": 1,
+        "consumed": 1
+      },
+      "independence": "Writer for D2 only; no overlap with D1 or QA.",
+      "leases": [
+        {
+          "resource_id": "scope:D2",
+          "start": "2026-09-09",
+          "review_at": "handoff",
+          "released": true
+        }
+      ],
+      "stop_conditions": [
+        "assigned AC complete with a committed handoff",
+        "blocked",
+        "budget exhausted"
+      ],
+      "forbidden_actions": [
+        "write outside declared scope",
+        "change project schema or public Skill registry",
+        "external write",
+        "push",
+        "cleanup",
+        "integrate another branch"
+      ],
+      "status": "complete",
+      "handoff": {
+        "base": "60bebbe1eb5d79c5b887017c41b59ea41d47a108",
+        "head": "c157ce97351fcaedc4f1538d3382c8c9400e9954",
+        "branch": "codex/project-task-adapter-bootstrap-local",
+        "worktree": "/private/tmp/skill-creator-project-task-adapter-local",
+        "clean": true,
+        "remaining_work": "PIC integration and independent QA"
+      }
+    },
+    {
+      "assignment_id": "assignment-qa-02",
+      "assignment_ref": "project/governance/qa-assignment-project-task-adapter-bootstrap.json",
+      "role": "QA",
+      "session_id": "session-qa-02",
+      "owner": "independent-qa",
+      "capabilities": [
+        "independent acceptance verification",
+        "schema and documentation audit",
+        "SQLite behavior validation",
+        "repository boundary audit"
+      ],
+      "context_revisions": [
+        "goal-r1",
+        "architecture-r1",
+        "tasks-r1",
+        "project-r3",
+        "candidate:9d52ae922e4e820d411696e044cac331ae6c751a"
+      ],
+      "read_scope": [
+        "frozen candidate and repository governance carrier"
+      ],
+      "write_scope": [],
+      "acceptance_criteria": [
+        "AC-01",
+        "AC-02",
+        "AC-03",
+        "AC-04",
+        "AC-05",
+        "AC-06",
+        "AC-07",
+        "AC-08",
+        "AC-09",
+        "AC-10"
+      ],
+      "budget": {
+        "unit": "work-package",
+        "limit": 1,
+        "consumed": 1
+      },
+      "independence": "The QA owner did not author the candidate or the PIC governance correction and may not repair or relax it.",
+      "leases": [],
+      "stop_conditions": [
+        "all AC accepted",
+        "first material failure recorded",
+        "candidate mismatch",
+        "budget exhausted"
+      ],
+      "forbidden_actions": [
+        "modify implementation, tests, or governance records",
+        "commit",
+        "integrate",
+        "push",
+        "cleanup"
+      ],
+      "status": "complete",
+      "handoff": {
+        "implementation_head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+        "governance_carrier_head": "2071ca9ebd33c093739bacba57d61455c829b4a9",
+        "result": "AC-01 through AC-10 pass",
+        "commands": [
+          "python3 scripts/validate_project.py",
+          "python3 scripts/validate_repository.py",
+          "python3 -m unittest discover -s tests -v",
+          "git diff --check",
+          "protected-path and candidate-to-carrier audits",
+          "ephemeral expected_revision conflict probe"
+        ],
+        "clean": true,
+        "remaining_work": "PIC closure handoff only"
+      }
+    }
+  ],
+  "lease_overlap_check": {
+    "status": "pass",
+    "evidence": "D1, D2, and PIC write scopes are path-disjoint; shared source files are read-only to contributors."
+  }
+}
