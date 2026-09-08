@@ -1,6 +1,6 @@
-# Project task-adapter binding and SDK
+# Project task-adapter mappings and SDK
 
-[project.yaml](../project.yaml) selects one task adapter for the project. It does **not** create a database, authenticate a GitHub or Jira client, start a mirror, or make the adapter available to a new Session. Those are execution-environment responsibilities.
+[project.yaml](../project.yaml) selects one task adapter and target for the project. The selected mapping translates the canonical task operations to the GitHub or GitLab tools already exposed in the current Session, or to the SQLite SDK interface. The project file does **not** install a plugin, authenticate an account, create a client, initialize storage, or start a mirror.
 
 The canonical file uses JSON-compatible YAML so the standard-library validator can parse it deterministically:
 
@@ -8,27 +8,29 @@ The canonical file uses JSON-compatible YAML so the standard-library validator c
 python3 scripts/validate_project.py
 ~~~
 
-The validator applies [project.schema.json](../contracts/project.schema.json), rejects unknown and sensitive fields, verifies the unique system-of-record binding, and checks the capabilities required by project governance.
+The validator applies [project.schema.json](../contracts/project.schema.json), rejects unknown and sensitive fields, and verifies the unique system-of-record binding.
 
 ## Core and environment boundary
 
 | skill-creator core | Execution environment/runtime |
 | --- | --- |
-| project.yaml schema and adapter selection | Resolve profile_ref |
+| project.yaml schema, adapter selection, and target | Install and authenticate plugins |
 | Provider-neutral TaskSource / TaskSink types | Database paths, credentials, accounts, and connections |
-| Read-only dependency checker | Construct SQLite, GitHub Issues, Jira, or other clients/stores |
+| Canonical-operation to provider-tool mappings | Expose provider tools to the Session |
 | Revision/conflict and WorkItem invariants | Provision schemas, initialize providers, and run mirrors |
-| Contract tests | Provider integration and lifecycle tests |
+| Mapping contract tests | Provider integration and lifecycle tests |
 
-The environment injects an already-resolved [AdapterDependency](../task_adapters/dependencies.py). The SDK compares its adapter id, binding, profile reference, contract version, capabilities, and structural TaskSource/TaskSink interfaces with project.yaml. The checker performs no lookup or write:
+The [mapping registry](../task_adapters/mappings.py) contains no provider client. It only resolves a canonical operation to ordered tool calls:
 
 ~~~python
-from task_adapters import require_dependency
+from task_adapters import check_tools, get_operation_calls
 
-dependency = require_dependency(project_config, environment_dependency)
+calls = get_operation_calls("github-issues", "create")
+# (OperationCall(tool="issue_write", fixed_arguments=(("method", "create"),)),)
+check = check_tools("github-issues", ("create",), session_tool_names)
 ~~~
 
-If the dependency is absent or incompatible, startup stops with the checker diagnostics. A Skill must not repair that condition by bootstrapping a provider.
+Before using a route, the Skill checks whether the current Session exposes the mapped tool in the selected plugin namespace. A missing tool is a dependency error. The Skill reports it and stops instead of repairing the environment or choosing another provider.
 
 ## Project selection
 
@@ -38,34 +40,32 @@ The checked-in project selects SQLite without including its path or initializati
 {
   "adapter_id": "sqlite",
   "binding": "sqlite@skill-creator-local",
-  "profile_ref": "runtime:skill-creator/sqlite",
-  "contract_version": 1,
-  "required_capabilities": ["resolve", "fetch", "changes", "create", "update", "transition", "comment"]
+  "target_ref": "task-space:skill-creator-local",
+  "contract_version": 1
 }
 ~~~
 
-The same schema selects GitHub Issues by changing the adapter binding and runtime profile:
+The same schema selects GitHub Issues by changing the adapter binding and target:
 
 ~~~json
 {
   "adapter_id": "github-issues",
   "binding": "github-issues@skill-creator-github",
-  "profile_ref": "runtime:skill-creator/github-issues",
-  "contract_version": 1,
-  "required_capabilities": ["resolve", "fetch", "changes", "create", "update", "transition", "comment"]
+  "target_ref": "github:incentlie-design/skills",
+  "contract_version": 1
 }
 ~~~
 
-For that second selection, the environment owns repository/account selection, authentication, GitHub client creation, and any provider-specific setup. profile_ref is an opaque reference to that environment configuration, never a credential container.
+GitLab Issues uses `adapter_id: gitlab-issues` and a `gitlab:group/project` target. `target_ref` identifies the project-owned task space; it is not an account, token, connection profile, or client configuration.
 
 At Session start:
 
 1. Validate project.yaml.
-2. Ask the environment for the selected profile_ref.
-3. Run require_dependency against the injected dependency.
-4. Use only the returned provider-neutral source/sink interfaces.
+2. Resolve the selected adapter in the mapping registry.
+3. Check that the mapped tools needed by the requested operation are available in the current Session.
+4. Invoke those tools with the selected target and canonical payload.
 
-Editing project.yaml therefore changes the requested binding, but it takes effect only when the Session environment supplies a matching dependency.
+For example, canonical `create` maps to `issue_write(method=create)` for GitHub and `save_work_item(type_name=Issue)` for GitLab. SQLite maps the same operation to `TaskSink.create`. Editing project.yaml changes which mapping is used; the selected plugin must already be installed, authenticated, and available to that Session.
 
 ## Contract invariants
 
@@ -79,6 +79,6 @@ Status mapping translates the five project states without creating another proje
 
 ## Version 1 to version 2
 
-Schema version 2 is intentionally breaking. It removes SQLite-specific kind, config.database, atomic-numbering settings, fixed local WorkItem reference formatting, and configurable revision syntax. Replace them with profile_ref, contract_version, and required_capabilities; move all provider construction and initialization settings to the execution environment.
+Schema version 2 is intentionally breaking. It removes SQLite-specific kind, config.database, atomic-numbering settings, fixed local WorkItem reference formatting, and configurable revision syntax. Replace them with adapter identity, target_ref, and contract_version; move plugin connections and provider construction to the execution environment.
 
 Consumers reject unsupported schema or adapter-contract versions rather than guessing. Increment config_revision whenever a project changes its binding or status mapping. Changing adapter_id, binding, or task_space_id is an explicit system-of-record migration, not a cosmetic edit. No version-1 compatibility shim or provider bootstrap remains in core.

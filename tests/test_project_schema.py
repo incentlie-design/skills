@@ -37,7 +37,7 @@ class ProjectSchemaTests(unittest.TestCase):
             selected.update(
                 adapter_id="github-issues",
                 binding="github-issues@skill-creator-github",
-                profile_ref="runtime:skill-creator/github-issues",
+                target_ref="github:incentlie-design/skills",
             )
             config["task_system"]["system_of_record"]["adapter_binding"] = selected["binding"]
 
@@ -61,19 +61,48 @@ class ProjectSchemaTests(unittest.TestCase):
         self.assertTrue(any("unexpected property config" in error for error in report["errors"]))
         self.assertTrue(any("fields are forbidden" in error for error in report["errors"]))
 
-    def test_profile_contract_and_source_capabilities_are_enforced(self):
+    def test_target_and_contract_are_enforced(self):
         def change(config):
             selected = config["task_system"]["selected_adapter"]
-            selected["profile_ref"] = "local-profile"
+            selected["target_ref"] = "missing-scheme"
             selected["contract_version"] = 2
-            selected["required_capabilities"].remove("resolve")
-            selected["required_capabilities"].append("fetch")
 
         report = self.validate_changed(change)
-        self.assertTrue(any("profile_ref" in error for error in report["errors"]))
+        self.assertTrue(any("target_ref" in error for error in report["errors"]))
         self.assertTrue(any("contract_version" in error for error in report["errors"]))
-        self.assertTrue(any("items must be unique" in error for error in report["errors"]))
-        self.assertTrue(any("requires ['resolve']" in error for error in report["errors"]))
+
+    def test_gitlab_issues_uses_the_same_provider_neutral_schema(self):
+        def select_gitlab(config):
+            config["task_space_id"] = "skill-creator-gitlab"
+            selected = config["task_system"]["selected_adapter"]
+            selected.update(
+                adapter_id="gitlab-issues",
+                binding="gitlab-issues@skill-creator-gitlab",
+                target_ref="gitlab:incentlie-design/skills",
+            )
+            config["task_system"]["system_of_record"]["adapter_binding"] = selected["binding"]
+
+        report = self.validate_changed(select_gitlab)
+        self.assertEqual(report["errors"], [])
+
+    def test_adapter_requires_a_known_mapping_and_matching_target_scheme(self):
+        def select_unknown(config):
+            selected = config["task_system"]["selected_adapter"]
+            selected.update(
+                adapter_id="unknown",
+                binding="unknown@skill-creator-local",
+            )
+            config["task_system"]["system_of_record"]["adapter_binding"] = selected["binding"]
+
+        unknown = self.validate_changed(select_unknown)
+        self.assertTrue(any("unknown task adapter" in error for error in unknown["errors"]))
+
+        wrong_scheme = self.validate_changed(
+            lambda config: config["task_system"]["selected_adapter"].update(
+                target_ref="github:incentlie-design/skills"
+            )
+        )
+        self.assertTrue(any("requires the 'task-space' scheme" in error for error in wrong_scheme["errors"]))
 
     def test_schema_version_and_minimum_status_profile_are_enforced(self):
         def change(config):

@@ -7,17 +7,8 @@
     "selected_adapter": {
       "adapter_id": "sqlite",
       "binding": "sqlite@skill-creator-local",
-      "profile_ref": "runtime:skill-creator/sqlite",
-      "contract_version": 1,
-      "required_capabilities": [
-        "resolve",
-        "fetch",
-        "changes",
-        "create",
-        "update",
-        "transition",
-        "comment"
-      ]
+      "target_ref": "task-space:skill-creator-local",
+      "contract_version": 1
     },
     "system_of_record": {
       "adapter_binding": "sqlite@skill-creator-local"

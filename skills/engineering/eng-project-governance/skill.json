@@ -8,6 +8,6 @@
   "owners": ["public-governance-maintainers"],
   "tags": ["project", "work-item", "release", "milestone", "remote-sync", "task-adapter"],
   "dependencies": ["eng-workspace-governance"],
-  "input_contract": "Raw intake or work-item reference, one system of record, artifact revisions, AC, dependencies, project profile, validated adapter dependency when selected, and write, release, or remote-sync decision authority.",
+  "input_contract": "Raw intake or work-item reference, one system of record, artifact revisions, AC, dependencies, project profile, selected adapter target and available mapped tools, and write, release, or remote-sync decision authority.",
   "output_contract": "Owned project handoff slice plus canonical WorkItem decisions, milestones, selected candidates, gates, optional RemoteSyncPlan reference, status, conflicts, and next owner."
 }

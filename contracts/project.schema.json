@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "project.schema.json",
   "title": "Project task-adapter binding",
-  "description": "Project selection of one provider-neutral task adapter; provider runtime configuration is external.",
+  "description": "Project selection of one provider-operation mapping and target; provider connections are external.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -31,7 +31,7 @@
   "x-owner": "eng-project-governance",
   "x-canonical-file": "project.yaml",
   "x-syntax": "json-compatible-yaml",
-  "x-runtime-boundary": "selection-only; provider provisioning, credentials, clients, stores, and mirrors are environment concerns",
+  "x-runtime-boundary": "selection and target only; plugins, credentials, clients, stores, and mirrors are environment concerns",
   "x-version-policy": {
     "current": 2,
     "compatibility": "unknown-fields-rejected",
@@ -43,7 +43,7 @@
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9._-]*$"
     },
-    "runtime_reference": {
+    "target_reference": {
       "type": "string",
       "pattern": "^[a-z][a-z0-9+.-]*:[A-Za-z0-9][A-Za-z0-9._/-]*$"
     },
@@ -53,31 +53,14 @@
       "required": [
         "adapter_id",
         "binding",
-        "profile_ref",
-        "contract_version",
-        "required_capabilities"
+        "target_ref",
+        "contract_version"
       ],
       "properties": {
         "adapter_id": {"$ref": "#/$defs/identifier"},
         "binding": {"type": "string", "minLength": 3},
-        "profile_ref": {"$ref": "#/$defs/runtime_reference"},
-        "contract_version": {"type": "integer", "const": 1},
-        "required_capabilities": {
-          "type": "array",
-          "minItems": 1,
-          "uniqueItems": true,
-          "items": {
-            "enum": [
-              "resolve",
-              "fetch",
-              "changes",
-              "create",
-              "update",
-              "transition",
-              "comment"
-            ]
-          }
-        }
+        "target_ref": {"$ref": "#/$defs/target_reference"},
+        "contract_version": {"type": "integer", "const": 1}
       }
     },
     "system_of_record": {

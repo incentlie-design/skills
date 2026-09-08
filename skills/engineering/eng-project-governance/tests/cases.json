@@ -41,12 +41,12 @@
     ]
   },
   {
-    "id": "project-missing-runtime-dependency",
+    "id": "project-missing-plugin-tool",
     "kind": "missing_input",
-    "prompt": "project.yaml selects GitHub Issues through a runtime profile, but this Session has no matching injected adapter dependency.",
+    "prompt": "project.yaml selects GitHub Issues, but this Session does not expose the mapped GitHub issue_write tool.",
     "expect": [
-      "Validates the project selection and reports the missing runtime profile as needs_input or blocked.",
-      "Does not initialize GitHub, create a client, request credentials, or silently fall back to SQLite.",
+      "Validates the project selection and reports the missing GitHub tool as needs_input or blocked.",
+      "Does not install or authenticate the plugin, initialize GitHub, create a client, or silently fall back to SQLite.",
       "Preserves the selected system of record until an authorized project migration changes it."
     ]
   }

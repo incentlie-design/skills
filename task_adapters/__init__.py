@@ -1,4 +1,4 @@
-"""Provider-neutral task adapter SDK."""
+"""Provider-neutral task adapter contracts and provider-operation mappings."""
 
 from .contracts import (
     ABSENT_REVISION,
@@ -15,37 +15,39 @@ from .contracts import (
     WriteRequest,
     WriteResult,
 )
-from .dependencies import (
+from .mappings import (
+    ADAPTER_MAPPINGS,
+    CANONICAL_OPERATIONS,
     TASK_ADAPTER_CONTRACT_VERSION,
-    AdapterDependency,
-    DependencyCheck,
-    DependencyUnavailable,
-    SINK_CAPABILITIES,
-    SOURCE_CAPABILITIES,
-    check_dependency,
-    require_dependency,
+    AdapterMapping,
+    OperationCall,
+    ToolCheck,
+    check_tools,
+    get_mapping,
+    get_operation_calls,
 )
 
 __all__ = [
     "ABSENT_REVISION",
-    "AdapterDependency",
+    "ADAPTER_MAPPINGS",
+    "AdapterMapping",
+    "CANONICAL_OPERATIONS",
     "ChangeSet",
-    "DependencyCheck",
-    "DependencyUnavailable",
     "InvalidRequest",
     "InvalidTransition",
+    "OperationCall",
     "ResolveResult",
     "RevisionConflict",
-    "SINK_CAPABILITIES",
-    "SOURCE_CAPABILITIES",
     "TASK_ADAPTER_CONTRACT_VERSION",
     "TaskChange",
     "TaskNotFound",
     "TaskSink",
     "TaskSnapshot",
     "TaskSource",
+    "ToolCheck",
     "WriteRequest",
     "WriteResult",
-    "check_dependency",
-    "require_dependency",
+    "check_tools",
+    "get_mapping",
+    "get_operation_calls",
 ]

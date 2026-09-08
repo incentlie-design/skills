@@ -9,13 +9,13 @@ Own delivery and release decisions without binding the workflow to one tracker, 
 
 ## Required inputs
 
-Start from raw intake or a resolvable `work_item_ref`. Require exactly one `system_of_record`, source references, current goal/architecture/task revisions, acceptance criteria, dependencies, project profile, and the authority relevant to any external write, release selection, or remote-sync decision. When `project.yaml` selects a task adapter, also require a validated binding and a matching environment-injected dependency. When remote synchronization is in scope, require its purpose, target remote/visibility, candidate branch roles or refs, trigger or timing, retention needs, and decision owner. Missing or conflicting source-of-record or adapter-dependency data stops at `needs_input` or `blocked`.
+Start from raw intake or a resolvable `work_item_ref`. Require exactly one `system_of_record`, source references, current goal/architecture/task revisions, acceptance criteria, dependencies, project profile, and the authority relevant to any external write, release selection, or remote-sync decision. When `project.yaml` selects a task adapter, also require a valid binding, target, and an available tool for every operation the request needs. When remote synchronization is in scope, require its purpose, target remote/visibility, candidate branch roles or refs, trigger or timing, retention needs, and decision owner. Missing or conflicting source-of-record or adapter-tool data stops at `needs_input` or `blocked`.
 
 Read [work items and adapters](references/work-items-and-adapters.md) when normalizing intake, binding a task system, selecting candidates, opening a release window, deciding project remote synchronization, or writing external state. Use only the project slice from [the shared governance contract](../../../docs/governance-contract.md).
 
 ## Decisions and workflow
 
-1. When the project selects an adapter, validate the project binding and run the read-only dependency checker before adapter access. Treat `profile_ref` as an environment lookup reference; do not provision a database, authenticate a client, initialize a provider, or start a mirror.
+1. When the project selects an adapter, validate its binding and target, load that adapter's canonical-operation mapping, and check that this Session exposes the mapped tools. Use those tools directly; do not provision a database, install or authenticate a plugin, create a provider client, or start a mirror.
 2. Normalize raw intake into one canonical WorkItem. Preserve source evidence, unknowns, and the unique system of record; all other `source_refs` are links or mirrors.
 3. Track goal, architecture, and task-DAG revisions plus acceptance criteria and their impact relationships. Request specialized producers or reviewers when those artifacts are missing; do not write or approve them here.
 4. Derive bounded work packages, dependency order, milestones, and candidate criteria. Agent assignments may consume the WorkItem, but agent sessions do not become project state.

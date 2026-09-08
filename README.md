@@ -134,9 +134,9 @@ Before any push, fetch or query remote refs, bind validation to the exact local 
 
 ## Project task adapter
 
-[`project.yaml`](project.yaml) selects one provider-neutral task-adapter binding and an opaque environment `profile_ref`; it contains no credentials, database path, provider client settings, WorkItem data, or Agent/Session state. The core [task-adapter SDK](docs/project-task-adapters.md) contains the TaskSource/TaskSink contract and a read-only dependency checker.
+[`project.yaml`](project.yaml) selects one provider-neutral task-adapter binding and target; it contains no credentials, database path, provider client settings, WorkItem data, or Agent/Session state. The core [task-adapter SDK](docs/project-task-adapters.md) contains the TaskSource/TaskSink contract and canonical-operation mappings for SQLite, GitHub Issues, and GitLab Issues.
 
-SQLite databases, GitHub/Jira clients, provider initialization, and mirrors belong to the execution environment. A new Session validates the project selection against an already-injected dependency and stops if it is missing or incompatible; the Skill does not bootstrap it.
+The selected mapping uses provider tools already exposed in the Session. Plugin installation and authentication, SQLite storage, provider initialization, and mirrors belong to the execution environment; the Skill only checks availability and never bootstraps them.
 
 ## Validate
 

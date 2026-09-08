@@ -44,13 +44,23 @@ A `TaskSink` may expose `create`, `update`, `transition`, or `comment`. Every wr
 
 Adapters may be provided for local SQLite, Multica, GitHub Issues, GitLab Issues, Jira, or another Skill, plugin, or connector. Availability does not imply permission. Local files may serve as a source or sink only when the project profile declares them the system of record.
 
-## Runtime injection boundary
+## Provider operation mapping
 
-`project.yaml` selects an adapter id, stable binding, adapter-contract version, required capabilities, and an opaque environment `profile_ref`. It must not contain credentials, database paths, client construction, provider initialization, or mirror process settings.
+`project.yaml` selects an adapter id, stable binding, provider target, and adapter-contract version. Resolve each canonical operation through the selected mapping below; do not switch providers because another tool happens to be available.
 
-Before using the adapter, validate the project file and compare its selection with the environment-injected dependency. The dependency checker is read-only: it verifies identity, binding, profile reference, contract version, capabilities, and TaskSource/TaskSink shape. If the dependency is absent or incompatible, stop at `needs_input` or `blocked`; do not bootstrap or repair the environment from this Skill.
+| Canonical operation | `sqlite` SDK | `github-issues` plugin | `gitlab-issues` plugin |
+| --- | --- | --- | --- |
+| `resolve` | `TaskSource.resolve` | `search_issues`, then `issue_read(method=get)` | `list_work_items(types=[ISSUE])`, then `get_work_item` |
+| `fetch` | `TaskSource.fetch` | `issue_read(method=get)` | `get_work_item` |
+| `changes` | `TaskSource.changes` | `issue_read(method=get)` and `issue_read(method=get_comments)` | `get_work_item(include=[notes])` |
+| `create` | `TaskSink.create` | `issue_write(method=create)` | `save_work_item(type_name=Issue)` |
+| `update` | `TaskSink.update` | `issue_write(method=update)` | `save_work_item` with `work_item_iid` |
+| `transition` | `TaskSink.transition` | `issue_write(method=update, state=...)` | `save_work_item(state=opened|closed)` |
+| `comment` | `TaskSink.comment` | `add_issue_comment` | `save_note` |
 
-The environment resolves `profile_ref`, constructs and authenticates provider clients or stores, provisions any provider schema, and operates mirrors. Project governance still owns which source is canonical, whether a mirror is desired, its direction, and any system-of-record migration decision. Runtime availability never changes those decisions.
+The machine-readable copy and read-only `check_tools` helper are in [`task_adapters.mappings`](../../../../task_adapters/mappings.py). Provider tool names are matched within the selected plugin namespace. Before an operation, check that its mapped tools are exposed in the current Session. If not, stop with a dependency diagnostic naming the selected adapter and missing tool; do not install, sign in, bootstrap, or silently fall back from this Skill.
+
+Plugin installation, authentication, accounts, and permissions remain in the Codex environment. SQLite storage location and initialization remain in its external SDK implementation. `project.yaml` contains neither. Project governance still owns which source is canonical, whether a mirror is desired, its direction, and any system-of-record migration decision.
 
 ## Revision and release rules
 
