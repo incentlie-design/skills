@@ -19,7 +19,8 @@
         "AC-09: schema, repository, link, unit, and diff gates pass",
         "AC-10: clean local candidate with prohibited external and destructive actions absent"
       ],
-      "release_target": "local-candidate"
+      "release_target": "local-candidate",
+      "remote_sync_plan_ref": "project/governance/remote-sync-project-task-adapter-bootstrap.json"
     },
     "repo": {
       "repo_id": "skill-creator",

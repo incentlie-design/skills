@@ -1,18 +1,23 @@
 {
   "schema_version": 1,
-  "project_revision": "project-r4",
+  "project_revision": "project-r5",
   "work_item": {
     "work_item_ref": "local:project-task-adapter-bootstrap",
     "system_of_record": {
       "adapter_id": "repo-project-artifact",
       "external_id": "project/governance/project-task-adapter-bootstrap.json",
-      "revision": "project-r4"
+      "revision": "project-r5"
     },
     "source_refs": [
       {
         "adapter_id": "codex-delegation",
         "external_id": "01a0800a-20a5-7d43-9256-d38ae77dd7ea",
         "relation": "raw-intake"
+      },
+      {
+        "adapter_id": "codex-user-message",
+        "external_id": "push-branch-create-github-pr-2026-09-09",
+        "relation": "remote-sync-authorization"
       }
     ],
     "goal_revision": "goal-r1",
@@ -219,9 +224,19 @@
     }
   },
   "remote_sync_decision": {
-    "status": "not_required",
-    "reason": "The authorized stop is a local candidate and handoff; no cross-machine, CI, review, release, recovery, or publication need was supplied.",
-    "decision_owner": "user"
+    "status": "approved",
+    "reason": "After local candidate closure, the user explicitly requested that the aggregate branch be pushed to origin and opened as a GitHub pull request for hosted review and CI.",
+    "decision_owner": "user",
+    "decision_revision": "project-r5",
+    "plan_ref": "project/governance/remote-sync-project-task-adapter-bootstrap.json",
+    "impact_record": {
+      "from": "project-r4",
+      "to": "project-r5",
+      "candidate_changed": false,
+      "acceptance_criteria_changed": false,
+      "implementation_and_qa_evidence": "current",
+      "reason": "The new revision authorizes remote review only; it does not alter the accepted implementation candidate or its gates."
+    }
   },
   "naming_decision": {
     "input": "project.ymal",
