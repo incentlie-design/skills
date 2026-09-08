@@ -132,11 +132,18 @@ For the first publication of this rebuilt repository, only `main` is required. `
 
 Before any push, fetch or query remote refs, bind validation to the exact local head, confirm the branch contains no unintended or sensitive files, and obtain push authority. Push explicit refs only—never use `--all`, `--mirror`, bulk tag upload, remote deletion, or force update as a convenience. Tags are published separately only for an authorized version release.
 
+## Project task adapter
+
+[`project.yaml`](project.yaml) binds this project to one local SQLite task space without storing credentials, WorkItem data, or Agent/Session state in the configuration. The provider-neutral TaskSource/TaskSink contract, revision-conflict rules, schema evolution policy, and local adapter boundary are documented in [Project task-system binding and adapters](docs/project-task-adapters.md). Runtime state is created at the configured `.project/tasks.sqlite3` path and remains local; the bootstrap WorkItem and its governance decisions are recorded in [the project artifact](project/governance/project-task-adapter-bootstrap.json).
+
+The implementation uses only the Python standard library. Its tests exercise initialization, concurrent atomic numbering, duplicate binding, compare-and-swap conflicts with a fresh snapshot, reads, changes, transitions, and comments.
+
 ## Validate
 
 The validator uses only the Python standard library:
 
 ```sh
+python3 scripts/validate_project.py
 python3 scripts/validate_repository.py
 python3 -m unittest discover -s tests
 git diff --check

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "project_revision": "project-r1",
+  "project_revision": "project-r2",
   "work_item": {
     "work_item_ref": "local:project-task-adapter-bootstrap",
     "system_of_record": {
       "adapter_id": "repo-project-artifact",
       "external_id": "project/governance/project-task-adapter-bootstrap.json",
-      "revision": "project-r1"
+      "revision": "project-r2"
     },
     "source_refs": [
       {
@@ -37,7 +37,10 @@
       "candidate-frozen",
       "independent-qa-accepted"
     ],
-    "candidate_refs": [],
+    "candidate_refs": [
+      "repo:codex/project-task-adapter-bootstrap-schema@1783c51bc97b11fdc28871f85dfb22864ab6c106",
+      "repo:codex/project-task-adapter-bootstrap-local@c157ce97351fcaedc4f1538d3382c8c9400e9954"
+    ],
     "release_target": "local-candidate",
     "status": "running"
   },
@@ -168,9 +171,17 @@
     }
   },
   "candidate_decision": {
-    "status": "open",
+    "status": "aggregated-pending-freeze",
     "selection_owner": "PIC",
-    "ordered_candidate_refs": [],
+    "ordered_candidate_refs": [
+      "repo:codex/project-task-adapter-bootstrap-schema@1783c51bc97b11fdc28871f85dfb22864ab6c106",
+      "repo:codex/project-task-adapter-bootstrap-local@c157ce97351fcaedc4f1538d3382c8c9400e9954"
+    ],
+    "integration_evidence": [
+      "D1 cherry-picked as d5263cb948d9cdae63bf22d5673d1a71df40fef0",
+      "D2 cherry-picked as 8dee5baf8f40269cdd5e03b4e508312735091a0f",
+      "Contributor merge bases both equal 60bebbe1eb5d79c5b887017c41b59ea41d47a108 and their write scopes are disjoint"
+    ],
     "frozen_head": null,
     "gates": [
       "repository-validator",

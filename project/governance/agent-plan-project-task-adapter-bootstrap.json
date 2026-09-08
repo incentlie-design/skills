@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "work_item_ref": "local:project-task-adapter-bootstrap",
-  "adapter_binding": "repo-project-artifact@project-r1",
+  "adapter_binding": "repo-project-artifact@project-r2",
   "context_revisions": [
     "goal-r1",
     "architecture-r1",
@@ -106,7 +106,7 @@
       "budget": {
         "unit": "work-package",
         "limit": 1,
-        "consumed": 0
+        "consumed": 1
       },
       "independence": "Writer for D1 only; no overlap with D2 or QA.",
       "leases": [
@@ -114,7 +114,7 @@
           "resource_id": "scope:D1",
           "start": "2026-09-09",
           "review_at": "handoff",
-          "released": false
+          "released": true
         }
       ],
       "stop_conditions": [
@@ -130,7 +130,15 @@
         "cleanup",
         "integrate another branch"
       ],
-      "status": "ready"
+      "status": "complete",
+      "handoff": {
+        "base": "60bebbe1eb5d79c5b887017c41b59ea41d47a108",
+        "head": "1783c51bc97b11fdc28871f85dfb22864ab6c106",
+        "branch": "codex/project-task-adapter-bootstrap-schema",
+        "worktree": "/private/tmp/skill-creator-project-task-adapter-schema",
+        "clean": true,
+        "remaining_work": "PIC integration and independent QA"
+      }
     },
     {
       "assignment_id": "assignment-adapter-01",
@@ -162,7 +170,7 @@
       "budget": {
         "unit": "work-package",
         "limit": 1,
-        "consumed": 0
+        "consumed": 1
       },
       "independence": "Writer for D2 only; no overlap with D1 or QA.",
       "leases": [
@@ -170,7 +178,7 @@
           "resource_id": "scope:D2",
           "start": "2026-09-09",
           "review_at": "handoff",
-          "released": false
+          "released": true
         }
       ],
       "stop_conditions": [
@@ -186,7 +194,15 @@
         "cleanup",
         "integrate another branch"
       ],
-      "status": "ready"
+      "status": "complete",
+      "handoff": {
+        "base": "60bebbe1eb5d79c5b887017c41b59ea41d47a108",
+        "head": "c157ce97351fcaedc4f1538d3382c8c9400e9954",
+        "branch": "codex/project-task-adapter-bootstrap-local",
+        "worktree": "/private/tmp/skill-creator-project-task-adapter-local",
+        "clean": true,
+        "remaining_work": "PIC integration and independent QA"
+      }
     }
   ],
   "lease_overlap_check": {
