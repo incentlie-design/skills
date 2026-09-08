@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "eng-closed-loop-decisions",
+  "version": "1.0.0",
+  "category": "engineering",
+  "status": "active",
+  "summary": "Advises zero-to-one product and architecture work toward the smallest clean, evidence-producing end-to-end loop.",
+  "owners": ["public-governance-maintainers"],
+  "tags": ["decision", "zero-to-one", "product", "architecture", "simplicity", "feedback-loop", "yagni"],
+  "dependencies": [],
+  "input_contract": "Target actor, problem and outcome, feedback signal, current assets, hard constraints, unknowns, decision budget, and irreversible commitments.",
+  "output_contract": "Advisory ClosureDecision with one recommended loop, decisions now, reversible defaults, deferred triggers, clean invariants, evidence check, risks, and next owner."
+}

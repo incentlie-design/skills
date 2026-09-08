@@ -1,6 +1,6 @@
 # Governance responsibility and handoff contract
 
-This contract prevents the four Skills from copying or competing for the same state. The canonical machine-readable shape is [`governance-handoff.schema.json`](../contracts/governance-handoff.schema.json).
+This contract prevents the four state-owning governance Skills from copying or competing for the same state. The canonical machine-readable shape is [`governance-handoff.schema.json`](../contracts/governance-handoff.schema.json). `eng-closed-loop-decisions` is an advisory companion and owns no contract slice.
 
 ## Responsibility matrix
 
@@ -12,6 +12,10 @@ This contract prevents the four Skills from copying or competing for the same st
 | `eng-agent-governance` | `work_item_ref`, adapter binding, role/capability, session owner, scope, budget, acceptance and stop conditions | Agent slice, assignment/lease state, blocked/handoff/closure record | A second work-item state machine, Git mechanics, test semantics | Project state through its adapter; repository operations through repository governance |
 
 Ownership is exclusive. A Skill may quote another slice by `handoff_id` or reference, but must not rewrite it. If required fields are unavailable, return `needs_input` or `blocked`; do not invent placeholder revisions, commits, authority, or evidence.
+
+## Advisory companion
+
+`eng-closed-loop-decisions` may read supplied product, architecture, and project context and return a `ClosureDecision` recommendation. The owning artifact or project workflow may reference that recommendation as evidence, but the advisor cannot write any governance slice, approve an artifact, select a candidate or release, assign an agent, mutate a repository, or create external authority. Adding the advisor does not add a fifth slice or change the dependency direction below.
 
 ## Dependency direction
 

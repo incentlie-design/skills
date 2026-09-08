@@ -24,6 +24,12 @@
       "category": "engineering",
       "path": "skills/engineering/eng-agent-governance",
       "dependencies": ["eng-project-governance", "eng-repo-governance"]
+    },
+    {
+      "name": "eng-closed-loop-decisions",
+      "category": "engineering",
+      "path": "skills/engineering/eng-closed-loop-decisions",
+      "dependencies": []
     }
   ]
 }

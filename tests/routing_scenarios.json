@@ -46,6 +46,17 @@
       ],
       "stop": "Stop at a cleanup candidate unless exact targets, clean/recovery evidence, and explicit cleanup authority are present.",
       "forbid": ["agent-performed Git cleanup", "automatic deletion"]
+    },
+    {
+      "id": "zero-to-one-closed-loop-advice",
+      "request": "During zero-to-one product and architecture design, compare a broad distributed platform with a thin end-to-end path that can deliver one user outcome and produce evidence this week.",
+      "expected_route": ["eng-closed-loop-decisions", "eng-project-governance"],
+      "expected_owner_actions": [
+        "Closed-loop decisions recommends one smallest clean actor-to-evidence loop, reversible defaults, and explicit triggers for deferred complexity without owning project state.",
+        "Project governance owns any canonical WorkItem, acceptance, candidate, gate, or release decision that adopts the advice."
+      ],
+      "stop": "Stop after one advisory ClosureDecision and its owning project decision; implementation, Git mutation, and publication are not implied.",
+      "forbid": ["advisor-owned WorkItem state", "speculative platform expansion", "waived safety constraint"]
     }
   ]
 }
