@@ -2,12 +2,24 @@
 
 A public source repository for four orthogonal engineering-governance Skills. They coordinate delivery without assuming a particular task system, agent implementation, Git host, or Codex Project.
 
-| Skill | Owns | Does not own |
-| --- | --- | --- |
-| [`eng-repo-governance`](skills/engineering/eng-repo-governance/SKILL.md) | One Git repository: roles, branches, worktrees, exact refs, handoff commits, aggregation, freeze, verification, promotion, authorized push execution, rewrite, and cleanup safety | Deciding which project branches need remote synchronization or when, work-item selection, cross-repository topology, or agent lifecycle |
-| [`eng-workspace-governance`](skills/engineering/eng-workspace-governance/SKILL.md) | A multi-repository workspace: manifest, exact repository tuples, dependency DAG, source facts, cross-repository change set, launch context, and integration order | Per-repository Git mechanics, work-item state, or agent lifecycle |
-| [`eng-project-governance`](skills/engineering/eng-project-governance/SKILL.md) | Intake-to-close governance: canonical work items, revisions, milestones, candidate/release selection, release windows, pipeline gates, project remote-sync selection/timing, and task-system adapters | Writing requirements/architecture/code/tests or performing Git operations |
-| [`eng-agent-governance`](skills/engineering/eng-agent-governance/SKILL.md) | Capability roles, independence, sessions, assignments, budgets, ownership leases, blocking, handoffs, release, and closure responsibility | A second task state machine, Git mechanics, or test semantics |
+## Boundaries and responsibilities
+
+Choose the owner from the decision being made, not merely from the tool being used. Each Skill owns one state domain and delegates work outside that domain.
+
+| Skill | Governing question | Owns | Must not own |
+| --- | --- | --- | --- |
+| [`eng-project-governance`](skills/engineering/eng-project-governance/SKILL.md) | What work or candidate enters delivery, and when? | One canonical WorkItem and system of record; goal/architecture/task revisions; acceptance criteria; milestones; candidate and release-window selection; pipeline gates; closure decisions; `RemoteSyncPlan` selection and timing | Authoring requirements, architecture, code, or tests; repository mutations; workspace topology; agent-session state |
+| [`eng-workspace-governance`](skills/engineering/eng-workspace-governance/SKILL.md) | Which repositories and exact commits form the deliverable, in what dependency order? | Multi-repository manifest; exact repository tuples; source-fact ledger; cross-repository change set and DAG; launch context; handoff and integration order | Project/work-item state; single-repository Git policy or mutation; agent lifecycle |
+| [`eng-repo-governance`](skills/engineering/eng-repo-governance/SKILL.md) | How does one repository move safely from one exact Git state to another? | Branch/worktree roles; exact base and head; write scope; commits and handoffs; freeze, verification, integration, and promotion mechanics; execution of approved pushes, rewrites, and cleanup | Candidate/release or remote-sync selection and timing; cross-repository dependency ownership; agent-session state |
+| [`eng-agent-governance`](skills/engineering/eng-agent-governance/SKILL.md) | Who or which capability executes a bounded assignment, under what ownership, budget, and stop condition? | Capability roles; sessions and assignments; independence constraints; ownership leases; context and budget; blocked/handoff/closure records; lease release | A second WorkItem state machine; Git policy or mechanics; test-layer and pass/fail semantics |
+
+The practical split is:
+
+1. Project governance normalizes the request, records the current decision revisions and acceptance criteria, and selects candidates, release timing, gates, and any branches that need remote synchronization.
+2. Agent governance binds a bounded assignment to that project state. Its lease coordinates ownership but grants no new filesystem, Git, network, tracker, or production permission.
+3. Workspace governance participates only when the deliverable spans multiple repositories. It freezes the exact repository tuple and dependency order; a single-repository task does not need a workspace layer.
+4. Repository governance performs each authorized Git mutation against exact refs. It may reject stale or unsafe input, but it cannot change the project decision or expand a `RemoteSyncPlan`.
+5. Results return through the owning slices. Project governance records gate or closure decisions; “handoff,” “integrated,” “synchronized,” “published,” and “deployed” remain distinct states.
 
 ## Composition
 
@@ -21,7 +33,48 @@ eng-agent-governance   -> eng-repo-governance
 
 Dependencies mean “read or delegate when that boundary is needed,” not “invoke every Skill for every request.” Project governance selects what and when; workspace governance freezes where and in which dependency order; repository governance performs Git mechanics; agent governance assigns who or which capability and releases its leases.
 
-Cross-Skill handoffs use one shared, slice-owned packet: [responsibility and composition contract](docs/governance-contract.md) and [machine-readable schema](contracts/governance-handoff.schema.json). Each Skill writes only its own slice and references the others.
+Typical routes remain bounded:
+
+| Request shape | Route |
+| --- | --- |
+| One local repository change with an assigned executor | Agent → Repo |
+| Multi-repository delivery or release | Project → Workspace → Repo, with Agent for assignments |
+| External WorkItem transition | Agent → Project |
+| Branch/worktree cleanup after handoff | Agent reports/releases → Repo decides and executes |
+
+## Contract model
+
+Cross-Skill handoffs use one shared envelope defined by the [responsibility and composition contract](docs/governance-contract.md) and [machine-readable schema](contracts/governance-handoff.schema.json):
+
+```json
+{
+  "schema_version": 1,
+  "handoff_id": "handoff:example-42",
+  "slices": {
+    "project": {},
+    "workspace": {},
+    "repo": {},
+    "agent": {}
+  }
+}
+```
+
+Include only the slices that participate in the request. An included slice is complete and has exactly one owner:
+
+| Slice | Owner | Contract identity |
+| --- | --- | --- |
+| `project` | `eng-project-governance` | WorkItem reference; goal, architecture, and task revisions; acceptance criteria; release target; optional `remote_sync_plan_ref` |
+| `workspace` | `eng-workspace-governance` | Manifest reference; exact repository refs; cross-repository dependency edges |
+| `repo` | `eng-repo-governance` | Repository id; exact base/head; branch/worktree; write scope; freeze and promotion evidence |
+| `agent` | `eng-agent-governance` | Role/session/owner; budget and status; stop condition; handoff reference; released leases |
+
+The contract has five invariants:
+
+- **Exclusive ownership:** a Skill writes only its own slice. It may reference another slice by `handoff_id` or stable reference, but it cannot copy and then redefine that state.
+- **Exact evidence:** repository and workspace facts bind to exact commits; project and external-system decisions bind to explicit revisions. Floating refs and planned-but-unexecuted evidence are not accepted as completed state.
+- **Freshness propagation:** changing a participating goal, architecture, task, candidate, manifest, base, or head revision makes dependent gate and execution evidence stale until the owning Skill records an impact decision.
+- **Separate authority:** a plan or local commit does not authorize tracker writes, push, tag publication, history rewrite, cleanup, deployment, or production changes. Each external or destructive action needs its own authority and expected target revision.
+- **Bounded failure:** missing ownership, authority, exact refs, or a unique system of record returns `needs_input` or `blocked`; no Skill invents placeholder state or silently takes over another slice.
 
 ## GitHub remote and branch synchronization
 
