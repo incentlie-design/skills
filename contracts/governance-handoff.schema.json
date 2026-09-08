@@ -41,7 +41,8 @@
           "minItems": 1,
           "items": {"type": "string", "minLength": 1}
         },
-        "release_target": {"type": "string", "minLength": 1}
+        "release_target": {"type": "string", "minLength": 1},
+        "remote_sync_plan_ref": {"type": "string", "minLength": 1}
       }
     },
     "workspace": {

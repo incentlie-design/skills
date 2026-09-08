@@ -14,16 +14,16 @@
     },
     {
       "id": "cross-repo-release-window",
-      "request": "Select eligible candidates for a release window spanning dependent api and web repositories, assign execution, integrate locally, and record the gate.",
+      "request": "Select eligible candidates for a release window spanning dependent api and web repositories, decide which stable project branches require remote synchronization after the gate, assign execution, integrate locally, and record the gate.",
       "expected_route": ["eng-project-governance", "eng-workspace-governance", "eng-repo-governance", "eng-agent-governance"],
       "expected_owner_actions": [
-        "Project governance owns candidate and window selection plus the gate decision.",
+        "Project governance owns candidate and window selection, the gate decision, and remote-sync branch selection and timing.",
         "Workspace governance owns exact repository tuples and dependency order.",
-        "Repository governance owns the per-repository integration mechanics.",
+        "Repository governance owns per-repository integration and execution of the exact approved remote-sync refspecs.",
         "Agent governance owns assignments, independence, budgets, and released leases."
       ],
-      "stop": "Stop when the exact local integration heads and gate decision are recorded; publication and deployment are not implied.",
-      "forbid": ["floating repository refs", "agent-owned release selection"]
+      "stop": "Stop when the exact local integration heads, gate decision, and RemoteSyncPlan are recorded unless separate push authority is present; deployment is not implied.",
+      "forbid": ["floating repository refs", "repository-owned remote-sync selection", "agent-owned release selection"]
     },
     {
       "id": "external-task-revision-conflict",

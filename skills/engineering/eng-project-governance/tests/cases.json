@@ -28,5 +28,16 @@
       "Requests the appropriate specialized producer or existing artifact references.",
       "Does not create substitute documents, code, tests, or Git state."
     ]
+  },
+  {
+    "id": "project-happy-select-remote-sync-plan",
+    "kind": "happy",
+    "prompt": "Decide the first synchronization to an empty public GitHub repository. The verified stable main must be published. A pre-rebuild archive must be retained, but its remote visibility and historical-content exposure are not approved. Integrated session branches also exist locally.",
+    "expect": [
+      "Owns the what-and-when decision and creates a RemoteSyncPlan selecting only the stable main branch for the initial publication.",
+      "Keeps archive synchronization conditional until destination visibility and exposure review are approved, and does not select already-integrated session branches merely because they exist.",
+      "Records purpose, target remote and visibility, trigger or timing, retention, decision revision, owner, status, and required approval references.",
+      "Delegates exact refspec resolution, remote-revision validation, push authority, and Git execution to repository governance."
+    ]
   }
 ]

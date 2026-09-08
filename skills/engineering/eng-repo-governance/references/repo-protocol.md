@@ -49,15 +49,17 @@ Project governance owns candidate and release-window selection. This Skill confi
 
 ## Remote branch synchronization
 
-Build an explicit push allowlist from branch roles; never infer it from all local branches or worktrees.
+Consume the approved project `RemoteSyncPlan` and resolve only its named branch roles/refs into an explicit refspec allowlist. Never infer synchronization need from all local branches or worktrees, and never add a branch because it appears useful.
 
-- Stable branches are synchronized after the exact promoted head passes its gates and push authority is present. Do not force-update them.
-- Archive branches are synchronized only when their recovery point must survive local loss, the destination visibility is approved, and the archived tree passed an exposure review. Treat a published archive ref as immutable; use a restricted backup when it is not suitable for the main remote.
-- Integration branches are synchronized only when remote CI, review, or another integrator must consume the frozen head.
-- Contributor, review, aggregate, session, or agent branches are synchronized only for a cross-machine/owner handoff, PR, remote CI, or an explicit recovery decision. Ordinary local work and already-integrated branches remain local.
-- Release branches are synchronized only for an actual release workflow. Tags are a separate publication decision; do not bulk-push them.
+Validate the plan against these repository guardrails:
 
-Before pushing, read remote refs, compare the expected remote revision, verify the exact local head and intended paths, and obtain authority for the named refs. Push those refs individually. A non-fast-forward update, remote deletion, force update, or cleanup requires a separate decision and recovery evidence. Afterward, re-read the remote refs and report the exact result; partial success must not be summarized as full synchronization.
+- A selected stable branch must name the exact promoted head that passed its gates. Do not force-update it.
+- A selected archive branch requires approved destination visibility and exposure-review evidence. Treat a published archive ref as immutable; reject publication to the main remote when a restricted backup is required.
+- A selected integration branch must bind remote CI, review, or integrator consumption to the exact frozen head.
+- A selected contributor, review, aggregate, session, or agent branch must identify its cross-machine/owner handoff, PR, remote CI, or recovery purpose. Reject ordinary local or already-integrated work with no current purpose.
+- A selected release branch must correspond to an actual release workflow. Tags remain a separate publication decision and are never added implicitly or bulk-pushed.
+
+Repository governance may reject a stale, ambiguous, unauthorized, or unsafe plan, but it must not choose a new synchronization need or time. Before pushing, read remote refs, compare the expected remote revision, verify the exact local head and intended paths, and obtain authority for the named refspecs. Push those refspecs individually. A non-fast-forward update, remote deletion, force update, or cleanup requires a separate decision and recovery evidence. Afterward, re-read the remote refs and report the exact result; partial success must not be summarized as full synchronization.
 
 ## History rewrite and cleanup
 

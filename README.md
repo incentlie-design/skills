@@ -4,9 +4,9 @@ A public source repository for four orthogonal engineering-governance Skills. Th
 
 | Skill | Owns | Does not own |
 | --- | --- | --- |
-| [`eng-repo-governance`](skills/engineering/eng-repo-governance/SKILL.md) | One Git repository: roles, branches, worktrees, exact refs, handoff commits, aggregation, freeze, verification, promotion, rewrite, and cleanup safety | Work-item selection, cross-repository topology, or agent lifecycle |
+| [`eng-repo-governance`](skills/engineering/eng-repo-governance/SKILL.md) | One Git repository: roles, branches, worktrees, exact refs, handoff commits, aggregation, freeze, verification, promotion, authorized push execution, rewrite, and cleanup safety | Deciding which project branches need remote synchronization or when, work-item selection, cross-repository topology, or agent lifecycle |
 | [`eng-workspace-governance`](skills/engineering/eng-workspace-governance/SKILL.md) | A multi-repository workspace: manifest, exact repository tuples, dependency DAG, source facts, cross-repository change set, launch context, and integration order | Per-repository Git mechanics, work-item state, or agent lifecycle |
-| [`eng-project-governance`](skills/engineering/eng-project-governance/SKILL.md) | Intake-to-close governance: canonical work items, revisions, milestones, candidate/release selection, release windows, pipeline gates, and task-system adapters | Writing requirements/architecture/code/tests or performing Git operations |
+| [`eng-project-governance`](skills/engineering/eng-project-governance/SKILL.md) | Intake-to-close governance: canonical work items, revisions, milestones, candidate/release selection, release windows, pipeline gates, project remote-sync selection/timing, and task-system adapters | Writing requirements/architecture/code/tests or performing Git operations |
 | [`eng-agent-governance`](skills/engineering/eng-agent-governance/SKILL.md) | Capability roles, independence, sessions, assignments, budgets, ownership leases, blocking, handoffs, release, and closure responsibility | A second task state machine, Git mechanics, or test semantics |
 
 ## Composition
@@ -25,9 +25,9 @@ Cross-Skill handoffs use one shared, slice-owned packet: [responsibility and com
 
 ## GitHub remote and branch synchronization
 
-The canonical repository is [incentlie-design/skills](https://github.com/incentlie-design/skills), stored locally as `origin`. Remote writes remain separately authorized; configuring the remote does not authorize a push.
+The canonical repository is [incentlie-design/skills](https://github.com/incentlie-design/skills), stored locally as `origin`. `eng-project-governance` owns the decision about which project branch roles/refs need synchronization and when; the table below is this project's profile for that decision. `eng-repo-governance` consumes the approved plan, resolves it to exact refspecs, validates remote state and safety, and executes only a separately authorized push. Configuring the remote does not authorize one.
 
-| Ref role | Synchronize to GitHub when | Default |
+| Ref role | Project decision condition | Default |
 | --- | --- | --- |
 | `main` | The exact local head passed the required gates and was promoted to the stable branch | Push after each authorized stable promotion; never force-push |
 | `archive/*` | A named recovery baseline must survive local machine loss, the remote visibility is approved, and the archived tree passed an exposure review | Conditional push to an approved remote; keep immutable and do not silently move or delete |

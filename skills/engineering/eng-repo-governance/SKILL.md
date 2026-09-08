@@ -9,7 +9,7 @@ Own the collaboration and integration mechanics of one Git repository without as
 
 ## Required inputs
 
-Identify the repository and requested mutation, exact base and current head, branch/worktree and dirty-state facts, intended write scope, and the applicable project profile: branch patterns, change key, integrator, and promotion authority. Resolve the exact target before mutating. If a required ref, dirty-path owner, or authority is missing, return `needs_input` or `blocked` and make no mutation.
+Identify the repository and requested mutation, exact base and current head, branch/worktree and dirty-state facts, intended write scope, and the applicable project profile: branch patterns, change key, integrator, and promotion authority. For project-branch synchronization, require an approved `RemoteSyncPlan` naming the selected branch roles/refs and timing; do not infer it from local state. Resolve the exact target before mutating. If a required ref, dirty-path owner, plan, or authority is missing, return `needs_input` or `blocked` and make no mutation.
 
 Read [the repository protocol](references/repo-protocol.md) when planning or performing a Git mutation. Use the repository slice from [the shared governance contract](../../../docs/governance-contract.md); write no other slice.
 
@@ -21,9 +21,10 @@ Read [the repository protocol](references/repo-protocol.md) when planning or per
 4. Perform only the authorized mutation. Record old and new exact refs; never use an unresolved path, glob, floating ref, or destructive fallback to conceal a conflict.
 5. Produce a handoff commit and repository slice containing base/head, branch/worktree, write scope, evidence, dependencies, and unresolved risks.
 6. For integration, freeze the candidate set and head, aggregate in declared order, verify the frozen head, and promote only the same verified history under the supplied promotion authority.
-7. Treat rebase, force updates, history rewrite, tag publication, push, and cleanup as separate decisions. Do not rewrite a handed-off/shared commit. Cleanup requires exact targets, clean-state and recoverability evidence, and explicit authority.
+7. For remote synchronization, consume the project-selected plan without adding refs or changing its timing, resolve its entries to exact refspecs and expected revisions, apply repository safety checks, execute only the authorized push, and record the observed remote result.
+8. Treat rebase, force updates, history rewrite, tag publication, push, and cleanup as separate decisions. Do not rewrite a handed-off/shared commit. Cleanup requires exact targets, clean-state and recoverability evidence, and explicit authority.
 
-Repository governance implements Git mechanics after project governance selects what and when. It does not select candidates or release windows, define cross-repository dependencies, or manage agent sessions.
+Repository governance implements Git mechanics after project governance selects what and when, including remote-sync branch selection and timing. It may reject a stale or unsafe plan but does not select candidates, release windows, or project branches for synchronization, define cross-repository dependencies, or manage agent sessions.
 
 ## Output and stop
 

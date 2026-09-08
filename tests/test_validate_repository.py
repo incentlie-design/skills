@@ -14,7 +14,7 @@ class RepositoryValidationTests(unittest.TestCase):
         report = validator.validate(ROOT)
         self.assertEqual(report["errors"], [])
         self.assertEqual(report["skills_checked"], 4)
-        self.assertEqual(report["behavior_cases_defined"], 13)
+        self.assertEqual(report["behavior_cases_defined"], 14)
         self.assertEqual(report["routing_scenarios_validated"], 4)
         self.assertEqual(report["behavior_cases_executed"], 0)
 
