@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "plan_ref": "remote-sync:project-task-adapter-sdk-redesign-github-pr-r1",
+  "plan_ref": "remote-sync:project-task-adapter-sdk-redesign-github-pr-r2",
   "work_item_ref": "local:project-task-adapter-sdk-redesign",
-  "decision_revision": "project-r1",
+  "decision_revision": "project-r3",
   "target_remote": "origin",
   "target_visibility": "existing-public-repository",
   "branches": [
     {
       "branch_role": "contributor",
       "branch_ref": "codex/project-task-adapter-sdk-redesign",
-      "reason": "Open a GitHub pull request for review of the task-adapter SDK redesign.",
+      "reason": "Update the existing GitHub pull request with the provider-operation mapping redesign.",
       "trigger": "focused-tests-and-skill-validation-pass",
       "retention": "until-pull-request-merged-or-closed"
     }
