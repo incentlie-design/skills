@@ -2,7 +2,7 @@
   "schema_version": 1,
   "freeze_id": "candidate-freeze:project-task-adapter-bootstrap-r1",
   "work_item_ref": "local:project-task-adapter-bootstrap",
-  "project_revision": "project-r2",
+  "project_revision": "project-r3",
   "release_target": "local-candidate",
   "selection_owner": "PIC",
   "ordered_contributor_candidates": [
@@ -53,8 +53,16 @@
     "unit-tests": "pass-15",
     "diff-check": "pass",
     "protected-path-audit": "pass",
-    "independent-qa": "pending"
+    "independent-qa": "rerun-pending-after-ac08-governance-correction"
   },
-  "status": "frozen-awaiting-independent-qa",
+  "prior_qa_failure": {
+    "assignment_id": "assignment-qa-01",
+    "session_id": "session-qa-01",
+    "result": "failed-ac08",
+    "reason": "The assigned candidate tree predated its freeze and QA-assignment records.",
+    "implementation_findings": "AC-01 through AC-07, AC-09, and locally observed AC-10 passed; no implementation change required.",
+    "corrective_action": "Project-r3 makes the exact frozen implementation head and the complete QA rerun assignment visible in the repository system of record."
+  },
+  "status": "refrozen-awaiting-independent-qa",
   "invalidated_by": "Any change to the candidate base, head, goal, architecture, task DAG, acceptance criteria, or selected candidate set."
 }

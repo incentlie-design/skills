@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "project_revision": "project-r2",
+  "project_revision": "project-r3",
   "work_item": {
     "work_item_ref": "local:project-task-adapter-bootstrap",
     "system_of_record": {
       "adapter_id": "repo-project-artifact",
       "external_id": "project/governance/project-task-adapter-bootstrap.json",
-      "revision": "project-r2"
+      "revision": "project-r3"
     },
     "source_refs": [
       {
@@ -171,7 +171,7 @@
     }
   },
   "candidate_decision": {
-    "status": "aggregated-pending-freeze",
+    "status": "frozen-awaiting-independent-qa-rerun",
     "selection_owner": "PIC",
     "ordered_candidate_refs": [
       "repo:codex/project-task-adapter-bootstrap-schema@1783c51bc97b11fdc28871f85dfb22864ab6c106",
@@ -182,7 +182,16 @@
       "D2 cherry-picked as 8dee5baf8f40269cdd5e03b4e508312735091a0f",
       "Contributor merge bases both equal 60bebbe1eb5d79c5b887017c41b59ea41d47a108 and their write scopes are disjoint"
     ],
-    "frozen_head": null,
+    "frozen_head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+    "freeze_record_ref": "project/governance/candidate-freeze-project-task-adapter-bootstrap.json",
+    "impact_record": {
+      "from": "project-r2",
+      "to": "project-r3",
+      "reason": "Record the exact implementation candidate and QA assignment in the repository system of record after independent QA rejected missing in-tree freeze evidence.",
+      "implementation_changed": false,
+      "functional_gate_evidence": "current for 9d52ae922e4e820d411696e044cac331ae6c751a",
+      "independent_qa_evidence": "stale-failed; rerun required"
+    },
     "gates": [
       "repository-validator",
       "project-schema-validator",

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "work_item_ref": "local:project-task-adapter-bootstrap",
-  "adapter_binding": "repo-project-artifact@project-r2",
+  "adapter_binding": "repo-project-artifact@project-r3",
   "context_revisions": [
     "goal-r1",
     "architecture-r1",
@@ -203,6 +203,63 @@
         "clean": true,
         "remaining_work": "PIC integration and independent QA"
       }
+    },
+    {
+      "assignment_id": "assignment-qa-02",
+      "assignment_ref": "project/governance/qa-assignment-project-task-adapter-bootstrap.json",
+      "role": "QA",
+      "session_id": "session-qa-02",
+      "owner": "independent-qa",
+      "capabilities": [
+        "independent acceptance verification",
+        "schema and documentation audit",
+        "SQLite behavior validation",
+        "repository boundary audit"
+      ],
+      "context_revisions": [
+        "goal-r1",
+        "architecture-r1",
+        "tasks-r1",
+        "project-r3",
+        "candidate:9d52ae922e4e820d411696e044cac331ae6c751a"
+      ],
+      "read_scope": [
+        "frozen candidate and repository governance carrier"
+      ],
+      "write_scope": [],
+      "acceptance_criteria": [
+        "AC-01",
+        "AC-02",
+        "AC-03",
+        "AC-04",
+        "AC-05",
+        "AC-06",
+        "AC-07",
+        "AC-08",
+        "AC-09",
+        "AC-10"
+      ],
+      "budget": {
+        "unit": "work-package",
+        "limit": 1,
+        "consumed": 0
+      },
+      "independence": "The QA owner did not author the candidate or the PIC governance correction and may not repair or relax it.",
+      "leases": [],
+      "stop_conditions": [
+        "all AC accepted",
+        "first material failure recorded",
+        "candidate mismatch",
+        "budget exhausted"
+      ],
+      "forbidden_actions": [
+        "modify implementation, tests, or governance records",
+        "commit",
+        "integrate",
+        "push",
+        "cleanup"
+      ],
+      "status": "ready"
     }
   ],
   "lease_overlap_check": {
