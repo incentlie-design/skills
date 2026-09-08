@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "project_revision": "project-r1",
+  "project_revision": "project-r2",
   "work_item": {
     "work_item_ref": "local:project-task-adapter-sdk-redesign",
     "system_of_record": {
       "adapter_id": "repo-project-artifact",
       "external_id": "project/governance/project-task-adapter-sdk-redesign.json",
-      "revision": "project-r1"
+      "revision": "project-r2"
     },
     "source_refs": [
       {
@@ -41,9 +41,11 @@
       "local-candidate-ready",
       "github-review-open"
     ],
-    "candidate_refs": [],
+    "candidate_refs": [
+      "repo:codex/project-task-adapter-sdk-redesign@d37b1e8e1141441ddc101a21841ce4bf6c8cc9b1"
+    ],
     "release_target": "github-pr",
-    "status": "running"
+    "status": "ready"
   },
   "revisions": {
     "goal-r1": {
@@ -130,6 +132,34 @@
         "D3"
       ]
     }
+  },
+  "candidate_decision": {
+    "status": "accepted-local-candidate",
+    "selection_owner": "user",
+    "base_commit": "c870ab6729c6abb582b6a2be754f5bb315dbd67f",
+    "candidate_ref": "repo:codex/project-task-adapter-sdk-redesign@d37b1e8e1141441ddc101a21841ce4bf6c8cc9b1",
+    "gates": [
+      "focused-unit-tests",
+      "repository-contract-validation",
+      "project-schema-validation",
+      "skill-structure-validation",
+      "diff-check"
+    ],
+    "gate_evidence": {
+      "focused-unit-tests": "pass-15",
+      "repository-contract-validation": "pass-through-unit-test",
+      "project-schema-validation": "pass-through-unit-test",
+      "skill-structure-validation": "repository-validator-pass; bundled quick validator unavailable because PyYAML is not installed",
+      "diff-check": "pass"
+    },
+    "impact_record": {
+      "from": "project-r1",
+      "to": "project-r2",
+      "reason": "Record the exact local implementation candidate and validation evidence before authorized remote review.",
+      "acceptance_criteria_changed": false,
+      "architecture_changed": false
+    },
+    "next_owner": "eng-repo-governance"
   },
   "remote_sync_decision": {
     "status": "approved",
