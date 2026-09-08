@@ -39,5 +39,15 @@
       "Records purpose, target remote and visibility, trigger or timing, retention, decision revision, owner, status, and required approval references.",
       "Delegates exact refspec resolution, remote-revision validation, push authority, and Git execution to repository governance."
     ]
+  },
+  {
+    "id": "project-missing-runtime-dependency",
+    "kind": "missing_input",
+    "prompt": "project.yaml selects GitHub Issues through a runtime profile, but this Session has no matching injected adapter dependency.",
+    "expect": [
+      "Validates the project selection and reports the missing runtime profile as needs_input or blocked.",
+      "Does not initialize GitHub, create a client, request credentials, or silently fall back to SQLite.",
+      "Preserves the selected system of record until an authorized project migration changes it."
+    ]
   }
 ]

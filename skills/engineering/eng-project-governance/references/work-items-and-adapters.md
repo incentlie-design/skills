@@ -44,6 +44,14 @@ A `TaskSink` may expose `create`, `update`, `transition`, or `comment`. Every wr
 
 Adapters may be provided for local SQLite, Multica, GitHub Issues, GitLab Issues, Jira, or another Skill, plugin, or connector. Availability does not imply permission. Local files may serve as a source or sink only when the project profile declares them the system of record.
 
+## Runtime injection boundary
+
+`project.yaml` selects an adapter id, stable binding, adapter-contract version, required capabilities, and an opaque environment `profile_ref`. It must not contain credentials, database paths, client construction, provider initialization, or mirror process settings.
+
+Before using the adapter, validate the project file and compare its selection with the environment-injected dependency. The dependency checker is read-only: it verifies identity, binding, profile reference, contract version, capabilities, and TaskSource/TaskSink shape. If the dependency is absent or incompatible, stop at `needs_input` or `blocked`; do not bootstrap or repair the environment from this Skill.
+
+The environment resolves `profile_ref`, constructs and authenticates provider clients or stores, provisions any provider schema, and operates mirrors. Project governance still owns which source is canonical, whether a mirror is desired, its direction, and any system-of-record migration decision. Runtime availability never changes those decisions.
+
 ## Revision and release rules
 
 Changes to goal, architecture, task DAG, acceptance criteria, candidate set, or release target create a new owned revision and mark dependent decisions/evidence stale unless an impact record says otherwise. Artifact authors and reviewers retain their own correctness authority; this Skill only records references and gate decisions.

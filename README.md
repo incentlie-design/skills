@@ -134,9 +134,9 @@ Before any push, fetch or query remote refs, bind validation to the exact local 
 
 ## Project task adapter
 
-[`project.yaml`](project.yaml) binds this project to one local SQLite task space without storing credentials, WorkItem data, or Agent/Session state in the configuration. The provider-neutral TaskSource/TaskSink contract, revision-conflict rules, schema evolution policy, and local adapter boundary are documented in [Project task-system binding and adapters](docs/project-task-adapters.md). Runtime state is created at the configured `.project/tasks.sqlite3` path and remains local; the bootstrap WorkItem and its governance decisions are recorded in [the project artifact](project/governance/project-task-adapter-bootstrap.json).
+[`project.yaml`](project.yaml) selects one provider-neutral task-adapter binding and an opaque environment `profile_ref`; it contains no credentials, database path, provider client settings, WorkItem data, or Agent/Session state. The core [task-adapter SDK](docs/project-task-adapters.md) contains the TaskSource/TaskSink contract and a read-only dependency checker.
 
-The implementation uses only the Python standard library. Its tests exercise initialization, concurrent atomic numbering, duplicate binding, compare-and-swap conflicts with a fresh snapshot, reads, changes, transitions, and comments.
+SQLite databases, GitHub/Jira clients, provider initialization, and mirrors belong to the execution environment. A new Session validates the project selection against an already-injected dependency and stops if it is missing or incompatible; the Skill does not bootstrap it.
 
 ## Validate
 

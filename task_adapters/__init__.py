@@ -1,4 +1,4 @@
-"""Provider-neutral task adapter contracts and local implementations."""
+"""Provider-neutral task adapter SDK."""
 
 from .contracts import (
     ABSENT_REVISION,
@@ -15,18 +15,30 @@ from .contracts import (
     WriteRequest,
     WriteResult,
 )
-from .sqlite import ConfigurationConflict, InitializationResult, SQLiteTaskAdapter
+from .dependencies import (
+    TASK_ADAPTER_CONTRACT_VERSION,
+    AdapterDependency,
+    DependencyCheck,
+    DependencyUnavailable,
+    SINK_CAPABILITIES,
+    SOURCE_CAPABILITIES,
+    check_dependency,
+    require_dependency,
+)
 
 __all__ = [
     "ABSENT_REVISION",
+    "AdapterDependency",
     "ChangeSet",
-    "ConfigurationConflict",
-    "InitializationResult",
+    "DependencyCheck",
+    "DependencyUnavailable",
     "InvalidRequest",
     "InvalidTransition",
     "ResolveResult",
     "RevisionConflict",
-    "SQLiteTaskAdapter",
+    "SINK_CAPABILITIES",
+    "SOURCE_CAPABILITIES",
+    "TASK_ADAPTER_CONTRACT_VERSION",
     "TaskChange",
     "TaskNotFound",
     "TaskSink",
@@ -34,4 +46,6 @@ __all__ = [
     "TaskSource",
     "WriteRequest",
     "WriteResult",
+    "check_dependency",
+    "require_dependency",
 ]

@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "project_revision": "project-r1",
+  "work_item": {
+    "work_item_ref": "local:project-task-adapter-sdk-redesign",
+    "system_of_record": {
+      "adapter_id": "repo-project-artifact",
+      "external_id": "project/governance/project-task-adapter-sdk-redesign.json",
+      "revision": "project-r1"
+    },
+    "source_refs": [
+      {
+        "adapter_id": "codex-user-message",
+        "external_id": "redesign-task-adapter-boundary-2026-09-09",
+        "relation": "raw-intake"
+      },
+      {
+        "adapter_id": "codex-user-message",
+        "external_id": "create-github-pr-2026-09-09",
+        "relation": "remote-sync-authorization"
+      }
+    ],
+    "goal_revision": "goal-r1",
+    "architecture_revision": "architecture-r2",
+    "task_revision": "tasks-r1",
+    "acceptance_criteria": [
+      "AC-01: project schema version 2 can select SQLite or GitHub Issues without provider runtime configuration or credentials.",
+      "AC-02: core retains provider-neutral TaskSource and TaskSink contracts and adds a read-only environment dependency checker.",
+      "AC-03: SQLite bootstrap, provider clients, authentication, initialization, and mirror processes are absent from core.",
+      "AC-04: eng-project-governance checks an injected dependency before adapter access and never bootstraps the environment.",
+      "AC-05: documentation explains Session activation, system-of-record ownership, mirror ownership, and the version-1 migration.",
+      "AC-06: focused tests and Skill validation pass while the public registry remains exactly five Skills.",
+      "AC-07: the local candidate is pushed only to the named contributor branch and opened as a GitHub pull request."
+    ],
+    "dependencies": [
+      "local:project-task-adapter-bootstrap"
+    ],
+    "milestones": [
+      "provider-neutral-sdk-ready",
+      "runtime-boundary-documented",
+      "local-candidate-ready",
+      "github-review-open"
+    ],
+    "candidate_refs": [],
+    "release_target": "github-pr",
+    "status": "running"
+  },
+  "revisions": {
+    "goal-r1": {
+      "summary": "Move provider construction out of skill-creator while keeping a provider-neutral project binding, SDK contract, and dependency check."
+    },
+    "architecture-r2": {
+      "summary": "Project configuration selects an adapter and opaque runtime profile; the environment resolves and injects the already-created provider dependency.",
+      "decisions": [
+        "Keep the TaskSource and TaskSink SDK contract in core.",
+        "Replace SQLite-specific project fields with adapter identity, binding, profile reference, contract version, and required capabilities.",
+        "Delete the concrete SQLite runtime and provider lifecycle tests from core.",
+        "Add one read-only checker instead of a registry, factory, bootstrapper, or provider loader.",
+        "Keep system-of-record and mirror-direction decisions in project governance while leaving mirror operation to the environment.",
+        "Use a breaking schema version without compatibility aliases or shims."
+      ],
+      "closure_decision": {
+        "loop": "project selects adapter -> environment injects matching dependency -> checker validates -> Skill uses generic SDK -> missing capability produces an actionable stop",
+        "success_signal": "SQLite and GitHub selections validate through the same schema and checker tests pass without any provider runtime in core",
+        "decide_now": [
+          "project/runtime ownership boundary",
+          "contract version",
+          "required capability check",
+          "single system of record"
+        ],
+        "default_now": [
+          "one opaque runtime profile reference",
+          "structural Python protocols",
+          "standard-library validation"
+        ],
+        "defer_until": [
+          "a provider registry until more than one runtime integration needs shared discovery",
+          "provider conformance suites until runtime packages are added outside this core"
+        ],
+        "reject": [
+          "provider bootstrap in a governance Skill",
+          "credentials or client settings in project.yaml",
+          "a SQLite compatibility layer in core"
+        ],
+        "replacement_seam": "AdapterDependency and the TaskSource/TaskSink protocols are the injection seam.",
+        "owner": "architecture-owner"
+      }
+    },
+    "tasks-r1": {
+      "dag": [
+        {
+          "id": "D1",
+          "name": "provider-neutral-config-and-sdk",
+          "depends_on": [],
+          "write_scope": [
+            "project.yaml",
+            "contracts/project.schema.json",
+            "scripts/validate_project.py",
+            "task_adapters/**",
+            "tests/test_project_schema.py",
+            "tests/test_task_adapter_dependencies.py"
+          ]
+        },
+        {
+          "id": "D2",
+          "name": "skill-and-documentation-boundary",
+          "depends_on": [
+            "D1"
+          ],
+          "write_scope": [
+            "README.md",
+            "docs/project-task-adapters.md",
+            "skills/engineering/eng-project-governance/**"
+          ]
+        },
+        {
+          "id": "D3",
+          "name": "local-candidate-and-github-review",
+          "depends_on": [
+            "D2"
+          ],
+          "write_scope": [
+            "project/governance/**"
+          ]
+        }
+      ],
+      "integration_order": [
+        "D1",
+        "D2",
+        "D3"
+      ]
+    }
+  },
+  "remote_sync_decision": {
+    "status": "approved",
+    "reason": "The user explicitly requested a GitHub merge request after the redesign is complete.",
+    "decision_owner": "user",
+    "decision_revision": "project-r1",
+    "plan_ref": "project/governance/remote-sync-project-task-adapter-sdk-redesign.json"
+  }
+}

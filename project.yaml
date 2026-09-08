@@ -1,37 +1,26 @@
 {
-  "schema_version": 1,
-  "config_revision": "project-config-r1",
+  "schema_version": 2,
+  "config_revision": "project-config-r2",
   "project_id": "skill-creator",
   "task_space_id": "skill-creator-local",
   "task_system": {
     "selected_adapter": {
-      "adapter_id": "local-sqlite",
-      "kind": "sqlite",
-      "binding": "local-sqlite@skill-creator-local",
-      "config": {
-        "database": ".project/tasks.sqlite3"
-      }
-    },
-    "number_issuance": {
-      "strategy": "atomic-sequence",
-      "prefix": "TASK",
-      "width": 6,
-      "start": 1
-    },
-    "work_item_binding": {
-      "work_item_ref_format": "local:{task_space_id}:{external_id}",
-      "cardinality": "one-to-one",
-      "duplicate_behavior": "duplicate-result-with-current-snapshot",
-      "conflicting_binding": "reject"
+      "adapter_id": "sqlite",
+      "binding": "sqlite@skill-creator-local",
+      "profile_ref": "runtime:skill-creator/sqlite",
+      "contract_version": 1,
+      "required_capabilities": [
+        "resolve",
+        "fetch",
+        "changes",
+        "create",
+        "update",
+        "transition",
+        "comment"
+      ]
     },
     "system_of_record": {
-      "adapter_binding": "local-sqlite@skill-creator-local"
-    },
-    "revision_policy": {
-      "format": "r{positive_integer}",
-      "create_expected_revision": "absent",
-      "writes_expected_revision": "required",
-      "on_conflict": "re-read-and-stop"
+      "adapter_binding": "sqlite@skill-creator-local"
     },
     "status_mapping": {
       "ready": "ready",

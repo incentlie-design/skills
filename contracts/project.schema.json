@@ -1,8 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "project.schema.json",
-  "title": "Project task-system binding",
-  "description": "Project configuration and one task-adapter binding; never Session or Agent state.",
+  "title": "Project task-adapter binding",
+  "description": "Project selection of one provider-neutral task adapter; provider runtime configuration is external.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -13,27 +13,17 @@
     "task_system"
   ],
   "properties": {
-    "schema_version": {"type": "integer", "const": 1},
+    "schema_version": {"type": "integer", "const": 2},
     "config_revision": {"type": "string", "pattern": "^project-config-r[1-9][0-9]*$"},
     "project_id": {"$ref": "#/$defs/identifier"},
     "task_space_id": {"$ref": "#/$defs/identifier"},
     "task_system": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "selected_adapter",
-        "number_issuance",
-        "work_item_binding",
-        "system_of_record",
-        "revision_policy",
-        "status_mapping"
-      ],
+      "required": ["selected_adapter", "system_of_record", "status_mapping"],
       "properties": {
         "selected_adapter": {"$ref": "#/$defs/selected_adapter"},
-        "number_issuance": {"$ref": "#/$defs/number_issuance"},
-        "work_item_binding": {"$ref": "#/$defs/work_item_binding"},
         "system_of_record": {"$ref": "#/$defs/system_of_record"},
-        "revision_policy": {"$ref": "#/$defs/revision_policy"},
         "status_mapping": {"$ref": "#/$defs/status_mapping"}
       }
     }
@@ -41,8 +31,9 @@
   "x-owner": "eng-project-governance",
   "x-canonical-file": "project.yaml",
   "x-syntax": "json-compatible-yaml",
+  "x-runtime-boundary": "selection-only; provider provisioning, credentials, clients, stores, and mirrors are environment concerns",
   "x-version-policy": {
-    "current": 1,
+    "current": 2,
     "compatibility": "unknown-fields-rejected",
     "breaking_change": "increment-schema-version-and-migrate",
     "instance_change": "increment-config-revision"
@@ -52,49 +43,41 @@
       "type": "string",
       "pattern": "^[a-z0-9][a-z0-9._-]*$"
     },
+    "runtime_reference": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9+.-]*:[A-Za-z0-9][A-Za-z0-9._/-]*$"
+    },
     "selected_adapter": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["adapter_id", "kind", "binding", "config"],
-      "properties": {
-        "adapter_id": {"$ref": "#/$defs/identifier"},
-        "kind": {"const": "sqlite"},
-        "binding": {"type": "string", "minLength": 1},
-        "config": {
-          "type": "object",
-          "additionalProperties": false,
-          "required": ["database"],
-          "properties": {
-            "database": {"type": "string", "pattern": "^[A-Za-z0-9._/-]+\\.sqlite3$"}
-          }
-        }
-      }
-    },
-    "number_issuance": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["strategy", "prefix", "width", "start"],
-      "properties": {
-        "strategy": {"const": "atomic-sequence"},
-        "prefix": {"type": "string", "pattern": "^[A-Z][A-Z0-9]*$"},
-        "width": {"type": "integer", "minimum": 1},
-        "start": {"type": "integer", "minimum": 1}
-      }
-    },
-    "work_item_binding": {
-      "type": "object",
-      "additionalProperties": false,
       "required": [
-        "work_item_ref_format",
-        "cardinality",
-        "duplicate_behavior",
-        "conflicting_binding"
+        "adapter_id",
+        "binding",
+        "profile_ref",
+        "contract_version",
+        "required_capabilities"
       ],
       "properties": {
-        "work_item_ref_format": {"const": "local:{task_space_id}:{external_id}"},
-        "cardinality": {"const": "one-to-one"},
-        "duplicate_behavior": {"const": "duplicate-result-with-current-snapshot"},
-        "conflicting_binding": {"const": "reject"}
+        "adapter_id": {"$ref": "#/$defs/identifier"},
+        "binding": {"type": "string", "minLength": 3},
+        "profile_ref": {"$ref": "#/$defs/runtime_reference"},
+        "contract_version": {"type": "integer", "const": 1},
+        "required_capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "resolve",
+              "fetch",
+              "changes",
+              "create",
+              "update",
+              "transition",
+              "comment"
+            ]
+          }
+        }
       }
     },
     "system_of_record": {
@@ -102,23 +85,7 @@
       "additionalProperties": false,
       "required": ["adapter_binding"],
       "properties": {
-        "adapter_binding": {"type": "string", "minLength": 1}
-      }
-    },
-    "revision_policy": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "format",
-        "create_expected_revision",
-        "writes_expected_revision",
-        "on_conflict"
-      ],
-      "properties": {
-        "format": {"const": "r{positive_integer}"},
-        "create_expected_revision": {"const": "absent"},
-        "writes_expected_revision": {"const": "required"},
-        "on_conflict": {"const": "re-read-and-stop"}
+        "adapter_binding": {"type": "string", "minLength": 3}
       }
     },
     "status_mapping": {
