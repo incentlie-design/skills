@@ -23,6 +23,22 @@ Dependencies mean “read or delegate when that boundary is needed,” not “in
 
 Cross-Skill handoffs use one shared, slice-owned packet: [responsibility and composition contract](docs/governance-contract.md) and [machine-readable schema](contracts/governance-handoff.schema.json). Each Skill writes only its own slice and references the others.
 
+## GitHub remote and branch synchronization
+
+The canonical repository is [incentlie-design/skills](https://github.com/incentlie-design/skills), stored locally as `origin`. Remote writes remain separately authorized; configuring the remote does not authorize a push.
+
+| Ref role | Synchronize to GitHub when | Default |
+| --- | --- | --- |
+| `main` | The exact local head passed the required gates and was promoted to the stable branch | Push after each authorized stable promotion; never force-push |
+| `archive/*` | A named recovery baseline must survive local machine loss, especially before a destructive structural change | Push once, keep immutable; do not silently move or delete |
+| `integrate/*`, `codex/integrate/*` | Remote CI, review, or another integrator must consume the exact frozen head | Local-only otherwise; remove remotely only with separate cleanup authority |
+| `session/*`, `codex/session/*`, `agent/*`, `codex/agent/*`, `review/*`, `aggregate/*` | An unmerged handoff must cross machines/owners, a PR or remote CI requires it, or it is approved as recovery-worthy work | Local-only after ordinary work; do not upload merely because a worktree exists |
+| `release/*` | A real release-stabilization workflow explicitly uses a remote branch | Do not create or push for routine delivery |
+
+For the first publication of this rebuilt repository, the intended branch set is `main` plus `archive/2026-09-08/main-before-public-governance-rebuild`. The already-integrated rebuild session branch and unrelated historical worktree branches are not part of that initial set.
+
+Before any push, fetch or query remote refs, bind validation to the exact local head, confirm the branch contains no unintended or sensitive files, and obtain push authority. Push explicit refs only—never use `--all`, `--mirror`, bulk tag upload, remote deletion, or force update as a convenience. Tags are published separately only for an authorized version release.
+
 ## Validate
 
 The validator uses only the Python standard library:

@@ -47,6 +47,18 @@ The freeze record contains stable base, ordered candidate commits, dependency or
 
 Project governance owns candidate and release-window selection. This Skill confirms ancestry and performs the profile-authorized merge, cherry-pick, or fast-forward. Squash or rewrite creates a new head and therefore needs evidence on that resulting head.
 
+## Remote branch synchronization
+
+Build an explicit push allowlist from branch roles; never infer it from all local branches or worktrees.
+
+- Stable branches are synchronized after the exact promoted head passes its gates and push authority is present. Do not force-update them.
+- Archive branches are synchronized when their recovery point must survive local loss or precede a destructive transition. Treat a published archive ref as immutable.
+- Integration branches are synchronized only when remote CI, review, or another integrator must consume the frozen head.
+- Contributor, review, aggregate, session, or agent branches are synchronized only for a cross-machine/owner handoff, PR, remote CI, or an explicit recovery decision. Ordinary local work and already-integrated branches remain local.
+- Release branches are synchronized only for an actual release workflow. Tags are a separate publication decision; do not bulk-push them.
+
+Before pushing, read remote refs, compare the expected remote revision, verify the exact local head and intended paths, and obtain authority for the named refs. Push those refs individually. A non-fast-forward update, remote deletion, force update, or cleanup requires a separate decision and recovery evidence. Afterward, re-read the remote refs and report the exact result; partial success must not be summarized as full synchronization.
+
 ## History rewrite and cleanup
 
 Rewrite only an unshared branch when policy and authority explicitly allow it; never use rewrite to bypass dirty state, evidence, or another writer. Push and force updates are remote writes with separate authority.
