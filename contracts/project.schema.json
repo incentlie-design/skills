@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "project.schema.json",
+  "title": "Project task-system binding",
+  "description": "Project configuration and one task-adapter binding; never Session or Agent state.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "config_revision",
+    "project_id",
+    "task_space_id",
+    "task_system"
+  ],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "config_revision": {"type": "string", "pattern": "^project-config-r[1-9][0-9]*$"},
+    "project_id": {"$ref": "#/$defs/identifier"},
+    "task_space_id": {"$ref": "#/$defs/identifier"},
+    "task_system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "selected_adapter",
+        "number_issuance",
+        "work_item_binding",
+        "system_of_record",
+        "revision_policy",
+        "status_mapping"
+      ],
+      "properties": {
+        "selected_adapter": {"$ref": "#/$defs/selected_adapter"},
+        "number_issuance": {"$ref": "#/$defs/number_issuance"},
+        "work_item_binding": {"$ref": "#/$defs/work_item_binding"},
+        "system_of_record": {"$ref": "#/$defs/system_of_record"},
+        "revision_policy": {"$ref": "#/$defs/revision_policy"},
+        "status_mapping": {"$ref": "#/$defs/status_mapping"}
+      }
+    }
+  },
+  "x-owner": "eng-project-governance",
+  "x-canonical-file": "project.yaml",
+  "x-syntax": "json-compatible-yaml",
+  "x-version-policy": {
+    "current": 1,
+    "compatibility": "unknown-fields-rejected",
+    "breaking_change": "increment-schema-version-and-migrate",
+    "instance_change": "increment-config-revision"
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "selected_adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adapter_id", "kind", "binding", "config"],
+      "properties": {
+        "adapter_id": {"$ref": "#/$defs/identifier"},
+        "kind": {"const": "sqlite"},
+        "binding": {"type": "string", "minLength": 1},
+        "config": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["database"],
+          "properties": {
+            "database": {"type": "string", "pattern": "^[A-Za-z0-9._/-]+\\.sqlite3$"}
+          }
+        }
+      }
+    },
+    "number_issuance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["strategy", "prefix", "width", "start"],
+      "properties": {
+        "strategy": {"const": "atomic-sequence"},
+        "prefix": {"type": "string", "pattern": "^[A-Z][A-Z0-9]*$"},
+        "width": {"type": "integer", "minimum": 1},
+        "start": {"type": "integer", "minimum": 1}
+      }
+    },
+    "work_item_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "work_item_ref_format",
+        "cardinality",
+        "duplicate_behavior",
+        "conflicting_binding"
+      ],
+      "properties": {
+        "work_item_ref_format": {"const": "local:{task_space_id}:{external_id}"},
+        "cardinality": {"const": "one-to-one"},
+        "duplicate_behavior": {"const": "duplicate-result-with-current-snapshot"},
+        "conflicting_binding": {"const": "reject"}
+      }
+    },
+    "system_of_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adapter_binding"],
+      "properties": {
+        "adapter_binding": {"type": "string", "minLength": 1}
+      }
+    },
+    "revision_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "create_expected_revision",
+        "writes_expected_revision",
+        "on_conflict"
+      ],
+      "properties": {
+        "format": {"const": "r{positive_integer}"},
+        "create_expected_revision": {"const": "absent"},
+        "writes_expected_revision": {"const": "required"},
+        "on_conflict": {"const": "re-read-and-stop"}
+      }
+    },
+    "status_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ready", "running", "blocked", "complete", "stopped"],
+      "properties": {
+        "ready": {"$ref": "#/$defs/identifier"},
+        "running": {"$ref": "#/$defs/identifier"},
+        "blocked": {"$ref": "#/$defs/identifier"},
+        "complete": {"$ref": "#/$defs/identifier"},
+        "stopped": {"$ref": "#/$defs/identifier"}
+      }
+    }
+  }
+}
