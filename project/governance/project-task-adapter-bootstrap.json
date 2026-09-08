@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "project_revision": "project-r3",
+  "project_revision": "project-r4",
   "work_item": {
     "work_item_ref": "local:project-task-adapter-bootstrap",
     "system_of_record": {
       "adapter_id": "repo-project-artifact",
       "external_id": "project/governance/project-task-adapter-bootstrap.json",
-      "revision": "project-r3"
+      "revision": "project-r4"
     },
     "source_refs": [
       {
@@ -39,10 +39,11 @@
     ],
     "candidate_refs": [
       "repo:codex/project-task-adapter-bootstrap-schema@1783c51bc97b11fdc28871f85dfb22864ab6c106",
-      "repo:codex/project-task-adapter-bootstrap-local@c157ce97351fcaedc4f1538d3382c8c9400e9954"
+      "repo:codex/project-task-adapter-bootstrap-local@c157ce97351fcaedc4f1538d3382c8c9400e9954",
+      "repo:codex/project-task-adapter-bootstrap-pic@9d52ae922e4e820d411696e044cac331ae6c751a"
     ],
     "release_target": "local-candidate",
-    "status": "running"
+    "status": "complete"
   },
   "revisions": {
     "goal-r1": {
@@ -171,7 +172,7 @@
     }
   },
   "candidate_decision": {
-    "status": "frozen-awaiting-independent-qa-rerun",
+    "status": "accepted-local-candidate",
     "selection_owner": "PIC",
     "ordered_candidate_refs": [
       "repo:codex/project-task-adapter-bootstrap-schema@1783c51bc97b11fdc28871f85dfb22864ab6c106",
@@ -192,13 +193,30 @@
       "functional_gate_evidence": "current for 9d52ae922e4e820d411696e044cac331ae6c751a",
       "independent_qa_evidence": "stale-failed; rerun required"
     },
+    "closure_impact_record": {
+      "from": "project-r3",
+      "to": "project-r4",
+      "reason": "Record independent QA acceptance and close the local candidate gate.",
+      "candidate_changed": false,
+      "acceptance_criteria_changed": false,
+      "prior_functional_evidence": "current",
+      "qa_evidence_ref": "qa:assignment-qa-02@2071ca9ebd33c093739bacba57d61455c829b4a9"
+    },
     "gates": [
       "repository-validator",
       "project-schema-validator",
       "unit-tests",
       "diff-check",
       "independent-qa"
-    ]
+    ],
+    "gate_evidence": {
+      "repository-validator": "pass",
+      "project-schema-validator": "pass",
+      "unit-tests": "pass-15",
+      "diff-check": "pass",
+      "independent-qa": "pass-ac01-through-ac10",
+      "qa_carrier_head": "2071ca9ebd33c093739bacba57d61455c829b4a9"
+    }
   },
   "remote_sync_decision": {
     "status": "not_required",

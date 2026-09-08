@@ -46,7 +46,7 @@
   "budget": {
     "unit": "work-package",
     "limit": 1,
-    "consumed": 0
+    "consumed": 1
   },
   "independence": "The QA owner did not author D1, D2, or PIC integration changes and may not repair or relax the candidate.",
   "leases": [],
@@ -87,6 +87,34 @@
     "clean": true,
     "leases_released": []
   },
-  "status": "ready",
+  "result": {
+    "status": "pass",
+    "accepted_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06",
+      "AC-07",
+      "AC-08",
+      "AC-09",
+      "AC-10"
+    ],
+    "implementation_head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+    "governance_carrier_head": "2071ca9ebd33c093739bacba57d61455c829b4a9",
+    "checks": [
+      "project validator pass",
+      "repository validator pass with exactly five Skills",
+      "15 of 15 unit tests pass",
+      "candidate and carrier diff checks pass",
+      "protected paths unchanged",
+      "candidate-to-carrier diff is governance-only",
+      "ephemeral expected_revision conflict probe pass"
+    ],
+    "clean": true,
+    "remaining_work": "PIC closure handoff only"
+  },
+  "status": "complete",
   "closure_owner": "PIC"
 }

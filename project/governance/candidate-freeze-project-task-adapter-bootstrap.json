@@ -2,7 +2,7 @@
   "schema_version": 1,
   "freeze_id": "candidate-freeze:project-task-adapter-bootstrap-r1",
   "work_item_ref": "local:project-task-adapter-bootstrap",
-  "project_revision": "project-r3",
+  "project_revision": "project-r4",
   "release_target": "local-candidate",
   "selection_owner": "PIC",
   "ordered_contributor_candidates": [
@@ -53,7 +53,7 @@
     "unit-tests": "pass-15",
     "diff-check": "pass",
     "protected-path-audit": "pass",
-    "independent-qa": "rerun-pending-after-ac08-governance-correction"
+    "independent-qa": "pass-ac01-through-ac10"
   },
   "prior_qa_failure": {
     "assignment_id": "assignment-qa-01",
@@ -63,6 +63,26 @@
     "implementation_findings": "AC-01 through AC-07, AC-09, and locally observed AC-10 passed; no implementation change required.",
     "corrective_action": "Project-r3 makes the exact frozen implementation head and the complete QA rerun assignment visible in the repository system of record."
   },
-  "status": "refrozen-awaiting-independent-qa",
+  "qa_acceptance": {
+    "assignment_id": "assignment-qa-02",
+    "session_id": "session-qa-02",
+    "implementation_head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+    "governance_carrier_head": "2071ca9ebd33c093739bacba57d61455c829b4a9",
+    "result": "pass",
+    "accepted_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06",
+      "AC-07",
+      "AC-08",
+      "AC-09",
+      "AC-10"
+    ],
+    "clean": true
+  },
+  "status": "accepted",
   "invalidated_by": "Any change to the candidate base, head, goal, architecture, task DAG, acceptance criteria, or selected candidate set."
 }

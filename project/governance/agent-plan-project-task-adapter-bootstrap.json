@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "work_item_ref": "local:project-task-adapter-bootstrap",
-  "adapter_binding": "repo-project-artifact@project-r3",
+  "adapter_binding": "repo-project-artifact@project-r4",
   "context_revisions": [
     "goal-r1",
     "architecture-r1",
@@ -38,7 +38,7 @@
       "budget": {
         "unit": "work-package",
         "limit": 1,
-        "consumed": 0
+        "consumed": 1
       },
       "independence": "May integrate contributor commits but may not supply the independent QA gate.",
       "leases": [
@@ -46,13 +46,13 @@
           "resource_id": "path:project/governance",
           "start": "2026-09-09",
           "review_at": "candidate-handoff",
-          "released": false
+          "released": true
         },
         {
           "resource_id": "branch:codex/project-task-adapter-bootstrap-pic",
           "start": "2026-09-09",
           "review_at": "candidate-handoff",
-          "released": false
+          "released": true
         }
       ],
       "stop_conditions": [
@@ -70,7 +70,9 @@
         "worktree deletion",
         "self-approval of QA"
       ],
-      "status": "running"
+      "status": "complete",
+      "handoff_ref": "project/governance/handoff-project-task-adapter-bootstrap.json",
+      "stopped_on": "clean local aggregate candidate and independent QA acceptance"
     },
     {
       "assignment_id": "assignment-schema-01",
@@ -242,7 +244,7 @@
       "budget": {
         "unit": "work-package",
         "limit": 1,
-        "consumed": 0
+        "consumed": 1
       },
       "independence": "The QA owner did not author the candidate or the PIC governance correction and may not repair or relax it.",
       "leases": [],
@@ -259,7 +261,22 @@
         "push",
         "cleanup"
       ],
-      "status": "ready"
+      "status": "complete",
+      "handoff": {
+        "implementation_head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+        "governance_carrier_head": "2071ca9ebd33c093739bacba57d61455c829b4a9",
+        "result": "AC-01 through AC-10 pass",
+        "commands": [
+          "python3 scripts/validate_project.py",
+          "python3 scripts/validate_repository.py",
+          "python3 -m unittest discover -s tests -v",
+          "git diff --check",
+          "protected-path and candidate-to-carrier audits",
+          "ephemeral expected_revision conflict probe"
+        ],
+        "clean": true,
+        "remaining_work": "PIC closure handoff only"
+      }
     }
   ],
   "lease_overlap_check": {
