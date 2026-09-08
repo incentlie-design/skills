@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "assignment_id": "assignment-qa-01",
+  "work_item_ref": "local:project-task-adapter-bootstrap",
+  "adapter_binding": "repo-project-artifact@project-r2",
+  "role": "QA",
+  "session_id": "session-qa-01",
+  "owner": "independent-qa",
+  "capabilities": [
+    "independent acceptance verification",
+    "schema and documentation audit",
+    "SQLite behavior validation",
+    "repository boundary audit"
+  ],
+  "context_revisions": [
+    "goal-r1",
+    "architecture-r1",
+    "tasks-r1",
+    "project-r2",
+    "candidate:9d52ae922e4e820d411696e044cac331ae6c751a"
+  ],
+  "candidate": {
+    "base": "f72bc4873eb1a438b4ee58a6514205926179aeeb",
+    "head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+    "branch": "codex/project-task-adapter-bootstrap-qa",
+    "worktree": "/private/tmp/skill-creator-project-task-adapter-qa"
+  },
+  "read_scope": [
+    "candidate tree and Git history"
+  ],
+  "write_scope": [],
+  "acceptance_criteria": [
+    "AC-01",
+    "AC-02",
+    "AC-03",
+    "AC-04",
+    "AC-05",
+    "AC-06",
+    "AC-07",
+    "AC-08",
+    "AC-09",
+    "AC-10"
+  ],
+  "budget": {
+    "unit": "work-package",
+    "limit": 1,
+    "consumed": 0
+  },
+  "independence": "The QA owner did not author D1, D2, or PIC integration changes and may not repair or relax the candidate.",
+  "leases": [],
+  "expected_outputs": [
+    "per-AC pass/fail evidence",
+    "exact commands and results",
+    "exact base/head and changed-path audit",
+    "clean/dirty state",
+    "limitations, risks, and remaining work"
+  ],
+  "stop_conditions": [
+    "all AC accepted",
+    "first material failure recorded",
+    "candidate revision mismatch",
+    "budget exhausted"
+  ],
+  "forbidden_actions": [
+    "modify production implementation",
+    "modify tests or acceptance semantics",
+    "commit",
+    "integrate",
+    "push",
+    "publish",
+    "deploy",
+    "merge main",
+    "history rewrite",
+    "branch deletion",
+    "worktree deletion"
+  ],
+  "status": "ready",
+  "closure_owner": "PIC"
+}
