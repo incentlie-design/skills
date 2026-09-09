@@ -3,60 +3,38 @@
   "scenarios": [
     {
       "id": "single-repo-assigned-change",
-      "request": "Assign a contributor to create a local change in one repository from an exact base and hand off the commit.",
-      "expected_route": [
-        "eng-agent-governance",
-        "eng-repo-governance"
-      ],
+      "request": "Assign a contributor to create the profile-named worktree from the supplied exact base, make a scoped local change in one repository, and hand off the commit.",
+      "expected_route": ["eng-agent-governance", "eng-repo-governance"],
       "expected_owner_actions": [
-        "Agent governance constrains the delegated outcome, executor scope, independence when required, and locatable result.",
-        "Repository governance owns exact refs, write isolation, scoped commits, and mutation evidence without requiring extra branch stages."
+        "Agent governance constrains the outcome, executor scope, and locatable result.",
+        "Repository governance inventories the common Git directory, occupancy and dirty ownership, follows the supplied branch profile, and records exact base/head evidence."
       ],
       "stop": "Stop at the local handoff commit; no push or cleanup is implied.",
-      "forbid": [
-        "mandatory numeric budget or file lease without a need",
-        "implicit remote write"
-      ]
+      "forbid": ["invented budget or lease", "unnecessary workspace manifest or task state", "implicit push or cleanup"]
     },
     {
       "id": "cross-repo-release-window",
-      "request": "Select eligible candidates for a release window spanning dependent api and web repositories, decide which stable project branches require remote synchronization after the gate, assign execution, integrate locally, and record the gate.",
-      "expected_route": [
-        "eng-project-governance",
-        "eng-workspace-governance",
-        "eng-repo-governance",
-        "eng-agent-governance"
-      ],
+      "request": "Register the authorized canonical tracker item, select two eligible exact candidates for a release window across dependent api and web repositories, decide stable remote-sync intent after the gate, assign execution, integrate locally, and record the gate.",
+      "expected_route": ["eng-project-governance", "eng-workspace-governance", "eng-repo-governance", "eng-agent-governance"],
       "expected_owner_actions": [
-        "Project governance owns authorized selection, gate evidence, and remote-sync intent and timing.",
-        "Workspace governance supplies exact consumed tuples and actual dependency constraints.",
+        "Project governance preserves one canonical record and source links, relevant revisions, acceptance, selection authority, candidate identities, release target, gate evidence, and remote-sync intent.",
+        "Workspace governance validates unique repository tuples and actual dependencies; the API input precedes its consumer action, not every unrelated action.",
         "Repository governance binds local integration evidence to exact resulting heads.",
-        "Agent governance constrains the chosen assignments and required independence without imposing Session lifecycle records."
+        "Agent governance preserves required independence; Session completion does not prove test acceptance."
       ],
       "stop": "Stop at the requested local integration and project decisions; no push or deployment without its authority.",
-      "forbid": [
-        "floating consumed refs",
-        "self-review presented as required independent acceptance",
-        "repo-owned remote-sync selection",
-        "implicit remote write"
-      ]
+      "forbid": ["floating consumed refs", "self-review presented as required independent acceptance", "repo-owned remote-sync selection", "implicit remote write"]
     },
     {
       "id": "external-task-revision-conflict",
       "request": "Update the canonical external WorkItem using a supplied expected revision, but the provider reports a revision conflict. Also summarize a supplied independent static log.",
-      "expected_route": [
-        "eng-project-governance"
-      ],
+      "expected_route": ["eng-project-governance"],
       "expected_owner_actions": [
         "Project governance re-reads canonical facts and reassesses the conflicting write.",
         "The Agent may summarize the independent log without requiring a new assignment or blocking unrelated authorized work."
       ],
       "stop": "Report the update conflict and independent log result without claiming the external write succeeded.",
-      "forbid": [
-        "blind overwrite",
-        "second task state machine",
-        "unnecessary Session creation"
-      ]
+      "forbid": ["blind overwrite", "second task state machine", "unnecessary Session creation"]
     },
     {
       "id": "merge-status-without-cleanup-request",
@@ -66,118 +44,214 @@
         "Acknowledge the status without adding deletion or archival actions; inspect read-only evidence only if needed for a claim."
       ],
       "stop": "Stop after the scoped response; no delivery lifecycle epilogue is required.",
-      "forbid": [
-        "implicit local or remote deletion",
-        "automatic Session archival",
-        "unnecessary cleanup approval workflow"
-      ]
+      "forbid": ["implicit local or remote deletion", "automatic Session archival", "unnecessary cleanup approval workflow"]
     },
     {
       "id": "zero-to-one-closed-loop-advice",
-      "request": "Compare a broad distributed platform with a thin end-to-end path for one user outcome and evidence this week. Advice only; do not register work or change project state.",
-      "expected_route": [
-        "eng-closed-loop-decisions"
-      ],
+      "request": "For a new appointment product, compare microservices and an event bus with one application. Learn whether one clinic accepts and completes a booking. Manual onboarding is allowed; privacy and audit logging are mandatory; scale is unknown. Advice only, no project-state changes.",
+      "expected_route": ["eng-closed-loop-decisions"],
       "expected_owner_actions": [
-        "Closed-loop decisions recommends one smallest clean path and meaningful complexity triggers.",
-        "No canonical project action is required solely to supply advice."
+        "Recommend one clean booking-to-completion path and its observable learning signal; preserve privacy and audit requirements.",
+        "Default reversible choices and defer distribution to measured triggers, with at most one materially distinct fallback.",
+        "Return advice without requiring canonical registration or an adoption decision."
       ],
       "stop": "Stop after the requested recommendation.",
-      "forbid": [
-        "advisor-owned WorkItem state",
-        "mandatory project adoption decision",
-        "speculative platform expansion",
-        "waived safety constraint"
-      ]
+      "forbid": ["advisor-owned WorkItem state", "mandatory project adoption decision", "speculative platform expansion", "waived safety constraint"]
     },
     {
       "id": "ordinary-local-change-without-records",
-      "request": "Fix the supplied parser edge case and make a local commit in this clean contributor worktree. Scope, input/output example, current writer, and exact HEAD are known. No tracker item, budget, assignment, or release exists; the selected tracker write tool is unavailable.",
-      "expected_route": [
-        "eng-dev",
-        "eng-repo-governance"
-      ],
+      "request": "Plan, fix, and self-check the supplied parser edge case, then make a local commit in this clean contributor worktree. Scope, input/output example, current writer, and exact HEAD are known. No tracker item, budget, assignment, release, or required independent acceptance exists; the selected tracker writer is unavailable.",
+      "expected_route": ["eng-pm", "eng-dev", "eng-repo-governance"],
       "expected_owner_actions": [
-        "DEV implements and self-checks the supplied bounded behavior.",
-        "Repository governance resolves and records exact Git evidence in the suitable existing worktree."
+        "The same Agent may use compatible planning and implementation capabilities without separate Sessions or project approval hops.",
+        "DEV supplies focused checks and self-check, not independent acceptance; project governance is not an artifact author.",
+        "Repository governance resolves exact Git evidence in the suitable existing worktree."
       ],
       "stop": "Deliver the scoped local commit and focused evidence without claiming any task-system update.",
-      "forbid": [
-        "mandatory WorkItem or Session creation",
-        "invented budget or lease",
-        "extra integration or release stages",
-        "implicit push"
-      ]
+      "forbid": ["mandatory WorkItem or Session creation", "invented budget or lease", "extra integration or release stages", "implicit push"]
     },
     {
       "id": "read-only-collaboration",
       "request": "Run the three independent read-only inspections through authorized internal delegation and return their findings; none may modify repository content.",
-      "expected_route": [
-        "eng-agent-governance"
-      ],
+      "expected_route": ["eng-agent-governance"],
       "expected_owner_actions": [
         "Agent governance constrains each scope, input, output, and authorized executor.",
         "The Agent chooses scheduling and collects the required findings without per-reader branches or write worktrees."
       ],
       "stop": "Return the requested findings or explicitly identify unavailable outputs.",
-      "forbid": [
-        "mandatory branches for readers",
-        "role-to-Session one-to-one rule",
-        "callback receipt as acceptance"
-      ]
+      "forbid": ["mandatory branches for readers", "role-to-Session one-to-one rule", "callback receipt as acceptance"]
     },
     {
       "id": "concurrent-repository-writers",
       "request": "Delegate two independent authorized code changes in the same repository to concurrent writers. Their expected outputs and write scopes are known.",
-      "expected_route": [
-        "eng-agent-governance",
-        "eng-repo-governance"
-      ],
+      "expected_route": ["eng-agent-governance", "eng-repo-governance"],
       "expected_owner_actions": [
         "Agent governance preserves bounded scope and responsibility.",
         "Repository governance isolates concurrent writers in suitable worktrees from exact bases and protects existing dirty changes."
       ],
       "stop": "Deliver local scoped outputs and evidence; selection or integration is a separate requested action.",
-      "forbid": [
-        "two active writers in one worktree",
-        "duplicated mandatory file-lease state",
-        "silent branch movement",
-        "automatic integration"
-      ]
+      "forbid": ["two active writers in one worktree", "duplicated mandatory file-lease state", "silent branch movement", "automatic integration"]
     },
     {
       "id": "pending-task-creation",
       "request": "An authorized task creation returned a setup handle. It is absent from the recent list and no documented handle-resolution mechanism is exposed. Report status.",
-      "expected_route": [
-        "eng-agent-governance"
-      ],
+      "expected_route": ["eng-agent-governance"],
       "expected_owner_actions": [
         "Report the observed pending creation and resolution limitation using the original handle only where supported."
       ],
       "stop": "Report the unresolved creation without claiming active background monitoring.",
-      "forbid": [
-        "duplicate creation inferred from list absence",
-        "passing a setup handle as a Session id",
-        "private runtime database resolver"
-      ]
+      "forbid": ["duplicate creation inferred from list absence", "passing a setup handle as a Session id", "private runtime database resolver"]
     },
     {
       "id": "partial-wait-and-failed-callback",
       "request": "Aggregate three dispatched results. The first-completion wait returned one. Another finished artifact is readable but its callback failed and title is stale; the last task remains readable through its known id.",
-      "expected_route": [
-        "eng-agent-governance"
-      ],
+      "expected_route": ["eng-agent-governance"],
       "expected_owner_actions": [
         "Collect the needed available artifacts through authorized reads and check their scope and relevant evidence.",
         "Do not treat the first completion as aggregate completion; explicitly account for any unavailable result."
       ],
       "stop": "Return the aggregate when required outputs are available, or identify the specific missing dependency.",
-      "forbid": [
-        "rerunning a producer because callback failed",
-        "waiting on title synchronization",
-        "all-Session terminal gate",
-        "false full-completion claim"
-      ]
+      "forbid": ["rerunning a producer because callback failed", "waiting on title synchronization", "all-Session terminal gate", "false full-completion claim"]
+    },
+    {
+      "id": "explicit-independent-assignments",
+      "request": "Keep the current coordinator task and title. Create new independent DEV and QA Sessions for the supplied WorkItem, with bounded outputs, revisioned inputs, explicit budgets, shared-resource leases, and stop conditions.",
+      "expected_route": ["eng-agent-governance"],
+      "expected_owner_actions": [
+        "Honor the requested new Sessions rather than substituting a rename or internal subagent; preserve the current task.",
+        "Respect the given scope, budgets, leases and QA independence without duplicating canonical project state.",
+        "Make outputs locatable and account for the used leases without a callback receipt or title-sync gate."
+      ],
+      "stop": "Stop at the requested dispatch or report the specific missing authority.",
+      "forbid": ["permission inheritance from parent relationships", "self-review as independent QA", "unrequested tracker or lifecycle store"]
+    },
+    {
+      "id": "missing-dispatch-scope",
+      "request": "Start a worker that can change whatever resources it wants; no outcome, executor scope, or write authority can be determined.",
+      "expected_route": ["eng-agent-governance"],
+      "expected_owner_actions": [
+        "Resolve the outcome and allowed resource scope before dispatching writes; ask only for missing facts that affect that action."
+      ],
+      "stop": "Do not dispatch unspecified writes.",
+      "forbid": ["invented access permission", "unrelated WorkItem, title, or numeric-budget prerequisites"]
+    },
+    {
+      "id": "completion-is-not-acceptance",
+      "request": "The implementation Session ended. Transition the external task, delete its worktree, and mark the test plan passed; no test evidence or expected tracker revision is supplied.",
+      "expected_route": ["eng-agent-governance", "eng-project-governance", "eng-repo-governance", "eng-qa-reviewer"],
+      "expected_owner_actions": [
+        "Project governance requires the canonical binding, authority and expected revision before updating the task.",
+        "Repo governance checks exact cleanup targets, ownership, clean state and recovery under the scoped deletion request.",
+        "QA distinguishes missing evidence from a test failure and cannot infer a pass from Session completion; these owner boundaries do not require separate Agents."
+      ],
+      "stop": "Report each supported result and each blocked claim separately.",
+      "forbid": ["test pass inferred from Session status", "blind tracker overwrite", "unsafe or unrelated cleanup"]
+    },
+    {
+      "id": "explicit-naming-and-cleanup-preference",
+      "request": "Use my PIC · status · branch-phase · requirement title convention for this task. For this task only, when I say 已合并, clean its local branch/worktree and archive its Session.",
+      "expected_route": ["eng-agent-governance", "eng-repo-governance"],
+      "expected_owner_actions": [
+        "Honor the requested naming and scoped preference using observed state.",
+        "On the stated trigger, verify the exact integrated head, clean recoverable worktree and task identity without asking again for authority already granted."
+      ],
+      "stop": "Report actual cleanup/archival or retained uncertain state.",
+      "forbid": ["preference applied to unrelated tasks", "fabricated title status", "implicit remote deletion"]
+    },
+    {
+      "id": "ambiguous-canonical-source",
+      "request": "Update a task in two trackers as if both were canonical; no expected revision or external-write authority is supplied.",
+      "expected_route": ["eng-project-governance"],
+      "expected_owner_actions": [
+        "Resolve one system of record and an authorized sink with an expected revision before writing."
+      ],
+      "stop": "Report the ambiguity and missing authority without external writes.",
+      "forbid": ["dual canonical writers", "silent mirror or migration", "blind overwrite"]
+    },
+    {
+      "id": "remote-sync-selection",
+      "request": "Decide first-publication intent: verified stable main must be published to the empty public repository. An archive must be retained but its destination visibility and historical exposure are unapproved. Integrated contributor branches also exist.",
+      "expected_route": ["eng-project-governance"],
+      "expected_owner_actions": [
+        "Select only main; record purpose, remote/visibility, timing, retention, decision source/owner and required approvals.",
+        "Keep archive synchronization conditional and do not select integrated branches merely because they exist.",
+        "Leave exact refspecs and authorized execution to repo governance."
+      ],
+      "stop": "Return the scoped remote-sync decision without executing a push.",
+      "forbid": ["repo-owned publication intent", "unapproved archive exposure", "implicit remote write"]
+    },
+    {
+      "id": "missing-adapter-tool",
+      "request": "Analyze the supplied self-contained bug report and update its canonical issue. The selected GitHub Issues adapter lacks the mapped issue_write tool.",
+      "expected_route": ["eng-project-governance"],
+      "expected_owner_actions": [
+        "Complete independent analysis from supplied facts, while reporting the canonical update as blocked.",
+        "Preserve the selected source of record and distinguish analysis completion from an unperformed issue write."
+      ],
+      "stop": "Deliver the analysis and named adapter limitation.",
+      "forbid": ["plugin installation or sign-in", "new provider client", "silent SQLite fallback", "false update claim"]
+    },
+    {
+      "id": "dirty-owner-or-base-conflict",
+      "request": "Commit these edits and merge them, but the intended base is unspecified and an existing dirty path has no known owner.",
+      "expected_route": ["eng-repo-governance"],
+      "expected_owner_actions": [
+        "Inspect available ref facts read-only; block mutations while the intended base or dirty ownership remains unresolved."
+      ],
+      "stop": "Report the specific unresolved facts without altering Git state.",
+      "forbid": ["checkout, commit or merge through the conflict", "stash or reset to hide dirty content", "floating ref substituted as exact evidence"]
+    },
+    {
+      "id": "read-only-repository-inspection",
+      "request": "Show repository status, the last three commits, and the current diff; make no changes.",
+      "expected_route": [],
+      "expected_owner_actions": [
+        "Use read-only inspection and report the requested facts without loading mutation prerequisites."
+      ],
+      "stop": "Stop after the report.",
+      "forbid": ["new branch, worktree, commit or tag", "required handoff packet"]
+    },
+    {
+      "id": "authorized-exact-remote-sync",
+      "request": "Execute the approved plan selecting only stable main. Exact verified local head, expected empty remote state and push authority are supplied. Archives and historical or integrated contributor branches are outside the plan.",
+      "expected_route": ["eng-repo-governance"],
+      "expected_owner_actions": [
+        "Resolve only main to an exact refspec and check local head, expected remote state, intended paths and plan freshness.",
+        "Execute only the authorized update, then re-read and report the exact remote result or partial failure."
+      ],
+      "stop": "Stop at the observed scoped synchronization result.",
+      "forbid": ["adding refs or changing timing", "--all or --mirror", "bulk tags, deletion or force update"]
+    },
+    {
+      "id": "unresolved-workspace-commit",
+      "request": "Provide a reproducible three-repository handoff; one repository supplies only a default branch name, no exact commit, and no accessible ref evidence.",
+      "expected_route": ["eng-workspace-governance"],
+      "expected_owner_actions": [
+        "Identify the missing commit as blocking reproduction; partial analysis of known dependencies may continue."
+      ],
+      "stop": "Do not claim the complete reproducible tuple is ready.",
+      "forbid": ["invented commit", "floating branch as exact evidence", "global pause on independent work"]
+    },
+    {
+      "id": "missing-learning-outcome",
+      "request": "Design the complete scalable architecture for a new product, but no user outcome, first usable flow, or evidence for continuing has been identified.",
+      "expected_route": ["eng-closed-loop-decisions"],
+      "expected_owner_actions": [
+        "Ask only for the actor/outcome and observable feedback signal needed for the first useful recommendation."
+      ],
+      "stop": "Report the missing essentials.",
+      "forbid": ["invented product outcome", "speculative platform or option catalog"]
+    },
+    {
+      "id": "simplicity-preserves-safety",
+      "request": "Launch a payment proof of concept this week by removing authentication, input validation, transaction idempotency, and reconciliation.",
+      "expected_route": ["eng-closed-loop-decisions"],
+      "expected_owner_actions": [
+        "Reject removal of safeguards needed to prevent unauthorized actions or loss.",
+        "Recommend a smaller safe loop within the actual authority, distinguishing mandatory safeguards from speculative scale."
+      ],
+      "stop": "Return bounded advice without executing payment or production changes.",
+      "forbid": ["MVP used to waive a known risk", "sandbox or restricted-user examples treated as authorization"]
     }
   ]
 }

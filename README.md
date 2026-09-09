@@ -36,25 +36,7 @@ Registry dependencies describe conditional owner routing, not mandatory loading 
 
 ## Shared evidence contract
 
-Use existing artifacts and messages unless a consumer actually needs a structured handoff. The [governance contract](docs/governance-contract.md) and [version 2 schema](contracts/governance-handoff.schema.json) retain exactly four slices without requiring lifecycle bookkeeping.
-
-For example, a structured coordination result can identify its actual owner, scope, and output without a Session id, numeric budget, or tracker item:
-
-```json
-{
-  "schema_version": 2,
-  "handoff_id": "handoff:parser-fix",
-  "slices": {
-    "agent": {
-      "owner": "implementation-owner",
-      "scope": ["src/parser.py"],
-      "output_refs": ["repo:service-a@0123456789abcdef"]
-    }
-  }
-}
-```
-
-This is a schema-valid shape, not evidence that the example result exists. Omit irrelevant fields; include actual facts required by the action. Schema validity alone proves neither permission nor acceptance. Project references, repository commits, and workspace tuples retain their own owners; a Session record does not replace them.
+The [governance contract](docs/governance-contract.md) defines four responsibility boundaries, not a machine packet. Use existing artifacts and messages, with facts required by the action: scope, locatable output, relevant revisions, checks, and limitations. A Session record does not replace project facts or exact repository evidence. No extra metadata file or handoff schema is needed.
 
 Closed Loop and `ponytail` are complementary: the former narrows the product/architecture decision, the latter minimizes the implementation. Neither waives safety, data integrity, or explicit requirements.
 
@@ -91,6 +73,6 @@ python3 -m unittest discover -s tests
 git diff --check
 ```
 
-It checks the exact eight-entry registry, required Skill frontmatter, any supplied metadata and behavior cases, discovery links, relative Markdown links, dependency acyclicity, the four shared-slice owners, and bounded action-routing scenarios. Scenario routes are unordered required owner sets, not execution sequences. Defined behavior cases are not claimed as executed behavior. Focused schema-instance tests use `jsonschema` when already installed and otherwise report a skip; the repository validator itself remains standard-library-only. Behavioral evaluation must separately observe decisions and forbidden side effects, not merely match headings or wording.
+The repository validator checks the exact eight-entry registry, Skill frontmatter, discovery links, relative Markdown links, dependency acyclicity, and the single [behavior case collection](tests/routing_scenarios.json). Scenario routes are unordered required owner sets, not execution sequences. It validates case structure, not Agent behavior or the meaning of the responsibility contract. Behavioral evaluation must separately observe decisions and forbidden side effects; declared cases are not claimed as executed tests.
 
 Project discovery links in `.agents/skills/` point to the source folders with relative symlinks. Installing or removing user-level Skills, pushing, publishing, and writing production systems are separate authorized actions.

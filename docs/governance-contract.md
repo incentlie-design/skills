@@ -25,22 +25,13 @@ These registry edges describe conditional routing to another owner when its acti
 
 `eng-closed-loop-decisions` recommends a product/architecture path. `eng-pm`, `eng-dev`, and `eng-qa-reviewer` produce their bounded artifacts. None creates another governance slice. A role boundary requires a separate executor only when an actual independence or authority constraint demands one.
 
-## Structured evidence, only when needed
+## Evidence without a packet protocol
 
-Use ordinary artifacts, messages, and existing records for a bounded result. Use the [machine-readable envelope](../contracts/governance-handoff.schema.json) only when a consumer needs structured cross-Skill evidence. Do not create a packet for every action or Session ending.
+The four slices—project, workspace, repo, and agent—are responsibility boundaries, not a required JSON format. Use existing artifacts, messages, and authoritative records. No envelope version, handoff id, or extra registry is required.
 
-Envelope version 2 retains exactly four owners. It replaces the version 1 lifecycle-oriented packet; there is no parallel legacy schema or automatic migration of external records. A packet has `schema_version`, `handoff_id`, and only participating slices:
+Supply the facts needed by the actual action: a release needs selection authority and exact eligible candidates, a tracker write needs its expected revision, and a result handoff needs locatable output, relevant checks, and limitations. Reference another owner's evidence instead of recreating its state. Do not invent irrelevant revisions, budgets, release targets, or consumption numbers.
 
-| Slice | Minimal structural fields | Additional facts when the action needs them |
-| --- | --- | --- |
-| `project` | `decision_ref`, pointing to the actual decision in an existing request or record | Canonical `work_item_ref` for tracked work; relevant goal/architecture/task revisions and acceptance; release target for selection; `remote_sync_plan_ref` for remote-sync intent |
-| `workspace` | `manifest_ref`, exact `repo_refs`, `dependency_edges` for a reproducible handoff | Launch/environment and change-set details belong in the referenced manifest |
-| `repo` | `repo_id`, relevant exact `base_commit` and `head_commit`, `write_scope` | Branch/worktree when involved; freeze or promotion evidence only for those claims |
-| `agent` | `owner`, `scope` | Assignment/WorkItem/Session refs if relevant and available; output refs for delivered results; explicit budget, stop conditions, held-resource release evidence when used |
-
-These are structural minima, not permission or acceptance checks. Referenced evidence must supply the facts needed by the actual action: a release still needs selection authority and exact eligible candidates, a tracker write still needs its expected revision, and a result handoff still needs locatable output. An omitted field cannot justify skipping an applicable check. Do not fill irrelevant fields with invented revisions, budgets, release targets, or fake evidence.
-
-The optional agent `status` describes the bounded work result in the caller's vocabulary. It does not prescribe runtime states or transitions. A supplied budget requires a unit and limit; report consumption only when observed. Session creation handles remain runtime context, not a new persistent registry.
+An explicitly requested consumer format remains a task-specific constraint; it does not become a universal Skill protocol. Removing the repository's packet schema does not migrate or invalidate existing external records.
 
 ## Evidence, authority, and blocking
 

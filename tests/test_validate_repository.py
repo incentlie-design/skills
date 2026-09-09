@@ -16,9 +16,7 @@ class RepositoryValidationTests(unittest.TestCase):
         report = validator.validate(ROOT)
         self.assertEqual(report["errors"], [])
         self.assertEqual(report["skills_checked"], 8)
-        cases = sum(len(validator.read_json(path)) for path in (ROOT / "skills/engineering").glob("*/tests/cases.json"))
         scenarios = validator.read_json(ROOT / "tests/routing_scenarios.json")["scenarios"]
-        self.assertEqual(report["behavior_cases_defined"], cases)
         self.assertEqual(report["routing_scenarios_validated"], len(scenarios))
         self.assertEqual(report["behavior_cases_executed"], 0)
 
@@ -59,6 +57,34 @@ class RepositoryValidationTests(unittest.TestCase):
         self.assertEqual(parsed["name"], "eng-example-one")
         with self.assertRaises(ValueError):
             validator.frontmatter("---\nname: one\nname: two\ndescription: example\n---\n")
+
+    def test_consolidated_cases_reject_empty_inputs_or_assertions(self):
+        read_json = validator.read_json
+        routing_path = ROOT / "tests/routing_scenarios.json"
+        original = read_json(routing_path)
+        for field, value in (("id", ""), ("request", " "), ("stop", None), ("expected_owner_actions", []), ("forbid", [])):
+            with self.subTest(field=field):
+                routing = copy.deepcopy(original)
+                routing["scenarios"][0][field] = value
+                with patch.object(validator, "read_json", side_effect=lambda path: routing if path == routing_path else read_json(path)):
+                    report = validator.validate(ROOT)
+                self.assertEqual(report["status"], "fail")
+                self.assertLess(report["routing_scenarios_validated"], len(routing["scenarios"]))
+
+    def test_consolidated_cases_reject_duplicate_ids_or_unknown_owners(self):
+        read_json = validator.read_json
+        routing_path = ROOT / "tests/routing_scenarios.json"
+        original = read_json(routing_path)
+        for invalid_owner in (False, True):
+            with self.subTest(invalid_owner=invalid_owner):
+                routing = copy.deepcopy(original)
+                if invalid_owner:
+                    routing["scenarios"][0]["expected_route"] = ["unknown-owner"]
+                else:
+                    routing["scenarios"].append(copy.deepcopy(routing["scenarios"][0]))
+                with patch.object(validator, "read_json", side_effect=lambda path: routing if path == routing_path else read_json(path)):
+                    report = validator.validate(ROOT)
+                self.assertEqual(report["status"], "fail")
 
 
 if __name__ == "__main__":
