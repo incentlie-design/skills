@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "project.schema.json",
+  "title": "Project task-adapter binding",
+  "description": "Project selection of one provider-operation mapping and target; provider connections are external.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "config_revision",
+    "project_id",
+    "task_space_id",
+    "task_system"
+  ],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 2},
+    "config_revision": {"type": "string", "pattern": "^project-config-r[1-9][0-9]*$"},
+    "project_id": {"$ref": "#/$defs/identifier"},
+    "task_space_id": {"$ref": "#/$defs/identifier"},
+    "task_system": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selected_adapter", "system_of_record", "status_mapping"],
+      "properties": {
+        "selected_adapter": {"$ref": "#/$defs/selected_adapter"},
+        "system_of_record": {"$ref": "#/$defs/system_of_record"},
+        "status_mapping": {"$ref": "#/$defs/status_mapping"}
+      }
+    }
+  },
+  "x-owner": "eng-project-governance",
+  "x-canonical-file": "project.yaml",
+  "x-syntax": "json-compatible-yaml",
+  "x-runtime-boundary": "selection and target only; plugins, credentials, clients, stores, and mirrors are environment concerns",
+  "x-version-policy": {
+    "current": 2,
+    "compatibility": "unknown-fields-rejected",
+    "breaking_change": "increment-schema-version-and-migrate",
+    "instance_change": "increment-config-revision"
+  },
+  "$defs": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]*$"
+    },
+    "target_reference": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9+.-]*:[A-Za-z0-9][A-Za-z0-9._/-]*$"
+    },
+    "selected_adapter": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adapter_id",
+        "binding",
+        "target_ref",
+        "contract_version"
+      ],
+      "properties": {
+        "adapter_id": {"$ref": "#/$defs/identifier"},
+        "binding": {"type": "string", "minLength": 3},
+        "target_ref": {"$ref": "#/$defs/target_reference"},
+        "contract_version": {"type": "integer", "const": 1}
+      }
+    },
+    "system_of_record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adapter_binding"],
+      "properties": {
+        "adapter_binding": {"type": "string", "minLength": 3}
+      }
+    },
+    "status_mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ready", "running", "blocked", "complete", "stopped"],
+      "properties": {
+        "ready": {"$ref": "#/$defs/identifier"},
+        "running": {"$ref": "#/$defs/identifier"},
+        "blocked": {"$ref": "#/$defs/identifier"},
+        "complete": {"$ref": "#/$defs/identifier"},
+        "stopped": {"$ref": "#/$defs/identifier"}
+      }
+    }
+  }
+}

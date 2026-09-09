@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "plan_ref": "remote-sync:project-task-adapter-bootstrap-github-pr-r1",
+  "work_item_ref": "local:project-task-adapter-bootstrap",
+  "decision_revision": "project-r5",
+  "target_remote": "origin",
+  "target_visibility": "inherit-existing-github-repository-visibility",
+  "branches": [
+    {
+      "branch_role": "aggregate",
+      "branch_ref": "codex/project-task-adapter-bootstrap-pic",
+      "reason": "Provide the accepted candidate and complete governance handoff for GitHub pull-request review and CI.",
+      "trigger": "user-authorized-after-local-candidate-acceptance",
+      "retention": "retain until a separately authorized merge or cleanup decision"
+    }
+  ],
+  "review_target": {
+    "provider": "github",
+    "base_ref": "main",
+    "head_ref": "codex/project-task-adapter-bootstrap-pic",
+    "draft": false,
+    "title": "Add project task adapter foundation"
+  },
+  "expected_remote_state": {
+    "base_ref": "refs/heads/main",
+    "base_revision": "f72bc4873eb1a438b4ee58a6514205926179aeeb",
+    "head_ref": "refs/heads/codex/project-task-adapter-bootstrap-pic",
+    "head_revision": null
+  },
+  "exposure_review_refs": [
+    "qa:assignment-qa-02@2071ca9ebd33c093739bacba57d61455c829b4a9"
+  ],
+  "decision_owner": "user",
+  "authorization_evidence": "codex-user-message:push-branch-create-github-pr-2026-09-09",
+  "status": "approved"
+}

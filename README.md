@@ -150,11 +150,18 @@ For the first publication of this rebuilt repository, only `main` is required. `
 
 Before any push, fetch or query remote refs, bind validation to the exact local head, confirm the branch contains no unintended or sensitive files, and obtain push authority. Push explicit refs only—never use `--all`, `--mirror`, bulk tag upload, remote deletion, or force update as a convenience. Tags are published separately only for an authorized version release.
 
+## Project task adapter
+
+[`project.yaml`](project.yaml) selects one provider-neutral task-adapter binding and target; it contains no credentials, database path, provider client settings, WorkItem data, or Agent/Session state. The core [task-adapter SDK](docs/project-task-adapters.md) contains the TaskSource/TaskSink contract and canonical-operation mappings for SQLite, GitHub Issues, and GitLab Issues.
+
+The selected mapping uses provider tools already exposed in the Session. Plugin installation and authentication, SQLite storage, provider initialization, and mirrors belong to the execution environment; the Skill only checks availability and never bootstraps them.
+
 ## Validate
 
 The validator uses only the Python standard library:
 
 ```sh
+python3 scripts/validate_project.py
 python3 scripts/validate_repository.py
 python3 -m unittest discover -s tests
 git diff --check

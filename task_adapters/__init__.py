@@ -1,0 +1,53 @@
+"""Provider-neutral task adapter contracts and provider-operation mappings."""
+
+from .contracts import (
+    ABSENT_REVISION,
+    ChangeSet,
+    InvalidRequest,
+    InvalidTransition,
+    ResolveResult,
+    RevisionConflict,
+    TaskChange,
+    TaskNotFound,
+    TaskSink,
+    TaskSnapshot,
+    TaskSource,
+    WriteRequest,
+    WriteResult,
+)
+from .mappings import (
+    ADAPTER_MAPPINGS,
+    CANONICAL_OPERATIONS,
+    TASK_ADAPTER_CONTRACT_VERSION,
+    AdapterMapping,
+    OperationCall,
+    ToolCheck,
+    check_tools,
+    get_mapping,
+    get_operation_calls,
+)
+
+__all__ = [
+    "ABSENT_REVISION",
+    "ADAPTER_MAPPINGS",
+    "AdapterMapping",
+    "CANONICAL_OPERATIONS",
+    "ChangeSet",
+    "InvalidRequest",
+    "InvalidTransition",
+    "OperationCall",
+    "ResolveResult",
+    "RevisionConflict",
+    "TASK_ADAPTER_CONTRACT_VERSION",
+    "TaskChange",
+    "TaskNotFound",
+    "TaskSink",
+    "TaskSnapshot",
+    "TaskSource",
+    "ToolCheck",
+    "WriteRequest",
+    "WriteResult",
+    "check_tools",
+    "get_mapping",
+    "get_operation_calls",
+]

@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "project_revision": "project-r5",
+  "work_item": {
+    "work_item_ref": "local:project-task-adapter-bootstrap",
+    "system_of_record": {
+      "adapter_id": "repo-project-artifact",
+      "external_id": "project/governance/project-task-adapter-bootstrap.json",
+      "revision": "project-r5"
+    },
+    "source_refs": [
+      {
+        "adapter_id": "codex-delegation",
+        "external_id": "01a0800a-20a5-7d43-9256-d38ae77dd7ea",
+        "relation": "raw-intake"
+      },
+      {
+        "adapter_id": "codex-user-message",
+        "external_id": "push-branch-create-github-pr-2026-09-09",
+        "relation": "remote-sync-authorization"
+      }
+    ],
+    "goal_revision": "goal-r1",
+    "architecture_revision": "architecture-r1",
+    "task_revision": "tasks-r1",
+    "acceptance_criteria": [
+      "AC-01: project.yaml has a verifiable schema, example instance, naming decision, and explicit version-evolution rules.",
+      "AC-02: project.yaml expresses stable project and task-space identities, one selected adapter, issuance policy, WorkItem bindings, one system of record, revision/conflict semantics, and the minimum status map without credentials or personal connection data.",
+      "AC-03: a provider-neutral TaskSource/TaskSink contract supports resolve, fetch, changes, create, update, transition, and comment; every write requires expected_revision and conflicts force a re-read and stop.",
+      "AC-04: one local SQLite adapter completes initialize -> create -> resolve/fetch -> update/transition/comment -> changes as a runnable end-to-end loop.",
+      "AC-05: automated checks cover initialization, atomic unique issuance, idempotent or duplicate binding behavior, revision conflicts, reads, changes, and the minimum status flow.",
+      "AC-06: implementation aligns with the existing WorkItem, TaskSource/TaskSink, and governance handoff contract without adding an owner or state slice.",
+      "AC-07: registry.json and skills/engineering continue to expose exactly the existing five public engineering Skills.",
+      "AC-08: the candidate records parallel assignments, disjoint write scopes, integration order, exact Git refs, and independent QA evidence.",
+      "AC-09: repository, project-schema, documentation-link, and adapter tests pass at the frozen aggregate head.",
+      "AC-10: delivery stops at a clean local PIC aggregate candidate commit; no push, publication, deployment, main merge, history rewrite, branch deletion, or worktree deletion occurs."
+    ],
+    "dependencies": [],
+    "milestones": [
+      "spec-and-contract-ready",
+      "local-loop-ready",
+      "candidate-frozen",
+      "independent-qa-accepted"
+    ],
+    "candidate_refs": [
+      "repo:codex/project-task-adapter-bootstrap-schema@1783c51bc97b11fdc28871f85dfb22864ab6c106",
+      "repo:codex/project-task-adapter-bootstrap-local@c157ce97351fcaedc4f1538d3382c8c9400e9954",
+      "repo:codex/project-task-adapter-bootstrap-pic@9d52ae922e4e820d411696e044cac331ae6c751a"
+    ],
+    "release_target": "local-candidate",
+    "status": "complete"
+  },
+  "revisions": {
+    "goal-r1": {
+      "summary": "Establish a project-scoped task-system binding and one reliable local adapter that closes the smallest provider-neutral WorkItem loop."
+    },
+    "architecture-r1": {
+      "summary": "Keep exactly five public engineering Skills; place schemas, validation, documentation, and the isolated adapter package outside the public Skill registry.",
+      "decisions": [
+        "Normalize the intake typo project.ymal to project.yaml and record the canonical name.",
+        "Choose Python standard-library SQLite over a file store because transactions, uniqueness constraints, and compare-and-swap updates provide the requested integrity with fewer custom failure paths.",
+        "Use one project-local SQLite database as task state; project.yaml is configuration and adapter binding, never Session or Agent state.",
+        "Defer GitHub Issues until a demonstrated cross-machine or hosted-review need; Jira is out of scope for the first delivery.",
+        "Do not add governance owners, contract slices, public Skills, aliases, or registry entries."
+      ],
+      "closure_decision": {
+        "loop": "project maintainer -> initialize project binding -> create and mutate one WorkItem -> observe stable id and revisioned history -> decide whether another provider is justified",
+        "success_signal": "the frozen candidate passes one end-to-end local adapter test plus schema and governance validation",
+        "recommended_path": "project.yaml + provider-neutral contract + one SQLite adapter",
+        "decide_now": [
+          "stable identities",
+          "atomic issuance",
+          "single system of record",
+          "expected_revision conflict behavior",
+          "minimal status mapping"
+        ],
+        "default_now": [
+          "SQLite from the Python standard library",
+          "JSON-schema validation with a dependency-free project validator"
+        ],
+        "defer_until": [
+          "GitHub Issues adapter until remote collaboration or hosted review is required",
+          "additional status vocabulary until a project profile demonstrates it"
+        ],
+        "reject": [
+          "Jira in the first batch",
+          "a second local storage model",
+          "a duplicate project or agent state machine"
+        ],
+        "known_ceiling": "The local database is a single project-space authority and is not a distributed multi-writer service.",
+        "replacement_seam": "The provider-neutral TaskSource/TaskSink boundary and explicit project.yaml adapter binding permit an authorized adapter migration.",
+        "owner": "eng-project-governance"
+      }
+    },
+    "tasks-r1": {
+      "dag": [
+        {
+          "id": "D0",
+          "name": "intake-and-governance-baseline",
+          "depends_on": [],
+          "owner": "PIC",
+          "write_scope": [
+            "project/governance/**"
+          ]
+        },
+        {
+          "id": "D1",
+          "name": "project-schema-and-contract",
+          "depends_on": [
+            "D0"
+          ],
+          "owner": "schema-contract-dev",
+          "write_scope": [
+            "project.yaml",
+            "contracts/project.schema.json",
+            "docs/project-task-adapters.md",
+            "scripts/validate_project.py",
+            "tests/test_project_schema.py"
+          ]
+        },
+        {
+          "id": "D2",
+          "name": "local-sqlite-adapter",
+          "depends_on": [
+            "D0"
+          ],
+          "owner": "local-adapter-dev",
+          "write_scope": [
+            "task_adapters/**",
+            "tests/test_local_task_adapter.py"
+          ]
+        },
+        {
+          "id": "D3",
+          "name": "aggregate-and-freeze",
+          "depends_on": [
+            "D1",
+            "D2"
+          ],
+          "owner": "PIC",
+          "write_scope": [
+            "project/governance/**",
+            "README.md",
+            ".gitignore",
+            "tests/test_project_task_loop.py"
+          ]
+        },
+        {
+          "id": "D4",
+          "name": "independent-qa",
+          "depends_on": [
+            "D3"
+          ],
+          "owner": "independent-qa",
+          "write_scope": []
+        },
+        {
+          "id": "D5",
+          "name": "closure-handoff",
+          "depends_on": [
+            "D4"
+          ],
+          "owner": "PIC",
+          "write_scope": [
+            "project/governance/**"
+          ]
+        }
+      ],
+      "integration_order": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5"
+      ],
+      "acyclic_evidence": "Each edge points from a higher-numbered task to a lower-numbered dependency; D1 and D2 are independent after D0."
+    }
+  },
+  "candidate_decision": {
+    "status": "accepted-local-candidate",
+    "selection_owner": "PIC",
+    "ordered_candidate_refs": [
+      "repo:codex/project-task-adapter-bootstrap-schema@1783c51bc97b11fdc28871f85dfb22864ab6c106",
+      "repo:codex/project-task-adapter-bootstrap-local@c157ce97351fcaedc4f1538d3382c8c9400e9954"
+    ],
+    "integration_evidence": [
+      "D1 cherry-picked as d5263cb948d9cdae63bf22d5673d1a71df40fef0",
+      "D2 cherry-picked as 8dee5baf8f40269cdd5e03b4e508312735091a0f",
+      "Contributor merge bases both equal 60bebbe1eb5d79c5b887017c41b59ea41d47a108 and their write scopes are disjoint"
+    ],
+    "frozen_head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+    "freeze_record_ref": "project/governance/candidate-freeze-project-task-adapter-bootstrap.json",
+    "impact_record": {
+      "from": "project-r2",
+      "to": "project-r3",
+      "reason": "Record the exact implementation candidate and QA assignment in the repository system of record after independent QA rejected missing in-tree freeze evidence.",
+      "implementation_changed": false,
+      "functional_gate_evidence": "current for 9d52ae922e4e820d411696e044cac331ae6c751a",
+      "independent_qa_evidence": "stale-failed; rerun required"
+    },
+    "closure_impact_record": {
+      "from": "project-r3",
+      "to": "project-r4",
+      "reason": "Record independent QA acceptance and close the local candidate gate.",
+      "candidate_changed": false,
+      "acceptance_criteria_changed": false,
+      "prior_functional_evidence": "current",
+      "qa_evidence_ref": "qa:assignment-qa-02@2071ca9ebd33c093739bacba57d61455c829b4a9"
+    },
+    "gates": [
+      "repository-validator",
+      "project-schema-validator",
+      "unit-tests",
+      "diff-check",
+      "independent-qa"
+    ],
+    "gate_evidence": {
+      "repository-validator": "pass",
+      "project-schema-validator": "pass",
+      "unit-tests": "pass-15",
+      "diff-check": "pass",
+      "independent-qa": "pass-ac01-through-ac10",
+      "qa_carrier_head": "2071ca9ebd33c093739bacba57d61455c829b4a9"
+    }
+  },
+  "remote_sync_decision": {
+    "status": "approved",
+    "reason": "After local candidate closure, the user explicitly requested that the aggregate branch be pushed to origin and opened as a GitHub pull request for hosted review and CI.",
+    "decision_owner": "user",
+    "decision_revision": "project-r5",
+    "plan_ref": "project/governance/remote-sync-project-task-adapter-bootstrap.json",
+    "impact_record": {
+      "from": "project-r4",
+      "to": "project-r5",
+      "candidate_changed": false,
+      "acceptance_criteria_changed": false,
+      "implementation_and_qa_evidence": "current",
+      "reason": "The new revision authorizes remote review only; it does not alter the accepted implementation candidate or its gates."
+    }
+  },
+  "naming_decision": {
+    "input": "project.ymal",
+    "canonical": "project.yaml",
+    "reason": "Use the conventional YAML extension and treat the original spelling as a noncanonical intake typo; no alias or compatibility file will be added."
+  }
+}

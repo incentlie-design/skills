@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "handoff_id": "handoff:project-task-adapter-bootstrap-r1",
+  "slices": {
+    "project": {
+      "work_item_ref": "local:project-task-adapter-bootstrap",
+      "goal_revision": "goal-r1",
+      "architecture_revision": "architecture-r1",
+      "task_revision": "tasks-r1",
+      "acceptance_criteria": [
+        "AC-01: validated project.yaml schema, example, canonical naming, and version rules",
+        "AC-02: stable identities, selected adapter, issuance, binding, one SOR, revisions, and minimum status map without secrets",
+        "AC-03: provider-neutral TaskSource and TaskSink with expected_revision conflict stop",
+        "AC-04: runnable SQLite end-to-end loop",
+        "AC-05: integrity, conflict, read, history, comment, and transition tests",
+        "AC-06: existing WorkItem and governance handoff alignment without new ownership",
+        "AC-07: exactly five public engineering Skills preserved",
+        "AC-08: parallel assignments, ordered integration, freeze, and independent QA evidence",
+        "AC-09: schema, repository, link, unit, and diff gates pass",
+        "AC-10: clean local candidate with prohibited external and destructive actions absent"
+      ],
+      "release_target": "local-candidate",
+      "remote_sync_plan_ref": "project/governance/remote-sync-project-task-adapter-bootstrap.json"
+    },
+    "repo": {
+      "repo_id": "skill-creator",
+      "base_commit": "f72bc4873eb1a438b4ee58a6514205926179aeeb",
+      "head_commit": "9d52ae922e4e820d411696e044cac331ae6c751a",
+      "branch": "codex/project-task-adapter-bootstrap-pic",
+      "worktree": "/Users/jiajun.lai/.codex/worktrees/364c/skill-creator",
+      "write_scope": [
+        ".gitignore",
+        "README.md",
+        "contracts/project.schema.json",
+        "docs/project-task-adapters.md",
+        "project.yaml",
+        "project/governance/**",
+        "scripts/validate_project.py",
+        "task_adapters/**",
+        "tests/test_local_task_adapter.py",
+        "tests/test_project_schema.py",
+        "tests/test_project_task_loop.py"
+      ],
+      "freeze_evidence": [
+        "candidate-freeze:project-task-adapter-bootstrap-r1",
+        "project and repository validators pass",
+        "15 unit tests pass",
+        "diff and protected-path audits pass",
+        "assignment-qa-02 accepts AC-01 through AC-10 at candidate 9d52ae922e4e820d411696e044cac331ae6c751a"
+      ],
+      "promotion_evidence": []
+    },
+    "agent": {
+      "role": "PIC",
+      "session_id": "session-pic-01",
+      "owner": "/root/pic",
+      "budget": {
+        "unit": "work-package",
+        "limit": 1,
+        "consumed": 1
+      },
+      "status": "complete",
+      "stop_condition": "clean local aggregate candidate and independent QA acceptance",
+      "handoff_ref": "project/governance/handoff-project-task-adapter-bootstrap.json",
+      "released_leases": [
+        "path:project/governance",
+        "branch:codex/project-task-adapter-bootstrap-pic"
+      ]
+    }
+  }
+}

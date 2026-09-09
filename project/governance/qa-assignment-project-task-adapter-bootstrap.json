@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "assignment_id": "assignment-qa-02",
+  "work_item_ref": "local:project-task-adapter-bootstrap",
+  "adapter_binding": "repo-project-artifact@project-r3",
+  "role": "QA",
+  "session_id": "session-qa-02",
+  "owner": "independent-qa",
+  "capabilities": [
+    "independent acceptance verification",
+    "schema and documentation audit",
+    "SQLite behavior validation",
+    "repository boundary audit"
+  ],
+  "context_revisions": [
+    "goal-r1",
+    "architecture-r1",
+    "tasks-r1",
+    "project-r3",
+    "candidate:9d52ae922e4e820d411696e044cac331ae6c751a"
+  ],
+  "candidate": {
+    "kind": "immutable-implementation-candidate",
+    "base": "f72bc4873eb1a438b4ee58a6514205926179aeeb",
+    "head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+    "branch": "codex/project-task-adapter-bootstrap-qa",
+    "worktree": "/private/tmp/skill-creator-project-task-adapter-qa"
+  },
+  "governance_context_rule": "Run from a clean QA branch that descends from the frozen implementation candidate and includes project-r3; changes after the candidate must be limited to project/governance evidence and must not be treated as implementation changes.",
+  "read_scope": [
+    "candidate tree and Git history"
+  ],
+  "write_scope": [],
+  "acceptance_criteria": [
+    "AC-01",
+    "AC-02",
+    "AC-03",
+    "AC-04",
+    "AC-05",
+    "AC-06",
+    "AC-07",
+    "AC-08",
+    "AC-09",
+    "AC-10"
+  ],
+  "budget": {
+    "unit": "work-package",
+    "limit": 1,
+    "consumed": 1
+  },
+  "independence": "The QA owner did not author D1, D2, or PIC integration changes and may not repair or relax the candidate.",
+  "leases": [],
+  "expected_outputs": [
+    "per-AC pass/fail evidence",
+    "exact commands and results",
+    "exact base/head and changed-path audit",
+    "clean/dirty state",
+    "limitations, risks, and remaining work"
+  ],
+  "stop_conditions": [
+    "all AC accepted",
+    "first material failure recorded",
+    "candidate revision mismatch",
+    "budget exhausted"
+  ],
+  "forbidden_actions": [
+    "modify production implementation",
+    "modify tests or acceptance semantics",
+    "commit",
+    "integrate",
+    "push",
+    "publish",
+    "deploy",
+    "merge main",
+    "history rewrite",
+    "branch deletion",
+    "worktree deletion"
+  ],
+  "prior_attempt": {
+    "assignment_id": "assignment-qa-01",
+    "session_id": "session-qa-01",
+    "candidate_head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+    "status": "stopped",
+    "stop_condition": "first material failure AC-08",
+    "result": "Functional gates and AC-01..07/09/10 passed; repository SOR lacked visible freeze/QA-assignment evidence at the inspected commit.",
+    "budget_consumed": 1,
+    "clean": true,
+    "leases_released": []
+  },
+  "result": {
+    "status": "pass",
+    "accepted_criteria": [
+      "AC-01",
+      "AC-02",
+      "AC-03",
+      "AC-04",
+      "AC-05",
+      "AC-06",
+      "AC-07",
+      "AC-08",
+      "AC-09",
+      "AC-10"
+    ],
+    "implementation_head": "9d52ae922e4e820d411696e044cac331ae6c751a",
+    "governance_carrier_head": "2071ca9ebd33c093739bacba57d61455c829b4a9",
+    "checks": [
+      "project validator pass",
+      "repository validator pass with exactly five Skills",
+      "15 of 15 unit tests pass",
+      "candidate and carrier diff checks pass",
+      "protected paths unchanged",
+      "candidate-to-carrier diff is governance-only",
+      "ephemeral expected_revision conflict probe pass"
+    ],
+    "clean": true,
+    "remaining_work": "PIC closure handoff only"
+  },
+  "status": "complete",
+  "closure_owner": "PIC"
+}
