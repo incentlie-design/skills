@@ -148,6 +148,40 @@
       "forbid": ["test pass inferred from Session status", "blind tracker overwrite", "unsafe or unrelated cleanup"]
     },
     {
+      "id": "qa-bug-draft-without-tracker",
+      "request": "Draft a bug from supplied QA evidence only. A staging build has an immutable image digest and source commit different from the local checkout. A supplied acceptance criterion is violated in 2 of 3 attempts; sanitized steps, data revision, runtime version, and timestamped logs are available. There is no tracker binding or external-write authority.",
+      "expected_route": ["eng-qa-reviewer"],
+      "expected_owner_actions": [
+        "Produce a locatable bug draft with a specific title, impact-based severity, the actual staging version/environment, minimal reproduction and observed frequency, expected versus actual behavior, case/run evidence, and retest condition.",
+        "Keep severity separate from scheduling priority, root-cause suspicion separate from fact, and drafting separate from external submission."
+      ],
+      "stop": "Deliver the actionable draft and state that it was not submitted; no tracker setup or code repair is needed.",
+      "forbid": ["local checkout claimed as deployed version", "fabricated issue ID or reproduction attempts", "automatic tracker installation or write", "mandatory Session or task-state records"]
+    },
+    {
+      "id": "qa-partial-test-report",
+      "request": "Write a report for ten selected cases on a named contributor branch. The actual target is an exact CI merge commit with a supplied test-suite revision and mock-service configuration. Six unique cases passed, one assertion failed, one was blocked by missing credentials, one was deliberately skipped, and one was not run. Logs include a failed first attempt for one eventually passing case. No live tests or code coverage measurement ran.",
+      "expected_route": ["eng-qa-reviewer"],
+      "expected_owner_actions": [
+        "Identify the report/run, exact tested merge commit versus branch head, suite/data/config versions, mock environment, timestamps, selectors, and locatable raw evidence.",
+        "Map criteria to cases; account for all ten selected cases, distinguish unique-case outcomes from attempts, preserve the failed retry evidence, and explain exclusions and missing proof.",
+        "Link the assertion defect separately from the credential blocker and limit the conclusion to actual evidence; do not claim full-scope or live-system acceptance."
+      ],
+      "stop": "Deliver the partial report and smallest required follow-up without rerunning or expanding the test scope.",
+      "forbid": ["branch name used as immutable version", "blocked or skipped cases counted as passed", "retry erases failure history", "pass rate presented as code coverage", "report treated as release approval"]
+    },
+    {
+      "id": "qa-retest-version-mismatch",
+      "request": "A fix is merged into main and a local retest passes, but the local worktree contains an uncommitted patch and the shared test deployment changed version during the run. Neither the patch identity nor the deployment transition time is available. Summarize the retest evidence without running more tests or changing issue status.",
+      "expected_route": ["eng-qa-reviewer"],
+      "expected_owner_actions": [
+        "Preserve the observed local success and the original failure evidence while marking the dirty snapshot and mixed deployment identity unresolved.",
+        "State that the merged clean commit and shared target are not verified; identify the patch/deployment evidence or focused retest needed for a version-bound conclusion."
+      ],
+      "stop": "Return an inconclusive version-bound retest conclusion without modifying code, issue state, or the environment.",
+      "forbid": ["dirty local result attributed to clean main", "single assumed version for a mixed deployment run", "bug closure inferred from merge", "unauthorized rerun or tracker transition"]
+    },
+    {
       "id": "explicit-naming-and-cleanup-preference",
       "request": "Use my PIC · status · branch-phase · requirement title convention for this task. For this task only, when I say 已合并, clean its local branch/worktree and archive its Session.",
       "expected_route": ["eng-agent-governance", "eng-repo-governance"],
