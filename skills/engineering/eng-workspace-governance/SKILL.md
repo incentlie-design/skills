@@ -1,28 +1,26 @@
 ---
 name: eng-workspace-governance
-description: Govern a workspace composed of multiple repositories through a manifest, exact commit tuples, cross-repository dependencies, change sets, launch context, handoffs, and integration order. Do not use for single-repository Git mechanics or agent lifecycle.
+description: Constrain multi-repository topology and dependency changes, reproducible commit tuples, workspace handoffs, and integration order. Use for those cross-repository actions; do not require a manifest for single-repository work or manage Session lifecycle.
 ---
 
 # Workspace governance
 
-Own the topology and reproducibility of a workspace whose deliverable spans multiple repositories. A Codex Project may be an adapter, but it is never the only implementation assumption.
+Own cross-repository topology, dependencies, and reproducibility, not the Agent's scheduling. Use only the workspace slice from [the shared governance contract](../../../docs/governance-contract.md) when a structured reproducible handoff is needed.
 
-## Required inputs
+Read [the workspace manifest reference](references/workspace-manifest.md) when creating, revising, or consuming a manifest. Mere access to several repositories does not require a new manifest, change set, or integration pipeline.
 
-Identify the workspace, participating repository facts, exact commit for each repository, dependency edges, cross-repository change set, source evidence, and required launch directory/environment. Missing or floating repository refs stop planning at `needs_input`; do not silently resolve them from default branches.
+## Changing topology or dependencies
 
-Read [the workspace manifest reference](references/workspace-manifest.md) when creating, revising, or consuming a workspace manifest. Use only the workspace slice from [the shared governance contract](../../../docs/governance-contract.md).
+- Resolve participating repository identities, paths, source facts, and relevant interface or version constraints. Distinguish observed facts from assumptions and validate dependency endpoints.
+- Represent genuine input dependencies and shared-write conflicts, not a prescribed sequence of Agent roles. Reject cyclic dependency claims; independent work may be organized as the Agent chooses.
+- Reuse an existing manifest when applicable. Describe only the requested change and affected repositories; do not require task-system or Session records.
 
-## Decisions and workflow
+## Providing a reproducible handoff or verification tuple
 
-1. Build a manifest with stable `repo_id`, path, remote, role, default ref, and exact commit for every participating repository. Record where each fact came from and distinguish observed facts from assumptions.
-2. Validate unique repository ids and paths, accessible launch contexts, dependency endpoints, and an acyclic cross-repository DAG.
-3. Define the cross-repository change set: participating work items or change refs, repository-local scope, interface/version constraints, and the exact tuple that downstream work consumes.
-4. Derive handoff and integration order from dependency direction. Freeze the manifest revision and exact repository tuple before cross-repository verification.
-5. Delegate every branch, worktree, commit, merge, rebase, tag, push, or cleanup operation within a repository to `eng-repo-governance`. Reference its repository slice; do not copy its Git rules here.
+- Resolve the intended repository refs to exact commits through supplied evidence or read-only checks. A default branch name is descriptive, not immutable evidence. If the intended version cannot be determined, block the reproducibility claim and affected actions, not useful partial analysis.
+- Record a manifest reference with unique repository ids and paths, exact consumed commits, actual dependency edges, and launch context sufficient for the requested consumer. Credentials remain external.
+- Before cross-repository verification or integration, identify the participating tuple and order constrained by real dependencies. Changed commits or interfaces require reassessment of affected evidence, not a blanket pause on unrelated work.
 
-Workspace governance does not create work-item state, choose a release window, manage agents, or declare a repository mutation successful from topology alone.
+## Mutations, evidence, and boundaries
 
-## Output and stop
-
-Return the workspace slice, manifest location/revision, validated dependency order, source-fact ledger, launch instructions, unresolved constraints, and status. Stop when the requested manifest/handoff is reproducible, or earlier on missing exact refs, ambiguous repository identity, inaccessible inputs, or a dependency cycle. Do not infer integration, publication, or deployment from a valid manifest.
+Every Git mutation uses `eng-repo-governance`; reference its exact-state evidence without duplicating its rules. Report the topology or tuple actually established, relevant dependency constraints, and unresolved facts. A valid manifest does not prove acceptance, integration, publication, or deployment. This Skill does not select releases, create project state, assign Agents, or require a separate Session for each repository.

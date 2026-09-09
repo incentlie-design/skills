@@ -9,7 +9,7 @@ Own the bounded QA or review evidence artifact for a supplied subject and contra
 
 ## Freeze the subject and select evidence
 
-- Identify the exact subject revision or content identity, scope and exclusions, supplied acceptance or test contract, changed behavior and consumers, material risks, environment and data required by the selected evidence, budget, and independence requirement.
+- Identify the exact subject revision or content identity, scope and exclusions, supplied acceptance or test contract, changed behavior and consumers, material risks, environment and data required by the selected evidence, any explicit budget, and applicable independence requirement. A separate Session or numeric budget is not a prerequisite for review.
 - If the subject, acceptance, key contract, authority, required independence, or an environment or data set required by selected evidence is missing, provide the smallest useful plan or finding and stop without a pass conclusion.
 - Map each in-scope criterion or demonstrated risk to a check, observable assertion, appropriate layer, environment or data, selector or manual step, owner, and stop condition. Do not add checks merely to populate every layer.
 - Use unit evidence for local invariants, boundaries, and error branches; smoke for loadability or one shortest runnable path; feature evidence for one user behavior and its rejection or state change; integration only for changed interfaces, schemas, consumers, cross-module behavior, or candidate interactions; release regression only under an explicit release gate or authorization.

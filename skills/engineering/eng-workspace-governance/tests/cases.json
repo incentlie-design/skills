@@ -5,18 +5,18 @@
     "prompt": "Create a reproducible workspace handoff for web and api repositories at the supplied exact commits; web depends on api and each source fact is provided.",
     "expect": [
       "Produces unique repository tuples and a workspace slice bound to the manifest revision.",
-      "Validates the DAG and orders api before web.",
+      "Validates the dependency and requires the API input before its dependent consumer action, without serializing unrelated work.",
       "Delegates any repository mutation to eng-repo-governance and stops at the workspace handoff."
     ]
   },
   {
     "id": "workspace-missing-exact-ref",
     "kind": "missing_input",
-    "prompt": "Plan a three-repository workspace, but one repository supplies only its default branch name and no exact commit.",
+    "prompt": "Provide a reproducible three-repository handoff, but one repository supplies only its default branch name, no exact commit, and no accessible ref evidence.",
     "expect": [
-      "Returns needs_input for the missing exact commit and its source.",
-      "Does not substitute the current remote or local branch tip.",
-      "Does not claim a reproducible tuple or integration order is ready."
+      "Reports the missing exact commit as blocking the reproducibility claim, not all useful partial analysis.",
+      "Does not invent a commit or treat a floating branch name as exact evidence.",
+      "May describe known dependencies but does not claim the complete reproducible tuple is ready."
     ]
   },
   {

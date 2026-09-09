@@ -38,10 +38,10 @@ SLICE_OWNERS = {
     "agent": "eng-agent-governance",
 }
 SLICE_FIELDS = {
-    "project": {"work_item_ref", "goal_revision", "architecture_revision", "task_revision", "acceptance_criteria", "release_target"},
+    "project": {"decision_ref"},
     "workspace": {"manifest_ref", "repo_refs", "dependency_edges"},
-    "repo": {"repo_id", "base_commit", "head_commit", "branch", "worktree", "write_scope", "freeze_evidence", "promotion_evidence"},
-    "agent": {"role", "session_id", "owner", "budget", "status", "stop_condition", "handoff_ref", "released_leases"},
+    "repo": {"repo_id", "base_commit", "head_commit", "write_scope"},
+    "agent": {"owner", "scope"},
 }
 REQUIRED_METADATA = {
     "schema_version", "name", "version", "category", "status", "summary",
@@ -234,6 +234,8 @@ def validate(root):
                 errors.append(f"{name}: discovery symlink must be relative")
 
         schema = read_json(root / "contracts/governance-handoff.schema.json")
+        if schema.get("properties", {}).get("schema_version", {}).get("const") != 2:
+            errors.append("shared contract schema_version must be 2")
         if schema.get("x-slice-owners") != SLICE_OWNERS:
             errors.append("shared contract slice owners mismatch")
         definitions = schema.get("$defs", {})
@@ -243,8 +245,8 @@ def validate(root):
 
         routing = read_json(root / "tests/routing_scenarios.json")
         scenarios = routing.get("scenarios", [])
-        if routing.get("schema_version") != 1 or len(scenarios) != 5:
-            errors.append("routing scenarios must contain exactly five versioned cases")
+        if routing.get("schema_version") != 1 or not scenarios:
+            errors.append("routing scenarios must contain versioned cases")
         scenario_ids = set()
         covered = set()
         for scenario in scenarios:
@@ -257,7 +259,7 @@ def validate(root):
                 errors.append(f"duplicate routing scenario id {scenario['id']}")
             scenario_ids.add(scenario["id"])
             route = scenario["expected_route"]
-            if not isinstance(route, list) or not route or len(route) != len(set(route)) or not set(route).issubset(EXPECTED_NAMES):
+            if not isinstance(route, list) or len(route) != len(set(route)) or not set(route).issubset(EXPECTED_NAMES):
                 errors.append(f"{scenario['id']}: invalid expected route")
             else:
                 covered.update(route)
@@ -269,7 +271,7 @@ def validate(root):
                     errors.append(f"{scenario['id']}: invalid {field}")
             if len(errors) == scenario_error_count:
                 routing_scenarios_validated += 1
-        if covered != ROUTING_COVERAGE:
+        if not ROUTING_COVERAGE.issubset(covered):
             errors.append("routing scenarios do not cover all five governance and decision Skills")
 
         markdown_paths = list(root.glob("*.md")) + list((root / "docs").rglob("*.md")) + list((root / "skills").rglob("*.md"))

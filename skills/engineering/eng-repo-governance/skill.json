@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "name": "eng-repo-governance",
-  "version": "1.1.2",
+  "version": "2.0.0",
   "category": "engineering",
   "status": "active",
   "summary": "Owns safe, auditable Git mutation and integration mechanics within one repository.",
   "owners": ["public-governance-maintainers"],
   "tags": ["git", "repository", "worktree", "integration", "promotion", "remote"],
   "dependencies": [],
-  "input_contract": "Repository identity, requested Git mutation, exact refs, worktree and dirty facts, write scope, policy profile, project-selected RemoteSyncPlan when applicable, and authority.",
-  "output_contract": "Owned repository handoff slice with exact base/head, branch/worktree, scope, evidence, status, and remaining authority."
+  "input_contract": "Requested Git action, resolved exact targets and relevant refs, worktree/dirty ownership, scope and authority; project-selected remote-sync intent only for synchronization.",
+  "output_contract": "Actual mutation and before/after evidence; optional version 2 repository slice with exact base/head and scope, branch/worktree and freeze/promotion evidence only when applicable."
 }

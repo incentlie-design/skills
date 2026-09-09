@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "name": "eng-agent-governance",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "category": "engineering",
   "status": "active",
-  "summary": "Owns bounded capability, assignment, session, independence, lease, budget, handoff, and closure governance.",
+  "summary": "Owns delegated scope, responsibility, independence, shared-resource coordination, and result handoff constraints without controlling runtime lifecycle.",
   "owners": ["public-governance-maintainers"],
   "tags": ["agent", "assignment", "session", "lease", "handoff"],
   "dependencies": ["eng-project-governance", "eng-repo-governance"],
-  "input_contract": "Work-item reference and adapter, role/capability, session owner, context revisions, scope, AC, budget, leases, independence, and stop rules.",
-  "output_contract": "Owned agent handoff slice plus assignment status, capability decision, budget use, artifacts, clean/dirty state, released leases, blockers, and closure owner."
+  "input_contract": "For the chosen action: outcome, executor, inputs/output, scope and authority; relevant WorkItem or Session references, explicit budgets and leases only when applicable.",
+  "output_contract": "Actual coordination decision or locatable result with limitations; optional version 2 agent slice with owner and scope, plus only applicable references and evidence."
 }

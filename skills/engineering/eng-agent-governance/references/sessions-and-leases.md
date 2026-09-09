@@ -1,86 +1,36 @@
-# Sessions, assignments, and ownership leases
+# Delegation, Sessions, and result handoff
 
-Read this reference when an agent is assigned, replaced, blocked, handed off, or closed.
+These are constraints on chosen coordination actions, not a scheduler or a required lifecycle.
 
-## Capability profile
+## Responsibility and independence
 
-A capability profile defines responsibilities, required independence, allowed actions, and evidence—not a fixed product role. Common labels include:
+An assignment is bounded work with an identifiable executor and expected output. The user request and existing conversation may supply this information; do not require a second assignment database. Reference a canonical WorkItem when one exists and is relevant, without mirroring its state.
 
-- PIC: owns coordination, dependency visibility, escalation, and final closure accounting.
-- DEV: owns bounded implementation output, not its own final independent acceptance.
-- Spec: owns the requested specification artifact, not release selection.
-- QA: owns independent execution/evidence within an existing test contract; it does not redefine test semantics.
-- Reviewer: owns an independent decision for a declared review scope and revision.
+PIC, PM, DEV, QA, Spec, and Reviewer are capability labels. Combining compatible capabilities does not need a new Session or an artificial approval hop. Required independent judgment must come from an executor independent of the subject being judged, not merely a differently named task.
 
-One session may hold multiple compatible capabilities only when the WorkItem permits it and no self-review boundary is violated.
+When delegation creates nested coordination, make each aggregate scope's responsibility clear and avoid circular responsibility. This does not require a hierarchy for independent peer tasks or grant the coordinator additional authority.
 
-A PIC may coordinate another PIC when their closure scopes are distinct or properly nested. The child closes its own scope and hands off to the parent, which closes only the aggregate scope. The relation must be acyclic, each scope has one closure owner, and neither PIC inherits the other's permissions, leases, or approval rights.
+## Creating or reusing a Session
 
-Before launching or renaming anything, record whether each requested assignment reuses an existing session or creates a new independent session. Adding an assignment does not change the current assignment, session, or display title unless the user explicitly asks for that change. If the user requests a new session, do not substitute a title change or a parent-scoped subagent.
+- Use the runtime's supported creation, lookup, and reuse mechanisms within their authorization rules. Retain the returned identifier in the existing task context so subsequent operations address the same target.
+- A pending creation is not a failed creation. Do not submit an equivalent creation again merely because setup is incomplete or a list omits the task. Use a supported lookup or wait; if resolution is unavailable, report that limitation instead of inventing an identifier or relying on private runtime storage.
+- Keep a setup handle distinct from a usable Session identifier. Do not pass a handle to an operation that requires the resolved identifier unless that operation explicitly supports it.
+- Splitting work does not require one branch per Session. Read-only collaborators need no write worktree; concurrent repository writers follow repository isolation constraints.
 
-## Session title and status synchronization
+Titles are navigation labels. Use a requested naming convention when supplied; otherwise use a concise stable name. Do not impose status icons, branch phases, synchronization timestamps, or a title state machine. A missing or stale title does not block artifact handoff.
 
-Treat a display title as a synchronized projection, not the canonical lifecycle or repository record. Use this field order and delimiter:
+## Collecting and using results
 
-```text
-<role> · <status> · <branch-phase> · <requirement>
-```
+Provide the expected output location or return destination when it matters to retrieval. Use existing artifacts, task results, or messages rather than a mandatory push-and-acknowledge protocol. Cross-task communication still follows the tool's authorization boundary.
 
-- `role` is one no-space capability token from the assignment profile, such as `PIC`, `DEV`, `QA`, or `Reviewer`. Combine roles only when the assignment permits it and independence remains valid.
-- `status` is exactly one of `🔵 running`, `🟡 waiting`, `🔴 blocked`, or `🟢 completed`. `running` means execution is active. `waiting` means no execution is active while a named event is pending; never use it as a substitute for `running`.
-- `branch-phase` is exactly `dev`, `test`, `mr`, or `merged`. It reports repository delivery progress independently of session status: `dev` is implementation, `test` is a frozen candidate under validation, `mr` has an opened but unmerged PR or MR, and `merged` requires observed integration of the exact candidate. Conflicts, review waits, and failed checks remain `mr` and are reported separately.
-- `requirement` is the stable, concise WorkItem name. It is one line and must not contain the `·` delimiter.
+A failed callback does not invalidate a completed artifact and does not justify rerunning the producer. The coordinator can retrieve and inspect the result through an authorized read mechanism. If neither delivery nor retrieval is available, report the missing input without claiming it was received.
 
-The machine-readable grammar is:
+Wait or read only as needed to satisfy the current request. A first-completion wait accounts for that result, not every outstanding dependency. An aggregate completion claim must cover its required outputs or explicitly name the gap. This does not require all child Sessions to end, a persistent child roster, or continuous polling. Do not claim background monitoring unless a supported mechanism is active.
 
-```regex
-^([A-Za-z][A-Za-z0-9-]*) · (🔵 running|🟡 waiting|🔴 blocked|🟢 completed) · (dev|test|mr|merged) · ([^·\r\n]+)$
-```
+## Shared ownership and stopping
 
-Project the lifecycle states into titles without creating a second state machine: `running` maps to `🔵 running`; a `ready` or `handoff` session with a named pending event maps to `🟡 waiting`; `blocked` maps to `🔴 blocked`; and `complete` maps to `🟢 completed`. Never relabel `stopped` as completed; record its closure and remove or archive it from the active-session inventory.
+For an actual exclusive shared resource, identify its owner and scope before conflicting writes. Use the existing resource's coordination mechanism where available; introduce lease records only when needed or required by project policy. If a lease is used, its expiry or review condition and release/transfer must be explicit. An expired record alone is not proof that the former writer stopped.
 
-Normal title transitions are `waiting -> running`, `running -> waiting | blocked | completed`, and `blocked -> running | waiting`. `completed` is terminal for that assignment. Branch phase normally advances `dev -> test -> mr -> merged`; rework after a PR or MR opens remains `mr`, while a discarded candidate starts a new assignment and branch at `dev`.
+When blocked or stopped, preserve available output and report the affected work and any resources still held. Do not recursively create replacements to bypass an unchanged blocker. Evidence can survive a Session ending; Session status is not project acceptance.
 
-The session owner updates the title when execution starts, pauses, blocks, or closes. The repository owner supplies exact branch evidence, and the PIC reconciles the active-session list at assignment and handoff boundaries. A title update does not grant either owner authority over the other's state.
-
-If any field cannot be verified, do not manufacture a replacement title. Keep the last verified title and mark the synchronization record `unverified`; mark it `stale` after an underlying lifecycle, branch, or PR/MR event occurs later than its `verified_at`. A minimal synchronization record contains `session_id`, `title`, `owner`, lifecycle evidence, `branch_evidence_ref`, `verified_at`, and `sync_status`. Refresh stale or unverified records before using them for a handoff or status claim.
-
-## Assignment record
-
-```json
-{
-  "assignment_id": "assignment-17",
-  "work_item_ref": "tracker:42",
-  "adapter_binding": "tracker-primary",
-  "role": "DEV",
-  "session_id": "session-9",
-  "owner": "contributor-a",
-  "capabilities": ["implementation"],
-  "context_revisions": ["goal-r2", "arch-r4", "tasks-r6"],
-  "read_scope": ["specs/"],
-  "write_scope": ["src/component/"],
-  "acceptance_criteria": ["AC-001"],
-  "budget": {"unit": "minutes", "limit": 60},
-  "leases": ["path:src/component"],
-  "stop_conditions": ["AC complete", "blocked", "budget exhausted"],
-  "forbidden_actions": ["external write", "Git cleanup"]
-}
-```
-
-Context references bind the assignment to exact upstream revisions. If a relevant revision changes, pause and ask project governance whether the assignment remains valid.
-
-## Lease rules
-
-A lease has a resource id, owner/session, start, expiry or review point, and release status. Claim it before writing; reject overlapping exclusive leases. Lease renewal is an explicit lifecycle event and must not hide a blocked or abandoned session.
-
-A lease is not an authorization token. Repository paths still follow repository governance; task records follow project governance; external tools keep their own permissions.
-
-## Blocking, handoff, and closure
-
-Blocked output states the observed blocker, attempted in-scope checks, affected AC, remaining budget, clean/dirty resources, and the owner who can decide. Do not recursively create replacement sessions without project/PIC authority.
-
-A handoff includes actual artifacts/evidence, current context revisions, status, remaining work, known risks, budget consumed, clean/dirty report, and every released or transferred lease. The agent slice records the lifecycle summary; project and repository slices remain owned elsewhere.
-
-The closure owner verifies that the handoff exists and leases are released even when work is stopped or abandoned. Repository cleanup is only a proposal until `eng-repo-governance` accepts the exact target and authority.
-
-An explicit user statement that the current assignment's change is merged, including “已合并”, authorizes closure, repository cleanup, and Session archival for that assignment without a second confirmation. Bind the statement to the exact assignment and candidate, route Git cleanup to `eng-repo-governance`, release leases, record its cleanup or retention result, and then archive the closed Session. The statement does not authorize cleanup or archival of unrelated assignments.
+Repository cleanup and Session archival are separate actions. Perform them only under an explicit request or an applicable configured user preference, with their respective checks. A bare merge-status statement such as “已合并” is not universal cleanup or archival authority; honor an existing explicit preference without asking for it again. Neither action is required to make a usable result complete.

@@ -4,6 +4,8 @@ Read this reference when creating or resolving canonical project state, or befor
 
 ## Canonical WorkItem
 
+The following is a release-oriented example, not a startup form. Keep fields needed by the requested canonical operation and provider contract. Ordinary analysis or implementation does not require this record; do not fabricate architecture revisions, milestones, or a release target.
+
 ```json
 {
   "schema_version": 1,
@@ -58,19 +60,19 @@ Adapters may be provided for local SQLite, Multica, GitHub Issues, GitLab Issues
 | `transition` | `TaskSink.transition` | `issue_write(method=update, state=...)` | `save_work_item(state=opened|closed)` |
 | `comment` | `TaskSink.comment` | `add_issue_comment` | `save_note` |
 
-The machine-readable copy and read-only `check_tools` helper are in [`task_adapters.mappings`](../../../../task_adapters/mappings.py). Provider tool names are matched within the selected plugin namespace. Before an operation, check that its mapped tools are exposed in the current Session. If not, stop with a dependency diagnostic naming the selected adapter and missing tool; do not install, sign in, bootstrap, or silently fall back from this Skill.
+The machine-readable copy and read-only `check_tools` helper are in [`task_adapters.mappings`](../../../../task_adapters/mappings.py). Provider tool names are matched within the selected plugin namespace. Before an operation, check that its mapped tools are exposed in the current environment. If not, stop that operation and work dependent on its unavailable facts, with a diagnostic naming the selected adapter and missing tool. Other authorized work may continue without claiming a canonical write occurred. Do not install, sign in, bootstrap, or silently fall back from this Skill.
 
 Plugin installation, authentication, accounts, and permissions remain in the Codex environment. SQLite storage location and initialization remain in its external SDK implementation. `project.yaml` contains neither. Project governance still owns which source is canonical, whether a mirror is desired, its direction, and any system-of-record migration decision.
 
 ## Revision and release rules
 
-Changes to goal, architecture, task DAG, acceptance criteria, candidate set, or release target create a new owned revision and mark dependent decisions/evidence stale unless an impact record says otherwise. Artifact authors and reviewers retain their own correctness authority; this Skill only records references and gate decisions.
+When an owned goal, architecture, task, acceptance, candidate, or release decision changes, preserve its relevant revision and assess which downstream inputs or evidence are affected. Do not suspend unrelated work or require a new project approval for every upstream edit. Evidence for a changed subject cannot be presented as current without rechecking or justified reuse. Artifact authors and reviewers retain their own correctness authority; this Skill records references and gate decisions.
 
 Candidate selection answers what enters a target and when. Repository governance performs the resulting Git operations. A pipeline gate reports evidence against exact refs; closing a WorkItem still requires current acceptance and unresolved-risk decisions.
 
 ## RemoteSyncPlan
 
-Project governance owns the decision about whether remote synchronization is needed, which project branch roles or named refs participate, and at what trigger or time. Record that decision separately from Git execution:
+Project governance owns the decision about whether remote synchronization is needed, which project branch roles or named refs participate, and at what trigger or time. Record the intent distinctly from Git execution, in the existing request or project record; a separate file or actor is not required. This fuller example applies when a tracked release needs a structured plan (`work_item_ref` applies only when one exists):
 
 ```json
 {

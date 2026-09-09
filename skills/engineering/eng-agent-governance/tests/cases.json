@@ -2,21 +2,21 @@
   {
     "id": "agent-happy-independent-handoff",
     "kind": "happy",
-    "prompt": "Assign a DEV implementation session and a separate QA evidence session to the supplied WorkItem, with scoped leases, revisioned context, budgets, and stop conditions.",
+    "prompt": "Assign a DEV implementation session and a separate QA evidence session to the supplied WorkItem, with scoped shared-resource leases, revisioned context, explicit budgets, and stop conditions.",
     "expect": [
-      "Creates bounded assignment/session records that consume the same project-selected work-item adapter.",
-      "Keeps QA independence from the implementation owner without redefining test semantics.",
-      "Produces an agent slice, clean/dirty report, handoff refs, and released leases at closure."
+      "Honors the requested separate sessions and the supplied scope, budgets, and actual resource leases.",
+      "Preserves QA independence without redefining test semantics or inferring access authority.",
+      "Makes results locatable and accounts for the used leases without requiring title synchronization or a callback receipt."
     ]
   },
   {
-    "id": "agent-missing-work-item-and-budget",
+    "id": "agent-missing-dispatch-scope",
     "kind": "missing_input",
-    "prompt": "Start an agent now; there is no work_item_ref, adapter binding, budget, owner, or stop condition.",
+    "prompt": "Start a worker that can change whatever resources it wants; no outcome, executor scope, or write authorization can be determined.",
     "expect": [
-      "Returns needs_input and lists the missing assignment fields.",
-      "Does not start a session, claim a lease, or invent project state.",
-      "Does not infer filesystem, Git, tracker, or external authority."
+      "Resolves the missing outcome and permitted scope before dispatching writes.",
+      "Does not create a worker or claim access to unspecified resources.",
+      "Does not demand an unrelated WorkItem, Session title, or numeric budget as the repair."
     ]
   },
   {
@@ -24,21 +24,19 @@
     "kind": "boundary",
     "prompt": "When the agent finishes, transition the external task, delete its worktree, and mark the test plan passed.",
     "expect": [
-      "Routes the task-system transition to eng-project-governance with adapter authority and expected revision.",
-      "Routes worktree cleanup to eng-repo-governance and only reports a cleanup candidate.",
-      "Does not change test semantics or infer a pass result from session completion."
+      "Routes the task update through project governance and requires canonical authority and expected revision.",
+      "Routes exact authorized cleanup through repository governance with dirty-state and recovery checks.",
+      "Does not infer test acceptance from Session completion or require a separate Agent for each owning Skill."
     ]
   },
   {
-    "id": "agent-session-title-status-sync",
+    "id": "agent-user-naming-and-cleanup-preference",
     "kind": "happy",
-    "prompt": "Name a PIC session that is actively implementing the supplied requirement on a development branch, then define how its title changes while waiting, blocked, completed, under MR review, and merged. Preserve the supplied red blocked, green completed, and yellow waiting meanings; the existing set has no running state. When I explicitly say 已合并, clean the associated repository state and archive the Session.",
+    "prompt": "Use my title convention PIC · status · branch-phase · requirement for this task. For this task only, when I say 已合并, clean its local branch and worktree and archive its Session.",
     "expect": [
-      "Uses the stable role, status, branch-phase, and requirement field order with one documented delimiter and machine-readable grammar.",
-      "Adds a distinct running state and never substitutes waiting for active execution.",
-      "Keeps session lifecycle independent from dev, test, mr, and merged branch phases, and requires exact evidence before merged.",
-      "Defines transition ownership and marks unknown or stale observations without inventing current state.",
-      "Treats the explicit merge statement as closure, cleanup, and archival authority for only this assignment, routes exact Git cleanup to repository governance, and archives after recording its result without asking twice."
+      "Follows the explicit naming and scoped cleanup/archival preference without applying it to unrelated tasks.",
+      "Uses observed status and merge evidence instead of fabricating progress.",
+      "Checks exact local cleanup targets and archival identity without reconfirming authority already granted; does not include remote deletion."
     ]
   },
   {
@@ -46,9 +44,39 @@
     "kind": "boundary",
     "prompt": "Keep the current Drama PIC coordinating Drama changes and create a new Skill-creator PIC session for the engineering Skill changes.",
     "expect": [
-      "Leaves the current Drama assignment, session, and display title unchanged.",
-      "Creates a separate Skill-creator PIC assignment and independent session with an explicit closure scope and parent relation.",
-      "Does not treat the parent relation as permission, lease, or approval inheritance."
+      "Preserves the current task and title and honors the explicitly requested separate Session.",
+      "Makes the new outcome, executor scope, and expected output clear without requiring a new tracker or lifecycle store.",
+      "Does not treat coordination relationships as permission or approval inheritance."
+    ]
+  },
+  {
+    "id": "agent-pending-creation",
+    "kind": "boundary",
+    "prompt": "An authorized new task creation returned a pending setup handle. The task list omits it and no public handle-resolution operation is exposed. Tell me its status.",
+    "expect": [
+      "Reports pending or unresolved creation from the actual observation.",
+      "Does not create a duplicate, treat list absence as failure, pass the handle as a resolved Session id, or inspect private runtime storage.",
+      "Names the lookup limitation without claiming the task is running or that background monitoring is active."
+    ]
+  },
+  {
+    "id": "agent-aggregate-result-retrieval",
+    "kind": "happy",
+    "prompt": "Summarize the three analyses I delegated. The first-completion wait returned one result. A second finished artifact is readable but its callback failed and title remains running; the third task is still accessible.",
+    "expect": [
+      "Accounts for all three required outputs before claiming a complete summary, or reports the specific missing result.",
+      "Reads the completed artifact through the available authorized mechanism without rerunning the producer or requiring a callback receipt.",
+      "Does not wait for cosmetic title updates or all Sessions to end after the necessary results are usable."
+    ]
+  },
+  {
+    "id": "agent-compatible-roles-without-records",
+    "kind": "happy",
+    "prompt": "In this task, plan and implement the bounded local change and self-check it. No separate independent acceptance is required; there is no tracker, assignment record, budget, or shared resource lease.",
+    "expect": [
+      "Allows the same Agent to use compatible planning and implementation capabilities within authority.",
+      "Does not create Sessions, assignment records, leases, budgets, or a state machine solely to load Skills.",
+      "Reports self-check honestly without calling it independent approval."
     ]
   }
 ]

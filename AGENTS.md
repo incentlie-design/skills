@@ -2,12 +2,14 @@
 
 This repository is the source of exactly eight public engineering Skills: four state-owning governance Skills, one advisory decision Skill, and three artifact-owning role Skills. Keep their responsibilities orthogonal and share stateful cross-Skill data through [the governance contract](docs/governance-contract.md).
 
+Skills constrain actions; the Agent retains workflow orchestration within user intent and authority. Routing an action does not require a separate actor, Session, approval hop, or lifecycle stage. Do not create WorkItems, assignments, budgets, leases, or handoff packets merely to load a Skill. Require facts only for actions that depend on them; block the affected action, not unrelated authorized work.
+
 ## Mandatory routing
 
 - Route every Git mutation—including branch, worktree, commit, merge, rebase, cherry-pick, tag, push, history rewrite, and cleanup—to `eng-repo-governance`. Read-only `status`, `diff`, `log`, and `show` do not require that Skill.
 - Route a workspace made of multiple repositories to `eng-workspace-governance`; it delegates each repository mutation to `eng-repo-governance`.
 - Route work intake, canonical work-item state, delivery/release selection, milestones, pipeline gates, and the decision about which project branch roles/refs must synchronize to a remote and when to `eng-project-governance`.
-- Route capability roles, sessions, assignments, independence, budgets, ownership leases, blocking, and handoff closure to `eng-agent-governance`.
+- Route delegation, Session creation or reuse, assignment scope, independence, explicit budgets, shared-resource ownership, and result handoff to `eng-agent-governance`. It constrains those actions without owning the runtime's Session lifecycle.
 - Route zero-to-one product or architecture choices where option load or premature sophistication could delay an end-to-end learning loop to `eng-closed-loop-decisions` as advice. It owns no governance slice and cannot waive safety constraints or take over product, architecture, project, repository, workspace, or agent-state ownership.
 - Route bounded PM planning and PM self-check to `eng-pm`. It owns the planning artifact, not a governance slice, specialist approval, assignment, or project state.
 - Route bounded technology choice, implementation, focused unit evidence, DEV self-check, and implementation handoff to `eng-dev`. It owns the implementation artifact, not a governance slice, Git mechanics, dependency or permission grants, or independent acceptance.

@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "name": "eng-workspace-governance",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "category": "engineering",
   "status": "active",
   "summary": "Owns reproducible multi-repository workspace topology, exact refs, dependency order, and handoff context.",
   "owners": ["public-governance-maintainers"],
   "tags": ["workspace", "multi-repository", "manifest", "dependency-dag", "handoff"],
   "dependencies": ["eng-repo-governance"],
-  "input_contract": "Workspace identity, repository facts and exact commits, dependency edges, source evidence, change set, and launch context.",
-  "output_contract": "Owned workspace handoff slice with manifest revision, exact repository tuple, dependency order, launch context, and unresolved constraints."
+  "input_contract": "For topology changes, participating repository identities and dependency facts; for reproducible handoff or verification, exact consumed commits and required launch context.",
+  "output_contract": "Actual topology/dependency decision or reproducible handoff; optional version 2 workspace slice with manifest reference, exact repository tuple, and dependency edges."
 }

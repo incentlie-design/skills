@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "name": "eng-project-governance",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "category": "engineering",
   "status": "active",
   "summary": "Owns canonical work-item, milestone, candidate, release-window, pipeline-gate, project remote-sync, and closure decisions.",
   "owners": ["public-governance-maintainers"],
   "tags": ["project", "work-item", "release", "milestone", "remote-sync", "task-adapter"],
   "dependencies": ["eng-workspace-governance"],
-  "input_contract": "Raw intake or work-item reference, one system of record, artifact revisions, AC, dependencies, project profile, selected adapter target and available mapped tools, and write, release, or remote-sync decision authority.",
-  "output_contract": "Owned project handoff slice plus canonical WorkItem decisions, milestones, selected candidates, gates, optional RemoteSyncPlan reference, status, conflicts, and next owner."
+  "input_contract": "Facts required by the chosen project action: request and decision sources; canonical binding and expected revision for task writes; candidate, target and authority for selection or remote-sync intent.",
+  "output_contract": "Actual project decision, relevant references and evidence, affected blockers; optional version 2 project slice identified by decision_ref without mandatory release or architecture fields."
 }

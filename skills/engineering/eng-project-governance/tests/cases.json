@@ -24,9 +24,9 @@
     "kind": "boundary",
     "prompt": "Write the detailed requirements, architecture, production implementation, and full test suite for this idea.",
     "expect": [
-      "Explains that project governance can register and orchestrate those artifacts but does not author them.",
-      "Requests the appropriate specialized producer or existing artifact references.",
-      "Does not create substitute documents, code, tests, or Git state."
+      "Uses the appropriate artifact capabilities for authoring; project ownership does not impose a separate producer Session or approval hop.",
+      "Does not force canonical registration or project records merely to enable the requested authoring.",
+      "Does not use project governance to claim artifact correctness or infer external-write authority."
     ]
   },
   {
@@ -43,11 +43,11 @@
   {
     "id": "project-missing-plugin-tool",
     "kind": "missing_input",
-    "prompt": "project.yaml selects GitHub Issues, but this Session does not expose the mapped GitHub issue_write tool.",
+    "prompt": "Analyze the supplied self-contained bug report and update its canonical issue. project.yaml selects GitHub Issues, but the environment does not expose the mapped issue_write tool.",
     "expect": [
-      "Validates the project selection and reports the missing GitHub tool as needs_input or blocked.",
+      "Reports the canonical update as blocked by the missing GitHub tool while completing the independent analysis from supplied facts.",
       "Does not install or authenticate the plugin, initialize GitHub, create a client, or silently fall back to SQLite.",
-      "Preserves the selected system of record until an authorized project migration changes it."
+      "Preserves the selected system of record and does not claim the issue was updated."
     ]
   }
 ]

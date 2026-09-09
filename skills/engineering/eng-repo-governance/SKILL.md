@@ -1,31 +1,37 @@
 ---
 name: eng-repo-governance
-description: Govern mutations inside one Git repository, including branches, worktrees, commits, integration, promotion, history rewrites, and cleanup. Use for Git writes; do not trigger for read-only status, diff, log, or show.
+description: Constrain mutations inside one Git repository, including branches, worktrees, commits, integration, promotion, history rewrites, and cleanup. Use for Git writes; do not trigger for read-only status, diff, log, or show.
 ---
 
 # Repository governance
 
-Own the collaboration and integration mechanics of one Git repository without assuming a task system or whether contributors are people or agents.
+Own Git safety and mutation evidence, not project selection or workflow orchestration. Read [the repository protocol](references/repo-protocol.md) for the requested Git action. Use only the repo slice from [the shared governance contract](../../../docs/governance-contract.md) when structured mutation evidence is needed.
 
-## Required inputs
+## Before a Git mutation
 
-Identify the repository and requested mutation, exact base and current head, branch/worktree and dirty-state facts, intended write scope, and the applicable project profile: branch patterns, change key, integrator, and promotion authority. For project-branch synchronization, require an approved `RemoteSyncPlan` naming the selected branch roles/refs and timing; do not infer it from local state. Resolve the exact target before mutating. If a required ref, dirty-path owner, plan, or authority is missing, return `needs_input` or `blocked` and make no mutation.
+- Resolve the exact repository, operation, targets, relevant base/current refs, branch/worktree occupancy, dirty-state ownership, write scope, and authority. Discover available facts through read-only checks rather than asking the user to fill a form.
+- Preserve existing changes. Stop the affected mutation on ambiguous ownership, conflicting writers, unresolved targets, or insufficient authority; do not stash, reset, rewrite, or clean up to conceal the conflict.
+- Apply relevant project policy. A local branch or commit does not require an integrator, release window, promotion authority, task adapter, or Session record.
 
-Read [the repository protocol](references/repo-protocol.md) when planning or performing a Git mutation. Use the repository slice from [the shared governance contract](../../../docs/governance-contract.md); write no other slice.
+## Creating branches, worktrees, or commits
 
-## Decisions and workflow
+- Bind a contributor branch to a bounded change, not a role, date, or Session lifecycle. Create or reuse a suitable branch/worktree within the requested scope from an exact base. Respect supplied naming rules; otherwise use a descriptive `codex/<change>` branch.
+- Enforce one active writer per worktree. Concurrent repository writers need isolated worktrees; read-only analysis or review does not. Do not move a branch already checked out elsewhere.
+- Keep the commit scoped and report its actual resulting identity. Do not force an extra handoff commit for an action that does not create content.
+- Review, aggregate, and integration branches are optional tools for an actual need, not mandatory stages. A new Session does not require a new branch, and ending a Session does not require deleting one.
 
-1. Inventory the repository, common Git directory, refs, worktrees, dirty paths, and relevant remotes. Existing dirty content belongs to its current owner until proven otherwise.
-2. Assign neutral branch roles such as contributor, review, aggregate, integration, and stable from the supplied profile. Do not hard-code ticket systems, job titles, or one hosting provider.
-3. Enforce one writer per worktree and an explicit write scope. Create or reuse branches/worktrees only within the requested workflow and from an exact base.
-4. Perform only the authorized mutation. Record old and new exact refs; never use an unresolved path, glob, floating ref, or destructive fallback to conceal a conflict.
-5. Produce a handoff commit and repository slice containing base/head, branch/worktree, write scope, evidence, dependencies, and unresolved risks.
-6. For integration, freeze the candidate set and head, aggregate in declared order, verify the frozen head, and promote only the same verified history under the supplied promotion authority.
-7. For remote synchronization, consume the project-selected plan without adding refs or changing its timing, resolve its entries to exact refspecs and expected revisions, apply repository safety checks, execute only the authorized push, and record the observed remote result.
-8. Treat rebase, force updates, history rewrite, tag publication, push, and cleanup as separate decisions. Do not rewrite a handed-off/shared commit. Cleanup requires exact targets, clean-state and recoverability evidence, and explicit authority.
+## Integrating or promoting
 
-Repository governance implements Git mechanics after project governance selects what and when, including remote-sync branch selection and timing. It may reject a stale or unsafe plan but does not select candidates, release windows, or project branches for synchronization, define cross-repository dependencies, or manage agent sessions.
+- Consume the authorized target and selected exact candidates. Check ancestry, actual dependencies, conflicts, and the applicable verification requirements. For multiple candidates, preserve the selected set and meaningful integration order.
+- Bind validation to the exact resulting head. Promote only verified history under the supplied authority. A changed base, candidate, squash, or merge result needs new or justified reusable evidence for that result.
+- Do not rewrite a shared or handed-off commit. Corrections use new commits or an explicitly authorized integration operation.
 
-## Output and stop
+## Synchronizing, rewriting, or cleaning up
 
-Return the repository slice plus actual command/evidence summary, status (`complete`, `blocked`, or `needs_input`), and any authority still required. Stop at the requested local commit, integration, or promotion boundary. A local commit or merge never implies push, publication, deployment, or cleanup.
+- For remote synchronization, consume the project-selected `RemoteSyncPlan` without adding refs or changing timing. Resolve exact refspecs and expected remote revisions, apply safety checks, execute only authorized writes, and verify the observed remote result.
+- Treat push, tag publication, force updates, history rewrite, and cleanup as separately authorized actions. A local commit or merge supplies none of that authority.
+- Cleanup requires exact targets, clean-state and recovery evidence, and explicit permission or a configured user preference covering those targets. Merge status alone does not create a universal cleanup rule; uncertain state is retained.
+
+## Evidence and boundaries
+
+Report the actual mutation and relevant before/after refs, scoped verification, unresolved risks, and any remaining requested action. Stop at the requested boundary. Project governance owns candidate and release decisions and remote-sync intent; workspace governance owns cross-repository dependencies. Those ownership boundaries do not require separate Agents or approval hops. Repository governance does not manage Session state or infer publication, deployment, or cleanup.
