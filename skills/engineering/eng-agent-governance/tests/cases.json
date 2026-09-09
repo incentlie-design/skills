@@ -39,5 +39,15 @@
       "Keeps session lifecycle independent from dev, test, mr, and merged branch phases, and requires exact evidence before merged.",
       "Defines transition ownership and marks unknown or stale observations without inventing current state."
     ]
+  },
+  {
+    "id": "agent-boundary-new-pic-session",
+    "kind": "boundary",
+    "prompt": "Keep the current Drama PIC coordinating Drama changes and create a new Skill-creator PIC session for the engineering Skill changes.",
+    "expect": [
+      "Leaves the current Drama assignment, session, and display title unchanged.",
+      "Creates a separate Skill-creator PIC assignment and independent session with an explicit closure scope and parent relation.",
+      "Does not treat the parent relation as permission, lease, or approval inheritance."
+    ]
   }
 ]
