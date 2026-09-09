@@ -66,3 +66,5 @@ Repository governance may reject a stale, ambiguous, unauthorized, or unsafe pla
 Rewrite only an unshared branch when policy and authority explicitly allow it; never use rewrite to bypass dirty state, evidence, or another writer. Push and force updates are remote writes with separate authority.
 
 Cleanup is a new mutation, not an automatic epilogue. Resolve each branch/worktree/tag target, confirm clean state, retained recovery commit, integration status, and authorization. Prefer leaving a recoverable candidate over deleting uncertain state.
+
+An explicit user statement that the current candidate is merged, including “已合并”, supplies cleanup authority for that candidate without a second confirmation. Verify that its exact head is integrated into the named target and that the associated worktree is clean, then remove only its associated worktree and local or remote contributor/session branch when no retention rule applies. Keep unverifiable or dirty state and report why; never extend this authority to unrelated refs, tags, archive branches, or history rewrites.

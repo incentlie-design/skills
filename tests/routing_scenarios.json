@@ -38,14 +38,14 @@
     },
     {
       "id": "post-handoff-cleanup",
-      "request": "After a completed handoff, release ownership and consider deleting the local branch and worktree.",
+      "request": "For the current completed assignment and exact candidate, the user says 已合并. Clean its repository state and archive its Session.",
       "expected_route": ["eng-agent-governance", "eng-repo-governance"],
       "expected_owner_actions": [
-        "Agent governance releases the ownership lease and reports clean or dirty state.",
-        "Repository governance resolves exact cleanup targets and checks recovery, integration, and authority."
+        "Agent governance treats the explicit merge statement as closure and archival authority, releases leases, records the repository result, and archives the Session.",
+        "Repository governance treats the statement as cleanup authority, verifies the exact head is integrated and the worktree is clean, and removes only the associated worktree and unretained local or remote branch."
       ],
-      "stop": "Stop at a cleanup candidate unless exact targets, clean/recovery evidence, and explicit cleanup authority are present.",
-      "forbid": ["agent-performed Git cleanup", "automatic deletion"]
+      "stop": "Complete after safe cleanup or explicit retention is recorded and the closed Session is archived; retain and report any dirty or unverifiable repository state.",
+      "forbid": ["agent-performed Git cleanup", "unrelated ref cleanup", "second confirmation"]
     },
     {
       "id": "zero-to-one-closed-loop-advice",

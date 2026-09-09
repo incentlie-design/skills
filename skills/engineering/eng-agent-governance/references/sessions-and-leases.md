@@ -82,3 +82,5 @@ Blocked output states the observed blocker, attempted in-scope checks, affected 
 A handoff includes actual artifacts/evidence, current context revisions, status, remaining work, known risks, budget consumed, clean/dirty report, and every released or transferred lease. The agent slice records the lifecycle summary; project and repository slices remain owned elsewhere.
 
 The closure owner verifies that the handoff exists and leases are released even when work is stopped or abandoned. Repository cleanup is only a proposal until `eng-repo-governance` accepts the exact target and authority.
+
+An explicit user statement that the current assignment's change is merged, including “已合并”, authorizes closure, repository cleanup, and Session archival for that assignment without a second confirmation. Bind the statement to the exact assignment and candidate, route Git cleanup to `eng-repo-governance`, release leases, record its cleanup or retention result, and then archive the closed Session. The statement does not authorize cleanup or archival of unrelated assignments.
