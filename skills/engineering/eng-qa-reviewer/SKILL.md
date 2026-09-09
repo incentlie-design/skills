@@ -1,11 +1,11 @@
 ---
-name: eng-qa-reviewer-handbook
-description: Guide bounded QA strategy, evidence judgment, and independent implementation review against supplied acceptance and test contracts. Use for QA planning, QA conclusions, or code review; do not invent product behavior, own gates, repair the subject, perform Git or release work, or assume independence without evidence.
+name: eng-qa-reviewer
+description: Plan and judge bounded QA evidence and independently review implementations against supplied acceptance and test contracts. Use for QA work or code review; do not invent product behavior, own gates, repair the subject, perform Git or release work, or assume independence without evidence.
 ---
 
-# QA and Reviewer handbook
+# QA and Reviewer
 
-Plan or evaluate a bounded subject against supplied acceptance and test contracts. This Skill is advisory and writes no slice of [the shared governance contract](../../../docs/governance-contract.md). Independence comes from the assignment and risk profile, not from the name of the executor.
+Own the bounded QA or review evidence artifact for a supplied subject and contract. Do not write any slice of [the shared governance contract](../../../docs/governance-contract.md). Independence comes from the assignment and risk profile, not from the executor's label.
 
 ## Freeze the subject and select evidence
 

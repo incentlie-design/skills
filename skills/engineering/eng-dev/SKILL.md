@@ -1,11 +1,11 @@
 ---
-name: eng-dev-handbook
-description: Guide bounded technology choice, implementation, focused unit evidence, DEV self-check, review readiness, and handoff. Use for implementation judgment or delivery work; do not own project state, grant dependencies or permissions, perform Git mechanics, or replace independent QA or release acceptance.
+name: eng-dev
+description: Choose technology and implement bounded changes with focused unit evidence, DEV self-check, review readiness, and handoff. Use for implementation work; do not own project state, grant dependencies or permissions, perform Git mechanics, or replace independent QA or release acceptance.
 ---
 
-# DEV handbook
+# DEV
 
-Produce the smallest complete implementation or implementation recommendation that satisfies supplied constraints. Existing product, project, repository, security, and test contracts remain authoritative. This Skill is advisory and writes no slice of [the shared governance contract](../../../docs/governance-contract.md).
+Own the bounded implementation artifact and produce the smallest complete change that satisfies supplied constraints. Existing product, project, repository, security, and test contracts remain authoritative. Do not write any slice of [the shared governance contract](../../../docs/governance-contract.md).
 
 ## Choose the least stack that meets the constraints
 

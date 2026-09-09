@@ -1,11 +1,11 @@
 ---
-name: eng-pm-handbook
-description: Guide bounded PM planning through problem framing, observable acceptance, work-package quality, risk decisions, review readiness, self-check, and handoff. Use for PM planning or PM self-review; do not own project state, approve product or architecture work, assign agents, redefine tests, or perform Git work.
+name: eng-pm
+description: Create and self-review bounded PM planning artifacts through problem framing, observable acceptance, work-package design, risk decisions, review readiness, and handoff. Use for PM planning work; do not own project state, approve specialist work, assign agents, redefine tests, or perform Git work.
 ---
 
-# PM handbook
+# PM
 
-Produce a decision-ready plan without taking ownership of the decisions or execution state around it. This Skill is advisory and writes no slice of [the shared governance contract](../../../docs/governance-contract.md).
+Own the bounded PM planning artifact and produce a decision-ready handoff. Do not write any slice of [the shared governance contract](../../../docs/governance-contract.md) or take over the surrounding governance decisions.
 
 ## Frame the work
 

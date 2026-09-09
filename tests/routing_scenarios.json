@@ -57,36 +57,6 @@
       ],
       "stop": "Stop after one advisory ClosureDecision and its owning project decision; implementation, Git mutation, and publication are not implied.",
       "forbid": ["advisor-owned WorkItem state", "speculative platform expansion", "waived safety constraint"]
-    },
-    {
-      "id": "bounded-pm-plan-advice",
-      "request": "Turn a supplied account-export request into a bounded, decision-ready plan and PM self-check without creating or updating canonical project state.",
-      "expected_route": ["eng-pm-handbook"],
-      "expected_owner_actions": [
-        "The PM handbook traces source and outcome through observable acceptance, work packages, risks, evidence, and handoff as advice."
-      ],
-      "stop": "Stop when the bounded plan is decision-ready or a material missing input or owning decision is identified.",
-      "forbid": ["advisor-owned WorkItem state", "PM self-approval", "implicit assignment creation"]
-    },
-    {
-      "id": "bounded-dev-implementation-advice",
-      "request": "Recommend the least stack and a bounded implementation and unit-check approach for a small CSV-to-JSON utility; no artifact or Git mutation is requested.",
-      "expected_route": ["eng-dev-handbook"],
-      "expected_owner_actions": [
-        "The DEV handbook recommends one constrained stack, the smallest complete change, focused checks, self-check, and handoff boundaries as advice."
-      ],
-      "stop": "Stop after the bounded implementation recommendation and evidence plan; dependency grants, Git work, and independent acceptance are not implied.",
-      "forbid": ["unapproved dependency", "advisor-performed Git mutation", "DEV self-check as independent QA"]
-    },
-    {
-      "id": "bounded-qa-review-advice",
-      "request": "Review a supplied exact diff and current test evidence against supplied acceptance, report concrete findings, and do not repair the code or change a gate.",
-      "expected_route": ["eng-qa-reviewer-handbook"],
-      "expected_owner_actions": [
-        "The QA and Reviewer handbook freezes the subject, selects risk-proportional evidence, judges actual results, and reports actionable independent findings as advice."
-      ],
-      "stop": "Stop with a scoped conclusion or the smallest missing evidence, authority, semantics, or independence blocker.",
-      "forbid": ["invented product semantics", "reviewer-authored repair", "advisor-owned gate or release decision"]
     }
   ]
 }

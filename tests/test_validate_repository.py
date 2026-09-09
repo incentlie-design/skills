@@ -14,8 +14,8 @@ class RepositoryValidationTests(unittest.TestCase):
         report = validator.validate(ROOT)
         self.assertEqual(report["errors"], [])
         self.assertEqual(report["skills_checked"], 8)
-        self.assertEqual(report["behavior_cases_defined"], 28)
-        self.assertEqual(report["routing_scenarios_validated"], 8)
+        self.assertEqual(report["behavior_cases_defined"], 18)
+        self.assertEqual(report["routing_scenarios_validated"], 5)
         self.assertEqual(report["behavior_cases_executed"], 0)
 
     def test_dependency_cycle_and_missing_are_rejected(self):

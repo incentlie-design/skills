@@ -1,6 +1,6 @@
 # skill-creator
 
-A public source repository for eight orthogonal engineering Skills: four state-owning governance Skills plus one closed-loop decision advisor and three role handbooks. They help an Agent move from product intent to evidence without assuming a particular task system, agent implementation, Git host, or Codex Project.
+A public source repository for eight orthogonal engineering Skills: four state-owning governance Skills, one closed-loop decision advisor, and three artifact-owning role Skills. They help an Agent move from product intent to evidence without assuming a particular task system, agent implementation, Git host, or Codex Project.
 
 ## Agent-centered operating model
 
@@ -15,14 +15,14 @@ Agent routes the operation
         +-- zero-to-one choice pressure ---> load eng-closed-loop-decisions
         |                                   advise the smallest clean loop
         |
-        +-- bounded PM planning ----------> load eng-pm-handbook
-        |                                   advise planning and PM self-check
+        +-- bounded PM planning ----------> load eng-pm
+        |                                   produce planning artifacts
         |
-        +-- bounded DEV work -------------> load eng-dev-handbook
-        |                                   advise implementation and self-check
+        +-- bounded DEV work -------------> load eng-dev
+        |                                   implement and self-check
         |
-        +-- bounded QA or review ---------> load eng-qa-reviewer-handbook
-        |                                   advise evidence and findings
+        +-- bounded QA or review ---------> load eng-qa-reviewer
+        |                                   produce evidence and findings
         |
         +-- project decision needed ------> load eng-project-governance
         |                                  operate Project objects
@@ -40,7 +40,7 @@ Agent routes the operation
 handoff, release leases, gate, integrate, synchronize, or close
 ```
 
-The four governance Skills own execution state. The four advisory Skills own no governance state: `eng-closed-loop-decisions` narrows product and architecture choices toward a runnable learning loop, while the three handbooks guide bounded PM, DEV, QA, and Reviewer judgment. None replaces the producer Skill needed to write a product requirement, architecture, implementation, test, presentation, or other domain artifact. The Agent loads that domain Skill for the artifact and the appropriate engineering Skill for advice or the surrounding state transition.
+The four governance Skills own execution state. `eng-closed-loop-decisions` owns advice; `eng-pm`, `eng-dev`, and `eng-qa-reviewer` own their bounded role artifacts. None owns a governance slice or gains additional filesystem, Git, tracker, release, or production authority by being loaded.
 
 ## Which Skill the Agent loads
 
@@ -49,9 +49,9 @@ The four governance Skills own execution state. The four advisory Skills own no 
 | Agent need | Skill to load | Objects the Agent can operate while loaded | Result and boundary |
 | --- | --- | --- | --- |
 | Reduce decision load during zero-to-one product or architecture work and find the fastest clean path to observable learning | [`eng-closed-loop-decisions`](skills/engineering/eng-closed-loop-decisions/SKILL.md) | Advisory `ClosureDecision`: actor-to-evidence loop, one recommended vertical path, decisions now, reversible defaults, deferred triggers, rejected scope, clean invariants, first runnable check, known ceiling and replacement seam | Writes no governance slice. It recommends but cannot approve product/architecture artifacts, create WorkItem state, assign Agents, perform Git work, or waive safety and other non-deferrable constraints. |
-| Produce or self-check a bounded, decision-ready PM plan | [`eng-pm-handbook`](skills/engineering/eng-pm-handbook/SKILL.md) | Advisory planning result: framing, assumptions, observable acceptance, work packages, dependencies, risks, evidence status, next owner, and stop point | Writes no governance slice. It cannot approve product or architecture work, create assignments, redefine tests, or change project state. |
-| Choose a bounded stack, implement the smallest complete change, or prepare DEV evidence and handoff | [`eng-dev-handbook`](skills/engineering/eng-dev-handbook/SKILL.md) | Advisory implementation result: constrained stack choice, acceptance mapping, focused checks, DEV self-check, changed artifacts, risks, rollback seam, and stop point | Writes no governance slice. It cannot grant dependencies or permissions, perform Git mechanics, or replace required independent QA or release acceptance. |
-| Plan or judge QA evidence, or independently review an implementation | [`eng-qa-reviewer-handbook`](skills/engineering/eng-qa-reviewer-handbook/SKILL.md) | Advisory evidence or review result: frozen subject, scoped checks, actual/reused/stale evidence, actionable findings, risks, next owner, and stop point | Writes no governance slice. It cannot invent product or test contracts, own gates, repair the subject, or perform Git or release work. |
+| Produce or self-check a bounded, decision-ready PM plan | [`eng-pm`](skills/engineering/eng-pm/SKILL.md) | Planning artifact: framing, assumptions, observable acceptance, work packages, dependencies, risks, evidence status, next owner, and stop point | Writes no governance slice. It cannot approve specialist work, create assignments, redefine tests, or change project state. |
+| Choose a bounded stack, implement the smallest complete change, or prepare DEV evidence and handoff | [`eng-dev`](skills/engineering/eng-dev/SKILL.md) | Implementation artifact: constrained stack choice, acceptance mapping, focused checks, DEV self-check, changed artifacts, risks, rollback seam, and stop point | Writes no governance slice. It cannot grant dependencies or permissions, perform Git mechanics, or replace required independent QA or release acceptance. |
+| Plan or judge QA evidence, or independently review an implementation | [`eng-qa-reviewer`](skills/engineering/eng-qa-reviewer/SKILL.md) | QA or review evidence: frozen subject, scoped checks, actual/reused/stale evidence, actionable findings, risks, next owner, and stop point | Writes no governance slice. It cannot invent product or test contracts, own gates, repair the subject, or perform Git or release work. |
 | Normalize raw intake, resolve or transition canonical work, select candidates/releases, decide gates, decide whether and when project branches synchronize to a remote | [`eng-project-governance`](skills/engineering/eng-project-governance/SKILL.md) | `WorkItem`, system-of-record binding, goal/architecture/task revisions, acceptance criteria, dependency and milestone decisions, candidate set, release window, pipeline gate, `RemoteSyncPlan`, project closure record | Writes only the project slice. It may select work and timing, but cannot author delivery artifacts, manage sessions, define workspace topology, construct refspecs, or run Git operations. |
 | Start, supervise, block, hand off, replace, stop, or close a bounded execution assignment | [`eng-agent-governance`](skills/engineering/eng-agent-governance/SKILL.md) | Capability profile, `Assignment`, `Session`, context revision binding, read/write scope, budget, independence rule, `OwnershipLease`, blocked record, handoff, lease release and closure record | Writes only the agent slice. A lease coordinates ownership but is not permission. WorkItem transitions go to Project; branches, commits, worktrees, and cleanup go to Repo. |
 | Compose or reproduce a deliverable spanning more than one repository | [`eng-workspace-governance`](skills/engineering/eng-workspace-governance/SKILL.md) | `WorkspaceManifest`, exact repository tuple, source-fact ledger, cross-repository `ChangeSet`, dependency edge/DAG, launch context, frozen manifest revision, handoff and integration order | Writes only the workspace slice. It can order repository work but cannot mutate a repository, create project state, or manage the Agent lifecycle. Do not load it for an ordinary single-repository task. |
@@ -60,9 +60,9 @@ The four governance Skills own execution state. The four advisory Skills own no 
 The selection rule is object-based:
 
 - If the Agent needs to **recommend which product or architecture path closes a zero-to-one learning loop first**, load Closed Loop as an advisory companion.
-- If the Agent needs to **produce or self-check a bounded PM plan**, load the PM handbook.
-- If the Agent needs **bounded technology choice, implementation judgment, focused unit evidence, or DEV self-check**, load the DEV handbook.
-- If the Agent needs **QA strategy, evidence judgment, or independent implementation review**, load the QA and Reviewer handbook.
+- If the Agent needs to **produce or self-check a bounded PM plan**, load PM.
+- If the Agent needs **bounded technology choice, implementation, focused unit evidence, or DEV self-check**, load DEV.
+- If the Agent needs **QA strategy, evidence judgment, or independent implementation review**, load QA and Reviewer.
 - If the Agent changes a **WorkItem or delivery decision**, load Project.
 - If the Agent changes an **Assignment, Session, Lease, budget, handoff, or closure state**, load Agent.
 - If the Agent changes a **multi-repository manifest, exact tuple, or dependency order**, load Workspace.
@@ -118,15 +118,15 @@ The abbreviated example shows identity, not a schema-valid complete packet. An i
 | Loaded Skill | Slice it may write | Other slices it may consume by reference |
 | --- | --- | --- |
 | Closed Loop | None; returns an advisory `ClosureDecision` artifact | Supplied product/architecture constraints and project context; the owning workflow decides whether to reference the advice |
-| PM handbook | None; returns an advisory bounded plan | Supplied request, source, decisions, constraints, revisions, and evidence; owning workflows decide whether to adopt or record it |
-| DEV handbook | None; returns an advisory implementation result or recommendation | Supplied acceptance, code and runtime context, constraints, authority, and governance evidence |
-| QA and Reviewer handbook | None; returns an advisory evidence plan or scoped conclusion | Supplied subject, acceptance and test contracts, environment, data, evidence, authority, and independence rule |
+| PM | None; returns a bounded planning artifact | Supplied request, source, decisions, constraints, revisions, and evidence |
+| DEV | None; returns a bounded implementation artifact | Supplied acceptance, code and runtime context, constraints, authority, and governance evidence |
+| QA and Reviewer | None; returns QA or review evidence | Supplied subject, acceptance and test contracts, environment, data, evidence, authority, and independence rule |
 | Project | `project` | Workspace facts when delivery spans repositories; Repo execution evidence returned through the delivery route |
 | Workspace | `workspace` | Project change/release references; Repo exact-state evidence for each participating repository |
 | Repo | `repo` | Project candidate or `RemoteSyncPlan`; Workspace repository tuple/order |
 | Agent | `agent` | Project-selected WorkItem/context; Repo handoff/cleanliness evidence |
 
-The four-slice contract and the four slice-less advisors enforce five lifecycle rules:
+The four-slice contract and the four non-state-owning Skills enforce five lifecycle rules:
 
 - **One writer per slice:** loading multiple Skills does not merge their ownership. The Agent changes an object only while operating under its owning Skill.
 - **Exact context:** project/external decisions bind to explicit revisions; workspace and repository facts bind to exact commits. Floating or merely planned state is not completed evidence.
@@ -167,6 +167,6 @@ python3 -m unittest discover -s tests
 git diff --check
 ```
 
-It checks the exact eight-entry registry, Skill/frontmatter/metadata/case completeness, discovery links, relative Markdown links, dependency acyclicity, the four shared-slice owners, and eight bounded composition scenarios. Defined behavior cases are not claimed as live external execution.
+It checks the exact eight-entry registry, required Skill frontmatter, any supplied metadata and behavior cases, discovery links, relative Markdown links, dependency acyclicity, the four shared-slice owners, and five bounded governance scenarios. Defined behavior cases are not claimed as live external execution.
 
 Project discovery links in `.agents/skills/` point to the source folders with relative symlinks. Installing or removing user-level Skills, pushing, publishing, and writing production systems are separate authorized actions.

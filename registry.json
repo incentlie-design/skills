@@ -32,21 +32,21 @@
       "dependencies": []
     },
     {
-      "name": "eng-pm-handbook",
+      "name": "eng-pm",
       "category": "engineering",
-      "path": "skills/engineering/eng-pm-handbook",
+      "path": "skills/engineering/eng-pm",
       "dependencies": []
     },
     {
-      "name": "eng-dev-handbook",
+      "name": "eng-dev",
       "category": "engineering",
-      "path": "skills/engineering/eng-dev-handbook",
+      "path": "skills/engineering/eng-dev",
       "dependencies": []
     },
     {
-      "name": "eng-qa-reviewer-handbook",
+      "name": "eng-qa-reviewer",
       "category": "engineering",
-      "path": "skills/engineering/eng-qa-reviewer-handbook",
+      "path": "skills/engineering/eng-qa-reviewer",
       "dependencies": []
     }
   ]

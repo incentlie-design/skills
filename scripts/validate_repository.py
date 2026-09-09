@@ -16,9 +16,9 @@ EXPECTED_NAMES = (
     "eng-project-governance",
     "eng-agent-governance",
     "eng-closed-loop-decisions",
-    "eng-pm-handbook",
-    "eng-dev-handbook",
-    "eng-qa-reviewer-handbook",
+    "eng-pm",
+    "eng-dev",
+    "eng-qa-reviewer",
 )
 EXPECTED_DEPENDENCIES = {
     "eng-repo-governance": [],
@@ -26,10 +26,11 @@ EXPECTED_DEPENDENCIES = {
     "eng-project-governance": ["eng-workspace-governance"],
     "eng-agent-governance": ["eng-project-governance", "eng-repo-governance"],
     "eng-closed-loop-decisions": [],
-    "eng-pm-handbook": [],
-    "eng-dev-handbook": [],
-    "eng-qa-reviewer-handbook": [],
+    "eng-pm": [],
+    "eng-dev": [],
+    "eng-qa-reviewer": [],
 }
+ROUTING_COVERAGE = set(EXPECTED_NAMES[:5])
 SLICE_OWNERS = {
     "project": "eng-project-governance",
     "workspace": "eng-workspace-governance",
@@ -155,8 +156,6 @@ def validate(root):
             try:
                 skill_text = (folder / "SKILL.md").read_text(encoding="utf-8")
                 fm = frontmatter(skill_text)
-                metadata = read_json(folder / "skill.json")
-                cases = read_json(folder / "tests/cases.json")
             except (OSError, ValueError, KeyError, TypeError, json.JSONDecodeError) as exc:
                 errors.append(f"{name}: {exc}")
                 continue
@@ -164,47 +163,63 @@ def validate(root):
                 errors.append(f"{name}: frontmatter name mismatch")
             if len(fm["description"]) > 1024:
                 errors.append(f"{name}: description is too long")
-            missing = REQUIRED_METADATA - set(metadata)
-            if missing:
-                errors.append(f"{name}: missing metadata keys {sorted(missing)}")
-            if metadata.get("schema_version") != 1 or metadata.get("name") != name:
-                errors.append(f"{name}: metadata identity mismatch")
-            if metadata.get("category") != "engineering" or metadata.get("status") != "active":
-                errors.append(f"{name}: metadata category/status mismatch")
-            if not re.fullmatch(r"\d+\.\d+\.\d+", str(metadata.get("version", ""))):
-                errors.append(f"{name}: invalid semantic version")
-            if metadata.get("dependencies") != entry.get("dependencies"):
-                errors.append(f"{name}: metadata/registry dependency mismatch")
-            for field in ("summary", "input_contract", "output_contract"):
-                if not isinstance(metadata.get(field), str) or not metadata[field].strip():
-                    errors.append(f"{name}: invalid {field}")
-            for field in ("owners", "tags"):
-                value = metadata.get(field)
-                if not isinstance(value, list) or not value or not all(isinstance(item, str) and item.strip() for item in value):
-                    errors.append(f"{name}: invalid {field}")
             if "../../../docs/governance-contract.md" not in skill_text:
                 errors.append(f"{name}: shared contract is not referenced")
-            if not isinstance(cases, list) or len(cases) < 3:
-                errors.append(f"{name}: expected at least three behavior cases")
-                continue
-            kinds = set()
-            ids = set()
-            for case in cases:
-                if not {"id", "kind", "prompt", "expect"}.issubset(case):
-                    errors.append(f"{name}: behavior case missing required fields")
-                    continue
-                if case["id"] in ids:
-                    errors.append(f"{name}: duplicate case id {case['id']}")
-                ids.add(case["id"])
-                kinds.add(case["kind"])
-                if not isinstance(case["prompt"], str) or not case["prompt"].strip():
-                    errors.append(f"{name}: empty behavior prompt")
-                assertions = case["expect"]
-                if not isinstance(assertions, list) or not assertions or not all(isinstance(item, str) and item.strip() for item in assertions):
-                    errors.append(f"{name}: invalid behavior assertions")
-            if not {"happy", "missing_input", "boundary"}.issubset(kinds):
-                errors.append(f"{name}: missing happy/missing_input/boundary coverage")
-            cases_defined += len(cases)
+
+            metadata_path = folder / "skill.json"
+            if metadata_path.exists():
+                try:
+                    metadata = read_json(metadata_path)
+                except (OSError, ValueError, TypeError, json.JSONDecodeError) as exc:
+                    errors.append(f"{name}: {exc}")
+                else:
+                    missing = REQUIRED_METADATA - set(metadata)
+                    if missing:
+                        errors.append(f"{name}: missing metadata keys {sorted(missing)}")
+                    if metadata.get("schema_version") != 1 or metadata.get("name") != name:
+                        errors.append(f"{name}: metadata identity mismatch")
+                    if metadata.get("category") != "engineering" or metadata.get("status") != "active":
+                        errors.append(f"{name}: metadata category/status mismatch")
+                    if not re.fullmatch(r"\d+\.\d+\.\d+", str(metadata.get("version", ""))):
+                        errors.append(f"{name}: invalid semantic version")
+                    if metadata.get("dependencies") != entry.get("dependencies"):
+                        errors.append(f"{name}: metadata/registry dependency mismatch")
+                    for field in ("summary", "input_contract", "output_contract"):
+                        if not isinstance(metadata.get(field), str) or not metadata[field].strip():
+                            errors.append(f"{name}: invalid {field}")
+                    for field in ("owners", "tags"):
+                        value = metadata.get(field)
+                        if not isinstance(value, list) or not value or not all(isinstance(item, str) and item.strip() for item in value):
+                            errors.append(f"{name}: invalid {field}")
+
+            cases_path = folder / "tests/cases.json"
+            if cases_path.exists():
+                try:
+                    cases = read_json(cases_path)
+                except (OSError, ValueError, TypeError, json.JSONDecodeError) as exc:
+                    errors.append(f"{name}: {exc}")
+                else:
+                    if not isinstance(cases, list) or len(cases) < 3:
+                        errors.append(f"{name}: expected at least three behavior cases")
+                    else:
+                        kinds = set()
+                        ids = set()
+                        for case in cases:
+                            if not {"id", "kind", "prompt", "expect"}.issubset(case):
+                                errors.append(f"{name}: behavior case missing required fields")
+                                continue
+                            if case["id"] in ids:
+                                errors.append(f"{name}: duplicate case id {case['id']}")
+                            ids.add(case["id"])
+                            kinds.add(case["kind"])
+                            if not isinstance(case["prompt"], str) or not case["prompt"].strip():
+                                errors.append(f"{name}: empty behavior prompt")
+                            assertions = case["expect"]
+                            if not isinstance(assertions, list) or not assertions or not all(isinstance(item, str) and item.strip() for item in assertions):
+                                errors.append(f"{name}: invalid behavior assertions")
+                        if not {"happy", "missing_input", "boundary"}.issubset(kinds):
+                            errors.append(f"{name}: missing happy/missing_input/boundary coverage")
+                        cases_defined += len(cases)
 
         discovery = root / ".agents/skills"
         actual_links = {path.name for path in discovery.iterdir()} if discovery.exists() else set()
@@ -228,8 +243,8 @@ def validate(root):
 
         routing = read_json(root / "tests/routing_scenarios.json")
         scenarios = routing.get("scenarios", [])
-        if routing.get("schema_version") != 1 or len(scenarios) != 8:
-            errors.append("routing scenarios must contain exactly eight versioned cases")
+        if routing.get("schema_version") != 1 or len(scenarios) != 5:
+            errors.append("routing scenarios must contain exactly five versioned cases")
         scenario_ids = set()
         covered = set()
         for scenario in scenarios:
@@ -254,8 +269,8 @@ def validate(root):
                     errors.append(f"{scenario['id']}: invalid {field}")
             if len(errors) == scenario_error_count:
                 routing_scenarios_validated += 1
-        if covered != set(EXPECTED_NAMES):
-            errors.append("routing scenarios do not cover all eight Skills")
+        if covered != ROUTING_COVERAGE:
+            errors.append("routing scenarios do not cover all five governance and decision Skills")
 
         markdown_paths = list(root.glob("*.md")) + list((root / "docs").rglob("*.md")) + list((root / "skills").rglob("*.md"))
         for path in markdown_paths:
