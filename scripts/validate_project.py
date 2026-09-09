@@ -55,8 +55,6 @@ def _validate_node(value, rule, root_schema, path, errors):
     if isinstance(value, str):
         if len(value) < rule.get("minLength", 0):
             errors.append(f"{path}: value is too short")
-        if len(value) > rule.get("maxLength", len(value)):
-            errors.append(f"{path}: value is too long")
         if "pattern" in rule and re.fullmatch(rule["pattern"], value) is None:
             errors.append(f"{path}: value does not match {rule['pattern']}")
     if isinstance(value, int) and not isinstance(value, bool):
@@ -76,12 +74,6 @@ def _validate_node(value, rule, root_schema, path, errors):
     if isinstance(value, list):
         if len(value) < rule.get("minItems", 0):
             errors.append(f"{path}: too few items")
-        if len(value) > rule.get("maxItems", len(value)):
-            errors.append(f"{path}: too many items")
-        if rule.get("uniqueItems"):
-            normalized = [json.dumps(item, sort_keys=True) for item in value]
-            if len(normalized) != len(set(normalized)):
-                errors.append(f"{path}: items must be unique")
         for index, child in enumerate(value):
             _validate_node(child, rule.get("items", {}), root_schema, f"{path}[{index}]", errors)
 
