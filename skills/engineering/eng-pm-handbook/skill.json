@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "eng-pm-handbook",
+  "version": "1.0.0",
+  "category": "engineering",
+  "status": "active",
+  "summary": "Advises bounded PM planning, acceptance coverage, work-package quality, risk decisions, self-check, and handoff.",
+  "owners": ["public-governance-maintainers"],
+  "tags": ["pm", "planning", "acceptance", "risk", "review", "handoff"],
+  "dependencies": [],
+  "input_contract": "Request and source, target actor and outcome, current baseline, constraints and non-goals, supplied decisions or revisions, and requested planning scope.",
+  "output_contract": "Advisory bounded plan with assumptions and unknowns, observable acceptance, work packages and dependencies, risk decisions, evidence status, next owner, and stop point."
+}

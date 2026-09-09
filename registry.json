@@ -30,6 +30,24 @@
       "category": "engineering",
       "path": "skills/engineering/eng-closed-loop-decisions",
       "dependencies": []
+    },
+    {
+      "name": "eng-pm-handbook",
+      "category": "engineering",
+      "path": "skills/engineering/eng-pm-handbook",
+      "dependencies": []
+    },
+    {
+      "name": "eng-dev-handbook",
+      "category": "engineering",
+      "path": "skills/engineering/eng-dev-handbook",
+      "dependencies": []
+    },
+    {
+      "name": "eng-qa-reviewer-handbook",
+      "category": "engineering",
+      "path": "skills/engineering/eng-qa-reviewer-handbook",
+      "dependencies": []
     }
   ]
 }

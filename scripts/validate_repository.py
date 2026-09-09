@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the public five-Skill repository contract using the standard library."""
+"""Validate the public eight-Skill repository contract using the standard library."""
 
 import argparse
 import json
@@ -16,6 +16,9 @@ EXPECTED_NAMES = (
     "eng-project-governance",
     "eng-agent-governance",
     "eng-closed-loop-decisions",
+    "eng-pm-handbook",
+    "eng-dev-handbook",
+    "eng-qa-reviewer-handbook",
 )
 EXPECTED_DEPENDENCIES = {
     "eng-repo-governance": [],
@@ -23,6 +26,9 @@ EXPECTED_DEPENDENCIES = {
     "eng-project-governance": ["eng-workspace-governance"],
     "eng-agent-governance": ["eng-project-governance", "eng-repo-governance"],
     "eng-closed-loop-decisions": [],
+    "eng-pm-handbook": [],
+    "eng-dev-handbook": [],
+    "eng-qa-reviewer-handbook": [],
 }
 SLICE_OWNERS = {
     "project": "eng-project-governance",
@@ -126,7 +132,7 @@ def validate(root):
         if registry.get("schema_version") != 1:
             errors.append("registry schema_version must be 1")
         if names != EXPECTED_NAMES:
-            errors.append(f"registry must contain the exact ordered five Skills: {EXPECTED_NAMES}")
+            errors.append(f"registry must contain the exact ordered eight Skills: {EXPECTED_NAMES}")
         graph = {entry["name"]: entry.get("dependencies", []) for entry in entries}
         if graph != EXPECTED_DEPENDENCIES:
             errors.append("registry dependency graph does not match the ownership design")
@@ -222,8 +228,8 @@ def validate(root):
 
         routing = read_json(root / "tests/routing_scenarios.json")
         scenarios = routing.get("scenarios", [])
-        if routing.get("schema_version") != 1 or len(scenarios) != 5:
-            errors.append("routing scenarios must contain exactly five versioned cases")
+        if routing.get("schema_version") != 1 or len(scenarios) != 8:
+            errors.append("routing scenarios must contain exactly eight versioned cases")
         scenario_ids = set()
         covered = set()
         for scenario in scenarios:
@@ -249,7 +255,7 @@ def validate(root):
             if len(errors) == scenario_error_count:
                 routing_scenarios_validated += 1
         if covered != set(EXPECTED_NAMES):
-            errors.append("routing scenarios do not cover all five Skills")
+            errors.append("routing scenarios do not cover all eight Skills")
 
         markdown_paths = list(root.glob("*.md")) + list((root / "docs").rglob("*.md")) + list((root / "skills").rglob("*.md"))
         for path in markdown_paths:
