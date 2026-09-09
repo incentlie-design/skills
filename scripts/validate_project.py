@@ -7,6 +7,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from task_adapters.mappings import get_mapping
+
 
 FORBIDDEN_KEY_PARTS = (
     "account",
@@ -111,11 +114,20 @@ def _semantic_errors(config, schema):
     if sor.get("adapter_binding") != selected.get("binding"):
         errors.append("$.task_system.system_of_record: must name the one selected adapter binding")
 
-    database = selected.get("config", {}).get("database")
-    if isinstance(database, str):
-        db_path = Path(database)
-        if db_path.is_absolute() or ".." in db_path.parts:
-            errors.append("$.task_system.selected_adapter.config.database: must be a project-relative path")
+    adapter_id = selected.get("adapter_id")
+    if isinstance(adapter_id, str):
+        try:
+            mapping = get_mapping(adapter_id)
+        except ValueError as exc:
+            errors.append(f"$.task_system.selected_adapter.adapter_id: {exc}")
+        else:
+            target_ref = selected.get("target_ref")
+            if isinstance(target_ref, str) and target_ref.partition(":")[0] != mapping.target_scheme:
+                errors.append(
+                    "$.task_system.selected_adapter.target_ref: "
+                    f"{adapter_id} requires the {mapping.target_scheme!r} scheme"
+                )
+
     return errors
 
 
