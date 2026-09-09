@@ -32,12 +32,13 @@
   {
     "id": "agent-session-title-status-sync",
     "kind": "happy",
-    "prompt": "Name a PIC session that is actively implementing the supplied requirement on a development branch, then define how its title changes while waiting, blocked, completed, under MR review, and merged. Preserve the supplied red blocked, green completed, and yellow waiting meanings; the existing set has no running state.",
+    "prompt": "Name a PIC session that is actively implementing the supplied requirement on a development branch, then define how its title changes while waiting, blocked, completed, under MR review, and merged. Preserve the supplied red blocked, green completed, and yellow waiting meanings; the existing set has no running state. When I explicitly say 已合并, clean the associated repository state and archive the Session.",
     "expect": [
       "Uses the stable role, status, branch-phase, and requirement field order with one documented delimiter and machine-readable grammar.",
       "Adds a distinct running state and never substitutes waiting for active execution.",
       "Keeps session lifecycle independent from dev, test, mr, and merged branch phases, and requires exact evidence before merged.",
-      "Defines transition ownership and marks unknown or stale observations without inventing current state."
+      "Defines transition ownership and marks unknown or stale observations without inventing current state.",
+      "Treats the explicit merge statement as closure, cleanup, and archival authority for only this assignment, routes exact Git cleanup to repository governance, and archives after recording its result without asking twice."
     ]
   },
   {
