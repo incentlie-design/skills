@@ -11,7 +11,7 @@ Own the lifecycle and accountability of a bounded agent assignment. “Agent” 
 
 Require a `work_item_ref`, project-selected adapter binding, role/capability profile, session and owner, read/write scope, context revisions, acceptance criteria, budget, independence constraints, lease targets, stop conditions, and forbidden actions. If the WorkItem, authority, ownership, or budget is missing, do not start the assignment.
 
-Read [sessions, assignments, and leases](references/sessions-and-leases.md) when creating or closing an assignment or resolving a conflict. Use only the agent slice from [the shared governance contract](../../../docs/governance-contract.md).
+Read [sessions, assignments, and leases](references/sessions-and-leases.md) when creating, naming, synchronizing, or closing an assignment, or when resolving a conflict. Use only the agent slice from [the shared governance contract](../../../docs/governance-contract.md).
 
 ## Decisions and workflow
 
