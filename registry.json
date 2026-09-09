@@ -30,6 +30,24 @@
       "category": "engineering",
       "path": "skills/engineering/eng-closed-loop-decisions",
       "dependencies": []
+    },
+    {
+      "name": "eng-pm",
+      "category": "engineering",
+      "path": "skills/engineering/eng-pm",
+      "dependencies": []
+    },
+    {
+      "name": "eng-dev",
+      "category": "engineering",
+      "path": "skills/engineering/eng-dev",
+      "dependencies": []
+    },
+    {
+      "name": "eng-qa-reviewer",
+      "category": "engineering",
+      "path": "skills/engineering/eng-qa-reviewer",
+      "dependencies": []
     }
   ]
 }
