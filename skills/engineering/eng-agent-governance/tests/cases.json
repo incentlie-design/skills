@@ -28,5 +28,15 @@
       "Routes worktree cleanup to eng-repo-governance and only reports a cleanup candidate.",
       "Does not change test semantics or infer a pass result from session completion."
     ]
+  },
+  {
+    "id": "agent-boundary-new-pic-session",
+    "kind": "boundary",
+    "prompt": "Keep the current Drama PIC coordinating Drama changes and create a new Skill-creator PIC session for the engineering Skill changes.",
+    "expect": [
+      "Leaves the current Drama assignment, session, and display title unchanged.",
+      "Creates a separate Skill-creator PIC assignment and independent session with an explicit closure scope and parent relation.",
+      "Does not treat the parent relation as permission, lease, or approval inheritance."
+    ]
   }
 ]

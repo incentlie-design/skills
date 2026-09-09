@@ -14,6 +14,10 @@ A capability profile defines responsibilities, required independence, allowed ac
 
 One session may hold multiple compatible capabilities only when the WorkItem permits it and no self-review boundary is violated.
 
+A PIC may coordinate another PIC when their closure scopes are distinct or properly nested. The child closes its own scope and hands off to the parent, which closes only the aggregate scope. The relation must be acyclic, each scope has one closure owner, and neither PIC inherits the other's permissions, leases, or approval rights.
+
+Before launching or renaming anything, record whether each requested assignment reuses an existing session or creates a new independent session. Adding an assignment does not change the current assignment, session, or display title unless the user explicitly asks for that change. If the user requests a new session, do not substitute a title change or a parent-scoped subagent.
+
 ## Assignment record
 
 ```json
