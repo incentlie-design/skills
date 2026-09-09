@@ -38,14 +38,15 @@
     },
     {
       "id": "post-handoff-cleanup",
-      "request": "For the current completed assignment and exact candidate, the user says 已合并. Clean its repository state and archive its Session.",
-      "expected_route": ["eng-agent-governance", "eng-repo-governance"],
+      "request": "For the current completed Skill assignment and exact candidate, the user says 已合并. Refresh the Skill source main, reconcile its canonical registered set into the configured Drama project, clean the candidate repository state, and archive its Session.",
+      "expected_route": ["eng-agent-governance", "eng-workspace-governance", "eng-repo-governance"],
       "expected_owner_actions": [
-        "Agent governance treats the explicit merge statement as closure and archival authority, releases leases, records the repository result, and archives the Session.",
-        "Repository governance treats the statement as cleanup authority, verifies the exact head is integrated and the worktree is clean, and removes only the associated worktree and unretained local or remote branch."
+        "Agent governance treats the explicit merge statement as closure and archival authority, releases leases, records cleanup and synchronization results, and archives the Session after both complete.",
+        "Workspace governance binds the Drama consumer to the exact refreshed Skill source main and canonical registry, reconciles only managed registrations, and records the exact two-repository tuple.",
+        "Repository governance performs the source refresh, Drama registration write, and candidate cleanup against exact refs; cleanup removes only the associated worktree and unretained local or remote branch."
       ],
-      "stop": "Complete after safe cleanup or explicit retention is recorded and the closed Session is archived; retain and report any dirty or unverifiable repository state.",
-      "forbid": ["agent-performed Git cleanup", "unrelated ref cleanup", "second confirmation"]
+      "stop": "Complete after the exact Skill registration sync and safe cleanup or explicit retention are recorded and the closed Session is archived; retain and report any dirty or unverifiable repository state.",
+      "forbid": ["agent-performed Git cleanup", "unrelated ref cleanup", "copied Skill bodies", "second confirmation"]
     },
     {
       "id": "zero-to-one-closed-loop-advice",

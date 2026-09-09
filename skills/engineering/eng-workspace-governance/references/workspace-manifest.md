@@ -47,6 +47,8 @@ Paths are workspace-relative unless the caller explicitly needs an environment-s
 
 For an edge `{from: A, to: B}`, A depends on B, so prepare and integrate B before A unless an interface contract explicitly allows parallel work. A changed edge, commit, or interface constraint increments the manifest revision and makes dependent cross-repository evidence stale.
 
+When one repository consumes repo-scoped Skills from another, record the consumer-to-source edge and bind the synchronization to the source repository's exact `main` commit and canonical registry. Delegate the source refresh and consumer write to each repository's governance, reconcile only the managed `.agents/skills` entries to the registered names, preserve unrelated project Skills, and verify every resulting entry resolves to a `SKILL.md`. Record both exact commits; do not treat a floating branch or copied Skill body as a reproducible synchronization.
+
 ## Handoff and delegation
 
 The workspace slice carries the manifest ref, exact repository tuples, and dependency edges. Repository-specific base/head, branch/worktree, and mutation evidence stay in repository slices. Use `eng-repo-governance` for every concrete Git operation, one repository at a time and in the derived order.
