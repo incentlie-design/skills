@@ -1,6 +1,6 @@
 # Multi-repository workspace manifest
 
-Read this reference when a task spans multiple repositories or needs a reproducible workspace handoff.
+Read this reference when creating or changing a multi-repository manifest, or providing a reproducible workspace handoff. The example's change-set and launch fields apply when the consumer needs them; they are not prerequisites for cross-repository analysis.
 
 ## Manifest shape
 
@@ -45,10 +45,10 @@ Paths are workspace-relative unless the caller explicitly needs an environment-s
 - Change-set scopes identify a repository and do not overlap another active writer without an ownership decision.
 - Launch directory and environment reference are sufficient for the next consumer; credentials remain external.
 
-For an edge `{from: A, to: B}`, A depends on B, so prepare and integrate B before A unless an interface contract explicitly allows parallel work. A changed edge, commit, or interface constraint increments the manifest revision and makes dependent cross-repository evidence stale.
+For an edge `{from: A, to: B}`, A depends on B. The required input or interface must be available before the dependent action consumes it; this does not serialize every action in either repository. Bind manifest changes to their actual affected evidence and recheck or justify reuse before relying on that evidence.
 
 ## Handoff and delegation
 
-The workspace slice carries the manifest ref, exact repository tuples, and dependency edges. Repository-specific base/head, branch/worktree, and mutation evidence stay in repository slices. Use `eng-repo-governance` for every concrete Git operation, one repository at a time and in the derived order.
+The workspace slice carries the manifest ref, exact repository tuples, and dependency edges. Repository-specific base/head, branch/worktree, and mutation evidence stay in repository slices. Use `eng-repo-governance` for every concrete Git operation, preserving actual dependency and write-isolation constraints without imposing a universal serial schedule.
 
 A valid workspace handoff is reproducible topology, not proof that repository candidates passed gates or that a release was selected.

@@ -1,29 +1,34 @@
 ---
 name: eng-agent-governance
-description: Govern agent capabilities, independent roles, sessions, assignments, ownership leases, context, budgets, stopping, blocking, handoffs, and closure. Use a project-selected work-item adapter; do not create task state, Git policy, or test semantics.
+description: Constrain delegation, Session creation or reuse, assignment scope, independence, shared-resource ownership, explicit budgets, and result handoff. Use when those actions occur; do not prescribe workflow orchestration or manage the runtime's Session lifecycle.
 ---
 
 # Agent governance
 
-Own the lifecycle and accountability of a bounded agent assignment. “Agent” means any delegated execution unit; labels such as PIC, DEV, QA, Spec, and Reviewer are profile-defined capability roles, not assumptions about a particular runtime or organization.
+Own assignment responsibility and coordination constraints, not execution scheduling. The Agent chooses how to organize authorized work. A role is a capability, not a required separate Agent or Session. Use only the agent slice from [the shared governance contract](../../../docs/governance-contract.md) when structured coordination evidence is actually needed.
 
-## Required inputs
+Read [delegation and result handoff](references/sessions-and-leases.md) when creating or reusing a Session, resolving shared ownership, or collecting delegated results.
 
-Require a `work_item_ref`, project-selected adapter binding, role/capability profile, session binding and owner, read/write and closure scope, optional parent assignment, context revisions, acceptance criteria, budget, independence constraints, lease targets, stop conditions, and forbidden actions. If the WorkItem, authority, ownership, or budget is missing, do not start the assignment.
+## Delegating or splitting work
 
-Read [sessions, assignments, and leases](references/sessions-and-leases.md) when creating, naming, synchronizing, or closing an assignment, or when resolving a conflict. Use only the agent slice from [the shared governance contract](../../../docs/governance-contract.md).
+- Identify the bounded outcome, available inputs, expected output, executor, and read/write scope before dispatch. Resolve missing scope or authority when it could change the action; do not require a tracker item, adapter, formal role profile, Session record, or numeric budget merely to start useful work.
+- Delegate only within the user's request and available tool permissions. Honor an explicit request for a new independent Session; do not substitute a rename or an internal subagent. Otherwise this Skill neither requires nor forbids splitting work.
+- Preserve the current task and title when creating another task unless a change was requested. A parent relationship identifies coordination responsibility; it does not transfer permissions or approval rights.
+- Enforce supplied independence requirements. The same Agent may perform compatible roles; self-check cannot satisfy required independent review. Missing independence blocks that conclusion, not unrelated implementation or analysis.
 
-## Decisions and workflow
+## Writing shared resources or consuming a budget
 
-1. Match required capabilities to a role profile. A PIC coordinates closure and may coordinate another PIC for a distinct or nested closure scope; each scope has one closure owner, the coordination relation is acyclic, and it transfers no permission or approval authority. DEV implements within scope; Spec produces or revises specification artifacts; QA or Reviewer supplies the declared independent evidence.
-2. Resolve whether each requested assignment reuses an existing session or creates a new one. Adding an assignment leaves the current assignment, session, and display title unchanged unless the user explicitly requests a change; a title change is not an assignment or session change.
-3. Create one assignment and session with explicit owner, optional parent assignment, closure scope, WorkItem reference, adapter binding, context revisions, inputs, outputs, write scope, budget, acceptance, stop, and forbidden actions.
-4. Claim time-bounded ownership leases only for the declared resources. Detect overlap before work. A lease grants coordination ownership, not new filesystem, network, Git, tracker, or production permission.
-5. Track session state as `ready`, `running`, `blocked`, `handoff`, `complete`, or `stopped`. Project status remains in the project-selected system of record and is only read or requested through its adapter.
-6. On success, budget exhaustion, blocked state, replacement, or stop, produce a handoff, report clean/dirty resource state, release leases, and name the closure owner. Do not leave ownership implied by an ended session.
+- Resolve competing writers before allowing overlapping writes. Repository branch/worktree isolation belongs to `eng-repo-governance`; do not duplicate it with mandatory file-lease bookkeeping.
+- Use a lease only when an actual shared resource or project policy requires it. Record the resource, responsible owner, expiry or review condition, and release or transfer when that ownership ends. A stopped process does not prove the resource was released, and a lease grants no access permission.
+- Honor explicit time, cost, token, or tool limits. Do not invent budgets or consumption numbers; absence of a numeric limit is not a startup blocker.
 
-Use `eng-project-governance` for WorkItem transitions or task-system writes. Use `eng-repo-governance` for branches, worktrees, commits, merges, or cleanup. QA independence here does not select test layers or change pass/fail semantics.
+## Handing off or adopting results
 
-## Output and stop
+- Make the output locatable and identify its scope, relevant revision, checks, remaining work, and material limitations. Reuse existing artifacts and messages; a separate record, callback, or receipt is not universally required.
+- Base downstream work on the required artifact and evidence, not Session status or title. When a revision changes, assess its effect and suspend only actions whose input or evidence is no longer valid.
+- When responsible for an aggregate result, account for the required inputs or explicitly report what is missing. One completed child does not prove that all required results are available; unrelated Sessions need not reach a terminal state.
+- Report only observed progress. Do not equate execution completion, successful message delivery, acceptance, project closure, branch merge, or archival.
 
-Return the agent slice, assignment/session references, capability and independence decision, consumed budget, status, produced artifact/handoff refs, released leases, clean/dirty report, unresolved blockers, and closure owner. Stop at the declared condition or budget. An agent may propose cleanup or status transition, but the owning governance boundary must authorize and perform it.
+## Boundaries and stopping
+
+Report the requested result and any affected blocker; do not manufacture a lifecycle transition or cleanup step to finish a response. Session naming and archival follow explicit user choices or a configured preference, not delivery gates. Project updates use `eng-project-governance`; Git mutations use `eng-repo-governance`. Neither loading this Skill nor ending a Session authorizes those actions.

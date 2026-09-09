@@ -1,31 +1,35 @@
 ---
 name: eng-project-governance
-description: Govern work from raw intake through canonical work items, requirement and architecture revisions, DAG planning, milestones, candidate selection, release windows, pipeline gates, project remote-sync decisions, and closure. Use task-system adapters; do not author implementation artifacts or perform Git mechanics.
+description: Constrain canonical work-item updates, scope and acceptance changes, dependency and milestone decisions, candidate selection, release gates, remote-sync intent, and project closure. Use for those project actions, not as a prerequisite to ordinary analysis or implementation.
 ---
 
 # Project governance
 
-Own delivery and release decisions without binding the workflow to one tracker, repository host, or agent runtime. The project or user profile supplies the release-selection owner.
+Own project facts and delivery decisions, not the Agent's workflow orchestration. The Agent may combine capabilities in one task; this Skill does not require separate producers, approvers, Sessions, or a universal delivery pipeline. Use only the project slice from [the shared governance contract](../../../docs/governance-contract.md) when structured project evidence is needed.
 
-## Required inputs
+Read [work items and adapters](references/work-items-and-adapters.md) for canonical task operations, revision decisions, release selection, or remote-sync intent. Require only facts needed by the action being performed.
 
-Start from raw intake or a resolvable `work_item_ref`. Require exactly one `system_of_record`, source references, current goal/architecture/task revisions, acceptance criteria, dependencies, project profile, and the authority relevant to any external write, release selection, or remote-sync decision. When `project.yaml` selects a task adapter, also require a valid binding, target, and an available tool for every operation the request needs. When remote synchronization is in scope, require its purpose, target remote/visibility, candidate branch roles or refs, trigger or timing, retention needs, and decision owner. Missing or conflicting source-of-record or adapter-tool data stops at `needs_input` or `blocked`.
+## Registering or updating canonical work
 
-Read [work items and adapters](references/work-items-and-adapters.md) when normalizing intake, binding a task system, selecting candidates, opening a release window, deciding project remote synchronization, or writing external state. Use only the project slice from [the shared governance contract](../../../docs/governance-contract.md).
+- Preserve the user request, scope, observable acceptance, and material unknowns. A bounded request is sufficient input for work that needs no formal project-state change; do not create a WorkItem, DAG, architecture revision, milestone, or release target just to enable it.
+- When registering or changing a WorkItem, resolve its single system of record and the selected adapter binding and target. Other sources remain evidence, not additional canonical writers. Do not silently create a mirror or switch providers.
+- Check mapped tools for the required operation. An unavailable adapter blocks that operation and actions dependent on unavailable canonical facts, not unrelated authorized analysis or local work. Report the gap; do not claim the task was registered or closed.
+- External sink writes require explicit authority and `expected_revision`. On conflict, re-read and reassess the affected decision; never retry as a blind overwrite. Do not provision storage, install or authenticate a plugin, or create a provider client from this Skill.
 
-## Decisions and workflow
+## Changing scope, dependencies, or acceptance
 
-1. When the project selects an adapter, validate its binding and target, load that adapter's canonical-operation mapping, and check that this Session exposes the mapped tools. Use those tools directly; do not provision a database, install or authenticate a plugin, create a provider client, or start a mirror.
-2. Normalize raw intake into one canonical WorkItem. Preserve source evidence, unknowns, and the unique system of record; all other `source_refs` are links or mirrors.
-3. Track goal, architecture, and task-DAG revisions plus acceptance criteria and their impact relationships. Request specialized producers or reviewers when those artifacts are missing; do not write or approve them here.
-4. Derive bounded work packages, dependency order, milestones, and candidate criteria. Agent assignments may consume the WorkItem, but agent sessions do not become project state.
-5. Select which eligible candidates enter a release target and when a release window opens. Record the selection owner, exact candidate refs, pipeline gates, and decision revision.
-6. Decide whether remote synchronization is needed and, if so, create a `RemoteSyncPlan` naming only the project branch roles/refs, purpose, trigger or timing, target remote/visibility, retention, decision owner, and required approvals. Base the decision on an actual collaboration, CI, review, release, recovery, or publication need; local branch existence alone is not a reason.
-7. When multiple repositories participate, request the exact workspace slice from `eng-workspace-governance`. Delegate every push and other Git mechanic to `eng-repo-governance`, which resolves the approved plan to exact refspecs and may reject unsafe or stale input but must not expand the selected set.
-8. Close only when acceptance, required gates, handoffs, remote-sync decisions when applicable, and unresolved-risk decisions are recorded against current revisions.
+- Preserve the source and revision of the changed decision, its authority, and impact on applicable acceptance and dependent work. Do not invent missing revisions for artifacts that do not exist.
+- Represent actual dependencies when decomposition is needed. A dependency describes a required input or constraint, not a required role-to-role or Session-to-Session hop.
+- Evaluate changed context before invalidating evidence. A changed candidate head requires new or justified reusable evidence for that head; an unrelated planning revision does not automatically pause all work or require project reapproval.
+- Artifact correctness remains with the appropriate author or reviewer capability. This ownership boundary does not require another person or Session unless independence or approval authority actually demands it.
 
-Project governance orchestrates. It decides remote-sync intent, selected project branches, and timing, but does not author product requirements or architecture, produce application code, execute or redefine tests, manage branches/worktrees, construct refspecs, run Git commands, or create a second agent-state store.
+## Selecting candidates, gates, or remote synchronization
 
-## Output and stop
+- For a release or integration selection, identify the authorized target, exact candidates, actual dependency constraints, required gates, and selection authority. Record the decision against the relevant revisions. Do not create a release window or extra gates for ordinary local delivery.
+- For a gate or completion claim, require current evidence for the applicable acceptance and unresolved-risk decisions. Planning, Session completion, and successful Git commands do not prove acceptance.
+- For remote synchronization, record a `RemoteSyncPlan`: selected project refs or roles, concrete purpose, target remote/visibility, trigger or timing, retention, decision owner, and required approvals. A concise decision in existing context is sufficient; no new planning service or separate approving Agent is implied.
+- Select remote refs only for an actual handoff, CI, review, release, recovery, or publication need. Local branch existence is not a reason. Route exact Git mechanics to `eng-repo-governance`; use `eng-workspace-governance` for participating cross-repository facts and dependencies.
 
-Return the project slice, canonical WorkItem reference, revision/AC/dependency map, milestone and candidate decisions, release-window/gate status, optional `remote_sync_plan_ref`, adapter evidence, unresolved items, and next owner. External sink writes require explicit authority and `expected_revision`; on conflict, stop and re-read instead of overwriting. A selected or gated candidate is not automatically integrated, synchronized, published, or deployed.
+## Evidence and boundaries
+
+Report the project decision actually made, relevant references, evidence, and unresolved constraints. Structured handoffs contain only applicable project fields. Stop the action on ambiguous canonical state, stale required evidence, or missing authority; continue independent authorized work when safe. Selection, local integration, synchronization, publication, and deployment remain distinct. This Skill does not author delivery artifacts, run Git, redefine test semantics, or manage Session state.

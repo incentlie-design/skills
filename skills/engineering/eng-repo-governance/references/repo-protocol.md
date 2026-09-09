@@ -4,7 +4,7 @@ Read this reference only when a Git mutation is requested or is a necessary impl
 
 ## Repository profile
 
-The caller or project supplies the policy parameters; this Skill supplies mechanics:
+Use only the profile parameters relevant to the requested operation. This expanded example describes a project that actually uses several branch roles; it is not a required branch topology or a startup form:
 
 ```json
 {
@@ -23,11 +23,11 @@ The caller or project supplies the policy parameters; this Skill supplies mechan
 }
 ```
 
-Names are examples resolved through the profile, not universal branch rules. Record the resolved profile with the mutation plan.
+Names are examples resolved through the profile, not universal branch rules. A bounded local change normally needs a suitable contributor branch, not the review, aggregate, integration, integrator, or promotion fields. Without a supplied naming policy, use `codex/<change>`. Preserve existing branch/worktree ownership when reusing them.
 
 ## Mutation record
 
-Before a write, capture repository path and common Git directory, exact base/current head, branch/worktree occupancy, dirty paths and owner, requested operation, write scope, authorization, and rollback or recovery point. Abort on a mismatch between expected and observed refs.
+Before a write, resolve repository path and common Git directory, relevant exact base/current refs, branch/worktree occupancy, dirty paths and owner, requested operation, write scope, authorization, and a recovery point when needed. These facts may come from read-only inspection and existing context; a separate plan file is not required. Abort the affected mutation on a mismatch between expected and observed refs.
 
 After a write, capture the exact resulting head, changed paths, command class, verification bound to that head, and any remaining local or remote action. Do not report a planned commit as created or a dry run as execution.
 
@@ -39,11 +39,11 @@ After a write, capture the exact resulting head, changed paths, command class, v
 - An integration branch freezes an ordered candidate set and exact head for verification.
 - A stable branch receives only the selected, verified history through the authorized promotion mechanism.
 
-One worktree has one active writer. A branch already checked out elsewhere is not silently moved. A handed-off commit is immutable; subsequent corrections are new commits or an authorized integration operation.
+These roles describe optional uses, not a required sequence. Branches carry changes independently of Session lifetime. One worktree has one active writer; concurrent repository writers use isolated worktrees, while read-only collaborators need no separate write worktree. A branch already checked out elsewhere is not silently moved. A handed-off commit is immutable; subsequent corrections are new commits or an authorized integration operation.
 
 ## Freeze, verification, and promotion
 
-The freeze record contains stable base, ordered candidate commits, dependency order, generated integration head, and verification plan. Evidence is valid only for that exact head. If candidates or the base change, mark it stale and verify the new head.
+For integration, bind evidence to the selected candidate commits, relevant base, resulting head, and required verification. A multiple-candidate integration also identifies the selected set and dependency order. Do not create a freeze record or an integration branch for an unrelated Git action. If candidates or the base change, reassess affected evidence and verify or justify reuse for the new head; never label evidence from another head as current without that basis.
 
 Project governance owns candidate and release-window selection. This Skill confirms ancestry and performs the profile-authorized merge, cherry-pick, or fast-forward. Squash or rewrite creates a new head and therefore needs evidence on that resulting head.
 
@@ -67,4 +67,4 @@ Rewrite only an unshared branch when policy and authority explicitly allow it; n
 
 Cleanup is a new mutation, not an automatic epilogue. Resolve each branch/worktree/tag target, confirm clean state, retained recovery commit, integration status, and authorization. Prefer leaving a recoverable candidate over deleting uncertain state.
 
-An explicit user statement that the current candidate is merged, including “已合并”, supplies cleanup authority for that candidate without a second confirmation. Verify that its exact head is integrated into the named target and that the associated worktree is clean, then remove only its associated worktree and local or remote contributor/session branch when no retention rule applies. Keep unverifiable or dirty state and report why; never extend this authority to unrelated refs, tags, archive branches, or history rewrites.
+A bare merge-status statement such as “已合并” does not by itself authorize deletion. An explicit cleanup request or configured user preference may supply that authority without another confirmation. Resolve its exact scope, verify integration, clean state, and recovery, then remove only the covered targets when no retention rule applies. Remote deletion needs authority that covers the remote ref. Keep unverifiable or dirty state and report why; never extend authority to unrelated refs, tags, archive branches, or history rewrites. Session archival is independent and is not a repository completion gate.

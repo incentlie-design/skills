@@ -1,23 +1,19 @@
 # Governance responsibility and handoff contract
 
-This contract prevents the four state-owning governance Skills from copying or competing for the same state. The canonical machine-readable shape is [`governance-handoff.schema.json`](../contracts/governance-handoff.schema.json). `eng-closed-loop-decisions` is an advisory companion and owns no contract slice.
+The four governance Skills have exclusive responsibility for their own state. They constrain actions; they do not prescribe the Agent's scheduling, role sequence, Session topology, or control flow. The same Agent can apply several Skills without creating separate actors or approval hops. The three artifact Skills and the closed-loop advisor own no governance slice.
 
-## Responsibility matrix
+## Action ownership
 
-| Owner | Required input | Owned output | Forbidden scope | Reads or delegates to |
-| --- | --- | --- | --- | --- |
-| `eng-project-governance` | Raw intake or `work_item_ref`, system of record, goal/architecture/task revisions, acceptance criteria, project profile, release/publication authority | Project slice, canonical work-item decisions, milestone/candidate/release-window/gate state, remote-sync selection and timing | Authoring requirements or architecture, implementation, testing, Git mechanics, agent-session state | Workspace slice when multiple repositories participate; repository governance for authorized Git execution |
-| `eng-workspace-governance` | Workspace identity, repository facts, exact commits, dependency edges, change set, launch context | Workspace slice, validated manifest, cross-repository DAG and integration order | Single-repository Git policy, task state, agent lifecycle | Repository slice for each concrete Git operation |
-| `eng-repo-governance` | Repository identity/path, exact base/head, requested mutation, dirty/worktree facts, branch profile, project-selected remote-sync plan when applicable, authority | Repository slice, mutation plan/result, handoff commit, freeze/promotion evidence, remote-sync execution evidence, cleanup decision | Work/release or remote-sync selection/timing, multi-repository dependency ownership, agent-session state | No governance dependency for its owned mechanics |
-| `eng-agent-governance` | `work_item_ref`, adapter binding, role/capability, session owner, scope, budget, acceptance and stop conditions | Agent slice, assignment/lease state, blocked/handoff/closure record | A second work-item state machine, Git mechanics, test semantics | Project state through its adapter; repository operations through repository governance |
+| Action | Owner | Required facts for that action | Boundary |
+| --- | --- | --- | --- |
+| Register/update canonical work; change scope, acceptance, dependencies, milestones, candidates, gates, or remote-sync intent | `eng-project-governance` | Relevant request and decision sources; canonical binding and expected revision for task writes; exact candidates, target and authority for selection | No artifact authoring, Git mechanics, or runtime Session state |
+| Change cross-repository topology or dependencies; provide a reproducible tuple | `eng-workspace-governance` | Participating repositories and actual dependency facts; exact commits and launch context when reproduction or verification needs them | No repository mutations, project selection, or Session management |
+| Mutate Git state in one repository | `eng-repo-governance` | Exact targets and relevant refs, dirty/worktree ownership, scope and authority; project-selected remote-sync intent for pushes | No release selection, new remote-sync intent, cross-repository dependency ownership, or Session state |
+| Delegate/reassign work, manage conflicting shared ownership, or hand off/adopt results | `eng-agent-governance` | Outcome, executor, inputs/output and scope; independence, budgets and leases only when applicable | No second task system, runtime lifecycle controller, Git mechanics, or test semantics |
 
-Ownership is exclusive. A Skill may quote another slice by `handoff_id` or reference, but must not rewrite it. If required fields are unavailable, return `needs_input` or `blocked`; do not invent placeholder revisions, commits, authority, or evidence.
+Ownership is a constraint on the action, not a requirement to create an object. A Skill may reference another slice but must not rewrite it. Do not create missing WorkItems, assignments, budgets, leases, or receipts solely to satisfy routing.
 
-## Advisory companion
-
-`eng-closed-loop-decisions` may read supplied product, architecture, and project context and return a `ClosureDecision` recommendation. The owning artifact or project workflow may reference that recommendation as evidence, but the advisor cannot write any governance slice, approve an artifact, select a candidate or release, assign an agent, mutate a repository, or create external authority. Adding the advisor does not add a fifth slice or change the dependency direction below.
-
-## Dependency direction
+## Conditional routing, not execution dependencies
 
 ```text
 project -> workspace -> repo
@@ -25,26 +21,22 @@ agent   -> project
 agent   -> repo
 ```
 
-There is no reverse dependency. Repository state never chooses a release; workspace topology never creates work-item status; agent status never becomes a second task system. Dependencies are conditional routing boundaries, not a requirement to load every Skill.
+These registry edges describe conditional routing to another owner when its action is needed. They are not startup dependencies, a loading sequence, or approval hops. Repository state never selects a release; workspace topology never creates task status; assignment observations never become a second canonical project record.
 
-## Composite handoff
+`eng-closed-loop-decisions` recommends a product/architecture path. `eng-pm`, `eng-dev`, and `eng-qa-reviewer` produce their bounded artifacts. None creates another governance slice. A role boundary requires a separate executor only when an actual independence or authority constraint demands one.
 
-The envelope contains `schema_version`, a stable `handoff_id`, and one or more owned slices. Include only slices that actually participate, but an included slice must be complete.
+## Evidence without a packet protocol
 
-| Slice | Owner | Required content |
-| --- | --- | --- |
-| `project` | `eng-project-governance` | `work_item_ref`, goal/architecture/task revision, acceptance criteria, release target, and `remote_sync_plan_ref` when remote synchronization participates |
-| `workspace` | `eng-workspace-governance` | Manifest reference, repository exact-ref tuples, cross-repository dependency edges |
-| `repo` | `eng-repo-governance` | Repository id, base/head, branch/worktree, write scope, freeze and promotion evidence |
-| `agent` | `eng-agent-governance` | Role/session/owner, budget, status, stop condition, handoff reference, released leases |
+The four slices—project, workspace, repo, and agent—are responsibility boundaries, not a required JSON format. Use existing artifacts, messages, and authoritative records. No envelope version, handoff id, or extra registry is required.
 
-Evidence binds to exact revisions. A selection or gate decision that changes any participating revision makes earlier downstream evidence stale until the owning Skill records an impact decision.
+Supply the facts needed by the actual action: a release needs selection authority and exact eligible candidates, a tracker write needs its expected revision, and a result handoff needs locatable output, relevant checks, and limitations. Reference another owner's evidence instead of recreating its state. Do not invent irrelevant revisions, budgets, release targets, or consumption numbers.
 
-## Authority and stop rules
+An explicitly requested consumer format remains a task-specific constraint; it does not become a universal Skill protocol. Removing the repository's packet schema does not migrate or invalidate existing external records.
 
-- Project governance decides which candidate or release target is selected, when a window opens, and which project branch roles/refs need remote synchronization at what trigger or time. Repository governance resolves an approved plan to exact refspecs, validates expected local and remote revisions, and only then implements the authorized Git mechanics.
-- Repository governance may reject an unsafe or stale remote-sync plan, but it may not add refs, choose publication timing, or infer synchronization need from local branches and worktrees.
-- Workspace governance supplies repository facts and order. It cannot turn a missing commit into a floating default.
-- Agent governance may claim or release an ownership lease; it may only propose repository cleanup and report clean/dirty state.
-- External task-system writes require an authorized sink binding and an expected revision. Git push, tag publication, history rewrite, destructive cleanup, deployment, and production writes require their own authority.
-- Stop at the requested local candidate, gate, or handoff. “Integrated,” “published,” and “deployed” are distinct states and must not be inferred from one another.
+## Evidence, authority, and blocking
+
+- Bind Git and reproducible workspace claims to exact commits, and external writes to expected revisions. Reassess evidence affected by changed inputs; unrelated revisions do not automatically block all work.
+- Project governance records remote-sync intent and selected refs/timing. Repository governance validates exact local/remote revisions and authorized refspecs; it may reject unsafe intent but cannot expand it.
+- Delegation, a lease, a plan, or a local commit grants no new tracker, push, publication, rewrite, cleanup, deployment, or production authority.
+- A missing required fact blocks the dependent action. Continue independent authorized work where safe, without creating a substitute system of record or claiming the blocked action succeeded.
+- Runtime completion, message delivery, artifact acceptance, integration, and archival are separate facts. Depend on required outputs and evidence, not titles or terminal Session states.
