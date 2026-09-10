@@ -9,6 +9,10 @@ Own assignment responsibility and coordination constraints, not execution schedu
 
 Read [delegation and result handoff](references/sessions-and-leases.md) when creating or reusing a Session, resolving shared ownership, or collecting delegated results.
 
+## Skills versus executor definitions
+
+Keep reusable decision methods and role checklists in Skills. Use an Agent definition only for a real execution boundary: allowed tools/resources, read/write scope, independence, or an explicitly requested persistent executor. Bind ticket, exact inputs and worktree in the assignment, not in a global role prompt. Do not copy project status, workflow steps or the same approval rule into every Agent definition. A PM/DEV/QA label alone grants no authority and proves no independence.
+
 ## Delegating or splitting work
 
 - Identify the bounded outcome, available inputs, expected output, executor, and read/write scope before dispatch. Resolve missing scope or authority when it could change the action; do not require a tracker item, adapter, formal role profile, Session record, or numeric budget merely to start useful work.

@@ -68,3 +68,16 @@ Rewrite only an unshared branch when policy and authority explicitly allow it; n
 Cleanup is a new mutation, not an automatic epilogue. Resolve each branch/worktree/tag target, confirm clean state, retained recovery commit, integration status, and authorization. Prefer leaving a recoverable candidate over deleting uncertain state.
 
 A bare merge-status statement such as “已合并” does not by itself authorize deletion. An explicit cleanup request or configured user preference may supply that authority without another confirmation. Resolve its exact scope, verify integration, clean state, and recovery, then remove only the covered targets when no retention rule applies. Remote deletion needs authority that covers the remote ref. Keep unverifiable or dirty state and report why; never extend authority to unrelated refs, tags, archive branches, or history rewrites. Session archival is independent and is not a repository completion gate.
+
+## Foreground writer guard
+
+From the intended worktree root, an authorized launcher can run:
+
+```sh
+python3 "$SKILLS_ROOT/skills/engineering/eng-repo-governance/scripts/writer.py" \
+  --branch "$TASK_BRANCH" --base "$EXACT_BASE_SHA" --owner "$WRITER_ID" -- command args
+```
+
+The standard-library POSIX helper refuses a stable/detached/wrong branch, a moving or non-ancestor base, a non-root working directory, and concurrent guarded writers in the same worktree. Distinct worktrees use independent kernel locks. The foreground child inherits the lock; process exit releases it without deleting a lock inode or inferring a Session lifecycle. A lock-file's leftover text is diagnostic only, never evidence of a live writer.
+
+Launchers must keep the writer in the foreground and must not change branch/worktree during the command. Direct editor/tool writes, unguarded processes and daemonized children that close inherited descriptors are outside this cooperative boundary; use separate worktrees or OS-level permissions for those executors. The helper does not approve dirty changes, constrain paths, allocate runtime directories/ports, enforce project gates, or authorize commands. Resolve those inputs before launch. Hooks share Git configuration by default: do not change a common `core.hooksPath` from one worktree as if it were isolated. Use command-local `git -c core.hooksPath=...` or an explicitly reviewed worktree-local setup.

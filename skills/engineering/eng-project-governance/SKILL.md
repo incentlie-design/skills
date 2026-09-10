@@ -16,6 +16,13 @@ Read [work items and adapters](references/work-items-and-adapters.md) for canoni
 - Check mapped tools for the required operation. An unavailable adapter blocks that operation and actions dependent on unavailable canonical facts, not unrelated authorized analysis or local work. Report the gap; do not claim the task was registered or closed.
 - External sink writes require explicit authority and `expected_revision`. On conflict, re-read and reassess the affected decision; never retry as a blind overwrite. Do not provision storage, install or authenticate a plugin, or create a provider client from this Skill.
 
+## Starting from a ticket with no prior context
+
+- Read the canonical ticket and its selected decision/evidence links before loading broad project history. Resolve scope/revision, human decision owner, current authorization, exact inputs, output paths, applicable checks and next action. Missing unrelated stage/release data is not a startup gate.
+- Keep mutable scope and decisions in that ticket. Derive branch, PR, CI and executor facts from their native systems; use immutable comments or existing reports for candidate/test evidence. A new commit or test run needs a distinguishable evidence reference, not automatically a new task or lifecycle.
+- A freeze is a one-way snapshot of exact ticket bytes and required inputs. Do not copy lifecycle, blockers or closure into a writable mirror, or include the resulting planning commit in its own hash input. Record the resulting commit in the canonical ticket after freezing.
+- Fetch availability and ancestry do not prove an input is still accepted: inspect later decisions, reverts and relevant content changes before adopting an old candidate.
+
 ## Changing scope, dependencies, or acceptance
 
 - Preserve the source and revision of the changed decision, its authority, and impact on applicable acceptance and dependent work. Do not invent missing revisions for artifacts that do not exist.
