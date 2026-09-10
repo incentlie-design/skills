@@ -42,9 +42,11 @@ A `TaskSource` is read-only:
 - `fetch(work_item_ref) -> canonical fields, revision, source evidence`
 - `changes(work_item_ref, since_revision) -> changed fields, current revision`
 
-A `TaskSink` may expose `create`, `update`, `transition`, or `comment`. Every write request includes adapter binding, operation, payload, explicit authorization evidence, and `expected_revision`. The result records the new revision or a conflict. On conflict, re-read through `TaskSource`, assess impact, and request a new decision; never retry as a blind overwrite.
+A `TaskSink` may expose `create`, `update`, `transition`, or `comment`. Every write request includes adapter binding, operation, payload, explicit authorization evidence, and `expected_revision`. For create, use the SDK’s `ABSENT_REVISION`; do not invent an existing object revision. The result records the new revision or a conflict. On conflict, re-read through `TaskSource`, assess impact, and request a new decision; never retry as a blind overwrite.
 
 Adapters may be provided for local SQLite, Multica, GitHub Issues, GitLab Issues, Jira, or another Skill, plugin, or connector. Availability does not imply permission. Local files may serve as a source or sink only when the project profile declares them the system of record.
+
+A provider read-before-write check is not necessarily atomic compare-and-set. When the transport lacks conditional writes, require a known single writer, re-read immediately before saving, verify afterward, and disclose the race boundary. An action requiring atomic conflict exclusion stays blocked if that guarantee is unavailable; never label a browser save as transactional CAS.
 
 ## Provider operation mapping
 
@@ -60,7 +62,7 @@ Adapters may be provided for local SQLite, Multica, GitHub Issues, GitLab Issues
 | `transition` | `TaskSink.transition` | `issue_write(method=update, state=...)` | `save_work_item(state=opened|closed)` |
 | `comment` | `TaskSink.comment` | `add_issue_comment` | `save_note` |
 
-The machine-readable copy and read-only `check_tools` helper are in [`task_adapters.mappings`](../../../../task_adapters/mappings.py). Provider tool names are matched within the selected plugin namespace. Before an operation, check that its mapped tools are exposed in the current environment. If not, stop that operation and work dependent on its unavailable facts, with a diagnostic naming the selected adapter and missing tool. Other authorized work may continue without claiming a canonical write occurred. Do not install, sign in, bootstrap, or silently fall back from this Skill.
+The machine-readable copy and read-only `check_tools` helper are in [`task_adapters.mappings`](../../../../task_adapters/mappings.py). Provider tool names are matched within the selected plugin namespace. Before an operation, check that its mapped tools are exposed in the current environment. If not, report the missing mapped tool. An already available, authorized CLI, API or browser for the same canonical provider/target may perform the action if its actual revision/concurrency semantics meet the task; state the transport explicitly and verify the result. This is not a system-of-record migration and does not make `check_tools` pass. If no suitable transport exists, stop that operation and dependent work. Do not provision a client, install/authenticate a plugin, or create a local mirror merely to satisfy routing.
 
 Plugin installation, authentication, accounts, and permissions remain in the Codex environment. SQLite storage location and initialization remain in its external SDK implementation. `project.yaml` contains neither. Project governance still owns which source is canonical, whether a mirror is desired, its direction, and any system-of-record migration decision.
 
