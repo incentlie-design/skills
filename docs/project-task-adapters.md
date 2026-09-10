@@ -32,7 +32,9 @@ For each operation:
 1. Validate `project.yaml` and resolve its adapter mapping.
 2. Check that the mapped SDK methods or plugin tools are available in the current Session.
 3. Invoke them with `target_ref` and the canonical payload.
-4. Stop with a dependency diagnostic if a mapped tool is unavailable; never bootstrap or silently change providers.
+4. A missing mapped tool is a transport diagnostic. Use an already authorized same-provider transport only as described in the Project Skill reference; otherwise stop the dependent operation. Never silently change the system of record or bootstrap a client.
+
+`check_tools` checks the listed SDK/plugin mapping only. It neither discovers alternate transports nor proves their concurrency guarantees. A browser/CLI write must state its actual revision checks and limits; a read followed by save is not atomic compare-and-set. Cross-project work may explicitly retain its initiating canonical ticket without changing this repository’s default task-space configuration.
 
 Plugin installation, authentication, and permissions belong to the Codex environment. SQLite storage and initialization belong to its external implementation. Project governance owns the system of record and any mirror or migration decision.
 

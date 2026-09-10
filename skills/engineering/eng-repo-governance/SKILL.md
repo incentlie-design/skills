@@ -20,6 +20,8 @@ Own Git safety and mutation evidence, not project selection or workflow orchestr
 - Keep the commit scoped and report its actual resulting identity. Do not force an extra handoff commit for an action that does not create content.
 - Review, aggregate, and integration branches are optional tools for an actual need, not mandatory stages. A new Session does not require a new branch, and ending a Session does not require deleting one.
 
+For a foreground writer on a POSIX host, [writer.py](scripts/writer.py) validates the exact branch/base and holds a per-worktree process lock for the command lifetime. Use it when competing launchers are a real risk; it is not a required persistent lease or Session service. See the protocol for its limits.
+
 ## Integrating or promoting
 
 - Consume the authorized target and selected exact candidates. Check ancestry, actual dependencies, conflicts, and the applicable verification requirements. For multiple candidates, preserve the selected set and meaningful integration order.

@@ -46,13 +46,13 @@ The canonical repository is [incentlie-design/skills](https://github.com/incentl
 
 | Ref role | Project decision condition | Default |
 | --- | --- | --- |
-| `main` | The exact local head passed the required gates and was promoted to the stable branch | Push after each authorized stable promotion; never force-push |
+| `main` | A reviewed, verified candidate is selected for stable promotion | Promote through an authorized GitHub PR; never push directly or force-push |
 | `archive/*` | A named recovery baseline must survive local machine loss, the remote visibility is approved, and the archived tree passed an exposure review | Conditional push to an approved remote; keep immutable and do not silently move or delete |
 | `integrate/*`, `codex/integrate/*` | Remote CI, review, or another integrator must consume the exact frozen head | Local-only otherwise; remove remotely only with separate cleanup authority |
-| `codex/<change>` and existing contributor, review, or aggregate branch patterns | An unmerged handoff must cross machines/owners, a PR or remote CI requires it, or it is approved as recovery-worthy work | Local-only after ordinary work; do not upload merely because a worktree exists |
+| `governance/<change>`, `codex/<change>` and existing contributor, review, or aggregate branch patterns | An unmerged handoff must cross machines/owners, a PR or remote CI requires it, or it is approved as recovery-worthy work | Local-only after ordinary work; do not upload merely because a worktree exists |
 | `release/*` | A real release-stabilization workflow explicitly uses a remote branch | Do not create or push for routine delivery |
 
-For the first publication of this rebuilt repository, only `main` is required. `archive/2026-09-08/main-before-public-governance-rebuild` is conditional because it contains the complete removed tree: synchronize it only after the owner confirms remote visibility and approves that historical content for exposure; otherwise retain it locally or in a restricted backup. The already-integrated rebuild session branch and unrelated historical worktree branches are not part of the initial set.
+Historical initial-publication and archive decisions remain in Git history; they are not standing authority for a later change.
 
 Before any push, fetch or query remote refs, bind validation to the exact local head, confirm the branch contains no unintended or sensitive files, and obtain push authority. Push explicit refs only—never use `--all`, `--mirror`, bulk tag upload, remote deletion, or force update as a convenience. Tags are published separately only for an authorized version release.
 
@@ -76,3 +76,7 @@ git diff --check
 The repository validator checks the exact eight-entry registry, Skill frontmatter, discovery links, relative Markdown links, dependency acyclicity, and the single [behavior case collection](tests/routing_scenarios.json). Scenario routes are unordered required owner sets, not execution sequences. It validates case structure, not Agent behavior or the meaning of the responsibility contract. Behavioral evaluation must separately observe decisions and forbidden side effects; declared cases are not claimed as executed tests.
 
 Project discovery links in `.agents/skills/` point to the source folders with relative symlinks. Installing or removing user-level Skills, pushing, publishing, and writing production systems are separate authorized actions.
+
+## Cross-project work
+
+A change commissioned by another project retains that project’s canonical ticket, referenced by full URL in commits and handoffs. Do not mirror it into this repository’s configured task space. This does not migrate the task adapter for independent skills work. A consumer records the exact skills commit it used; discoverable links must resolve to that pinned checkout, not a moving sibling `main`. Missing optional Skills do not block operations whose required project rules are locally available.
