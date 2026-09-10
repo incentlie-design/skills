@@ -31,6 +31,8 @@ EXPECTED_DEPENDENCIES = {
     "eng-qa-reviewer": [],
 }
 ROUTING_COVERAGE = set(EXPECTED_NAMES[:5])
+VISUAL_CONTRACT_LINK = "../../../docs/prd-td-visual-contract.md"
+VISUAL_CONTRACT_SKILLS = {"eng-pm", "eng-dev", "eng-qa-reviewer"}
 
 
 def read_json(path):
@@ -148,6 +150,8 @@ def validate(root):
                 errors.append(f"{name}: description is too long")
             if "../../../docs/governance-contract.md" not in skill_text:
                 errors.append(f"{name}: shared contract is not referenced")
+            if name in VISUAL_CONTRACT_SKILLS and VISUAL_CONTRACT_LINK not in skill_text:
+                errors.append(f"{name}: PRD/TD visual contract is not referenced")
 
         discovery = root / ".agents/skills"
         actual_links = {path.name for path in discovery.iterdir()} if discovery.exists() else set()

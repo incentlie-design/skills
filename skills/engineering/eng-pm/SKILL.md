@@ -17,6 +17,7 @@ Own the bounded PM planning artifact and produce a decision-ready handoff. Do no
 
 - Give every in-scope outcome an observable acceptance criterion. Check the applicable entrance, action, feedback, success, failure or empty state, and recovery or exit path.
 - Trace `source and outcome -> acceptance -> work package -> evidence and handoff`. A document section or task count is not evidence that the outcome is covered.
+- For a PRD, feature proposal, or other non-trivial solution design, read and apply the [PRD and TD visual documentation contract](../../../docs/prd-td-visual-contract.md). Keep a concise human review layer and an ID-based Agent execution contract. Account for every core diagram family in the manifest, using a concrete `N/A` only when the design has no corresponding data, component, runtime, or lifecycle subject.
 - When decomposition is needed, give each work package a result, completion evidence, inputs and outputs, real dependencies, responsibility, important risks, and stop conditions. Distinguish genuine input or write constraints from scheduling choices; a role label does not create a required handoff or separate Session.
 - Reuse one work package when it supports several criteria. Do not duplicate work to make a planning table look complete.
 

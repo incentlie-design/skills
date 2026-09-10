@@ -40,6 +40,10 @@ The [governance contract](docs/governance-contract.md) defines four responsibili
 
 Closed Loop and `ponytail` are complementary: the former narrows the product/architecture decision, the latter minimizes the implementation. Neither waives safety, data integrity, or explicit requirements.
 
+## PRD and TD visual contract
+
+Non-trivial product and technical designs follow the shared [PRD and TD visual documentation contract](docs/prd-td-visual-contract.md). It separates a human review layer from an ID-based Agent execution contract and requires a source-controlled diagram manifest covering concept, context, data, component, runtime, lifecycle, and user-flow viewpoints as applicable. PM authors the bounded requirements artifact, DEV authors the bounded technical design, and QA/Reviewer judges the supplied contract without becoming a second design owner. The [copyable template](docs/prd-td-visual-template.md) provides Mermaid-first skeletons.
+
 ## GitHub remote and branch synchronization
 
 The canonical repository is [incentlie-design/skills](https://github.com/incentlie-design/skills), stored locally as `origin`. `eng-project-governance` owns the decision about which project branch roles/refs need synchronization and when; the table below is this project's profile for that decision. `eng-repo-governance` consumes the approved plan, resolves it to exact refspecs, validates remote state and safety, and executes only a separately authorized push. Configuring the remote does not authorize one.
