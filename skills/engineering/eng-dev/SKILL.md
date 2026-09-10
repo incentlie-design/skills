@@ -18,6 +18,7 @@ Own the bounded implementation artifact and produce the smallest complete change
 ## Implement the smallest complete change
 
 - Before editing, trace the affected end-to-end path, callers and consumers, current contract, state and error side effects, and nearby tests. Read only enough history to resolve a real constraint.
+- When the assigned artifact is a TD, architecture proposal, or non-trivial design crossing data, component, interface, lifecycle, deployment, or trust boundaries, read and apply the [PRD and TD visual documentation contract](../../../docs/prd-td-visual-contract.md) before implementation. Preserve the human review layer, give the Agent exact ID-based contracts, and keep diagrams consistent with schemas, interfaces, states, failure behavior, and acceptance. Do not create a diagram package for an ordinary localized change unless the user or project requires one.
 - Fix the root cause at the narrowest shared boundary that covers the affected paths. Avoid copied guards, unrelated cleanup, dependency upgrades, and abstractions for hypothetical callers.
 - Keep the diff small but behaviorally complete: validate trust-boundary input, preserve public contracts and data invariants, handle the relevant failure path, and keep rollback or replacement possible.
 - Add or update focused unit checks for changed non-trivial logic using the existing runner. Cover important success, boundary, rejection, or error behavior, including unchanged state after failure when relevant. Do not chase line coverage or introduce a test framework for one change.

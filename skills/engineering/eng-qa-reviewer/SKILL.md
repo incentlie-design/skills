@@ -25,6 +25,7 @@ Own the bounded QA or review evidence artifact for a supplied subject and contra
 ## Review implementation evidence
 
 - Freeze the changed paths or exact diff and trace each changed behavior through its callers and consumers. Review the narrowest relevant code and history rather than touring the repository.
+- When the supplied subject is a PRD, TD, or architecture proposal governed by the [PRD and TD visual documentation contract](../../../docs/prd-td-visual-contract.md), check its human comprehension, Agent precision, diagram coverage manifest, cross-view consistency, source-controlled render evidence, and valid `N/A` decisions. Judge the supplied design contract without inventing product or architecture semantics.
 - Check the supplied acceptance mapping, public contracts, data and state invariants, trust-boundary validation, error side effects, compatibility, and rollback or replacement behavior that the change can affect.
 - Evaluate whether focused tests exercise changed success, boundary, rejection, and failure behavior. Request the smallest missing assertion or evidence; do not turn a code review into an unbounded test run.
 - Identify unrelated scope, duplicated fixes, speculative abstractions, or new dependencies without an acceptance or demonstrated-risk basis. Do not block solely on personal style when existing conventions and behavior remain sound.
