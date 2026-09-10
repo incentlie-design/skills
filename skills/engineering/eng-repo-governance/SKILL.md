@@ -15,7 +15,7 @@ Own Git safety and mutation evidence, not project selection or workflow orchestr
 
 ## Creating branches, worktrees, or commits
 
-- Bind a contributor branch to a bounded change, not a role, date, or Session lifecycle. Create or reuse a suitable branch/worktree within the requested scope from an exact base. Respect supplied naming rules; otherwise use a descriptive `codex/<change>` branch.
+- Bind a contributor branch to a bounded change, not a role, date, or Session lifecycle. Create or reuse a suitable branch/worktree within the requested scope from an exact stable code base. An immutable definition input may be read by exact reference without being an ancestor or merged branch. Respect supplied naming rules; otherwise use a descriptive `codex/<change>` branch.
 - Enforce one active writer per worktree. Concurrent repository writers need isolated worktrees; read-only analysis or review does not. Do not move a branch already checked out elsewhere.
 - Keep the commit scoped and report its actual resulting identity. Do not force an extra handoff commit for an action that does not create content.
 - Review, aggregate, and integration branches are optional tools for an actual need, not mandatory stages. A new Session does not require a new branch, and ending a Session does not require deleting one.
@@ -24,13 +24,14 @@ For a foreground writer on a POSIX host, [writer.py](scripts/writer.py) validate
 
 ## Integrating or promoting
 
-- Consume the authorized target and selected exact candidates. Check ancestry, actual dependencies, conflicts, and the applicable verification requirements. For multiple candidates, preserve the selected set and meaningful integration order.
+- Consume the authorized target and selected exact candidates. Check actual code ancestry, definition references, promotion constraints, conflicts, and the applicable verification requirements. For multiple candidates, start from the project-selected current stable base and preserve the selected set and meaningful code-dependency order.
 - Bind validation to the exact resulting head. Promote only verified history under the supplied authority. A changed base, candidate, squash, or merge result needs new or justified reusable evidence for that result.
 - Do not rewrite a shared or handed-off commit. Corrections use new commits or an explicitly authorized integration operation.
 
 ## Synchronizing, rewriting, or cleaning up
 
 - For remote synchronization, consume the project-selected `RemoteSyncPlan` without adding refs or changing timing. Resolve exact refspecs and expected remote revisions, apply safety checks, execute only authorized writes, and verify the observed remote result.
+- A review branch is an ephemeral carrier for an active PR, remote CI, collaboration, or recovery purpose. Updating one proposal does not require a new branch for every draft revision. Merge, cancellation, or supersession makes it eligible for separately authorized cleanup; it does not delete the ref automatically.
 - Treat push, tag publication, force updates, history rewrite, and cleanup as separately authorized actions. A local commit or merge supplies none of that authority.
 - Cleanup requires exact targets, clean-state and recovery evidence, and explicit permission or a configured user preference covering those targets. Merge status alone does not create a universal cleanup rule; uncertain state is retained.
 

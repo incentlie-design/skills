@@ -26,8 +26,10 @@ Read [work items and adapters](references/work-items-and-adapters.md) for canoni
 ## Changing scope, dependencies, or acceptance
 
 - Preserve the source and revision of the changed decision, its authority, and impact on applicable acceptance and dependent work. Do not invent missing revisions for artifacts that do not exist.
-- Represent actual dependencies when decomposition is needed. A dependency describes a required input or constraint, not a required role-to-role or Session-to-Session hop.
+- Classify actual dependencies when decomposition is needed: a definition/input reference selects exact meaning, a code dependency selects an implementation that must be consumed, and a promotion dependency constrains ordering or gates. A dependency is not a required role-to-role or Session-to-Session hop. Do not force definition or promotion dependencies into Git ancestry.
 - Evaluate changed context before invalidating evidence. A changed candidate head requires new or justified reusable evidence for that head; an unrelated planning revision does not automatically pause all work or require project reapproval.
+- Explicit authority may allow bounded analysis, probes, or reversible implementation from an exact proposal before its acceptance. Keep promotion blocked until the canonical decision accepts the applicable input and evidence. Derive this boundary from the canonical record; do not add a copied `speculative` status.
+- Revise the current WorkItem when its goal, scope, acceptance, dependency, risk, or authority changes. Create a lightweight child WorkItem when a discovered future slice has independently actionable scope and acceptance. Do not turn every later milestone into another revision of the active delivery.
 - Artifact correctness remains with the appropriate author or reviewer capability. This ownership boundary does not require another person or Session unless independence or approval authority actually demands it.
 
 ## Selecting candidates, gates, or remote synchronization

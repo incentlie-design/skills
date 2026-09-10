@@ -277,6 +277,17 @@
       "forbid": ["invented product outcome", "speculative platform or option catalog"]
     },
     {
+      "id": "parallel-definition-without-ancestry",
+      "request": "Two authorized contributors need the same exact Requirement proposal while its docs PR remains under review. Start them from the selected stable code base, keep true code dependencies explicit, and later integrate selected frozen candidates over current stable main. Promotion still requires canonical acceptance.",
+      "expected_route": ["eng-project-governance", "eng-repo-governance"],
+      "expected_owner_actions": [
+        "Project governance records the exact definition input, distinguishes definition, code, and promotion dependencies, and derives the promotion block from the canonical decision.",
+        "Repository governance creates isolated contributors from the stable code base without merging the docs branch, preserves actual code ancestry, and combines selected candidates from the current stable integration base."
+      ],
+      "stop": "Return exact local candidates or integration evidence while leaving acceptance and remote actions to their stated authorities.",
+      "forbid": ["definition ancestry invented as a Git requirement", "copied speculative status", "automatic rebase of frozen candidates", "remote branch per draft revision"]
+    },
+    {
       "id": "simplicity-preserves-safety",
       "request": "Launch a payment proof of concept this week by removing authentication, input validation, transaction idempotency, and reconciliation.",
       "expected_route": ["eng-closed-loop-decisions"],
