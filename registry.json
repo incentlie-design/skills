@@ -11,19 +11,26 @@
       "name": "eng-workspace-governance",
       "category": "engineering",
       "path": "skills/engineering/eng-workspace-governance",
-      "dependencies": ["eng-repo-governance"]
+      "dependencies": [
+        "eng-repo-governance"
+      ]
     },
     {
       "name": "eng-project-governance",
       "category": "engineering",
       "path": "skills/engineering/eng-project-governance",
-      "dependencies": ["eng-workspace-governance"]
+      "dependencies": [
+        "eng-workspace-governance"
+      ]
     },
     {
       "name": "eng-agent-governance",
       "category": "engineering",
       "path": "skills/engineering/eng-agent-governance",
-      "dependencies": ["eng-project-governance", "eng-repo-governance"]
+      "dependencies": [
+        "eng-project-governance",
+        "eng-repo-governance"
+      ]
     },
     {
       "name": "eng-closed-loop-decisions",
@@ -47,6 +54,12 @@
       "name": "eng-qa-reviewer",
       "category": "engineering",
       "path": "skills/engineering/eng-qa-reviewer",
+      "dependencies": []
+    },
+    {
+      "name": "eng-wiki-authoring",
+      "category": "engineering",
+      "path": "skills/engineering/eng-wiki-authoring",
       "dependencies": []
     }
   ]
