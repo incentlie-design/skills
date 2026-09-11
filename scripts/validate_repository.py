@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the public eight-Skill repository contract using the standard library."""
+"""Validate the public nine-Skill repository contract using the standard library."""
 
 import argparse
 import json
@@ -19,6 +19,7 @@ EXPECTED_NAMES = (
     "eng-pm",
     "eng-dev",
     "eng-qa-reviewer",
+    "eng-wiki-authoring",
 )
 EXPECTED_DEPENDENCIES = {
     "eng-repo-governance": [],
@@ -29,6 +30,7 @@ EXPECTED_DEPENDENCIES = {
     "eng-pm": [],
     "eng-dev": [],
     "eng-qa-reviewer": [],
+    "eng-wiki-authoring": [],
 }
 ROUTING_COVERAGE = set(EXPECTED_NAMES[:5])
 VISUAL_CONTRACT_LINK = "../../../docs/prd-td-visual-contract.md"
@@ -118,7 +120,7 @@ def validate(root):
         if registry.get("schema_version") != 1:
             errors.append("registry schema_version must be 1")
         if names != EXPECTED_NAMES:
-            errors.append(f"registry must contain the exact ordered eight Skills: {EXPECTED_NAMES}")
+            errors.append(f"registry must contain the exact ordered nine Skills: {EXPECTED_NAMES}")
         graph = {entry["name"]: entry.get("dependencies", []) for entry in entries}
         if graph != EXPECTED_DEPENDENCIES:
             errors.append("registry dependency graph does not match the ownership design")
