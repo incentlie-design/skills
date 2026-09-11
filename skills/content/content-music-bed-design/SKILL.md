@@ -25,12 +25,26 @@ description: "Design series-level music beds, themes, and cue function for 60–
 
 ## 方法
 
-1. **先定功能，后选气质。** 每个 cue 只回答一件事：建立世界、加压、释放、转场、主题回忆。禁止用「史诗/燃」当参数。
-2. **剧情内 vs 观众轨。** 角色能听到的（收音机、现场演奏）是 diegetic，要带空间/介质（喇叭、房间）；角色听不到的 score 是 non-diegetic。混用必须写明切换点，不能让听众以为角色在听主题曲。
-3. **系列不变量。** 十集共用：调性/织体家族、主题动机（可短到 2–4 小节）、禁止音色（例如游戏 UI pluck）。每集可变：能量、密度、是否有鼓。换主题 = 系列身份失效，需重评已通过集。
-4. **给旁白留空。** 有旁白的段落：低频简单、少人声采样、少歌词。歌词与旁白抢语义一律删词或静音。Duck 深度与目标响度交给混音 Skill，这里只标「须让路」。
-5. **60–120s 结构。** 写 intro 淡入、中段是否可循环、outro 是否在钩子前收。禁止用加速或硬切循环掩盖没有结构的床。
-6. **权利记账。** 每条床：`licensed-library` / `cc-with-attribution` / `original-commission` / `generated-research-only`。生成结果默认 `provisional`，未审许可不得标 `design-ready`。
+### 门禁
+
+要有 `episode_script_ref`。无 `license_class` 不得 `design-ready`。不写拟音，不测最终响度。
+
+### 拆工作
+
+1. **功能。** 每条 `cues[]` 只选一个 `function`：establish / pressure / release / transition / motif-recall。禁止「史诗/燃」。
+2. **diegetic。** `diegetic=true` 当角色能听见（收音机、现场）；要带空间/介质。false 为观众轨 score。切换点必须写明。
+3. **系列动机。** `series_motif`：调性/织体家族、2–4 小节动机、禁音色（游戏 UI pluck）。换主题 = 身份失效。
+4. **让路。** `duck_against` 列出须让路的说话人/`line_id`。有旁白时低频简单、少人声采样、禁抢词歌词。Duck 深度交给混音 Skill。
+5. **结构。** `structure`：intro 淡入、可否循环、outro 是否在钩子前收。禁止硬切循环冒充结构。
+6. **许可。** 每条床 `license_class`。`generated-research-only` 默认 `provisional`。
+
+### 产物字段
+
+`music-bed-plan`：`series_motif` `cues` `function` `diegetic` `duck_against` `structure` `license_class`。
+
+### 失败分支
+
+把 CC 当无条件商用 → `assume_cc_commercial`。生成音频 → `media_generate`。
 
 ## 输出
 

@@ -11,11 +11,25 @@ description: "Freeze series-level invariants versus allowed episode variation fo
 
 ## 方法
 
-1. **不变量。** 主 Cast 骨相与签名细节、旁白身份、核心场景规则、色彩语言、**系列音乐家族**（主题动机/禁音色）、**地点 room tone 家族**。
-2. **变量。** 情绪、临时服装、后出场配角、一次性道具、单集配乐能量、天气/时段环境层。每项写 first-use 与是否需要重评已通过集。
-3. **一份策略。** 并行写者只读同一 lock revision。竞争方案从同一 R1 出发，PIC 只选一套。
-4. **失效。** 替换脸/声线/主题音乐/主地点底噪必须枚举受影响集；已通过评价的集要重评，不得静默覆盖。
-5. **W1 前锁 E01 全部依赖与跨集关键项。**
+### 门禁
+
+要有 `character_visual_lock_ref` 与 `voice_identity_pack_ref`。并行写者只读同一 `lock_revision`。
+
+### 拆工作
+
+1. **不变量。** `invariants` 至少覆盖：Cast 骨相与签名细节、旁白身份、核心场景规则、色彩语言、系列音乐家族、地点 room tone 家族。
+2. **变量。** `variables`：情绪、临时外套、后出场配角、一次性道具、单集配乐能量、天气/时段。每项 `first_use` 与是否重评已通过集。
+3. **单锁。** 竞争方案从同一 R1 出发，producer 只选一套 `lock_revision`。
+4. **失效。** `invalidation`：换脸/声线/主题音乐/主地点底噪时枚举受影响集；已评集必须重评，禁止静默覆盖。
+5. **W1。** 代表集前锁 E01 全部依赖与跨集关键项。
+
+### 产物字段
+
+`series-identity-rules`：`invariants` `variables` `first_use` `invalidation` `lock_revision`。
+
+### 失败分支
+
+mint 产品 CharacterRevision 字段当事实 → `mint_product_schema`。生成媒体禁止。
 
 ## 输出
 

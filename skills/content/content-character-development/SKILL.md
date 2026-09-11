@@ -11,11 +11,27 @@ description: "Design distinct character psychology, speech, and relationships fo
 
 ## 方法
 
-1. **Want vs need。** 公开目标与隐藏需求分开。十集短制里每人最多一条清晰外在目标。
-2. **相邻角色至少五项不同。** 从年龄感、语速、用词层级、句长、口头禅、信息策略（直说/隐瞒/反讽）里选五项拉开。禁止全员同一「网文旁白腔」。
-3. **声口样本。** 每名常驻角色给 3 句不可互换的例白（同场景下别人说会出戏）。旁白是独立声口，不是主角内心。
-4. **关系是动作。** 用「对谁做什么」代替形容词人设。
-5. **一致性优先于惊喜。** 破格必须由本集事件引起，并写入 canon 知识表。
+### 门禁
+
+要有 `series_canon_ref` 与 `source_ref`。本 Skill 不写外形 prompt，不选 `voice_id`。
+
+### 拆工作
+
+1. **名单。** 常驻角色来自 canon，不凭感觉加主角。每人 `character_id`、`first_episode`。
+2. **Want / need。** `want` 公开目标；`need` 隐藏需求。十集每人最多一条清晰 `want`。
+3. **对比矩阵。** 相邻角色至少五项 `contrast_axes`：年龄感、语速、用词层级、句长、口头禅、信息策略（直说/隐瞒/反讽）。禁止全员网文旁白腔。
+4. **声口。** `speech_rules` + `sample_lines` 恰好 3 句，同场景换人会出戏。
+5. **旁白。** `narrator_profile` 独立；不是主角内心。
+6. **关系。** 用「对谁做什么」，不用形容词人设。
+7. **破格。** 出戏行为必须能指到本集事件，并回写 canon 知识表；否则 `revise`。
+
+### 产物字段
+
+`character-voice-profiles`：`character_id` `want` `need` `speech_rules` `sample_lines` `contrast_axes` `first_episode` `narrator_profile`。
+
+### 失败分支
+
+只有一个声口能写出来 → 未完成对比矩阵，不得 `pass`。缺源依据的年龄/身份标 `inference`，不升级为源事实。
 
 ## 输出
 

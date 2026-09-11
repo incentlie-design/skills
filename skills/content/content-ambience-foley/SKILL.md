@@ -21,15 +21,27 @@ description: "Design environmental beds, room tone, and motivated Foley so 60–
 
 ## 方法
 
-1. **三层，不要糊成一条「氛围」。**
-   - **Room tone / 底噪：** 该空间在无人说话时的空气（空调、远交通）。每地点一条，跨镜连续。
-   - **Ambience / 环境床：** 可识别的世界声（雨、市场、虫鸣），标 diegetic。
-   - **Foley / 拟音：** 与画面动作对齐的脚步、布料、门、物件。无对应动作则不配。
-2. **听得见谁。** 环境声默认 diegetic。非叙事的转场 whoosh 才是 non-diegetic，且短制里要克制，避免游戏 UI 音色。
-3. **地点身份。** 同一 `locationId` 十集复用同一 room tone 家族；时间/天气变化写变量，不换「另一个世界」。
-4. **先画面锁定再钉拟音。** 动作峰值对齐切点；旁白段只保留底噪+极淡环境，把冲击声让给无旁白的动作格。
-5. **循环与接缝。** 环境床必须可无缝循环或有明确淡入淡出。硬跳的循环是失败，不是风格。
-6. **权利。** 库素材、CC、现场录音、生成 SFX 分栏记账。无权的电影扒轨禁止。生成环境声与音乐床一样：许可未审不得发布。
+### 门禁
+
+要有 `episode_script_ref`。不写配乐 cue。无权电影扒轨禁止。
+
+### 拆工作
+
+1. **地点列表。** 从剧本收 `location_id`。同一地点十集共用 `room_tone_family`。
+2. **三层。** 不要糊成一条氛围：`room_tone_family`（无人时的空气） / `ambience_bed`（可识别世界声，默认 diegetic） / `foley_cues`（只对可见动作）。
+3. **whoosh。** 非叙事转场才可 non-diegetic，短制克制，禁游戏 UI 音色。
+4. **天气变量。** 时段/天气是变量，不换「另一个世界」。
+5. **对齐。** 有 `shot_list_ref` 时拟音钉在动作峰值；旁白段只留底噪+极淡环境。
+6. **循环。** `loop_rule`：无缝循环或明确淡入淡出。硬跳失败。
+7. **许可。** 每层 `license_class`。
+
+### 产物字段
+
+`ambience-foley-plan`：`location_id` `room_tone_family` `ambience_bed` `foley_cues` `loop_rule` `license_class`。
+
+### 失败分支
+
+写音乐功能 → `write_music_cues`。无对应动作的拟音删掉。
 
 ## 输出
 

@@ -11,12 +11,26 @@ description: "Plan bounded short-form production: media form, parallel writers, 
 
 ## 方法
 
-1. **先选成品形态。** audio-only / 静帧+音轨 / 完整音视频。形态未选不得假设必须出视频。静帧+音轨仍要决定：干声 / 干声+环境 / 再加音乐床。
-2. **自动化程度。** 全自动 / 人锁资产后自动 / 人工 fallback。未知后禁止自动换 Provider。
-3. **一人一集一目录。** 并行写者互不改 plan、资产定义、总清单。清单只有一个汇总者。
-4. **整集重做。** 当前产品没有局部 revision 系统时，失败集整集返工，保留旧 evidence。
-5. **数字上限。** 调用、成本、时间、query；超限停止或降级，不盲试。音乐/环境素材的许可证（CC、库、生成 NC）算进停止条件，不是事后补。
-6. **W1 再 W2。** 代表集未 PASS 不得批量。
+### 门禁
+
+要有 `media_form`、`season_outline_ref`、`budget_limits`。本 Skill 不授权 paid/live。
+
+### 拆工作
+
+1. **形态树。** `media_form`：`audio_only` / `stills_plus_audio` / `audiovisual`。未选不得假设视频。静帧+音轨还要 `audio_layers`：dry / dry+ambience / +music-bed。
+2. **自动化。** `automation_level`：全自动 / 人锁资产后自动 / 人工 fallback。未知后禁止自动换 Provider。
+3. **写者。** `writer_map`：一人一集一目录。plan、资产定义、总清单单写者。
+4. **返工。** `rework_policy`：无局部 revision 时整集重做，保留旧 evidence。
+5. **上限。** `limits`：调用、成本、时间、query，以及音乐/环境 `license_class` 停止条件。
+6. **窗口。** `w1_w2_gate`：代表集未 PASS 不得批量。
+
+### 产物字段
+
+`production-plan`：`media_form` `audio_layers` `automation_level` `writer_map` `rework_policy` `limits` `w1_w2_gate`。
+
+### 失败分支
+
+宣称十个文件即 1.0 → `claim_release`。付费 live → `paid_live_authorize`。
 
 ## 输出
 

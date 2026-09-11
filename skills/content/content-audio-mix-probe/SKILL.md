@@ -11,13 +11,29 @@ description: "Mix and probe 60–120s spoken-word episode audio for intelligibil
 
 ## 方法
 
-1. **可懂度优先。** 旁白/对白盖过音乐床、环境床和拟音。对白与掩蔽声的关系先用耳朵，再用响度描述符。
-2. **分轨再合。** 至少分开：旁白、对白、music bed、ambience/room tone、foley。音乐与环境的功能设计分别交给 `content-music-bed-design` 与 `content-ambience-foley`；本 Skill 只处理让路、响度与时长。
-3. **响度目标是产品选择。** 记录候选：广播 EBU R128 −23 LUFS；流媒体/手机解说常落在 −20 到 −16；播客常见 −16 LKFS。Skill 不擅自宣布产品标准。床与环境是艺术 stem，不必每条都对准同一 LUFS，但说话人段必须让路（duck）。
-4. **短制。** 关注 true peak 与短时过响。冲击拟音不要与旁白峰值重叠。
-5. **时长。** 用实际媒体 duration；∈[60,120] 秒。文件名、sidecar、Provider success 都不能升级为合格。负例：59s、121s、空文件、非媒体。
-6. **头尾。** 避免无声过长或瞬间削波开头。音乐/环境淡入淡出不得把节目时长撑出窗。
-7. **候选工具。** 本地可用 ffprobe / loudnorm 作探针夹具；**ffmpeg 不是已选产品工具**。
+本 Skill 测 bytes，不设计音乐/环境。ffmpeg 只是候选夹具，不是产品工具。
+
+### 门禁
+
+`media_ref` 必须能取 bytes 与 `sha256`。零网络默认。无 `loudness_target` 时只报告，不宣布产品标准。
+
+### 拆工作
+
+1. **身份。** 记 `sha256` `byte_length`。空文件/非媒体 → `playable=false`，走负例。
+2. **分轨检查。** `stems_present`：旁白、对白、music、ambience、foley。缺轨记下，不替补设计。
+3. **可懂度。** `speech_clear`：说话人盖过床。冲击拟音不得与旁白峰值重叠。
+4. **时长。** `duration_seconds` 来自实际媒体，必须落入 `duration_s_range`。文件名/sidecar/Provider success 不能升级为合格。
+5. **响度。** 仅当产品给了 `loudness_target` 才填 `loudness` 与 `true_peak`。床不必与对白同一 LUFS，但须 duck。
+6. **头尾。** 过长无声、瞬间削波、淡入淡出把节目撑出窗 → 失败。
+7. **负例。** `negative_cases` 至少考虑：59s、121s、空文件、非媒体。
+
+### 产物字段
+
+`audio-probe-report`：`sha256` `byte_length` `duration_seconds` `playable` `stems_present` `speech_clear` `loudness` `true_peak` `negative_cases`。
+
+### 失败分支
+
+建议付费重放 → `paid_replay`。把 mock 标 live → 禁止。
 
 ## 输出
 

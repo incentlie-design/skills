@@ -11,12 +11,27 @@ description: "Edit 60–120s narrated episodes so each cut adds information and 
 
 ## 方法
 
-1. **切在动作峰值或认知点。** match-on-action 可藏生成接缝。无动作时切在旁白新信息落地处。
-2. **禁止用加速语音凑时长。** 超窗回剧本/大纲。
-3. **J/L cut。** 旁白可先于或后于画面到达，用来做时间跳跃，但不要让声画各讲一件无关的事。
-4. **重复近景要有理由。** 无新信息的重复特写是失败。
-5. **静默也是时长。** 反应镜需要可感知停留；不要用音乐床填满每一个空隙除非策略如此。
-6. **30°/景别变化。** 同对象两刀之间要有足够角度或尺寸差，否则像跳切事故。
+### 门禁
+
+要有 `episode_script_ref` 与 `duration_s_range`。`speech_speed_changed` 必须恒为 false。
+
+### 拆工作
+
+1. **信息表。** 按剧本列出每刀应新增的 `info_delta`。无新信息的重复近景删。
+2. **切点。** `cut_reason`：action-peak / cognition / reaction。match-on-action 可藏生成接缝。
+3. **绑定。** 每刀 `cut_id` 绑 `line_id` 与可选 `shot_id`。
+4. **J/L。** 仅当声画讲同一事件。各讲各的禁止。
+5. **角度差。** 同对象相邻刀要有景别或 ≥30° 差，否则像事故跳切。
+6. **静默。** 反应镜要可感知停留；不要用音乐填满除非 production-plan 如此。
+7. **合计。** 各刀 `duration_s` 之和落入窗口。超窗回剧本/大纲，不加速语音。
+
+### 产物字段
+
+`edit-decision-notes`：`cut_id` `line_id` `shot_id` `info_delta` `cut_reason` `duration_s` `speech_speed_changed`。
+
+### 失败分支
+
+加速语音 → 禁止。改身份 → `change_identity`。
 
 ## 输出
 

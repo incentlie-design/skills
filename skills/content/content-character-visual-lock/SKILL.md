@@ -11,12 +11,28 @@ description: "Lock reusable character visual identity: face, body, wardrobe, pal
 
 ## 方法
 
-1. **身份矩阵先于 prompt。** 脸型、眼型与间距、眉、鼻、唇、颌、发长/质、肤色范围、年龄感、体型剪影、体态、**一个签名细节**（疤、饰品、发缝）。
-2. **必要视图。** 需要画面时：正面、侧面、3/4；表情与服装变体另列，不替换基础型。
-3. **锁定字符串 verbatim。** 身份句一旦冻结，后续 prompt **整句复用，禁止同义改写**。改写是换脸的主因。
-4. **可变清单。** 情绪、临时外套、伤、灯光可变；骨相、发色、签名细节默认不可变。每项写 first-use 集。
-5. **多角色反撞车。** 相邻角色至少改五个矩阵维度，避免「同一张网文脸」。
-6. **权利。** 参考图必须有 hash 与 rights；无权的真人照片不得当身份源。
+矩阵维度见 [identity-matrix](references/identity-matrix.md)。
+
+### 门禁
+
+`rights_status=allowed` 才能用真人参考图。无权 → `blocked`。本 Skill 不调用图像模型。
+
+### 拆工作
+
+1. **矩阵。** 每人写 `matrix`：脸型、眼型与间距、眉、鼻、唇、颌、发长/质、肤色范围、年龄感、体型剪影、体态、一个签名细节。
+2. **锁定句。** `lock_sentence` 一旦冻结，下游 **整句复用**。同义改写视为换脸。
+3. **视图。** 需要画面时 `views` 含正面、侧面、3/4。表情/服装进 `variants`，不替换基础型。
+4. **可变。** `variants` 写清可变更（情绪、外套、伤、灯光）与不可变（骨相、发色、签名细节），每项 `first_use`。
+5. **反撞车。** 相邻角色至少五个矩阵维度不同。
+6. **权利。** 每张 `reference_image_refs` 绑定 hash 与 `rights_status`。
+
+### 产物字段
+
+`character-visual-lock`：`character_id` `matrix` `lock_sentence` `views` `variants` `first_use` `rights_status`。
+
+### 失败分支
+
+无权利参考图却当身份源 → `blocked`。不得 mint #95 schema。
 
 ## 输出
 

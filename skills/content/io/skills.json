@@ -5,209 +5,891 @@
   "roles": "roles.json",
   "skills": {
     "content-adaptation-shortform": {
-      "r_alignment": ["R1"],
-      "roles": ["story_director", "producer"],
-      "required_inputs": ["source_ref", "rights_status", "language", "episode_count", "duration_s_range"],
-      "optional_inputs": ["audience", "intent_ref"],
-      "outputs": [
-        {"artifact_kind": "series-product-brief", "consumers": ["story_director", "producer"]},
-        {"artifact_kind": "adaptation-strategy", "consumers": ["story_director", "producer"]},
-        {"artifact_kind": "season-outline", "consumers": ["story_director", "producer", "visual_director", "audio_director"]}
+      "r_alignment": [
+        "R1"
       ],
-      "forbidden": ["provider_submit", "media_generate", "rewrite_source"]
+      "roles": [
+        "story_director",
+        "producer"
+      ],
+      "required_inputs": [
+        "source_ref",
+        "rights_status",
+        "language",
+        "episode_count",
+        "duration_s_range"
+      ],
+      "optional_inputs": [
+        "audience",
+        "intent_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "series-product-brief",
+          "consumers": [
+            "story_director",
+            "producer"
+          ],
+          "payload_fields": [
+            "audience",
+            "story_promise",
+            "language",
+            "viewpoint",
+            "tone",
+            "non_goals"
+          ]
+        },
+        {
+          "artifact_kind": "adaptation-strategy",
+          "consumers": [
+            "story_director",
+            "producer"
+          ],
+          "payload_fields": [
+            "keep_rules",
+            "cut_rules",
+            "split_rules",
+            "merge_rules",
+            "arc_type",
+            "fact_class_policy"
+          ]
+        },
+        {
+          "artifact_kind": "season-outline",
+          "consumers": [
+            "story_director",
+            "producer",
+            "visual_director",
+            "audio_director"
+          ],
+          "payload_fields": [
+            "episodes",
+            "episode_ordinal",
+            "core_event",
+            "state_in",
+            "state_out",
+            "hook",
+            "duration_s_budget",
+            "density_note"
+          ]
+        }
+      ],
+      "forbidden": [
+        "provider_submit",
+        "media_generate",
+        "rewrite_source"
+      ]
     },
     "content-story-bible-canon": {
-      "r_alignment": ["R1", "R2"],
-      "roles": ["story_director"],
-      "required_inputs": ["source_ref", "adaptation_strategy_ref"],
-      "optional_inputs": ["season_outline_ref"],
-      "outputs": [
-        {"artifact_kind": "series-canon", "consumers": ["story_director", "visual_director", "audio_director", "validator"]}
+      "r_alignment": [
+        "R1",
+        "R2"
       ],
-      "forbidden": ["provider_submit", "media_generate", "mint_product_schema"]
+      "roles": [
+        "story_director"
+      ],
+      "required_inputs": [
+        "source_ref",
+        "adaptation_strategy_ref"
+      ],
+      "optional_inputs": [
+        "season_outline_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "series-canon",
+          "consumers": [
+            "story_director",
+            "visual_director",
+            "audio_director",
+            "validator"
+          ],
+          "payload_fields": [
+            "entities",
+            "character_id",
+            "location_id",
+            "prop_id",
+            "fact_class",
+            "knowledge_rows",
+            "learned_in",
+            "open_promises",
+            "forbidden",
+            "first_use"
+          ]
+        }
+      ],
+      "forbidden": [
+        "provider_submit",
+        "media_generate",
+        "mint_product_schema"
+      ]
     },
     "content-character-development": {
-      "r_alignment": ["R2", "R3"],
-      "roles": ["story_director"],
-      "required_inputs": ["source_ref", "series_canon_ref"],
-      "optional_inputs": ["season_outline_ref"],
-      "outputs": [
-        {"artifact_kind": "character-voice-profiles", "consumers": ["story_director", "audio_director", "visual_director"]}
+      "r_alignment": [
+        "R2",
+        "R3"
       ],
-      "forbidden": ["provider_submit", "select_voice_id", "write_visual_prompt"]
+      "roles": [
+        "story_director"
+      ],
+      "required_inputs": [
+        "source_ref",
+        "series_canon_ref"
+      ],
+      "optional_inputs": [
+        "season_outline_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "character-voice-profiles",
+          "consumers": [
+            "story_director",
+            "audio_director",
+            "visual_director"
+          ],
+          "payload_fields": [
+            "character_id",
+            "want",
+            "need",
+            "speech_rules",
+            "sample_lines",
+            "contrast_axes",
+            "first_episode",
+            "narrator_profile"
+          ]
+        }
+      ],
+      "forbidden": [
+        "provider_submit",
+        "select_voice_id",
+        "write_visual_prompt"
+      ]
     },
     "content-character-visual-lock": {
-      "r_alignment": ["R2"],
-      "roles": ["visual_director"],
-      "required_inputs": ["character_voice_profiles_ref", "rights_status"],
-      "optional_inputs": ["reference_image_refs", "series_canon_ref"],
-      "outputs": [
-        {"artifact_kind": "character-visual-lock", "consumers": ["visual_director", "producer", "validator"]}
+      "r_alignment": [
+        "R2"
       ],
-      "forbidden": ["media_generate", "mint_product_schema"]
+      "roles": [
+        "visual_director"
+      ],
+      "required_inputs": [
+        "character_voice_profiles_ref",
+        "rights_status"
+      ],
+      "optional_inputs": [
+        "reference_image_refs",
+        "series_canon_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "character-visual-lock",
+          "consumers": [
+            "visual_director",
+            "producer",
+            "validator"
+          ],
+          "payload_fields": [
+            "character_id",
+            "matrix",
+            "lock_sentence",
+            "views",
+            "variants",
+            "first_use",
+            "rights_status"
+          ]
+        }
+      ],
+      "forbidden": [
+        "media_generate",
+        "mint_product_schema"
+      ]
     },
     "content-episode-writing-narration": {
-      "r_alignment": ["R3"],
-      "roles": ["story_director"],
-      "required_inputs": ["season_outline_ref", "series_canon_ref", "character_voice_profiles_ref", "episode_ordinal", "duration_s_range"],
-      "optional_inputs": ["character_visual_lock_ref"],
-      "outputs": [
-        {"artifact_kind": "episode-script", "consumers": ["visual_director", "audio_director", "editor", "validator"]}
+      "r_alignment": [
+        "R3"
       ],
-      "forbidden": ["provider_submit", "rewrite_outline", "call_tts"]
+      "roles": [
+        "story_director"
+      ],
+      "required_inputs": [
+        "season_outline_ref",
+        "series_canon_ref",
+        "character_voice_profiles_ref",
+        "episode_ordinal",
+        "duration_s_range"
+      ],
+      "optional_inputs": [
+        "character_visual_lock_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "episode-script",
+          "consumers": [
+            "visual_director",
+            "audio_director",
+            "editor",
+            "validator"
+          ],
+          "payload_fields": [
+            "episode_ordinal",
+            "beats",
+            "line_id",
+            "character_id",
+            "spoken_text",
+            "mode",
+            "duration_s_budget",
+            "state_in",
+            "state_out",
+            "unresolved_ids"
+          ]
+        }
+      ],
+      "forbidden": [
+        "provider_submit",
+        "rewrite_outline",
+        "call_tts"
+      ]
     },
     "content-cinematography-shortform": {
-      "r_alignment": ["R3", "R4"],
-      "roles": ["visual_director"],
-      "required_inputs": ["episode_script_ref"],
-      "optional_inputs": ["aspect_ratio", "location_id", "character_visual_lock_ref"],
-      "outputs": [
-        {"artifact_kind": "camera-treatment", "consumers": ["visual_director", "editor"]},
-        {"artifact_kind": "shot-language-notes", "consumers": ["visual_director"]}
+      "r_alignment": [
+        "R3",
+        "R4"
       ],
-      "forbidden": ["rewrite_dialogue", "media_generate"]
+      "roles": [
+        "visual_director"
+      ],
+      "required_inputs": [
+        "episode_script_ref"
+      ],
+      "optional_inputs": [
+        "aspect_ratio",
+        "location_id",
+        "character_visual_lock_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "camera-treatment",
+          "consumers": [
+            "visual_director",
+            "editor"
+          ],
+          "payload_fields": [
+            "attention_plan",
+            "axis",
+            "aspect_strategy",
+            "movement_policy"
+          ]
+        },
+        {
+          "artifact_kind": "shot-language-notes",
+          "consumers": [
+            "visual_director"
+          ],
+          "payload_fields": [
+            "shot_id",
+            "scene_id",
+            "size",
+            "angle",
+            "move",
+            "eyeline",
+            "axis_side",
+            "aspect_layout"
+          ]
+        }
+      ],
+      "forbidden": [
+        "rewrite_dialogue",
+        "media_generate"
+      ]
     },
     "content-scene-blocking": {
-      "r_alignment": ["R3"],
-      "roles": ["visual_director"],
-      "required_inputs": ["episode_script_ref"],
-      "optional_inputs": ["location_id", "camera_treatment_ref"],
-      "outputs": [
-        {"artifact_kind": "blocking-plan", "consumers": ["visual_director"]}
+      "r_alignment": [
+        "R3"
       ],
-      "forbidden": ["rewrite_dialogue", "media_generate"]
+      "roles": [
+        "visual_director"
+      ],
+      "required_inputs": [
+        "episode_script_ref"
+      ],
+      "optional_inputs": [
+        "location_id",
+        "camera_treatment_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "blocking-plan",
+          "consumers": [
+            "visual_director"
+          ],
+          "payload_fields": [
+            "location_id",
+            "anchors",
+            "positions",
+            "eyelines",
+            "screen_direction",
+            "keyframes"
+          ]
+        }
+      ],
+      "forbidden": [
+        "rewrite_dialogue",
+        "media_generate"
+      ]
     },
     "content-storyboard-shotlist": {
-      "r_alignment": ["R3", "R4"],
-      "roles": ["visual_director"],
-      "required_inputs": ["episode_script_ref", "duration_s_range"],
-      "optional_inputs": ["camera_treatment_ref", "blocking_plan_ref", "character_visual_lock_ref", "aspect_ratio"],
-      "outputs": [
-        {"artifact_kind": "shot-list", "consumers": ["visual_director", "audio_director", "editor"]},
-        {"artifact_kind": "storyboard-notes", "consumers": ["visual_director"]}
+      "r_alignment": [
+        "R3",
+        "R4"
       ],
-      "forbidden": ["rewrite_dialogue", "media_generate"]
+      "roles": [
+        "visual_director"
+      ],
+      "required_inputs": [
+        "episode_script_ref",
+        "duration_s_range"
+      ],
+      "optional_inputs": [
+        "camera_treatment_ref",
+        "blocking_plan_ref",
+        "character_visual_lock_ref",
+        "aspect_ratio"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "shot-list",
+          "consumers": [
+            "visual_director",
+            "audio_director",
+            "editor"
+          ],
+          "payload_fields": [
+            "shot_id",
+            "scene_id",
+            "line_id",
+            "size",
+            "angle",
+            "move",
+            "duration_s",
+            "sound_music",
+            "sound_ambience",
+            "sound_foley",
+            "cut_in",
+            "cut_out",
+            "axis"
+          ]
+        },
+        {
+          "artifact_kind": "storyboard-notes",
+          "consumers": [
+            "visual_director"
+          ],
+          "payload_fields": [
+            "start_frame_required",
+            "coverage_cap"
+          ]
+        }
+      ],
+      "forbidden": [
+        "rewrite_dialogue",
+        "media_generate"
+      ]
     },
     "content-manga-panel-language": {
-      "r_alignment": ["R3"],
-      "roles": ["story_director", "visual_director"],
-      "required_inputs": ["episode_script_ref"],
-      "optional_inputs": ["shot_list_ref", "duration_s_range"],
-      "outputs": [
-        {"artifact_kind": "panel-plan", "consumers": ["visual_director", "editor"]}
+      "r_alignment": [
+        "R3"
       ],
-      "forbidden": ["replace_shot_list", "media_generate"]
+      "roles": [
+        "story_director",
+        "visual_director"
+      ],
+      "required_inputs": [
+        "episode_script_ref"
+      ],
+      "optional_inputs": [
+        "shot_list_ref",
+        "duration_s_range"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "panel-plan",
+          "consumers": [
+            "visual_director",
+            "editor"
+          ],
+          "payload_fields": [
+            "panel_id",
+            "transition",
+            "info_delta",
+            "word_picture_combo",
+            "duration_hint"
+          ]
+        }
+      ],
+      "forbidden": [
+        "replace_shot_list",
+        "media_generate"
+      ]
     },
     "content-image-identity-consistency": {
-      "r_alignment": ["R2", "R4"],
-      "roles": ["visual_director"],
-      "required_inputs": ["character_visual_lock_ref"],
-      "optional_inputs": ["shot_list_ref", "reference_image_refs", "rights_status"],
-      "outputs": [
-        {"artifact_kind": "image-identity-plan", "consumers": ["visual_director", "producer"]}
+      "r_alignment": [
+        "R2",
+        "R4"
       ],
-      "forbidden": ["provider_submit", "install_weights", "embed_secrets"]
+      "roles": [
+        "visual_director"
+      ],
+      "required_inputs": [
+        "character_visual_lock_ref"
+      ],
+      "optional_inputs": [
+        "shot_list_ref",
+        "reference_image_refs",
+        "rights_status"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "image-identity-plan",
+          "consumers": [
+            "visual_director",
+            "producer"
+          ],
+          "payload_fields": [
+            "character_id",
+            "variation_class",
+            "method",
+            "identity_sentence_ref",
+            "pose_control",
+            "style_control",
+            "batch_rule"
+          ]
+        }
+      ],
+      "forbidden": [
+        "provider_submit",
+        "install_weights",
+        "embed_secrets"
+      ]
     },
     "content-voice-narration-design": {
-      "r_alignment": ["R2", "R4"],
-      "roles": ["audio_director"],
-      "required_inputs": ["character_voice_profiles_ref"],
-      "optional_inputs": ["series_canon_ref"],
-      "outputs": [
-        {"artifact_kind": "voice-identity-pack", "consumers": ["audio_director", "producer", "validator"]}
+      "r_alignment": [
+        "R2",
+        "R4"
       ],
-      "forbidden": ["provider_submit", "call_tts", "clone_without_rights"]
+      "roles": [
+        "audio_director"
+      ],
+      "required_inputs": [
+        "character_voice_profiles_ref"
+      ],
+      "optional_inputs": [
+        "series_canon_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "voice-identity-pack",
+          "consumers": [
+            "audio_director",
+            "producer",
+            "validator"
+          ],
+          "payload_fields": [
+            "character_id",
+            "narrator",
+            "axes",
+            "contrast_matrix",
+            "provider_neutral_profile",
+            "clone_allowed"
+          ]
+        }
+      ],
+      "forbidden": [
+        "provider_submit",
+        "call_tts",
+        "clone_without_rights"
+      ]
     },
     "content-music-bed-design": {
-      "r_alignment": ["R2", "R4"],
-      "roles": ["audio_director"],
-      "required_inputs": ["episode_script_ref", "duration_s_range"],
-      "optional_inputs": ["season_outline_ref", "series_identity_rules_ref"],
-      "outputs": [
-        {"artifact_kind": "music-bed-plan", "consumers": ["audio_director", "editor", "producer"]}
+      "r_alignment": [
+        "R2",
+        "R4"
       ],
-      "forbidden": ["provider_submit", "media_generate", "assume_cc_commercial"]
+      "roles": [
+        "audio_director"
+      ],
+      "required_inputs": [
+        "episode_script_ref",
+        "duration_s_range"
+      ],
+      "optional_inputs": [
+        "season_outline_ref",
+        "series_identity_rules_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "music-bed-plan",
+          "consumers": [
+            "audio_director",
+            "editor",
+            "producer"
+          ],
+          "payload_fields": [
+            "series_motif",
+            "cues",
+            "function",
+            "diegetic",
+            "duck_against",
+            "structure",
+            "license_class"
+          ]
+        }
+      ],
+      "forbidden": [
+        "provider_submit",
+        "media_generate",
+        "assume_cc_commercial"
+      ]
     },
     "content-ambience-foley": {
-      "r_alignment": ["R2", "R4"],
-      "roles": ["audio_director"],
-      "required_inputs": ["episode_script_ref"],
-      "optional_inputs": ["shot_list_ref", "location_ids"],
-      "outputs": [
-        {"artifact_kind": "ambience-foley-plan", "consumers": ["audio_director", "editor"]}
+      "r_alignment": [
+        "R2",
+        "R4"
       ],
-      "forbidden": ["write_music_cues", "provider_submit", "media_generate"]
+      "roles": [
+        "audio_director"
+      ],
+      "required_inputs": [
+        "episode_script_ref"
+      ],
+      "optional_inputs": [
+        "shot_list_ref",
+        "location_ids"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "ambience-foley-plan",
+          "consumers": [
+            "audio_director",
+            "editor"
+          ],
+          "payload_fields": [
+            "location_id",
+            "room_tone_family",
+            "ambience_bed",
+            "foley_cues",
+            "loop_rule",
+            "license_class"
+          ]
+        }
+      ],
+      "forbidden": [
+        "write_music_cues",
+        "provider_submit",
+        "media_generate"
+      ]
     },
     "content-audio-mix-probe": {
-      "r_alignment": ["R4", "R5"],
-      "roles": ["audio_director", "editor", "validator"],
-      "required_inputs": ["media_ref", "duration_s_range"],
-      "optional_inputs": ["music_bed_plan_ref", "ambience_foley_plan_ref", "loudness_target"],
-      "outputs": [
-        {"artifact_kind": "audio-probe-report", "consumers": ["editor", "validator", "producer"]}
+      "r_alignment": [
+        "R4",
+        "R5"
       ],
-      "forbidden": ["provider_submit", "paid_replay", "select_ffmpeg_as_product"]
+      "roles": [
+        "audio_director",
+        "editor",
+        "validator"
+      ],
+      "required_inputs": [
+        "media_ref",
+        "duration_s_range"
+      ],
+      "optional_inputs": [
+        "music_bed_plan_ref",
+        "ambience_foley_plan_ref",
+        "loudness_target"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "audio-probe-report",
+          "consumers": [
+            "editor",
+            "validator",
+            "producer"
+          ],
+          "payload_fields": [
+            "sha256",
+            "byte_length",
+            "duration_seconds",
+            "playable",
+            "stems_present",
+            "speech_clear",
+            "loudness",
+            "true_peak",
+            "negative_cases"
+          ]
+        }
+      ],
+      "forbidden": [
+        "provider_submit",
+        "paid_replay",
+        "select_ffmpeg_as_product"
+      ]
     },
     "content-editing-rhythm-60s": {
-      "r_alignment": ["R4", "R5"],
-      "roles": ["editor"],
-      "required_inputs": ["episode_script_ref", "duration_s_range"],
-      "optional_inputs": ["shot_list_ref", "panel_plan_ref"],
-      "outputs": [
-        {"artifact_kind": "edit-decision-notes", "consumers": ["editor", "validator"]}
+      "r_alignment": [
+        "R4",
+        "R5"
       ],
-      "forbidden": ["speed_speech_to_fit", "media_generate", "change_identity"]
+      "roles": [
+        "editor"
+      ],
+      "required_inputs": [
+        "episode_script_ref",
+        "duration_s_range"
+      ],
+      "optional_inputs": [
+        "shot_list_ref",
+        "panel_plan_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "edit-decision-notes",
+          "consumers": [
+            "editor",
+            "validator"
+          ],
+          "payload_fields": [
+            "cut_id",
+            "line_id",
+            "shot_id",
+            "info_delta",
+            "cut_reason",
+            "duration_s",
+            "speech_speed_changed"
+          ]
+        }
+      ],
+      "forbidden": [
+        "speed_speech_to_fit",
+        "media_generate",
+        "change_identity"
+      ]
     },
     "content-continuity-review": {
-      "r_alignment": ["R3", "R6"],
-      "roles": ["validator"],
-      "required_inputs": ["episode_script_refs", "series_canon_ref"],
-      "optional_inputs": ["character_visual_lock_ref", "voice_identity_pack_ref", "shot_list_refs"],
-      "outputs": [
-        {"artifact_kind": "continuity-report", "consumers": ["producer", "story_director", "visual_director"]}
+      "r_alignment": [
+        "R3",
+        "R6"
       ],
-      "forbidden": ["hot_fix_candidate", "claim_unseen_media"]
+      "roles": [
+        "validator"
+      ],
+      "required_inputs": [
+        "episode_script_refs",
+        "series_canon_ref"
+      ],
+      "optional_inputs": [
+        "character_visual_lock_ref",
+        "voice_identity_pack_ref",
+        "shot_list_refs"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "continuity-report",
+          "consumers": [
+            "producer",
+            "story_director",
+            "visual_director"
+          ],
+          "payload_fields": [
+            "findings",
+            "axis",
+            "episode_ordinal",
+            "conflict",
+            "severity",
+            "owner_role",
+            "checked_scope"
+          ]
+        }
+      ],
+      "forbidden": [
+        "hot_fix_candidate",
+        "claim_unseen_media"
+      ]
     },
     "content-evaluation-rubric": {
-      "r_alignment": ["R1", "R5"],
-      "roles": ["validator", "producer"],
-      "required_inputs": ["evaluation_subject_ref", "reviewer_id"],
-      "optional_inputs": ["evaluation_policy_ref"],
-      "outputs": [
-        {"artifact_kind": "evaluation-policy", "consumers": ["producer", "validator"]},
-        {"artifact_kind": "review-record", "consumers": ["producer"]}
+      "r_alignment": [
+        "R1",
+        "R5"
       ],
-      "forbidden": ["author_self_accept", "treat_ci_green_as_acceptance"]
+      "roles": [
+        "validator",
+        "producer"
+      ],
+      "required_inputs": [
+        "evaluation_subject_ref",
+        "reviewer_id"
+      ],
+      "optional_inputs": [
+        "evaluation_policy_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "evaluation-policy",
+          "consumers": [
+            "producer",
+            "validator"
+          ],
+          "payload_fields": [
+            "tech_ballot",
+            "product_ballot",
+            "thresholds",
+            "reviewer_id_rule"
+          ]
+        },
+        {
+          "artifact_kind": "review-record",
+          "consumers": [
+            "producer"
+          ],
+          "payload_fields": [
+            "verdict",
+            "evaluation_subject_ref",
+            "tech_result",
+            "product_result",
+            "rework_to",
+            "reviewer_id"
+          ]
+        }
+      ],
+      "forbidden": [
+        "author_self_accept",
+        "treat_ci_green_as_acceptance"
+      ]
     },
     "content-series-identity-lock": {
-      "r_alignment": ["R2", "R6"],
-      "roles": ["producer", "visual_director", "audio_director"],
-      "required_inputs": ["character_visual_lock_ref", "voice_identity_pack_ref"],
-      "optional_inputs": ["music_bed_plan_ref", "ambience_foley_plan_ref"],
-      "outputs": [
-        {"artifact_kind": "series-identity-rules", "consumers": ["producer", "visual_director", "audio_director", "validator"]}
+      "r_alignment": [
+        "R2",
+        "R6"
       ],
-      "forbidden": ["media_generate", "mint_product_schema"]
+      "roles": [
+        "producer",
+        "visual_director",
+        "audio_director"
+      ],
+      "required_inputs": [
+        "character_visual_lock_ref",
+        "voice_identity_pack_ref"
+      ],
+      "optional_inputs": [
+        "music_bed_plan_ref",
+        "ambience_foley_plan_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "series-identity-rules",
+          "consumers": [
+            "producer",
+            "visual_director",
+            "audio_director",
+            "validator"
+          ],
+          "payload_fields": [
+            "invariants",
+            "variables",
+            "first_use",
+            "invalidation",
+            "lock_revision"
+          ]
+        }
+      ],
+      "forbidden": [
+        "media_generate",
+        "mint_product_schema"
+      ]
     },
     "content-prompt-safety-provenance": {
-      "r_alignment": ["R1", "R2", "R3", "R4", "R5", "R6"],
-      "roles": ["validator", "producer"],
-      "required_inputs": ["prompt_or_trace_ref", "rights_status"],
-      "optional_inputs": ["source_ref"],
-      "outputs": [
-        {"artifact_kind": "safety-screen", "consumers": ["producer", "visual_director", "audio_director"]}
+      "r_alignment": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
       ],
-      "forbidden": ["embed_secrets", "jailbreak", "paid_replay"]
+      "roles": [
+        "validator",
+        "producer"
+      ],
+      "required_inputs": [
+        "prompt_or_trace_ref",
+        "rights_status"
+      ],
+      "optional_inputs": [
+        "source_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "safety-screen",
+          "consumers": [
+            "producer",
+            "visual_director",
+            "audio_director"
+          ],
+          "payload_fields": [
+            "verdict",
+            "redactions",
+            "rights_ok",
+            "secrets_found",
+            "license_ok"
+          ]
+        }
+      ],
+      "forbidden": [
+        "embed_secrets",
+        "jailbreak",
+        "paid_replay"
+      ]
     },
     "content-production-plan-shortform": {
-      "r_alignment": ["R4", "R6"],
-      "roles": ["producer"],
-      "required_inputs": ["media_form", "season_outline_ref", "budget_limits"],
-      "optional_inputs": ["series_identity_rules_ref"],
-      "outputs": [
-        {"artifact_kind": "production-plan", "consumers": ["producer", "story_director", "visual_director", "audio_director", "editor"]}
+      "r_alignment": [
+        "R4",
+        "R6"
       ],
-      "forbidden": ["paid_live_authorize", "claim_release"]
+      "roles": [
+        "producer"
+      ],
+      "required_inputs": [
+        "media_form",
+        "season_outline_ref",
+        "budget_limits"
+      ],
+      "optional_inputs": [
+        "series_identity_rules_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "production-plan",
+          "consumers": [
+            "producer",
+            "story_director",
+            "visual_director",
+            "audio_director",
+            "editor"
+          ],
+          "payload_fields": [
+            "media_form",
+            "audio_layers",
+            "automation_level",
+            "writer_map",
+            "rework_policy",
+            "limits",
+            "w1_w2_gate"
+          ]
+        }
+      ],
+      "forbidden": [
+        "paid_live_authorize",
+        "claim_release"
+      ]
     }
   }
 }

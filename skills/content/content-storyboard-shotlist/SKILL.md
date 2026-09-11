@@ -11,11 +11,30 @@ description: "Compile a timed shot list and storyboard from a locked episode scr
 
 ## 方法
 
-1. **先动画、后镜头表。** 60–120s 先用旁白时间轴切拍，再填画面。禁止先出美图再倒推剧情。
-2. **一镜一动作。** 复杂动作拆镜，不在单次生成里堆情节。
-3. **镜号字段。** scene、shot_id、size、angle、move、duration_s、sound（分 music / ambience / foley，可空）、cut_in/out、asset_ids、axis/screen_direction。缺时长的板子不能当 animatic。声音功能细节交给音乐床与环境声 Skills。
-4. **先静帧。** 需要视频时：先生成/选定 start frame，再运动。禁止盲 text-to-video。
-5. **覆盖有上限。** 每场默认 master + 必要 singles/inserts。无限变体既烧钱也毁身份。
+镜号卡见 [shot-card](references/shot-card.md)。声音设计交给音乐/环境 Skill，这里只留指针。
+
+### 门禁
+
+必须有 `episode_script_ref` 与 `duration_s_range`。禁止先出美图再倒推剧情。
+
+### 拆工作
+
+1. **时间轴。** 按旁白/对白 `duration_s_budget` 切拍，得到镜序列骨架。
+2. **一镜一动作。** 复杂动作拆镜，不在单次生成堆情节。
+3. **填卡。** 每镜：`shot_id` `scene_id` `line_id` `size` `angle` `move` `duration_s` `cut_in` `cut_out` `axis`。
+4. **声音列。** `sound_music` `sound_ambience` `sound_foley` 可空；有则只写功能指针。
+5. **静帧优先。** `start_frame_required=true` 当成品含运动画面；禁止盲 text-to-video。
+6. **覆盖帽。** `coverage_cap`：每场默认 master + 必要 singles/inserts。
+7. **合计。** 全表 `duration_s` 之和必须落入 [60,120]。
+
+### 产物字段
+
+- `shot-list`：上列镜号字段
+- `storyboard-notes`：`start_frame_required` `coverage_cap`
+
+### 失败分支
+
+改对白 → 回剧本。时长超窗 → 删镜或回写作，不加速语音。
 
 ## 输出
 

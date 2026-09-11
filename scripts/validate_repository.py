@@ -256,6 +256,20 @@ def validate(root):
                     for kind in kinds:
                         if f"`{kind}`" not in skill_text:
                             errors.append(f"{skill_name}: SKILL.md missing artifact_kind `{kind}`")
+                    method = skill_text.split("## 方法", 1)
+                    if len(method) != 2:
+                        errors.append(f"{skill_name}: SKILL.md missing ## 方法")
+                    else:
+                        method_body = method[1].split("\n## ", 1)[0]
+                        stages = [line for line in method_body.splitlines() if line.startswith("### ")]
+                        if len(stages) < 3:
+                            errors.append(
+                                f"{skill_name}: method must fan out into at least 3 ### stages, found {len(stages)}"
+                            )
+                    for item in outputs:
+                        for field in item.get("payload_fields") or []:
+                            if f"`{field}`" not in skill_text:
+                                errors.append(f"{skill_name}: SKILL.md missing payload field `{field}`")
                 for role, body in (role_book.get("roles") or {}).items():
                     for skill_name in body.get("skills") or []:
                         if skill_name not in listed:

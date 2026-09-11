@@ -11,11 +11,30 @@ description: "Design camera language for 60–120s narrated episodes, including 
 
 ## 方法
 
-1. **先注意力，后覆盖。** 每个在场人物看谁/看物；反应不得早于触发。
-2. **景别/角度/运动是三轴。** 用封闭词表（ELS–ECU、平/俯/仰、固定/推/摇/随），不要用「电影感」当参数。
-3. **轴线。** 每场一条 axis；越轴必须有观众可见过渡。生成图是独立样本，不写轴线就会左右对调。
-4. **画幅。** 每种请求画幅单独安置主体、视线空间、字幕区。竖屏用纵深/上下层级，不把横屏填边当原生竖屏。
-5. **运动要有动机。** 无必要时固定。运动写清起止、跟随对象、停止点。生成提示的焦段不是实测镜头。
+词表见 [shot-vocab](references/shot-vocab.md)。本 Skill 不编译分镜表、不调度走位、不生成图。
+
+### 门禁
+
+必须有 `episode_script_ref`。无 `aspect_ratio` 不得宣称原生构图完成，`aspect_strategy` 标 `unspecified`。
+
+### 拆工作
+
+1. **信息。** 按剧本 beat 列：观众已知 / 本镜新增 / 仍未知。
+2. **注意力。** `attention_plan`：在场每人看谁/看物；反应不得早于触发。
+3. **覆盖功能。** 每镜只选一个：establishing / action / insert / reaction。
+4. **三轴。** `size` `angle` `move` 只用封闭词表。
+5. **轴线。** 每场 `axis` + `axis_side`。
+6. **画幅。** 每种请求比例写 `aspect_layout`：主体、视线空间、字幕区。竖屏用纵深/上下，禁止横屏填边冒充。
+7. **运动策略。** `movement_policy`：默认静止；动则写起止与跟随。
+
+### 产物字段
+
+- `camera-treatment`：`attention_plan` `axis` `aspect_strategy` `movement_policy`
+- `shot-language-notes`：`shot_id` `scene_id` `size` `angle` `move` `eyeline` `axis_side` `aspect_layout`
+
+### 失败分支
+
+台词冲突 → `blocked` 回剧本。无 `location_id` 不伪造地理。
 
 ## 输出
 

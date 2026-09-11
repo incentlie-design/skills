@@ -11,11 +11,26 @@ description: "Plan actor and camera positions, eyelines, and screen direction fo
 
 ## 方法
 
-1. **先平面图，后镜头。** 锚点（门、桌、窗）+ 每人位置 + 朝向。
-2. **视线高度匹配。** 反打时不要让演员改看向；改的是相机。
-3. **屏幕方向。** 运动体 L→R / R→L 写入场次，供连续性审查。
-4. **关系即空间。** 权力变化用距离/遮挡/高低，而不是旁白宣布。
-5. **不改已锁对白。** 调度与台词冲突时 `blocked` 回剧本写者。
+### 门禁
+
+要有 `episode_script_ref`。无 `location_id` 时平面图标 `provisional`，不得当锁景。不改对白。
+
+### 拆工作
+
+1. **锚点。** `anchors`：门、桌、窗、可重复的空间标记。
+2. **站位。** `positions`：每人开场位置与朝向。
+3. **视线。** `eyelines` 高度匹配。反打改相机，不改演员看向。
+4. **屏幕方向。** 运动体 `screen_direction` L→R 或 R→L，供连续性。
+5. **关系。** 权力用距离/遮挡/高低，不用旁白宣布。
+6. **关键帧。** `keyframes`：走位的起止与穿过轴线与否。
+
+### 产物字段
+
+`blocking-plan`：`location_id` `anchors` `positions` `eyelines` `screen_direction` `keyframes`。
+
+### 失败分支
+
+调度与已锁对白冲突 → `blocked` 回 `story_director`。不生成图。
 
 ## 输出
 

@@ -103,6 +103,12 @@ Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 
 一次调用只选 **一个** `role` + **一个** `skill`。
 
+## 方法扇出
+
+`SKILL.md` 的「方法」必须按 **阶段**（`###`）拆开，禁止六条口号打天下。典型阶段：门禁 → 拆工作（可并行的分项）→ 产物字段 → 失败分支 → 交还自检。封闭词表、镜号卡、审计轴放在该 Skill 的 `references/`，不复制进 envelope。
+
+`skills.json` 每个 `artifact_kind` 带 `payload_fields`；实现 payload 键必须用这些名字。
+
 ## 实现对照顺序
 
 1. 用 `roles.json` 选角色允许的 Skill。

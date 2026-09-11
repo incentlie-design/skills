@@ -11,12 +11,28 @@ description: "Choose the lightest identity-preserving image method that survives
 
 ## 方法
 
-1. **拆开控制。** 身份（谁）/ 姿态结构（怎么站）/ 风格（什么片子）分通道。用同一句身份锁定句，禁止同义改写。
-2. **选能活过计划变化的最轻方法。** 参考图快速变体 ≠ 跨十集稳定。姿态/年龄/画风大变时，轻量 adapter 会掉身份，应升级约束或拒绝该变化。
-3. **结构用结构工具。** 姿态/构图用 pose/depth/canny 一类条件，而不是在身份句里塞动作小说。
-4. **种子与批次。** 同场多镜尽量同批次或显式 ref；跨集必须引用同一 lock revision。
-5. **权利。** 参考图 hash + rights；无权真人不得作身份源。
-6. **不升级证据。** 本地草稿图不是 live Provider 结果。
+本 Skill 选型方法，不安装权重、不 submit Provider。
+
+### 门禁
+
+必须有 `character_visual_lock_ref`。无权真人参考 → `blocked`。
+
+### 拆工作
+
+1. **变化分级。** 每人 `variation_class`：同姿态微变 / 换场景 / 换年龄或画风。
+2. **最轻方法。** `method` 选能活过该变化的最轻档：verbatim lock 句 → 参考图条件 → 结构条件 → 拒绝该变化。跨十集稳定 ≠ 单图变体。
+3. **分通道。** `identity_sentence_ref`（谁）与 `pose_control`（怎么站）与 `style_control`（什么片子）分开。身份句禁止同义改写。
+4. **结构。** 姿态/构图用 pose/depth/canny 一类，不把动作小说塞进身份句。
+5. **批次。** `batch_rule`：同场多镜同批或显式 ref；跨集同一 lock revision。
+6. **证据级。** 本地草稿 ≠ live Provider。
+
+### 产物字段
+
+`image-identity-plan`：`character_id` `variation_class` `method` `identity_sentence_ref` `pose_control` `style_control` `batch_rule`。
+
+### 失败分支
+
+计划变化会掉身份又不愿升级约束 → `revise` 或拒绝变化，不赌模型。
 
 ## 输出
 

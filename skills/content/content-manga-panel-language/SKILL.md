@@ -11,11 +11,26 @@ description: "Apply comics/manga panel grammar (closure, gutters, transitions) t
 
 ## 方法
 
-1. **六种转场。** moment / action / subject / scene / aspect / non-sequitur。默认多用 action 与 subject；aspect 用于情绪停顿；scene 用于时空跳跃。
-2. **一拍一信息。** 一格（或一切）只新增一件观众必须知道的事。
-3. **gutter 是语法。** 能靠闭合补上的过程不要画成连环重复近景。
-4. **字图分工。** 旁白可与画面对位、对比或让一方主导；禁止双通道说同一句话。
-5. **阅读路径不是万能 Z。** 条漫/竖屏是单列流；不要按双页漫画的 page-turn 假设来切。
+### 门禁
+
+要有 `episode_script_ref`。本 Skill 不替代 `shot-list` 生产字段。
+
+### 拆工作
+
+1. **转场。** 每对相邻格选 `transition`：moment / action / subject / scene / aspect / non-sequitur。默认 action 与 subject；aspect 情绪停顿；scene 时空跳跃。
+2. **信息。** 每格一个 `info_delta`。无新信息的重复近景失败。
+3. **gutter。** 能闭合补上的过程不要画出来。
+4. **字图。** `word_picture_combo`：对位 / 对比 / 画主导 / 字主导。禁止双通道同一句。
+5. **路径。** 竖屏/条漫单列流，不用双页 Z。
+6. **时长。** `duration_hint` 相对，不冒充实测秒。
+
+### 产物字段
+
+`panel-plan`：`panel_id` `transition` `info_delta` `word_picture_combo` `duration_hint`。
+
+### 失败分支
+
+想用 panel 覆盖 shot-list → `forbidden` `replace_shot_list`。
 
 ## 输出
 

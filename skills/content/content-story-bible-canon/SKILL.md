@@ -15,11 +15,27 @@ description: "Build a series canon / story bible that separates source facts, ad
 
 ## 方法
 
-1. **三栏记账。** 每条 canon 记录 `from_source` / `adaptation_choice` / `inference`。推断不得升级为源事实。
-2. **知识边界。** 对每个重要角色维护「已知道 / 不知道 / 误以为」。无人能依据自己没学到的信息行动。
-3. **稳定 ID。** 人物、地点、道具用稳定 slug；无 ID 时 `proposed:`。禁止用「最新一版」指代。
-4. **可变 vs 不变量。** 世界规则、核心关系、主线承诺默认不变量。服装、临时场地、情绪是变量，必须标明 first-use 集。
-5. **死亡/受伤/离场。** 若发生，记录 `status` 与 `as_of_episode`。后续出场必须是闪回/提及，并在连续性审查里可检出。
+### 门禁
+
+缺 `source_ref` 或 `adaptation_strategy_ref` → `blocked`。outline 可 `provisional`，但不得用它发明源事实。
+
+### 拆工作
+
+1. **实体登记。** 分 `character_id` / `location_id` / `prop_id`。无稳定名用 `proposed:`。禁止 `latest`。
+2. **三栏事实。** 每条事实写 `fact_class`。`inference` 不得在下游当 `from_source`。
+3. **知识表。** `knowledge_rows`：谁、知道哪条、`learned_in` 哪一集。另列不知道 / 误以为。无人能用未学到的信息行动。
+4. **不变量 vs 变量。** 世界规则、核心关系、主线承诺默认不变。服装、临时场地、情绪是变量，写 `first_use` 集。
+5. **身体状态。** 死亡/受伤/离场记录 `status` + `as_of_episode`。之后只能闪回或提及，否则连续性应检出。
+6. **未兑现。** `open_promises` 列出钩子与应付集。
+7. **禁止项。** `forbidden`：破坏世界观的视觉/声音元素。
+
+### 产物字段
+
+`series-canon` 必须含：`entities` `character_id` `location_id` `prop_id` `fact_class` `knowledge_rows` `learned_in` `open_promises` `forbidden` `first_use`。
+
+### 失败分支
+
+关键源事实互相冲突 → `blocked`，不要调和成第三个事实。不生成画像，不 mint 产品 Character schema。
 
 ## 输出
 

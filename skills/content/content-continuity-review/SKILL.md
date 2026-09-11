@@ -11,12 +11,32 @@ description: "Audit cross-episode continuity of knowledge, costume, props, geogr
 
 ## 方法
 
-1. **知识。** 角色不得使用尚未学到的信息；闪回必须标 mentions 而非当作当前在场。
-2. **物。** 服装、道具、伤、光线分 camera continuity 与 production continuity。
-3. **空间。** 轴线、屏幕方向、地理锚点跨镜一致。
-4. **身份。** 视觉锁定句与声音身份未被同义改写。
-5. **E05→E06。** 只允许一份状态交接；两边各改一版即 `blocked`。
-6. **时间线。** 日夜、旅行时间、因果顺序。
+轴清单见 [audit-axes](references/audit-axes.md)。作者自检不是本 Skill。不热修候选。
+
+### 门禁
+
+要有 `episode_script_refs` 与 `series_canon_ref`。未看过的图/片不得宣称画面一致。
+
+### 拆工作（轴可并行，报告一次汇总）
+
+对每个 `axis` 出 finding 或明确 `checked_scope=unrun`：
+
+1. `knowledge` 与误用未学信息；闪回标 mentions。
+2. `wardrobe` / `props` / `injury`：camera vs production continuity。
+3. `geography` / `axis_screen`。
+4. `identity_string`：视觉句与声线未被改写。
+5. `e05_e06`：只一份交接，两边各改一版 → `blocked`。
+6. `day_night` / `travel`。
+
+每条 finding：`axis` `episode_ordinal` `conflict` `severity` `owner_role`。
+
+### 产物字段
+
+`continuity-report`：`findings` `axis` `episode_ordinal` `conflict` `severity` `owner_role` `checked_scope`。
+
+### 失败分支
+
+在审查里改剧本 → `hot_fix_candidate`。未看媒体宣称一致 → `claim_unseen_media`。
 
 ## 输出
 

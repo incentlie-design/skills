@@ -11,12 +11,29 @@ description: "Design distinct narration and character voice identities without s
 
 ## 方法
 
-1. **旁白是独立角色。** 语气（议论/讲解/陈述）、距离、是否知情，与主角内心分开。
-2. **一角一声。** 全季同一角色同一 voice 身份；禁止一人分饰多角除非改编策略写明。角色之间要有可听对比（音高带、语速、停顿习惯）。
-3. **先选身份，后映射 Provider。** 产出 provider-neutral profile（年龄感、口音/方言是否允许、能量、稳定优先还是表演优先）。具体 `voice_id` 由产品选择冻结。
-4. **文本预处理。** 数字、日期、专名读音写入剧本侧；不要把 IPA 词典当 Git 秘密。
-5. **多角色分轨。** 旁白与角色分开生成再剪，不要一条声线读完全集。
-6. **克隆不是默认。** 真人参考音频需要书面权利与同意；否则 `blocked`。
+不发起 TTS，不把 API 密钥写入示例。产品已有 Voice 路径；此处只定义听感身份。
+
+### 门禁
+
+要有 `character_voice_profiles_ref`。克隆默认否。
+
+### 拆工作
+
+1. **旁白。** `narrator` 独立：语气、距离、是否知情，不是主角内心。
+2. **一角一声。** 每 `character_id` 全季同一身份。一人分饰多角除非改编策略写明。
+3. **可听轴。** `axes`：音高带、语速、停顿、用词、信息策略。填 `contrast_matrix`，相邻角色必须可辨。
+4. **中性档案。** `provider_neutral_profile`：年龄感、口音是否允许、能量、稳定优先还是表演优先。不在此选产品 `voice_id`。
+5. **读音。** 数字/日期/专名规则留在剧本侧，不把词典当秘密。
+6. **分轨。** 旁白与角色分轨生成再剪。
+7. **克隆。** `clone_allowed` 默认 false；无书面权利保持 false。
+
+### 产物字段
+
+`voice-identity-pack`：`character_id` `narrator` `axes` `contrast_matrix` `provider_neutral_profile` `clone_allowed`。
+
+### 失败分支
+
+建议超时重放 TTS → `forbidden`。无权克隆 → `blocked`。
 
 ## 输出
 

@@ -24,12 +24,38 @@ description: "Adapt a novel or web-novel into a 10-episode 60–120s narrated-dr
 
 ## 方法
 
-1. **先定这部十集为什么成立。** 一句话 story promise：给谁看、看完应留下什么。这不是主题口号，是后续删减标尺。
-2. **可见/可听过滤器。** 对每个候选 beat 问：它能否变成画面、对白或旁白中的**一件具体事**？纯内心独白必须改成（a）旁白一句、（b）可见反应、或（c）删除。禁止把小说段变成「加速朗读」。
-3. **不要机械一章一集。** 密章（两场+揭示）可拆两集；过渡章并入邻集。每集只承载 **一个核心事件 + 一个状态变化 + 一个钩子**。超时先回大纲，不靠加快语速。
-4. **十集是连续弧还是相对独立。** 选一种。连续弧必须写清每集输入/输出状态；独立集仍要同一 Cast 与同一 story promise。
-5. **钩子留在集尾。** 网文章节钩子优先映射为 episode-out，不在本集内提前释放。
-6. **标注事实 vs 推断。** 来自源文的保留项写 `from_source`；合并角色、时间压缩写 `adaptation_choice`。
+不要压成六句口号。按阶段做；一阶段缺输入就 `blocked`。行模式见 [outline-row](references/outline-row.md)。
+
+### 门禁
+
+1. `rights_status=allowed` 才能改编。`unresolved`/`denied` → `blocked`，`needs_input=["rights_status"]`。
+2. `source_ref.sha256` 或等价身份必须能定位到同一份源；缺则 `needs_input=["source_ref"]`。
+3. `episode_count` 必须是 10，`duration_s_range` 必须是 [60, 120]。改这两个数超出本 Skill。
+
+### 拆工作（可分开交，最后一次 envelope 汇总）
+
+1. **产品一句话。** 写 `audience`、`story_promise`、`language`、`viewpoint`、`tone`、`non_goals`。promise 是删减标尺，不是主题口号。
+2. **源 beat 清单。** 按章节/场景列出候选事件。每条标 `fact_class`：`from_source` / `adaptation_choice` / `inference`。推断不得当源事实。
+3. **可见/可听过滤。** 每条 beat 只能留下：可被看见的动作、可被说出的对白、或一句旁白能承载的因果。内心独白三选一：旁白一句 / 可见反应 / 删除。禁止「把小说段加速朗读」。
+4. **密度映射。** 不要一章一集。两场+揭示 → `split_rules`；过渡章 → `merge_rules`。每集只保留一个 `core_event` + 一个状态变化。
+5. **弧类型。** `arc_type` 只能是 `serial` 或 `anthology`。serial 必须写每集 `state_in`/`state_out`；anthology 仍要同一 Cast 与同一 `story_promise`。
+6. **十格填槽。** 产出恰好 10 个 `episode_ordinal` 1–10，无缺/重/多。每格：`core_event`、`state_in`、`state_out`、`hook`、`duration_s_budget`、`density_note`。
+7. **钩子。** 网文章节钩子映射为该集 `hook`（集尾）。禁止在本集内提前释放。
+8. **时长诚实。** 10 × [60,120] 的预算合计；过密写在 `density_note` 并回步骤 4，不标 TTS 加快。
+
+### 产物字段
+
+- `series-product-brief`：`audience` `story_promise` `language` `viewpoint` `tone` `non_goals`
+- `adaptation-strategy`：`keep_rules` `cut_rules` `split_rules` `merge_rules` `arc_type` `fact_class_policy`
+- `season-outline`：`episodes` 数组，元素含上列每集字段
+
+### 失败分支
+
+| 情况 | 动作 |
+| --- | --- |
+| 源太短撑不满 10 集诚实事件 | `revise`：减集不在本 Skill；标缺口 |
+| 源太密即使用 split 仍超 120s | `revise`：继续 cut，不加快语速 |
+| 想改产品 schema / 生成媒体 | 停止，属 `forbidden` |
 
 ## 输出
 

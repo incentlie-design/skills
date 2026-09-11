@@ -11,11 +11,26 @@ description: "Write one 60–120s narrated-drama episode script with narration/d
 
 ## 方法
 
-1. **四拍而不是三幕填满。** Hook → Pressure → Crack → Aftermath。60–120s 不允许支线。
-2. **旁白与对白分工。** 旁白负责时间跳跃、内心无法被看见的因果、物件意义；对白负责冲突与关系。禁止旁白复述画面已说清的事。
-3. **时长预算。** 先写预计秒数：旁白、对白、静默/音乐。中文旁白可按约 4–5 字/秒作**预算**，最终以音频实测为准。超预算先删事件，不标「TTS 加快」。
-4. **绑定资产。** 每个说话人、地点、关键道具引用稳定 ID/revision。未解析 ID 阻止该集 `design-ready`。
-5. **入出状态。** 写清本集开始时谁知道什么、结束时什么变了、交给下一集的钩子。E05→E06 的状态只有一份。
+### 门禁
+
+必须能读到该 `episode_ordinal` 的 outline 行，以及 `series_canon_ref`、`character_voice_profiles_ref`。本 Skill 不改大纲、不调用 TTS。
+
+### 拆工作
+
+1. **只写一集。** `episode_ordinal` 锁死。四拍：Hook / Pressure / Crack / Aftermath。60–120s 无支线。
+2. **拍 → 行。** 每拍拆成 `line_id`。`mode` 只能是 `narration` 或 `dialogue`。旁白：时间跳跃、看不见的因果、物件意义。对白：冲突与关系。禁止旁白复述画面已说清的事。
+3. **说话人。** 对白绑 `character_id`；旁白用 narrator 槽。声口必须能对上 profiles。
+4. **时长预算。** 每拍和整集写 `duration_s_budget`。中文旁白约 4–5 字/秒只是预算；最终以音频实测为准。超窗先删事件。
+5. **资产。** 地点/道具用稳定 ID。未解析 ID 进 `unresolved_ids`，此时 `maturity` 不得 `design-ready`。
+6. **状态。** `state_in` / `state_out` 与 outline 对齐。E05→E06 只允许一份交接。
+
+### 产物字段
+
+`episode-script`：`episode_ordinal` `beats` `line_id` `character_id` `spoken_text` `mode` `duration_s_budget` `state_in` `state_out` `unresolved_ids`。
+
+### 失败分支
+
+对白违反声口样本 → `revise`。想加快语速塞事件 → 禁止，回大纲 Skill。
 
 ## 输出
 
