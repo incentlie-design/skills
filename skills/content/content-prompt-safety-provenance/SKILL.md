@@ -47,7 +47,7 @@ Prompt Trace 暴露生成谱系，不暴露凭据或无关受保护源文。外�
 | 字段 | 必填 | 类型 | 含义 |
 | --- | --- | --- | --- |
 | `prompt_or_trace_ref` | yes | ref | 待筛的提示词或 Prompt Trace |
-| `rights_status` | yes | enum:rights_status | 该 source 是否允许改编/生成 |
+| `rights_status` | yes | enum:rights_status | source 或参考资产权利：allowed / unresolved / denied |
 | `source_ref` | no | ref | 不可变源小说身份 |
 
 缺必填字段 → `status=blocked`，`needs_input` 填字段名。

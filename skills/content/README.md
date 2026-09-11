@@ -46,3 +46,12 @@ Load **one** Skill for the current action. Do not load the whole catalog.
 | 系列不变量与变化规则 | [content-series-identity-lock](content-series-identity-lock/SKILL.md) |
 | 提示词安全与 provenance | [content-prompt-safety-provenance](content-prompt-safety-provenance/SKILL.md) |
 | 短制制作计划与并行边界 | [content-production-plan-shortform](content-production-plan-shortform/SKILL.md) |
+| 有限动画、hold/cycle/smear | [content-limited-animation](content-limited-animation/SKILL.md) |
+| 静帧驱动 I2V、一镜一动作 | [content-image-to-video](content-image-to-video/SKILL.md) |
+| Animatic 时码预览 | [content-animatic-timing](content-animatic-timing/SKILL.md) |
+| 色彩脚本与主光方向 | [content-color-lighting](content-color-lighting/SKILL.md) |
+| 系列画风锁（与人物骨相分开） | [content-style-frame](content-style-frame/SKILL.md) |
+| 竖屏字幕安全区 | [content-subtitle-layout](content-subtitle-layout/SKILL.md) |
+| 转场种类与理由 | [content-transition-design](content-transition-design/SKILL.md) |
+| 循环背景层 | [content-looping-background](content-looping-background/SKILL.md) |
+| 表情表（默认闭口，非唇形克隆） | [content-expression-sheet](content-expression-sheet/SKILL.md) |

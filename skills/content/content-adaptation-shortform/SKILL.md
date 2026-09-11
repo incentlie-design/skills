@@ -78,7 +78,7 @@ description: "Adapt a novel or web-novel into a 10-episode 60–120s narrated-dr
 | 字段 | 必填 | 类型 | 含义 |
 | --- | --- | --- | --- |
 | `source_ref` | yes | ref | 不可变源小说身份 |
-| `rights_status` | yes | enum:rights_status | 该 source 是否允许改编/生成 |
+| `rights_status` | yes | enum:rights_status | source 或参考资产权利：allowed / unresolved / denied |
 | `language` | yes | string | BCP 47，如 zh-Hans |
 | `episode_count` | yes | integer | 本契约固定 10 |
 | `duration_s_range` | yes | int_pair | 每集体测秒数闭区间，固定 [60, 120] |

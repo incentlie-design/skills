@@ -3,25 +3,290 @@
   "catalog": "content",
   "ticket": "https://github.com/incentlie-design/narrated-drama/issues/112",
   "skills": [
-    {"name": "content-adaptation-shortform", "category": "content", "path": "skills/content/content-adaptation-shortform", "r_alignment": ["R1"], "status": "active"},
-    {"name": "content-story-bible-canon", "category": "content", "path": "skills/content/content-story-bible-canon", "r_alignment": ["R1", "R2"], "status": "active"},
-    {"name": "content-character-development", "category": "content", "path": "skills/content/content-character-development", "r_alignment": ["R2", "R3"], "status": "active"},
-    {"name": "content-character-visual-lock", "category": "content", "path": "skills/content/content-character-visual-lock", "r_alignment": ["R2"], "status": "active"},
-    {"name": "content-episode-writing-narration", "category": "content", "path": "skills/content/content-episode-writing-narration", "r_alignment": ["R3"], "status": "active"},
-    {"name": "content-storyboard-shotlist", "category": "content", "path": "skills/content/content-storyboard-shotlist", "r_alignment": ["R3", "R4"], "status": "active"},
-    {"name": "content-cinematography-shortform", "category": "content", "path": "skills/content/content-cinematography-shortform", "r_alignment": ["R3", "R4"], "status": "active"},
-    {"name": "content-scene-blocking", "category": "content", "path": "skills/content/content-scene-blocking", "r_alignment": ["R3"], "status": "active"},
-    {"name": "content-manga-panel-language", "category": "content", "path": "skills/content/content-manga-panel-language", "r_alignment": ["R3"], "status": "active"},
-    {"name": "content-continuity-review", "category": "content", "path": "skills/content/content-continuity-review", "r_alignment": ["R3", "R6"], "status": "active"},
-    {"name": "content-voice-narration-design", "category": "content", "path": "skills/content/content-voice-narration-design", "r_alignment": ["R2", "R4"], "status": "active"},
-    {"name": "content-music-bed-design", "category": "content", "path": "skills/content/content-music-bed-design", "r_alignment": ["R2", "R4"], "status": "active"},
-    {"name": "content-ambience-foley", "category": "content", "path": "skills/content/content-ambience-foley", "r_alignment": ["R2", "R4"], "status": "active"},
-    {"name": "content-audio-mix-probe", "category": "content", "path": "skills/content/content-audio-mix-probe", "r_alignment": ["R4", "R5"], "status": "active"},
-    {"name": "content-image-identity-consistency", "category": "content", "path": "skills/content/content-image-identity-consistency", "r_alignment": ["R2", "R4"], "status": "active"},
-    {"name": "content-editing-rhythm-60s", "category": "content", "path": "skills/content/content-editing-rhythm-60s", "r_alignment": ["R4", "R5"], "status": "active"},
-    {"name": "content-evaluation-rubric", "category": "content", "path": "skills/content/content-evaluation-rubric", "r_alignment": ["R1", "R5"], "status": "active"},
-    {"name": "content-series-identity-lock", "category": "content", "path": "skills/content/content-series-identity-lock", "r_alignment": ["R2", "R6"], "status": "active"},
-    {"name": "content-prompt-safety-provenance", "category": "content", "path": "skills/content/content-prompt-safety-provenance", "r_alignment": ["R1", "R2", "R3", "R4", "R5", "R6"], "status": "active"},
-    {"name": "content-production-plan-shortform", "category": "content", "path": "skills/content/content-production-plan-shortform", "r_alignment": ["R4", "R6"], "status": "active"}
+    {
+      "name": "content-adaptation-shortform",
+      "category": "content",
+      "path": "skills/content/content-adaptation-shortform",
+      "r_alignment": [
+        "R1"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-story-bible-canon",
+      "category": "content",
+      "path": "skills/content/content-story-bible-canon",
+      "r_alignment": [
+        "R1",
+        "R2"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-character-development",
+      "category": "content",
+      "path": "skills/content/content-character-development",
+      "r_alignment": [
+        "R2",
+        "R3"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-character-visual-lock",
+      "category": "content",
+      "path": "skills/content/content-character-visual-lock",
+      "r_alignment": [
+        "R2"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-episode-writing-narration",
+      "category": "content",
+      "path": "skills/content/content-episode-writing-narration",
+      "r_alignment": [
+        "R3"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-storyboard-shotlist",
+      "category": "content",
+      "path": "skills/content/content-storyboard-shotlist",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-cinematography-shortform",
+      "category": "content",
+      "path": "skills/content/content-cinematography-shortform",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-scene-blocking",
+      "category": "content",
+      "path": "skills/content/content-scene-blocking",
+      "r_alignment": [
+        "R3"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-manga-panel-language",
+      "category": "content",
+      "path": "skills/content/content-manga-panel-language",
+      "r_alignment": [
+        "R3"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-continuity-review",
+      "category": "content",
+      "path": "skills/content/content-continuity-review",
+      "r_alignment": [
+        "R3",
+        "R6"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-voice-narration-design",
+      "category": "content",
+      "path": "skills/content/content-voice-narration-design",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-music-bed-design",
+      "category": "content",
+      "path": "skills/content/content-music-bed-design",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-ambience-foley",
+      "category": "content",
+      "path": "skills/content/content-ambience-foley",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-audio-mix-probe",
+      "category": "content",
+      "path": "skills/content/content-audio-mix-probe",
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-image-identity-consistency",
+      "category": "content",
+      "path": "skills/content/content-image-identity-consistency",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-editing-rhythm-60s",
+      "category": "content",
+      "path": "skills/content/content-editing-rhythm-60s",
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-evaluation-rubric",
+      "category": "content",
+      "path": "skills/content/content-evaluation-rubric",
+      "r_alignment": [
+        "R1",
+        "R5"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-series-identity-lock",
+      "category": "content",
+      "path": "skills/content/content-series-identity-lock",
+      "r_alignment": [
+        "R2",
+        "R6"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-prompt-safety-provenance",
+      "category": "content",
+      "path": "skills/content/content-prompt-safety-provenance",
+      "r_alignment": [
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-production-plan-shortform",
+      "category": "content",
+      "path": "skills/content/content-production-plan-shortform",
+      "r_alignment": [
+        "R4",
+        "R6"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-limited-animation",
+      "category": "content",
+      "path": "skills/content/content-limited-animation",
+      "r_alignment": [
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-image-to-video",
+      "category": "content",
+      "path": "skills/content/content-image-to-video",
+      "r_alignment": [
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-animatic-timing",
+      "category": "content",
+      "path": "skills/content/content-animatic-timing",
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-color-lighting",
+      "category": "content",
+      "path": "skills/content/content-color-lighting",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-style-frame",
+      "category": "content",
+      "path": "skills/content/content-style-frame",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-subtitle-layout",
+      "category": "content",
+      "path": "skills/content/content-subtitle-layout",
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-transition-design",
+      "category": "content",
+      "path": "skills/content/content-transition-design",
+      "r_alignment": [
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-looping-background",
+      "category": "content",
+      "path": "skills/content/content-looping-background",
+      "r_alignment": [
+        "R4"
+      ],
+      "status": "active"
+    },
+    {
+      "name": "content-expression-sheet",
+      "category": "content",
+      "path": "skills/content/content-expression-sheet",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "status": "active"
+    }
   ]
 }

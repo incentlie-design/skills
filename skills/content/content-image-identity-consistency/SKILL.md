@@ -49,7 +49,7 @@ description: "Choose the lightest identity-preserving image method that survives
 | `character_visual_lock_ref` | yes | ref | 指向 character-visual-lock |
 | `shot_list_ref` | no | ref | shot-list |
 | `reference_image_refs` | no | ref[] | 有权利的外形参考图 |
-| `rights_status` | no | enum:rights_status | 该 source 是否允许改编/生成 |
+| `rights_status` | no | enum:rights_status | source 或参考资产权利：allowed / unresolved / denied |
 
 缺必填字段 → `status=blocked`，`needs_input` 填字段名。
 

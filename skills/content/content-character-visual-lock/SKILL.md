@@ -47,7 +47,7 @@ description: "Lock reusable character visual identity: face, body, wardrobe, pal
 | 字段 | 必填 | 类型 | 含义 |
 | --- | --- | --- | --- |
 | `character_voice_profiles_ref` | yes | ref | 指向 character-voice-profiles |
-| `rights_status` | yes | enum:rights_status | 该 source 是否允许改编/生成 |
+| `rights_status` | yes | enum:rights_status | source 或参考资产权利：allowed / unresolved / denied |
 | `reference_image_refs` | no | ref[] | 有权利的外形参考图 |
 | `series_canon_ref` | no | ref | 指向 series-canon 产物 |
 

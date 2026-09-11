@@ -28,6 +28,15 @@ Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 | series-identity | 十集哪些必须相同 | R2 R6 | content-series-identity-lock |
 | safety | 提示词、权利、凭据 | all | content-prompt-safety-provenance |
 | production-plan | 谁写哪集、何时停 | R4 R6 | content-production-plan-shortform |
+| limited-animation | 静帧剧怎么少动仍像活 | R4 | content-limited-animation |
+| image-to-video | 首帧如何驱动一镜运动 | R4 | content-image-to-video |
+| animatic | 成片前如何看见 60–120s | R4 R5 | content-animatic-timing |
+| color-lighting | 光色会不会每集换世界 | R2 R4 | content-color-lighting |
+| style-frame | 画风与骨相是否拆开锁 | R2 R4 | content-style-frame |
+| subtitle | 字会不会挡脸 | R4 R5 | content-subtitle-layout |
+| transition | 刀与刀怎么接 | R4 | content-transition-design |
+| looping-bg | 背景循环会不会把脸带走 | R4 | content-looping-background |
+| expression | 表情会不会变成换脸 | R2 R4 | content-expression-sheet |
 
 ## Index categories (for sources, not Skills)
 

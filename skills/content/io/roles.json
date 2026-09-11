@@ -3,19 +3,30 @@
   "note": "Routing aliases only. Not narrated-drama #108 agent catalog, not a runtime, not product Architecture. Prior drama-agents research used Story/Visual/Audio Director; user aliases NovelAgent/DirectorAgent map onto those.",
   "roles": {
     "story_director": {
-      "aliases": ["NovelAgent", "StoryDirector", "Story", "Story Structure"],
+      "aliases": [
+        "NovelAgent",
+        "StoryDirector",
+        "Story",
+        "Story Structure"
+      ],
       "mission": "把源小说变成可生产的十集叙事：改编、canon、人物声口、单集旁白剧本。不决定镜头数，不生成媒体。",
       "skills": [
         "content-adaptation-shortform",
         "content-story-bible-canon",
         "content-character-development",
         "content-episode-writing-narration",
-        "content-manga-panel-language"
+        "content-manga-panel-language",
+        "content-expression-sheet"
       ]
     },
     "visual_director": {
-      "aliases": ["DirectorAgent", "VisualDirector", "Visual", "Storyboard"],
-      "mission": "把已锁叙事变成可拍摄/可生成的镜头语言、调度、分镜与外形身份。不改对白，不调用 Provider。",
+      "aliases": [
+        "DirectorAgent",
+        "VisualDirector",
+        "Visual",
+        "Storyboard"
+      ],
+      "mission": "把已锁叙事变成镜头、调度、分镜、外形/画风锁、有限动画与 I2V 计划。不改对白，不调用 Provider。",
       "skills": [
         "content-character-visual-lock",
         "content-cinematography-shortform",
@@ -23,29 +34,53 @@
         "content-storyboard-shotlist",
         "content-manga-panel-language",
         "content-image-identity-consistency",
-        "content-series-identity-lock"
+        "content-series-identity-lock",
+        "content-limited-animation",
+        "content-image-to-video",
+        "content-color-lighting",
+        "content-style-frame",
+        "content-looping-background",
+        "content-expression-sheet",
+        "content-animatic-timing",
+        "content-transition-design"
       ]
     },
     "audio_director": {
-      "aliases": ["AudioDirector", "Audio", "VoiceDirector"],
+      "aliases": [
+        "AudioDirector",
+        "Audio",
+        "VoiceDirector"
+      ],
       "mission": "声线身份、音乐床、环境/拟音与可懂度 probe。不新增 Voice Provider，不默认克隆。",
       "skills": [
         "content-voice-narration-design",
         "content-music-bed-design",
         "content-ambience-foley",
-        "content-audio-mix-probe"
+        "content-audio-mix-probe",
+        "content-looping-background"
       ]
     },
     "editor": {
-      "aliases": ["EditorAgent", "Editor", "Assembly"],
-      "mission": "按信息变化剪 60–120s；消费分镜与音轨计划。不重写剧本、不生成替代资产。",
+      "aliases": [
+        "EditorAgent",
+        "Editor",
+        "Assembly"
+      ],
+      "mission": "按信息变化剪 60–120s，并做 animatic、字幕安全区与转场。不重写剧本、不生成替代资产。",
       "skills": [
         "content-editing-rhythm-60s",
-        "content-audio-mix-probe"
+        "content-audio-mix-probe",
+        "content-animatic-timing",
+        "content-subtitle-layout",
+        "content-transition-design"
       ]
     },
     "validator": {
-      "aliases": ["ValidatorAgent", "ContinuityReviewer", "ContentQA"],
+      "aliases": [
+        "ValidatorAgent",
+        "ContinuityReviewer",
+        "ContentQA"
+      ],
       "mission": "连续性、评价量表、prompt 安全。输出证据，不热修候选。",
       "skills": [
         "content-continuity-review",
@@ -54,13 +89,19 @@
       ]
     },
     "producer": {
-      "aliases": ["EpisodeAgent", "PrincipalProducer", "PIC-content", "Orchestrator"],
+      "aliases": [
+        "EpisodeAgent",
+        "PrincipalProducer",
+        "PIC-content",
+        "Orchestrator"
+      ],
       "mission": "形态/并行/预算、系列身份锁、指定评价人。不代替专业 Skill 写剧本或分镜。",
       "skills": [
         "content-production-plan-shortform",
         "content-series-identity-lock",
         "content-evaluation-rubric",
-        "content-prompt-safety-provenance"
+        "content-prompt-safety-provenance",
+        "content-style-frame"
       ]
     }
   }

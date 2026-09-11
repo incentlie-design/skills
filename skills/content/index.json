@@ -2839,6 +2839,20 @@
       "include": "yes",
       "security": "none",
       "why": "先锁画面再铺 BGM 再钉 SFX；禁游戏 UI 音色"
+    },
+    {
+      "id": "SRC-200",
+      "title": "guoyww/AnimateDiff",
+      "url": "https://github.com/guoyww/AnimateDiff",
+      "type": "paper-code",
+      "category": "manga-anime",
+      "quality": "stars=12241",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "图生运动方法证据；不作产品动画 Provider，一镜一动作"
     }
   ]
 }

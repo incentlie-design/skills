@@ -2,13 +2,13 @@
 
 Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 
-机器可读副本：[index.json](index.json)（199 条，上限 200）。
+机器可读副本：[index.json](index.json)（200 条，上限 200）。
 质量数字能核到的写在 `quality`；核不到标 `unverified`。
 `include=yes` 只表示方法值得蒸馏，不是拷贝授权。
 
 | include | count |
 | --- | --- |
-| yes | 131 |
+| yes | 132 |
 | maybe | 62 |
 | no | 6 |
 
@@ -152,6 +152,7 @@ Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 | SRC-124 | [VLRC corpus](https://www.visuallanguagelab.com/vlrc) | article | academic | R3 | yes | none | 跨文化分格标注 |
 | SRC-125 | [Cohn comics page layout myths](https://www.visuallanguagelab.com/2016/08/dispelling-myths-about-comics-page-layout.html) | article | academic | R3 | yes | none | Z 路径并非万能 |
 | SRC-126 | [Construction of manga panels ImageTexT](https://imagetextjournal.com/the-construction-of-panels-koma-in-manga/) | article | academic | R3 | yes | none | コマ割り控制时间 |
+| SRC-200 | [guoyww/AnimateDiff](https://github.com/guoyww/AnimateDiff) | paper-code | stars=12241 | R4 | yes | review | 图生运动方法证据；不作产品动画 Provider，一镜一动作 |
 
 ## meta-format
 

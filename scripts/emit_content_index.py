@@ -211,6 +211,7 @@ RAW = [
     ("SRC-197", "BBC Sound Effects Rewind", "https://sound-effects.bbcrewind.co.uk/", "docs", "ambience", "official-library", ["R4"], "yes", "review", "BBC 音效库；遵守其非商用/署名条款"),
     ("SRC-198", "Incompetech royalty-free music", "https://incompetech.com/music/royalty-free/", "docs", "music", "canonical-library", ["R2", "R4"], "yes", "review", "CC-BY 音乐床常见来源；必须署名且气质要对片种"),
     ("SRC-199", "video-shotcraft sound-design notes", "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/sound-design.md", "skill", "music", "stars=8076-repo", ["R4"], "yes", "none", "先锁画面再铺 BGM 再钉 SFX；禁游戏 UI 音色"),
+    ("SRC-200", "guoyww/AnimateDiff", "https://github.com/guoyww/AnimateDiff", "paper-code", "manga-anime", "stars=12241", ["R4"], "yes", "review", "图生运动方法证据；不作产品动画 Provider，一镜一动作"),
 ]
 
 

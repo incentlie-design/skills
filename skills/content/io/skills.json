@@ -890,6 +890,375 @@
         "paid_live_authorize",
         "claim_release"
       ]
+    },
+    "content-limited-animation": {
+      "r_alignment": [
+        "R4"
+      ],
+      "roles": [
+        "visual_director"
+      ],
+      "required_inputs": [
+        "shot_list_ref",
+        "character_visual_lock_ref",
+        "media_form",
+        "duration_s_range"
+      ],
+      "optional_inputs": [
+        "fps_budget",
+        "start_frame_ref",
+        "panel_plan_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "limited-animation-plan",
+          "consumers": [
+            "visual_director",
+            "editor"
+          ],
+          "payload_fields": [
+            "shot_id",
+            "motion_class",
+            "hold_frames",
+            "cycle_id",
+            "smear",
+            "fps_budget",
+            "identity_lock_ref"
+          ]
+        }
+      ],
+      "forbidden": [
+        "full_animate_episode",
+        "provider_submit",
+        "change_lock_sentence"
+      ]
+    },
+    "content-image-to-video": {
+      "r_alignment": [
+        "R4"
+      ],
+      "roles": [
+        "visual_director"
+      ],
+      "required_inputs": [
+        "start_frame_ref",
+        "shot_list_ref",
+        "character_visual_lock_ref"
+      ],
+      "optional_inputs": [
+        "fps_budget",
+        "rights_status",
+        "limited_animation_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "image-to-video-plan",
+          "consumers": [
+            "visual_director",
+            "editor",
+            "producer"
+          ],
+          "payload_fields": [
+            "shot_id",
+            "start_frame_ref",
+            "one_action",
+            "camera_vs_character",
+            "end_condition",
+            "identity_lock_ref",
+            "max_seconds"
+          ]
+        }
+      ],
+      "forbidden": [
+        "text_to_video_blind",
+        "multi_action_clip",
+        "provider_submit"
+      ]
+    },
+    "content-animatic-timing": {
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "roles": [
+        "editor",
+        "visual_director"
+      ],
+      "required_inputs": [
+        "shot_list_ref",
+        "episode_script_ref",
+        "duration_s_range"
+      ],
+      "optional_inputs": [
+        "audio_probe_ref",
+        "edit_decision_ref",
+        "start_frame_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "animatic-plan",
+          "consumers": [
+            "editor",
+            "producer",
+            "validator"
+          ],
+          "payload_fields": [
+            "reel_order",
+            "shot_id",
+            "held_duration_s",
+            "audio_line_id",
+            "placeholder_kind",
+            "sum_duration_s"
+          ]
+        }
+      ],
+      "forbidden": [
+        "replace_locked_audio",
+        "speed_speech_to_fit",
+        "media_generate"
+      ]
+    },
+    "content-color-lighting": {
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "roles": [
+        "visual_director"
+      ],
+      "required_inputs": [
+        "episode_script_ref",
+        "series_canon_ref"
+      ],
+      "optional_inputs": [
+        "shot_list_ref",
+        "location_ids",
+        "style_frame_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "color-script",
+          "consumers": [
+            "visual_director",
+            "editor",
+            "validator"
+          ],
+          "payload_fields": [
+            "episode_ordinal",
+            "beat_palette",
+            "key_light_dir",
+            "color_temp_band",
+            "continuity_with",
+            "forbidden_look"
+          ]
+        }
+      ],
+      "forbidden": [
+        "grade_as_identity_change",
+        "media_generate"
+      ]
+    },
+    "content-style-frame": {
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "roles": [
+        "visual_director",
+        "producer"
+      ],
+      "required_inputs": [
+        "series_canon_ref",
+        "rights_status"
+      ],
+      "optional_inputs": [
+        "character_visual_lock_ref",
+        "reference_image_refs",
+        "media_form"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "style-frame-lock",
+          "consumers": [
+            "visual_director",
+            "producer",
+            "validator"
+          ],
+          "payload_fields": [
+            "medium",
+            "line_weight",
+            "palette_family",
+            "texture",
+            "contrast_band",
+            "do_not_copy",
+            "lock_revision"
+          ]
+        }
+      ],
+      "forbidden": [
+        "copy_living_artist",
+        "media_generate",
+        "mint_product_schema"
+      ]
+    },
+    "content-subtitle-layout": {
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "roles": [
+        "editor"
+      ],
+      "required_inputs": [
+        "episode_script_ref",
+        "aspect_ratio",
+        "subtitle_mode"
+      ],
+      "optional_inputs": [
+        "shot_list_ref",
+        "audio_probe_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "subtitle-layout",
+          "consumers": [
+            "editor",
+            "validator"
+          ],
+          "payload_fields": [
+            "subtitle_mode",
+            "safe_area",
+            "max_chars",
+            "line_id",
+            "avoid_faces",
+            "burn_in"
+          ]
+        }
+      ],
+      "forbidden": [
+        "cover_faces",
+        "karaoke_without_timing",
+        "rewrite_dialogue"
+      ]
+    },
+    "content-transition-design": {
+      "r_alignment": [
+        "R4"
+      ],
+      "roles": [
+        "editor",
+        "visual_director"
+      ],
+      "required_inputs": [
+        "shot_list_ref",
+        "episode_script_ref"
+      ],
+      "optional_inputs": [
+        "edit_decision_ref",
+        "panel_plan_ref"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "transition-plan",
+          "consumers": [
+            "editor",
+            "visual_director"
+          ],
+          "payload_fields": [
+            "from_shot",
+            "to_shot",
+            "transition_type",
+            "duration_frames",
+            "narrative_reason"
+          ]
+        }
+      ],
+      "forbidden": [
+        "default_every_cut_dissolve",
+        "speed_speech_to_fit"
+      ]
+    },
+    "content-looping-background": {
+      "r_alignment": [
+        "R4"
+      ],
+      "roles": [
+        "visual_director",
+        "audio_director"
+      ],
+      "required_inputs": [
+        "location_id",
+        "media_form",
+        "duration_s_range"
+      ],
+      "optional_inputs": [
+        "style_frame_ref",
+        "ambience_foley_plan_ref",
+        "fps_budget"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "looping-background-plan",
+          "consumers": [
+            "visual_director",
+            "editor",
+            "audio_director"
+          ],
+          "payload_fields": [
+            "location_id",
+            "loop_seconds",
+            "seam_rule",
+            "motion_class",
+            "hold_vs_cycle",
+            "identity_safe"
+          ]
+        }
+      ],
+      "forbidden": [
+        "hard_cut_loop",
+        "drift_character_into_bg",
+        "provider_submit"
+      ]
+    },
+    "content-expression-sheet": {
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "roles": [
+        "visual_director",
+        "story_director"
+      ],
+      "required_inputs": [
+        "character_visual_lock_ref",
+        "character_voice_profiles_ref"
+      ],
+      "optional_inputs": [
+        "episode_script_ref",
+        "rights_status"
+      ],
+      "outputs": [
+        {
+          "artifact_kind": "expression-sheet",
+          "consumers": [
+            "visual_director",
+            "editor"
+          ],
+          "payload_fields": [
+            "character_id",
+            "expression_id",
+            "mouth_closed_default",
+            "intensity",
+            "lock_sentence_ref",
+            "lip_sync"
+          ]
+        }
+      ],
+      "forbidden": [
+        "clone_lip_sync_default",
+        "change_bone_structure",
+        "media_generate"
+      ]
     }
   }
 }
