@@ -15,7 +15,7 @@ class RepositoryValidationTests(unittest.TestCase):
     def test_current_repository_contract(self):
         report = validator.validate(ROOT)
         self.assertEqual(report["errors"], [])
-        self.assertEqual(report["skills_checked"], 8)
+        self.assertEqual(report["skills_checked"], 10)
         scenarios = validator.read_json(ROOT / "tests/routing_scenarios.json")["scenarios"]
         self.assertEqual(report["routing_scenarios_validated"], len(scenarios))
         self.assertEqual(report["behavior_cases_executed"], 0)
@@ -50,7 +50,7 @@ class RepositoryValidationTests(unittest.TestCase):
             scenario["expected_route"] = []
         with patch.object(validator, "read_json", side_effect=lambda path: routing if path == routing_path else read_json(path)):
             report = validator.validate(ROOT)
-        self.assertIn("routing scenarios do not cover all five governance and decision Skills", report["errors"])
+        self.assertIn("routing scenarios do not cover all governance and advisory Skills", report["errors"])
 
     def test_frontmatter_requires_one_name_and_description(self):
         parsed = validator.frontmatter("---\nname: eng-example-one\ndescription: bounded example\n---\nBody")

@@ -286,6 +286,75 @@
       ],
       "stop": "Return bounded advice without executing payment or production changes.",
       "forbid": ["MVP used to waive a known risk", "sandbox or restricted-user examples treated as authorization"]
+    },
+    {
+      "id": "pr-feedback-mixed-dispositions",
+      "request": "As PIC, review the exact current PR head and all current review channels. One comment identifies a clear in-scope typo, one asks an unresolved security question, one proposes an unrelated refactor, and one repeats a style nit already answered by repository convention. Draft the disposition ledger and replies only; do not change code or provider state.",
+      "expected_route": ["eng-pr-feedback-triage"],
+      "expected_owner_actions": [
+        "Bind every item to the current head, stable feedback identity and latest revision, then classify it as address now, discuss, defer, or no action with evidence.",
+        "Keep the security question unresolved, explain why the refactor is separable, and give convention evidence for no action instead of silently ignoring human feedback.",
+        "Return reply drafts because provider writes and code changes were not requested."
+      ],
+      "stop": "Stop after every current item is accounted for and unresolved decisions are explicit.",
+      "forbid": ["COMMENT treated as APPROVE", "outdated anchor treated as semantic resolution", "automatic issue creation, thread resolution, review dismissal or merge"]
+    },
+    {
+      "id": "pr-feedback-authorized-small-fix",
+      "request": "The PR author is authorized to fix and push a deterministic in-scope null-check defect identified on exact head A. The repository, worktree ownership, focused failing assertion, and comment revision are known. Before the edit, the provider reports head B and an edited comment revision.",
+      "expected_route": ["eng-pr-feedback-triage", "eng-dev", "eng-repo-governance"],
+      "expected_owner_actions": [
+        "Feedback triage invalidates the old address-now decision and re-reads the changed head and feedback before any modification or reply.",
+        "If the updated item still passes the current repair gate, DEV makes the smallest complete fix and focused check while repository governance binds Git evidence to the authorized ref.",
+        "Report the new exact head and validation; author repair remains distinct from independent acceptance."
+      ],
+      "stop": "Stop after the refreshed item is handled or the changed revision creates a specific blocker.",
+      "forbid": ["change based on stale head A", "blind duplicate reply", "automatic resolve, approve or merge"]
+    },
+    {
+      "id": "pr-feedback-defer-without-tracker-authority",
+      "request": "A reviewer suggests a useful cache refactor outside the current acceptance criteria. Current behavior and focused tests satisfy the PR contract, and no issue-write, milestone, assignment, or thread-resolution authority is supplied.",
+      "expected_route": ["eng-pr-feedback-triage"],
+      "expected_owner_actions": [
+        "Classify the suggestion as defer only after showing that it is separable and non-blocking for the current PR.",
+        "Draft the reason, risk of waiting, proposed owner and observable revisit trigger without claiming a follow-up issue exists."
+      ],
+      "stop": "Return the reply and follow-up draft while keeping provider and tracker state unchanged.",
+      "forbid": ["speculative refactor", "fabricated issue link or owner commitment", "defer treated as fixed or resolved"]
+    },
+    {
+      "id": "pr-feedback-permission-and-state-boundaries",
+      "request": "Classify a GitHub PR whose inline anchor is outdated but the reported authorization defect still exists. The token can read comments but cannot push, reply, resolve threads, dismiss reviews, or merge.",
+      "expected_route": ["eng-pr-feedback-triage"],
+      "expected_owner_actions": [
+        "Treat outdated as an anchor fact, retain the material authorization finding, and classify it for discussion or an authorized repair rather than no action.",
+        "Produce a patch recommendation and reply draft with the missing permissions and current unresolved state."
+      ],
+      "stop": "Stop at the read-only ledger and drafts.",
+      "forbid": ["outdated used to ignore correctness", "permissions inferred across action types", "false provider write, resolution, dismissal or merge claim"]
+    },
+    {
+      "id": "pr-feedback-read-only-address-now",
+      "request": "A read-only PIC finds a clear, local and objectively testable typo in the current accepted PR scope. The PIC cannot edit, commit, push, or reply, but the PR writer is known.",
+      "expected_route": ["eng-pr-feedback-triage"],
+      "expected_owner_actions": [
+        "Classify the feedback as address now because the PR should fix it in this change, while recording execution as blocked for the current reader.",
+        "Return the smallest patch and reply draft to the authorized PR writer without claiming a mutation occurred."
+      ],
+      "stop": "Stop at the evidence-bound handoff to the authorized writer.",
+      "forbid": ["permission absence changes valid feedback to discuss", "unperformed fix reported as complete", "implicit Git or provider write"]
+    },
+    {
+      "id": "pr-feedback-summary-items-and-repetition",
+      "request": "Two COMMENTED GitHub review summaries repeat the same missing dependency edge and each also contains a different product question. GitHub exposes review-level IDs and timestamps but no item-level threads.",
+      "expected_route": ["eng-pr-feedback-triage"],
+      "expected_owner_actions": [
+        "Derive local item keys under each review revision and preserve both source review URLs.",
+        "Group the repeated edge only if every decision field matches, while keeping the two distinct product questions as separate discussion items.",
+        "Treat an edit to either review summary as invalidating its derived items."
+      ],
+      "stop": "Return a ledger that accounts for every semantic item without pretending local keys are provider thread IDs.",
+      "forbid": ["repetition treated as resolution", "distinct decisions collapsed by proximity", "inline reply or resolved state invented for a review summary"]
     }
   ]
 }

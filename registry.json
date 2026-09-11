@@ -61,6 +61,12 @@
       "category": "engineering",
       "path": "skills/engineering/eng-wiki-authoring",
       "dependencies": []
+    },
+    {
+      "name": "eng-pr-feedback-triage",
+      "category": "engineering",
+      "path": "skills/engineering/eng-pr-feedback-triage",
+      "dependencies": []
     }
   ]
 }

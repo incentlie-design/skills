@@ -1,6 +1,6 @@
 # skill-creator
 
-A public source repository for nine orthogonal engineering Skills: four state-owning governance Skills, one closed-loop decision advisor, three artifact-owning role Skills, and one documentation-authoring Skill.
+A public source repository for ten orthogonal engineering Skills: four state-owning governance Skills, two advisors, three artifact-owning role Skills, and one documentation-authoring Skill.
 
 ## Constrain actions, not orchestration
 
@@ -13,6 +13,7 @@ Loading a Skill does not require creating its objects. A normal local change can
 | Chosen action | Skill | Constraint and evidence |
 | --- | --- | --- |
 | Compare zero-to-one product or architecture paths | [Closed Loop](skills/engineering/eng-closed-loop-decisions/SKILL.md) | Recommend the smallest clean actor-to-evidence loop; advice does not change canonical state or authorize implementation |
+| Disposition PR or MR feedback and draft evidence-backed responses | [PR feedback triage](skills/engineering/eng-pr-feedback-triage/SKILL.md) | Classify each current comment as address now, discuss, defer, or no action; do not infer scope, provider-state, Git, review, or merge authority |
 | Produce a bounded plan | [PM](skills/engineering/eng-pm/SKILL.md) | Preserve intent, observable acceptance, real dependencies, risks, and decision evidence |
 | Implement or self-check a bounded change | [DEV](skills/engineering/eng-dev/SKILL.md) | Trace affected behavior, use the smallest complete change, and provide focused evidence |
 | Evaluate evidence or review an implementation | [QA and Reviewer](skills/engineering/eng-qa-reviewer/SKILL.md) | Bind conclusions to the subject and applicable checks; preserve required independence |
@@ -24,7 +25,7 @@ Loading a Skill does not require creating its objects. A normal local change can
 
 These are routing choices, not stages. The same Agent can use compatible capabilities in any order consistent with real input dependencies, safety, and authority. A role boundary does not require a different executor except for required independence or approval authority. Read-only Git inspection does not trigger mutation governance.
 
-Registry dependencies describe conditional owner routing, not mandatory loading or execution dependencies. The four slice owners remain exclusive; the advisor and three role Skills own their respective artifacts, not governance state.
+Registry dependencies describe conditional owner routing, not mandatory loading or execution dependencies. The four slice owners remain exclusive; the two advisors, three role Skills, and documentation Skill own their respective artifacts, not governance state.
 
 ## Branch, project, and Session boundaries
 
@@ -78,7 +79,7 @@ python3 -m unittest discover -s tests
 git diff --check
 ```
 
-The repository validator checks the exact nine-entry registry, Skill frontmatter, discovery links, relative Markdown links, dependency acyclicity, and the single [behavior case collection](tests/routing_scenarios.json). Scenario routes are unordered required owner sets, not execution sequences. It validates case structure, not Agent behavior or the meaning of the responsibility contract. Behavioral evaluation must separately observe decisions and forbidden side effects; declared cases are not claimed as executed tests.
+The repository validator checks the exact ten-entry registry, Skill frontmatter, discovery links, relative Markdown links, dependency acyclicity, and the single [behavior case collection](tests/routing_scenarios.json). Scenario routes are unordered required owner sets, not execution sequences. It validates case structure, not Agent behavior or the meaning of the responsibility contract. Behavioral evaluation must separately observe decisions and forbidden side effects; declared cases are not claimed as executed tests.
 
 Project discovery links in `.agents/skills/` point to the source folders with relative symlinks. Installing or removing user-level Skills, pushing, publishing, and writing production systems are separate authorized actions.
 
