@@ -1,0 +1,2574 @@
+{
+  "schema_version": 1,
+  "ticket": "https://github.com/incentlie-design/narrated-drama/issues/112",
+  "skills_baseline": "5bfe09d6073207d76a362977f1c38d93dfd79198",
+  "quality_observed_at": "2026-09-12",
+  "note": "Index of public sources. Inclusion is not a callable Skill and not a product Provider choice. Star counts from GitHub API or agent snapshots on 2026-09-12; unverified where marked.",
+  "entries": [
+    {
+      "id": "SRC-001",
+      "title": "anthropics/skills",
+      "url": "https://github.com/anthropics/skills",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=175810",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "SKILL.md 格式与渐进披露；不当影视方法权威"
+    },
+    {
+      "id": "SRC-002",
+      "title": "agentskills/agentskills spec",
+      "url": "https://github.com/agentskills/agentskills",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=25236",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "可移植 Skill 规范"
+    },
+    {
+      "id": "SRC-003",
+      "title": "openai/skills",
+      "url": "https://github.com/openai/skills",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=26903",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "第二套官方 catalog 包装"
+    },
+    {
+      "id": "SRC-004",
+      "title": "vercel-labs/agent-skills",
+      "url": "https://github.com/vercel-labs/agent-skills",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=31064",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "包装质量对照，非内容方法"
+    },
+    {
+      "id": "SRC-005",
+      "title": "huggingface/skills",
+      "url": "https://github.com/huggingface/skills",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=11038",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "论文/模型检索 skill，非制片"
+    },
+    {
+      "id": "SRC-006",
+      "title": "NVIDIA/SkillSpector",
+      "url": "https://github.com/NVIDIA/SkillSpector",
+      "type": "tool",
+      "category": "safety",
+      "quality": "stars=16951",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "安装前扫描注入与供应链"
+    },
+    {
+      "id": "SRC-007",
+      "title": "trailofbits/skills",
+      "url": "https://github.com/trailofbits/skills",
+      "type": "collection",
+      "category": "safety",
+      "quality": "stars=7042",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "安全审计模式有用；不导入 exploit skill"
+    },
+    {
+      "id": "SRC-008",
+      "title": "obra/superpowers",
+      "url": "https://github.com/obra/superpowers",
+      "type": "collection",
+      "category": "production-planning",
+      "quality": "stars=285216",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "验证门与可组合 skill；工程方法"
+    },
+    {
+      "id": "SRC-009",
+      "title": "addyosmani/agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills",
+      "type": "collection",
+      "category": "production-planning",
+      "quality": "stars=93534",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "分阶段 define/plan/build/verify"
+    },
+    {
+      "id": "SRC-010",
+      "title": "ComposioHQ/awesome-claude-skills",
+      "url": "https://github.com/ComposioHQ/awesome-claude-skills",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=74867",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "最大索引；含会真实动作的 connect，勿整包安装"
+    },
+    {
+      "id": "SRC-011",
+      "title": "hesreallyhim/awesome-claude-code",
+      "url": "https://github.com/hesreallyhim/awesome-claude-code",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=53879",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "Claude Code 资源精选"
+    },
+    {
+      "id": "SRC-012",
+      "title": "VoltAgent/awesome-agent-skills",
+      "url": "https://github.com/VoltAgent/awesome-agent-skills",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=34093",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "跨运行时大清单，只作发现层"
+    },
+    {
+      "id": "SRC-013",
+      "title": "VoltAgent/awesome-openclaw-skills",
+      "url": "https://github.com/VoltAgent/awesome-openclaw-skills",
+      "type": "collection",
+      "category": "safety",
+      "quality": "stars=52497",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "no",
+      "security": "exclude",
+      "why": "5400+ 未审 skill，尾部高风险，禁止整包"
+    },
+    {
+      "id": "SRC-014",
+      "title": "sickn33/agentic-awesome-skills",
+      "url": "https://github.com/sickn33/agentic-awesome-skills",
+      "type": "collection",
+      "category": "safety",
+      "quality": "stars=46280",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "no",
+      "security": "exclude",
+      "why": "含 pentest 改编与大规模拷贝"
+    },
+    {
+      "id": "SRC-015",
+      "title": "Fission-AI/OpenSpec",
+      "url": "https://github.com/Fission-AI/OpenSpec",
+      "type": "collection",
+      "category": "production-planning",
+      "quality": "stars=67996",
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "explore→propose→apply 门禁，产物为真相"
+    },
+    {
+      "id": "SRC-016",
+      "title": "calesthio/OpenMontage",
+      "url": "https://github.com/calesthio/OpenMontage",
+      "type": "skill-repo",
+      "category": "production-planning",
+      "quality": "stars=57191",
+      "r_alignment": [
+        "R3",
+        "R4",
+        "R5"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "高星制片工作台；密钥只在环境，不进制品"
+    },
+    {
+      "id": "SRC-017",
+      "title": "calesthio/generative-media-skills",
+      "url": "https://github.com/calesthio/generative-media-skills",
+      "type": "skill-repo",
+      "category": "image-gen",
+      "quality": "stars=170",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "OpenMontage 伴生工艺 skill，星低但领域贴合"
+    },
+    {
+      "id": "SRC-018",
+      "title": "SamurAIGPT/Generative-Media-Skills",
+      "url": "https://github.com/SamurAIGPT/Generative-Media-Skills",
+      "type": "skill-repo",
+      "category": "image-gen",
+      "quality": "stars=4262",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "图像/视频/音频 prompt 操作层"
+    },
+    {
+      "id": "SRC-019",
+      "title": "eternityspring/shuohao-skills",
+      "url": "https://github.com/eternityspring/shuohao-skills",
+      "type": "skill-repo",
+      "category": "story",
+      "quality": "stars=3206",
+      "r_alignment": [
+        "R1",
+        "R2",
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "大纲/人设/剧本/分镜门禁，最接近 R1–R4"
+    },
+    {
+      "id": "SRC-020",
+      "title": "zenstory-ai/drama-skills",
+      "url": "https://github.com/zenstory-ai/drama-skills",
+      "type": "skill-repo",
+      "category": "story",
+      "quality": "stars=1795",
+      "r_alignment": [
+        "R1",
+        "R3",
+        "R5"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "短剧技能链含独立 review"
+    },
+    {
+      "id": "SRC-021",
+      "title": "nolanx-ai/nolanx.ai",
+      "url": "https://github.com/nolanx-ai/nolanx.ai",
+      "type": "skill-repo",
+      "category": "directing",
+      "quality": "stars=1783",
+      "r_alignment": [
+        "R2",
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "镜头语言、身份锁、连续性 bible"
+    },
+    {
+      "id": "SRC-022",
+      "title": "liangdabiao/Seedance2-Storyboard-Generator",
+      "url": "https://github.com/liangdabiao/Seedance2-Storyboard-Generator",
+      "type": "skill-repo",
+      "category": "storyboard",
+      "quality": "stars=2314",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "小说到多集分镜/提示词"
+    },
+    {
+      "id": "SRC-023",
+      "title": "YouMind-OpenLab/awesome-seedance-2-prompts",
+      "url": "https://github.com/YouMind-OpenLab/awesome-seedance-2-prompts",
+      "type": "collection",
+      "category": "cinematography",
+      "quality": "stars=1971",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "镜头词表与角色一致性笔记"
+    },
+    {
+      "id": "SRC-024",
+      "title": "HITsz-TMG/VideoClaw",
+      "url": "https://github.com/HITsz-TMG/VideoClaw",
+      "type": "tool",
+      "category": "directing",
+      "quality": "stars=1789",
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "导演规划/摄影生成/评审重试编排"
+    },
+    {
+      "id": "SRC-025",
+      "title": "wuwangzhang1216/DirectorSKILL",
+      "url": "https://github.com/wuwangzhang1216/DirectorSKILL",
+      "type": "skill-repo",
+      "category": "directing",
+      "quality": "stars=89",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "导演分析到 QC 的紧凑包"
+    },
+    {
+      "id": "SRC-026",
+      "title": "HBAI-Ltd/Toonflow-app",
+      "url": "https://github.com/HBAI-Ltd/Toonflow-app",
+      "type": "tool",
+      "category": "manga-anime",
+      "quality": "stars=15486",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "高星漫剧桌面流水线"
+    },
+    {
+      "id": "SRC-027",
+      "title": "HKUDS/ViMax",
+      "url": "https://github.com/HKUDS/ViMax",
+      "type": "paper-code",
+      "category": "directing",
+      "quality": "stars=12346",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "多 agent 影视生成论文代码"
+    },
+    {
+      "id": "SRC-028",
+      "title": "Narcooo/inkos",
+      "url": "https://github.com/Narcooo/inkos",
+      "type": "tool",
+      "category": "story",
+      "quality": "stars=9719",
+      "r_alignment": [
+        "R1",
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "小说/剧本/IP 上游 bible"
+    },
+    {
+      "id": "SRC-029",
+      "title": "Forget-C/Jellyfish",
+      "url": "https://github.com/Forget-C/Jellyfish",
+      "type": "tool",
+      "category": "production-planning",
+      "quality": "stars=6361",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "脚本到一致性到成片工作区"
+    },
+    {
+      "id": "SRC-030",
+      "title": "ArcReel/ArcReel",
+      "url": "https://github.com/ArcReel/ArcReel",
+      "type": "tool",
+      "category": "visual-consistency",
+      "quality": "stars=4428",
+      "r_alignment": [
+        "R2",
+        "R4",
+        "R6"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "资产/分镜/跨镜一致性/成本"
+    },
+    {
+      "id": "SRC-031",
+      "title": "xuanyustudio/LocalMiniDrama",
+      "url": "https://github.com/xuanyustudio/LocalMiniDrama",
+      "type": "tool",
+      "category": "manga-anime",
+      "quality": "stars=1603",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "本地故事到视频的短剧工作流"
+    },
+    {
+      "id": "SRC-032",
+      "title": "LingyiChen-AI/AIComicBuilder",
+      "url": "https://github.com/LingyiChen-AI/AIComicBuilder",
+      "type": "tool",
+      "category": "manga-anime",
+      "quality": "stars=1858",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "脚本到人设到动态漫画"
+    },
+    {
+      "id": "SRC-033",
+      "title": "wonderunit/storyboarder",
+      "url": "https://github.com/wonderunit/storyboarder",
+      "type": "tool",
+      "category": "storyboard",
+      "quality": "stars=3837",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "专业分镜 previz，非生成模型"
+    },
+    {
+      "id": "SRC-034",
+      "title": "remotion-dev/skills",
+      "url": "https://github.com/remotion-dev/skills",
+      "type": "skill-repo",
+      "category": "editing",
+      "quality": "stars=4543",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "程序化视频装配与字幕"
+    },
+    {
+      "id": "SRC-035",
+      "title": "Vincentwei1021/video-shotcraft",
+      "url": "https://github.com/Vincentwei1021/video-shotcraft",
+      "type": "skill-repo",
+      "category": "cinematography",
+      "quality": "stars=8076",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "镜头配方卡与节奏/音效方法"
+    },
+    {
+      "id": "SRC-036",
+      "title": "smixs/visual-skills",
+      "url": "https://github.com/smixs/visual-skills",
+      "type": "skill-repo",
+      "category": "directing",
+      "quality": "stars=352",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "戏剧结构+模型语法分层"
+    },
+    {
+      "id": "SRC-037",
+      "title": "agentara/skills",
+      "url": "https://github.com/agentara/skills",
+      "type": "skill-repo",
+      "category": "storyboard",
+      "quality": "stars=461",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "分镜强制跨格身份/服装/场景锁定"
+    },
+    {
+      "id": "SRC-038",
+      "title": "RainLib/AI-Storyboard",
+      "url": "https://github.com/RainLib/AI-Storyboard",
+      "type": "skill-repo",
+      "category": "storyboard",
+      "quality": "stars=49",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "Beat board 与 4C；星低但方法完整"
+    },
+    {
+      "id": "SRC-039",
+      "title": "aicontentskills/ai-video-storyboard-skill",
+      "url": "https://github.com/aicontentskills/ai-video-storyboard-skill",
+      "type": "skill-repo",
+      "category": "storyboard",
+      "quality": "stars=48",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "共享视觉主题与后期清单"
+    },
+    {
+      "id": "SRC-040",
+      "title": "majiayu000/claude-skill-registry",
+      "url": "https://github.com/majiayu000/claude-skill-registry",
+      "type": "collection",
+      "category": "storyboard",
+      "quality": "stars=604",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "含小说转分镜表 skill"
+    },
+    {
+      "id": "SRC-041",
+      "title": "JimLiu/baoyu-skills",
+      "url": "https://github.com/JimLiu/baoyu-skills",
+      "type": "collection",
+      "category": "visual-consistency",
+      "quality": "stars=25839",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "版式矩阵有用；发布类 skill 需凭据"
+    },
+    {
+      "id": "SRC-042",
+      "title": "tencent-ailab/IP-Adapter",
+      "url": "https://github.com/tencent-ailab/IP-Adapter",
+      "type": "paper-code",
+      "category": "visual-consistency",
+      "quality": "stars=6684",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "图像作条件；FaceID 有克隆风险"
+    },
+    {
+      "id": "SRC-043",
+      "title": "cubiq/ComfyUI_IPAdapter_plus",
+      "url": "https://github.com/cubiq/ComfyUI_IPAdapter_plus",
+      "type": "tool",
+      "category": "visual-consistency",
+      "quality": "stars=6124",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "本地身份图工作流"
+    },
+    {
+      "id": "SRC-044",
+      "title": "instantX-research/InstantID",
+      "url": "https://github.com/instantX-research/InstantID",
+      "type": "paper-code",
+      "category": "visual-consistency",
+      "quality": "stars=11991",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "单图身份锁；禁止当任意换脸默认"
+    },
+    {
+      "id": "SRC-045",
+      "title": "ToTheBeginning/PuLID",
+      "url": "https://github.com/ToTheBeginning/PuLID",
+      "type": "paper-code",
+      "category": "visual-consistency",
+      "quality": "stars=3549",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "身份保真且少破坏原模型行为"
+    },
+    {
+      "id": "SRC-046",
+      "title": "cubiq/PuLID_ComfyUI",
+      "url": "https://github.com/cubiq/PuLID_ComfyUI",
+      "type": "tool",
+      "category": "visual-consistency",
+      "quality": "stars=910",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "PuLID 本地节点"
+    },
+    {
+      "id": "SRC-047",
+      "title": "JackAILab/ConsistentID",
+      "url": "https://github.com/JackAILab/ConsistentID",
+      "type": "paper-code",
+      "category": "visual-consistency",
+      "quality": "stars=1026",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "细粒度五官身份"
+    },
+    {
+      "id": "SRC-048",
+      "title": "lllyasviel/ControlNet",
+      "url": "https://github.com/lllyasviel/ControlNet",
+      "type": "paper-code",
+      "category": "image-gen",
+      "quality": "stars=34114",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "姿态/深度与身份解耦"
+    },
+    {
+      "id": "SRC-049",
+      "title": "Comfy-Org/ComfyUI",
+      "url": "https://github.com/Comfy-Org/ComfyUI",
+      "type": "tool",
+      "category": "image-gen",
+      "quality": "stars=132559",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "本地图工作流宿主，非产品选型"
+    },
+    {
+      "id": "SRC-050",
+      "title": "huggingface/diffusers",
+      "url": "https://github.com/huggingface/diffusers",
+      "type": "tool",
+      "category": "image-gen",
+      "quality": "stars=34497",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "扩散管线库"
+    },
+    {
+      "id": "SRC-051",
+      "title": "black-forest-labs/flux",
+      "url": "https://github.com/black-forest-labs/flux",
+      "type": "paper-code",
+      "category": "image-gen",
+      "quality": "stars=25946",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "开源图像骨干之一"
+    },
+    {
+      "id": "SRC-052",
+      "title": "Stability-AI/generative-models",
+      "url": "https://github.com/Stability-AI/generative-models",
+      "type": "paper-code",
+      "category": "image-gen",
+      "quality": "stars=27282",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "SD3/SVD 系列参考"
+    },
+    {
+      "id": "SRC-053",
+      "title": "AUTOMATIC1111/stable-diffusion-webui",
+      "url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+      "type": "tool",
+      "category": "image-gen",
+      "quality": "stars=164895",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "高星宿主；扩展生态混杂"
+    },
+    {
+      "id": "SRC-054",
+      "title": "kohya-ss/sd-scripts",
+      "url": "https://github.com/kohya-ss/sd-scripts",
+      "type": "tool",
+      "category": "visual-consistency",
+      "quality": "stars=7233",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "角色 LoRA 训练方法，重"
+    },
+    {
+      "id": "SRC-055",
+      "title": "cloneofsimo/lora",
+      "url": "https://github.com/cloneofsimo/lora",
+      "type": "paper-code",
+      "category": "visual-consistency",
+      "quality": "stars=7556",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "LoRA 适配原论文实现"
+    },
+    {
+      "id": "SRC-056",
+      "title": "HVision-NKU/StoryDiffusion",
+      "url": "https://github.com/HVision-NKU/StoryDiffusion",
+      "type": "paper-code",
+      "category": "continuity",
+      "quality": "stars=6456",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "跨提示一致注意力，故事序列"
+    },
+    {
+      "id": "SRC-057",
+      "title": "FireRedTeam/StoryMaker",
+      "url": "https://github.com/FireRedTeam/StoryMaker",
+      "type": "paper-code",
+      "category": "character",
+      "quality": "stars=720",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "多角色衣服发型身体整体一致"
+    },
+    {
+      "id": "SRC-058",
+      "title": "NVlabs/consistory",
+      "url": "https://github.com/NVlabs/consistory",
+      "type": "paper-code",
+      "category": "continuity",
+      "quality": "stars=425",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "训练无关共享注意力"
+    },
+    {
+      "id": "SRC-059",
+      "title": "TencentARC/PhotoMaker",
+      "url": "https://github.com/TencentARC/PhotoMaker",
+      "type": "paper-code",
+      "category": "character",
+      "quality": "stars=10088",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "堆叠 ID；记录已知失败模式"
+    },
+    {
+      "id": "SRC-060",
+      "title": "Tencent-Hunyuan/InstantCharacter",
+      "url": "https://github.com/Tencent-Hunyuan/InstantCharacter",
+      "type": "paper-code",
+      "category": "character",
+      "quality": "stars=1043",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "单张角色图换姿态换场景"
+    },
+    {
+      "id": "SRC-061",
+      "title": "google/dreambooth",
+      "url": "https://github.com/google/dreambooth",
+      "type": "paper-code",
+      "category": "character",
+      "quality": "stars=1029",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "稀有 token 绑定；过重且易被滥用"
+    },
+    {
+      "id": "SRC-062",
+      "title": "elevenlabs/elevenlabs-python",
+      "url": "https://github.com/elevenlabs/elevenlabs-python",
+      "type": "tool",
+      "category": "voice",
+      "quality": "stars=3093",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "现有 ElevenLabs 叶的 SDK 形状；密钥只租用"
+    },
+    {
+      "id": "SRC-063",
+      "title": "QwenLM/Qwen3-TTS",
+      "url": "https://github.com/QwenLM/Qwen3-TTS",
+      "type": "paper-code",
+      "category": "voice",
+      "quality": "stars=13300",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "CustomVoice/Design/Clone 三模式；clone 需权利"
+    },
+    {
+      "id": "SRC-064",
+      "title": "FunAudioLLM/CosyVoice",
+      "url": "https://github.com/FunAudioLLM/CosyVoice",
+      "type": "paper-code",
+      "category": "voice",
+      "quality": "stars=23600",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "instruct+说话人缓存；非第三 Provider"
+    },
+    {
+      "id": "SRC-065",
+      "title": "myshell-ai/OpenVoice",
+      "url": "https://github.com/myshell-ai/OpenVoice",
+      "type": "paper-code",
+      "category": "voice",
+      "quality": "stars=37500",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "音色与风格解耦；禁止任意克隆默认"
+    },
+    {
+      "id": "SRC-066",
+      "title": "coqui-ai/TTS",
+      "url": "https://github.com/coqui-ai/TTS",
+      "type": "tool",
+      "category": "voice",
+      "quality": "stars=46000",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "no",
+      "security": "review",
+      "why": "历史多说话人参考；许可与组织停更"
+    },
+    {
+      "id": "SRC-067",
+      "title": "RVC-Boss/GPT-SoVITS",
+      "url": "https://github.com/RVC-Boss/GPT-SoVITS",
+      "type": "tool",
+      "category": "voice",
+      "quality": "stars=61687",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "高星克隆工具；需同意与权利，非产品叶"
+    },
+    {
+      "id": "SRC-068",
+      "title": "RVC-Project/Retrieval-based-Voice-Conversion-WebUI",
+      "url": "https://github.com/RVC-Project/Retrieval-based-Voice-Conversion-WebUI",
+      "type": "tool",
+      "category": "voice",
+      "quality": "stars=38171",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "no",
+      "security": "review",
+      "why": "歌声/说话人转换；默认识别为克隆栈"
+    },
+    {
+      "id": "SRC-069",
+      "title": "openai/whisper",
+      "url": "https://github.com/openai/whisper",
+      "type": "tool",
+      "category": "audio",
+      "quality": "stars=108901",
+      "r_alignment": [
+        "R5"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "旁白可懂度/字幕校对候选"
+    },
+    {
+      "id": "SRC-070",
+      "title": "facebookresearch/demucs",
+      "url": "https://github.com/facebookresearch/demucs",
+      "type": "tool",
+      "category": "audio",
+      "quality": "stars=10361",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "人声/伴奏分轨研究工具"
+    },
+    {
+      "id": "SRC-071",
+      "title": "OpenTalker/SadTalker",
+      "url": "https://github.com/OpenTalker/SadTalker",
+      "type": "tool",
+      "category": "audio",
+      "quality": "stars=14077",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "口型相关；需 likeness 权利"
+    },
+    {
+      "id": "SRC-072",
+      "title": "Rudrabha/Wav2Lip",
+      "url": "https://github.com/Rudrabha/Wav2Lip",
+      "type": "paper-code",
+      "category": "audio",
+      "quality": "stars=13200",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "音频驱动口型；默认不进解说剧"
+    },
+    {
+      "id": "SRC-073",
+      "title": "SWivid/F5-TTS",
+      "url": "https://github.com/SWivid/F5-TTS",
+      "type": "paper-code",
+      "category": "voice",
+      "quality": "stars=15200",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "开源零样本 TTS，非当前 Provider"
+    },
+    {
+      "id": "SRC-074",
+      "title": "fishaudio/fish-speech",
+      "url": "https://github.com/fishaudio/fish-speech",
+      "type": "paper-code",
+      "category": "voice",
+      "quality": "stars=32700",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "no",
+      "security": "review",
+      "why": "研究许可偏严，不作库依赖"
+    },
+    {
+      "id": "SRC-075",
+      "title": "2noise/ChatTTS",
+      "url": "https://github.com/2noise/ChatTTS",
+      "type": "tool",
+      "category": "voice",
+      "quality": "stars=39800",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "no",
+      "security": "none",
+      "why": "对话腔不稳，不适合长旁白"
+    },
+    {
+      "id": "SRC-076",
+      "title": "index-tts/index-tts",
+      "url": "https://github.com/index-tts/index-tts",
+      "type": "paper-code",
+      "category": "voice",
+      "quality": "stars=23900",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "中文工业 TTS；权重许可另计"
+    },
+    {
+      "id": "SRC-077",
+      "title": "yl4579/StyleTTS2",
+      "url": "https://github.com/yl4579/StyleTTS2",
+      "type": "paper-code",
+      "category": "voice",
+      "quality": "stars=6300",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "风格向量想法可蒸馏"
+    },
+    {
+      "id": "SRC-078",
+      "title": "TencentARC/GFPGAN",
+      "url": "https://github.com/TencentARC/GFPGAN",
+      "type": "tool",
+      "category": "image-gen",
+      "quality": "stars=37673",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "脸修复；可能抹平人设细节"
+    },
+    {
+      "id": "SRC-079",
+      "title": "lllyasviel/Fooocus",
+      "url": "https://github.com/lllyasviel/Fooocus",
+      "type": "tool",
+      "category": "image-gen",
+      "quality": "stars=unverified",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "简化文生图宿主"
+    },
+    {
+      "id": "SRC-080",
+      "title": "wshobson/agents",
+      "url": "https://github.com/wshobson/agents",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=39570",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "多宿主 skill 包装"
+    },
+    {
+      "id": "SRC-081",
+      "title": "github/awesome-copilot",
+      "url": "https://github.com/github/awesome-copilot",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=38901",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "Copilot 包装对照"
+    },
+    {
+      "id": "SRC-082",
+      "title": "PatrickJS/awesome-cursorrules",
+      "url": "https://github.com/PatrickJS/awesome-cursorrules",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=40767",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "短持久规则 vs 按需 skill"
+    },
+    {
+      "id": "SRC-083",
+      "title": "garrytan/gstack",
+      "url": "https://github.com/garrytan/gstack",
+      "type": "collection",
+      "category": "production-planning",
+      "quality": "stars=132566",
+      "r_alignment": [
+        "R5"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "角色分离的评审环"
+    },
+    {
+      "id": "SRC-084",
+      "title": "affaan-m/ECC",
+      "url": "https://github.com/affaan-m/ECC",
+      "type": "collection",
+      "category": "production-planning",
+      "quality": "stars=256341",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "巨大工具转储；只挑具名媒体 skill"
+    },
+    {
+      "id": "SRC-085",
+      "title": "travisvn/awesome-claude-skills",
+      "url": "https://github.com/travisvn/awesome-claude-skills",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=15033",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "较小 Claude skill 目录"
+    },
+    {
+      "id": "SRC-086",
+      "title": "BehiSecc/awesome-claude-skills",
+      "url": "https://github.com/BehiSecc/awesome-claude-skills",
+      "type": "collection",
+      "category": "meta-format",
+      "quality": "stars=10119",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "含 Media & Content 分区"
+    },
+    {
+      "id": "SRC-087",
+      "title": "SkyworkAI/Skywork-Skills storyboard",
+      "url": "https://github.com/SkyworkAI/Skywork-Skills/blob/main/skywork-design/scenarios/storyboard.md",
+      "type": "skill",
+      "category": "continuity",
+      "quality": "stars=204",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "身份描述逐帧复用"
+    },
+    {
+      "id": "SRC-088",
+      "title": "linyqh/speclip-skills",
+      "url": "https://github.com/linyqh/speclip-skills",
+      "type": "skill-repo",
+      "category": "story",
+      "quality": "stars=107",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "解说/口播剪辑语法"
+    },
+    {
+      "id": "SRC-089",
+      "title": "drasstry/shortdrama-pipeline",
+      "url": "https://github.com/drasstry/shortdrama-pipeline",
+      "type": "tool",
+      "category": "production-planning",
+      "quality": "stars=116",
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "剧本/人设/视频人闸"
+    },
+    {
+      "id": "SRC-090",
+      "title": "waooAI/waoowaoo",
+      "url": "https://github.com/waooAI/waoowaoo",
+      "type": "tool",
+      "category": "directing",
+      "quality": "stars=14048",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "代理制片平台；许可非标准"
+    },
+    {
+      "id": "SRC-091",
+      "title": "dramaclaw/dramaclaw",
+      "url": "https://github.com/dramaclaw/dramaclaw",
+      "type": "tool",
+      "category": "manga-anime",
+      "quality": "stars=5646",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "漫剧引擎，许可不明"
+    },
+    {
+      "id": "SRC-092",
+      "title": "YvonneMovingon/short-drama-skills",
+      "url": "https://github.com/YvonneMovingon/short-drama-skills",
+      "type": "skill-repo",
+      "category": "story",
+      "quality": "stars=78",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "领域贴合的小 SOP"
+    },
+    {
+      "id": "SRC-093",
+      "title": "StoryDiffusion paper",
+      "url": "https://arxiv.org/abs/2405.01434",
+      "type": "paper",
+      "category": "continuity",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "Consistent Self-Attention"
+    },
+    {
+      "id": "SRC-094",
+      "title": "IP-Adapter paper",
+      "url": "https://arxiv.org/abs/2308.06721",
+      "type": "paper",
+      "category": "image-gen",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "图像提示适配器论文"
+    },
+    {
+      "id": "SRC-095",
+      "title": "InstantID paper",
+      "url": "https://arxiv.org/abs/2401.07519",
+      "type": "paper",
+      "category": "character",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "零样本身份保持"
+    },
+    {
+      "id": "SRC-096",
+      "title": "PuLID paper",
+      "url": "https://arxiv.org/html/2404.16022v1",
+      "type": "paper",
+      "category": "character",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "对比对齐的 ID 定制"
+    },
+    {
+      "id": "SRC-097",
+      "title": "PhotoMaker paper",
+      "url": "https://arxiv.org/abs/2312.04461",
+      "type": "paper",
+      "category": "character",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "堆叠 ID embedding"
+    },
+    {
+      "id": "SRC-098",
+      "title": "ConsiStory paper",
+      "url": "https://arxiv.org/abs/2402.03286",
+      "type": "paper",
+      "category": "continuity",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "SIGGRAPH 训练无关一致性"
+    },
+    {
+      "id": "SRC-099",
+      "title": "StoryMaker paper",
+      "url": "https://arxiv.org/abs/2409.12576",
+      "type": "paper",
+      "category": "character",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "整体多角色一致性"
+    },
+    {
+      "id": "SRC-100",
+      "title": "1Prompt1Story paper",
+      "url": "https://arxiv.org/abs/2501.13554",
+      "type": "paper",
+      "category": "continuity",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "故事提示并入同一上下文"
+    },
+    {
+      "id": "SRC-101",
+      "title": "Video Storyboarding paper",
+      "url": "https://arxiv.org/abs/2412.07750",
+      "type": "paper",
+      "category": "continuity",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "多镜 T2V 角色一致"
+    },
+    {
+      "id": "SRC-102",
+      "title": "DreamBooth paper",
+      "url": "https://arxiv.org/abs/2208.12242",
+      "type": "paper",
+      "category": "character",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "主体微调经典方法"
+    },
+    {
+      "id": "SRC-103",
+      "title": "CosyVoice 2 paper",
+      "url": "https://arxiv.org/abs/2412.10117",
+      "type": "paper",
+      "category": "voice",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "流式+instruct 统一"
+    },
+    {
+      "id": "SRC-104",
+      "title": "StyleTTS2 paper",
+      "url": "https://arxiv.org/abs/2306.07691",
+      "type": "paper",
+      "category": "voice",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "风格潜变量"
+    },
+    {
+      "id": "SRC-105",
+      "title": "Linda Seger The Art of Adaptation",
+      "url": "https://lindaseger.com/books-3/art-of-adaptation/",
+      "type": "book",
+      "category": "story",
+      "quality": "canonical-book",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "改编是第二原创，思想变动作或正当旁白"
+    },
+    {
+      "id": "SRC-106",
+      "title": "StudioBinder how to adapt a book",
+      "url": "https://www.studiobinder.com/blog/how-to-adapt-a-book-into-a-screenplay/",
+      "type": "article",
+      "category": "story",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "三遍阅读与可见性过滤"
+    },
+    {
+      "id": "SRC-107",
+      "title": "Save the Cat official beat sheet",
+      "url": "https://savethecat.com/tips-and-tactics/the-blake-snyder-beat-sheet-the-bs2",
+      "type": "article",
+      "category": "story",
+      "quality": "page-signal=28948",
+      "r_alignment": [
+        "R1",
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "15 beats 可按百分比缩放到 90s"
+    },
+    {
+      "id": "SRC-108",
+      "title": "Save the Cat how to write a screenplay",
+      "url": "https://savethecat.com/how-to-write-a-screenplay",
+      "type": "article",
+      "category": "story",
+      "quality": "canonical-method",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "Opening Image 到 Final Image 的官方说明"
+    },
+    {
+      "id": "SRC-109",
+      "title": "Save the Cat Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Save_the_Cat",
+      "type": "article",
+      "category": "story",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "方法谱系与批评"
+    },
+    {
+      "id": "SRC-110",
+      "title": "Pixar 22 rules recap ScreenCraft",
+      "url": "https://screencraft.org/blog/pixars-22-rules-storytelling-with-movie-stills/",
+      "type": "article",
+      "category": "story",
+      "quality": "canonical-essay",
+      "r_alignment": [
+        "R1",
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "简化、先结局、因果链"
+    },
+    {
+      "id": "SRC-111",
+      "title": "Emma Coats Pixar rules archive",
+      "url": "https://archive.internationalpsychoanalysis.net/2012/06/20/pixars-22-rules-for-storytelling/",
+      "type": "article",
+      "category": "story",
+      "quality": "canonical-essay",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "2011 推文法则较早转载"
+    },
+    {
+      "id": "SRC-112",
+      "title": "Kenn Adams story spine / Pixar rule 4",
+      "url": "https://www.aerogramme.com.au/2013/03/pixars-22-rules-of-storytelling/",
+      "type": "article",
+      "category": "story",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "Once/Every day/One day 骨架"
+    },
+    {
+      "id": "SRC-113",
+      "title": "Syd Field paradigm worksheet",
+      "url": "https://sydfield.com/syd_resources/the-paradigm-worksheet/",
+      "type": "article",
+      "category": "story",
+      "quality": "canonical-method",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "三幕与情节点可映射十集而非塞进 15 秒"
+    },
+    {
+      "id": "SRC-114",
+      "title": "Robert McKee Story webinar hub",
+      "url": "https://mckeestory.com/webinars/story/",
+      "type": "article",
+      "category": "story",
+      "quality": "canonical-book",
+      "r_alignment": [
+        "R1",
+        "R5"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "场景必须翻转价值；解说不能偷懒解释"
+    },
+    {
+      "id": "SRC-115",
+      "title": "Robert McKee Dialogue book",
+      "url": "https://mckeestory.com/books/dialogue/",
+      "type": "book",
+      "category": "character",
+      "quality": "canonical-book",
+      "r_alignment": [
+        "R2",
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "对白是战术；解说是叙述者行动"
+    },
+    {
+      "id": "SRC-116",
+      "title": "Dan Harmon Story Circle",
+      "url": "https://channel101.fandom.com/wiki/Story_Structure_101:_Super_Basic_Shit",
+      "type": "essay",
+      "category": "story",
+      "quality": "canonical-essay",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "为短集设计的八步圆；站点其他短片或 NSFW"
+    },
+    {
+      "id": "SRC-117",
+      "title": "Hero with a Thousand Faces Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/The_Hero_with_a_Thousand_Faces",
+      "type": "article",
+      "category": "story",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "只作季弧祖先，不往 90s 贴 17 阶段"
+    },
+    {
+      "id": "SRC-118",
+      "title": "Writer's Journey Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/The_Writer%27s_Journey:_Mythic_Structure_for_Writers",
+      "type": "article",
+      "category": "character",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "原型是功能不是服装"
+    },
+    {
+      "id": "SRC-119",
+      "title": "Scott McCloud Understanding Comics site",
+      "url": "https://scottmccloud.com/2-print/1-uc",
+      "type": "book",
+      "category": "manga-anime",
+      "quality": "canonical-book",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "gutter 闭合与图文组合"
+    },
+    {
+      "id": "SRC-120",
+      "title": "Understanding Comics Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Understanding_Comics",
+      "type": "article",
+      "category": "manga-anime",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "顺序艺术定义"
+    },
+    {
+      "id": "SRC-121",
+      "title": "Panel-to-panel notes",
+      "url": "https://gordonbrander.com/notes/panel-to-panel/",
+      "type": "article",
+      "category": "manga-anime",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "六种转场可操作摘要"
+    },
+    {
+      "id": "SRC-122",
+      "title": "Comic panel types guide",
+      "url": "https://benargon.com/comic-panel-tools-techniques/",
+      "type": "article",
+      "category": "manga-anime",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "格、gutter、转场教学"
+    },
+    {
+      "id": "SRC-123",
+      "title": "Neil Cohn Visual Language Lab",
+      "url": "https://www.visuallanguagelab.com/",
+      "type": "article",
+      "category": "manga-anime",
+      "quality": "academic",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "视觉语言语法，不默认好莱坞覆盖"
+    },
+    {
+      "id": "SRC-124",
+      "title": "VLRC corpus",
+      "url": "https://www.visuallanguagelab.com/vlrc",
+      "type": "article",
+      "category": "manga-anime",
+      "quality": "academic",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "跨文化分格标注"
+    },
+    {
+      "id": "SRC-125",
+      "title": "Cohn comics page layout myths",
+      "url": "https://www.visuallanguagelab.com/2016/08/dispelling-myths-about-comics-page-layout.html",
+      "type": "article",
+      "category": "manga-anime",
+      "quality": "academic",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "Z 路径并非万能"
+    },
+    {
+      "id": "SRC-126",
+      "title": "Construction of manga panels ImageTexT",
+      "url": "https://imagetextjournal.com/the-construction-of-panels-koma-in-manga/",
+      "type": "article",
+      "category": "manga-anime",
+      "quality": "academic",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "コマ割り控制时间"
+    },
+    {
+      "id": "SRC-127",
+      "title": "180-degree rule Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/180-degree_rule",
+      "type": "article",
+      "category": "cinematography",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "轴线与左右关系"
+    },
+    {
+      "id": "SRC-128",
+      "title": "30-degree rule Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/30-degree_rule",
+      "type": "article",
+      "category": "cinematography",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "同对象跳切阈值"
+    },
+    {
+      "id": "SRC-129",
+      "title": "Continuity editing Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Continuity_editing",
+      "type": "article",
+      "category": "editing",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "隐形剪辑语法"
+    },
+    {
+      "id": "SRC-130",
+      "title": "Learn About Film 180 rule",
+      "url": "https://learnaboutfilm.com/film-language/sequence/180-degree-rule/",
+      "type": "article",
+      "category": "cinematography",
+      "quality": "film-school",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "视线空间与朝向"
+    },
+    {
+      "id": "SRC-131",
+      "title": "Learn About Film continuity sequence",
+      "url": "https://learnaboutfilm.com/film-language/sequence/",
+      "type": "article",
+      "category": "directing",
+      "quality": "film-school",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "master/singles 覆盖配方"
+    },
+    {
+      "id": "SRC-132",
+      "title": "Filmmakers Academy eyeline match",
+      "url": "https://www.filmmakersacademy.com/glossary/eyeline-match/",
+      "type": "article",
+      "category": "editing",
+      "quality": "film-school",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "看向切到被看物"
+    },
+    {
+      "id": "SRC-133",
+      "title": "Wolfcrow 15 continuity rules",
+      "url": "https://wolfcrow.com/the-15-essential-rules-of-film-continuity/",
+      "type": "article",
+      "category": "continuity",
+      "quality": "practitioner",
+      "r_alignment": [
+        "R3",
+        "R6"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "相机连续 vs 制作连续"
+    },
+    {
+      "id": "SRC-134",
+      "title": "Descript continuity editing",
+      "url": "https://www.descript.com/blog/article/the-importance-of-continuity-editing-in-film-and-video",
+      "type": "article",
+      "category": "editing",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "动作峰值上切"
+    },
+    {
+      "id": "SRC-135",
+      "title": "StudioBinder camera shots guide",
+      "url": "https://www.studiobinder.com/blog/ultimate-guide-to-camera-shots-framing-angles/",
+      "type": "article",
+      "category": "cinematography",
+      "quality": "high-visibility-blog",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "景别/角度/运动三轴词表"
+    },
+    {
+      "id": "SRC-136",
+      "title": "StudioBinder blocking",
+      "url": "https://www.studiobinder.com/blog/what-is-blocking-in-film-definition/",
+      "type": "article",
+      "category": "directing",
+      "quality": "high-visibility-blog",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "先平面后镜头"
+    },
+    {
+      "id": "SRC-137",
+      "title": "StudioBinder coverage",
+      "url": "https://www.studiobinder.com/blog/what-is-coverage-in-film-definition/",
+      "type": "article",
+      "category": "directing",
+      "quality": "high-visibility-blog",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "有界覆盖包"
+    },
+    {
+      "id": "SRC-138",
+      "title": "StudioBinder shot list",
+      "url": "https://www.studiobinder.com/shot-list-storyboard/",
+      "type": "article",
+      "category": "storyboard",
+      "quality": "high-visibility-blog",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "镜号表不是分镜也不是日程"
+    },
+    {
+      "id": "SRC-139",
+      "title": "StudioBinder animation shot list",
+      "url": "https://www.studiobinder.com/templates/shot-list/animation-shot-list-template/",
+      "type": "article",
+      "category": "storyboard",
+      "quality": "high-visibility-blog",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "动画先板后表"
+    },
+    {
+      "id": "SRC-140",
+      "title": "StudioBinder animatic template",
+      "url": "https://www.studiobinder.com/templates/storyboards/storyboard-animatic-template/",
+      "type": "article",
+      "category": "storyboard",
+      "quality": "high-visibility-blog",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "板+时长+VO 先于付费生成"
+    },
+    {
+      "id": "SRC-141",
+      "title": "Toon Boom storyboard structure",
+      "url": "https://docs.toonboom.com/help/storyboard-pro-25/storyboard/structure/about-storyboard-structure.html",
+      "type": "docs",
+      "category": "storyboard",
+      "quality": "industry-docs",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "panel⊂scene⊂sequence 命名"
+    },
+    {
+      "id": "SRC-142",
+      "title": "Toon Boom Storyboard Pro product",
+      "url": "https://www.toonboom.com/products/storyboard-pro",
+      "type": "docs",
+      "category": "storyboard",
+      "quality": "industry-docs",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "稳定 panel ID 跨部门"
+    },
+    {
+      "id": "SRC-143",
+      "title": "Toon Boom layout export",
+      "url": "https://docs.toonboom.com/help/storyboard-pro-25/storyboard/reference/dialogs/export-layout-window.html",
+      "type": "docs",
+      "category": "cinematography",
+      "quality": "industry-docs",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "layout 是带相机的生产图"
+    },
+    {
+      "id": "SRC-144",
+      "title": "Toon Boom asset management",
+      "url": "http://learn.toonboom.com/modules/project-creation2/topic/about-asset-management1",
+      "type": "docs",
+      "category": "production-planning",
+      "quality": "industry-docs",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "设计库权威，场次消费"
+    },
+    {
+      "id": "SRC-145",
+      "title": "EBU R128",
+      "url": "https://tech.ebu.ch/publications/r128",
+      "type": "standard",
+      "category": "audio",
+      "quality": "official-standard",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "节目响度 −23 LUFS 权威"
+    },
+    {
+      "id": "SRC-146",
+      "title": "EBU R128 PDF",
+      "url": "https://tech.ebu.ch/docs/r/r128.pdf",
+      "type": "standard",
+      "category": "audio",
+      "quality": "official-standard",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "R128 正文"
+    },
+    {
+      "id": "SRC-147",
+      "title": "EBU R128 s1 short-form",
+      "url": "https://tech.ebu.ch/publications/r128s1",
+      "type": "standard",
+      "category": "audio",
+      "quality": "official-standard",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "短内容响度补充"
+    },
+    {
+      "id": "SRC-148",
+      "title": "EBU R128 s2 streaming",
+      "url": "https://tech.ebu.ch/docs/r/r128s2.pdf",
+      "type": "standard",
+      "category": "audio",
+      "quality": "official-standard",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "流媒体/手机可到 −16"
+    },
+    {
+      "id": "SRC-149",
+      "title": "EBU Tech 3343",
+      "url": "https://tech.ebu.ch/publications/tech3343",
+      "type": "standard",
+      "category": "audio",
+      "quality": "official-standard",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "制作指南含短制与对白比"
+    },
+    {
+      "id": "SRC-150",
+      "title": "EBU Tech 3342 LRA",
+      "url": "https://tech.ebu.ch/publications/tech3342",
+      "type": "standard",
+      "category": "audio",
+      "quality": "official-standard",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "响度范围描述符"
+    },
+    {
+      "id": "SRC-151",
+      "title": "ITU-R BS.1770",
+      "url": "https://www.itu.int/rec/R-REC-BS.1770",
+      "type": "standard",
+      "category": "audio",
+      "quality": "official-standard",
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "LUFS/真峰值算法"
+    },
+    {
+      "id": "SRC-152",
+      "title": "Apple Podcasts audio requirements",
+      "url": "https://podcasters.apple.com/support/893-audio-requirements",
+      "type": "standard",
+      "category": "audio",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "口语 −16 LKFS 候选"
+    },
+    {
+      "id": "SRC-153",
+      "title": "ElevenLabs TTS best practices",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/text-to-speech/best-practices",
+      "type": "docs",
+      "category": "voice",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "声音>模型>设置；示例含 key 头勿抄"
+    },
+    {
+      "id": "SRC-154",
+      "title": "ElevenLabs text to dialogue",
+      "url": "https://elevenlabs.io/docs/overview/capabilities/text-to-dialogue",
+      "type": "docs",
+      "category": "voice",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "多角色分 turn，需切块"
+    },
+    {
+      "id": "SRC-155",
+      "title": "ElevenLabs voice design",
+      "url": "https://elevenlabs.io/docs/eleven-api/guides/how-to/voices/voice-design",
+      "type": "docs",
+      "category": "voice",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "预览后冻结 voice_id；产品已 defer remix"
+    },
+    {
+      "id": "SRC-156",
+      "title": "Qwen-TTS blog",
+      "url": "https://qwenlm.github.io/blog/qwen-tts",
+      "type": "docs",
+      "category": "voice",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "托管 Qwen 声线族"
+    },
+    {
+      "id": "SRC-157",
+      "title": "Alibaba Qwen-TTS help",
+      "url": "https://www.alibabacloud.com/help/en/model-studio/qwen-tts-realtime",
+      "type": "docs",
+      "category": "voice",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "区域 endpoint 与租用密钥"
+    },
+    {
+      "id": "SRC-158",
+      "title": "invideo novel to AI micro-drama",
+      "url": "https://invideo.io/blog/novel-to-ai-micro-drama/",
+      "type": "article",
+      "category": "story",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "一章可拆可并；可见动作过滤器"
+    },
+    {
+      "id": "SRC-159",
+      "title": "BU short-form serial drama",
+      "url": "https://www.bu.edu/com/research/the-short-form-scripted-serial-drama/",
+      "type": "article",
+      "category": "story",
+      "quality": "academic",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "短制连续剧诗学"
+    },
+    {
+      "id": "SRC-160",
+      "title": "one-page micro short",
+      "url": "https://scriptandpad.com/how-to-write-a-one-page-short-film/",
+      "type": "article",
+      "category": "story",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "一页三拍模型"
+    },
+    {
+      "id": "SRC-161",
+      "title": "Sundance Collab micro-series course note",
+      "url": "https://www.instagram.com/sundancecollab/p/DctsQ8XoFu7/",
+      "type": "article",
+      "category": "story",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R1",
+        "R3"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "60–120s 竖屏剧集写作课宣传"
+    },
+    {
+      "id": "SRC-162",
+      "title": "LivingWriter novel to screenplay",
+      "url": "https://livingwriter.com/blog/how-to-turn-a-novel-into-a-screenplay-4-simple-steps/",
+      "type": "article",
+      "category": "story",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R1"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "三幕切书实用步骤"
+    },
+    {
+      "id": "SRC-163",
+      "title": "Shore Scripts screenplay to podcast",
+      "url": "https://www.shorescripts.com/how-to-adapt-my-screenplay-into-a-podcast/",
+      "type": "article",
+      "category": "voice",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "只用声音重述；旁白正当化"
+    },
+    {
+      "id": "SRC-164",
+      "title": "广电译配角色声线一致转载",
+      "url": "https://news.qq.com/rain/a/20220526A03G0Z00",
+      "type": "article",
+      "category": "voice",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "一角一声、声线对比"
+    },
+    {
+      "id": "SRC-165",
+      "title": "有声漫画配音方向",
+      "url": "https://aipiaxi.com/article-detail/995851",
+      "type": "article",
+      "category": "voice",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R2",
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "有声漫补对象感、先定人设"
+    },
+    {
+      "id": "SRC-166",
+      "title": "旁白与角色分轨",
+      "url": "https://www.sohu.com/a/957202353_122541036",
+      "type": "article",
+      "category": "voice",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "方法有用；忽略工具推销"
+    },
+    {
+      "id": "SRC-167",
+      "title": "影视配音实用教程摘要",
+      "url": "https://yueyin.zhipianbang.com/news/detail-54897.html",
+      "type": "article",
+      "category": "voice",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "解说体裁 vs 角色通过线"
+    },
+    {
+      "id": "SRC-168",
+      "title": "ComfyUI consistent characters guide",
+      "url": "https://www.media.io/image-tips/comfyui-consistent-characters.html",
+      "type": "article",
+      "category": "visual-consistency",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "IP-Adapter/PuLID/LoRA 分层选用"
+    },
+    {
+      "id": "SRC-169",
+      "title": "PuLID vs InstantID vs FaceID 2026",
+      "url": "https://aiofm.info/en/guides/pulid-vs-instantid-vs-faceid",
+      "type": "article",
+      "category": "visual-consistency",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "按变化幅度选最轻身份法"
+    },
+    {
+      "id": "SRC-170",
+      "title": "danjdewhurst/story-skills revision-continuity",
+      "url": "https://github.com/danjdewhurst/story-skills/blob/main/skills/revision-continuity/SKILL.md",
+      "type": "skill",
+      "category": "continuity",
+      "quality": "unverified-stars",
+      "r_alignment": [
+        "R3",
+        "R6"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "知识/死亡顺序/承诺检查"
+    },
+    {
+      "id": "SRC-171",
+      "title": "danjdewhurst story-init",
+      "url": "https://github.com/danjdewhurst/story-skills/blob/main/skills/story-init/SKILL.md",
+      "type": "skill",
+      "category": "canon",
+      "quality": "unverified-stars",
+      "r_alignment": [
+        "R1",
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "bible 与注册表交叉引用"
+    },
+    {
+      "id": "SRC-172",
+      "title": "fcsouza character-design-narrative",
+      "url": "https://github.com/fcsouza/agent-skills/blob/main/skills/character-design-narrative/SKILL.md",
+      "type": "skill",
+      "category": "character",
+      "quality": "unverified-stars",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "character bible 结构"
+    },
+    {
+      "id": "SRC-173",
+      "title": "theneoai ai-production-designer",
+      "url": "https://github.com/theneoai/awesome-skills/blob/main/skills/persona/media/ai-production-designer/SKILL.md",
+      "type": "skill",
+      "category": "worldbuilding",
+      "quality": "unverified-stars",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "场景规则书与禁忌表"
+    },
+    {
+      "id": "SRC-174",
+      "title": "RainLib scriptwriter-skill",
+      "url": "https://github.com/RainLib/AI-Storyboard/blob/main/.claude/skills/scriptwriter-skill/SKILL.md",
+      "type": "skill",
+      "category": "story",
+      "quality": "stars=49-repo",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "视觉优先与系列连续性清单"
+    },
+    {
+      "id": "SRC-175",
+      "title": "Adityaraj0421 cinematic director plugin",
+      "url": "https://github.com/Adityaraj0421/ai-cinematic-video-director-claude-skill",
+      "type": "skill-repo",
+      "category": "directing",
+      "quality": "stars=2",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "先静帧、一镜一动作、锁定句不改写"
+    },
+    {
+      "id": "SRC-176",
+      "title": "smkrv/character-bible",
+      "url": "https://github.com/smkrv/character-bible",
+      "type": "skill-repo",
+      "category": "character",
+      "quality": "stars=0",
+      "r_alignment": [
+        "R2"
+      ],
+      "include": "maybe",
+      "security": "review",
+      "why": "事实/推断分栏好；星为零且可触发付费生成"
+    },
+    {
+      "id": "SRC-177",
+      "title": "ACX audiobook requirements summary",
+      "url": "https://www.acx.com/help/acx-audio-submission-requirements/201456300",
+      "type": "standard",
+      "category": "audio",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "头尾静音与底噪；勿用 RMS 替代 LUFS"
+    },
+    {
+      "id": "SRC-178",
+      "title": "agentskills.io",
+      "url": "https://agentskills.io",
+      "type": "docs",
+      "category": "meta-format",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "Skill 标准站点"
+    },
+    {
+      "id": "SRC-179",
+      "title": "Midjourney character reference docs",
+      "url": "https://docs.midjourney.com/hc/en-us/articles/32106164419213-Character-Reference-cref",
+      "type": "docs",
+      "category": "visual-consistency",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "cref 作为闭源身份锁对照；非产品依赖"
+    },
+    {
+      "id": "SRC-180",
+      "title": "ffmpeg loudnorm filter docs",
+      "url": "https://ffmpeg.org/ffmpeg-filters.html#loudnorm",
+      "type": "docs",
+      "category": "audio",
+      "quality": "official-docs",
+      "r_alignment": [
+        "R4",
+        "R5"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "本地响度探针候选，非产品选型"
+    }
+  ]
+}

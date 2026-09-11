@@ -15,7 +15,14 @@ class RepositoryValidationTests(unittest.TestCase):
     def test_current_repository_contract(self):
         report = validator.validate(ROOT)
         self.assertEqual(report["errors"], [])
-        self.assertEqual(report["skills_checked"], 8)
+        self.assertEqual(report["engineering_skills_checked"], 9)
+        self.assertGreaterEqual(report["content_skills_checked"], 1)
+        self.assertEqual(
+            report["skills_checked"],
+            report["engineering_skills_checked"] + report["content_skills_checked"],
+        )
+        self.assertGreater(report["content_index_entries"], 0)
+        self.assertLessEqual(report["content_index_entries"], 200)
         scenarios = validator.read_json(ROOT / "tests/routing_scenarios.json")["scenarios"]
         self.assertEqual(report["routing_scenarios_validated"], len(scenarios))
         self.assertEqual(report["behavior_cases_executed"], 0)
