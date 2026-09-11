@@ -1,6 +1,6 @@
 # skill-creator
 
-A public source repository for eight orthogonal engineering Skills: four state-owning governance Skills, one closed-loop decision advisor, and three artifact-owning role Skills.
+A public source repository for nine orthogonal engineering Skills: four state-owning governance Skills, one closed-loop decision advisor, three artifact-owning role Skills, and one documentation-authoring Skill.
 
 ## Constrain actions, not orchestration
 
@@ -16,6 +16,7 @@ Loading a Skill does not require creating its objects. A normal local change can
 | Produce a bounded plan | [PM](skills/engineering/eng-pm/SKILL.md) | Preserve intent, observable acceptance, real dependencies, risks, and decision evidence |
 | Implement or self-check a bounded change | [DEV](skills/engineering/eng-dev/SKILL.md) | Trace affected behavior, use the smallest complete change, and provide focused evidence |
 | Evaluate evidence or review an implementation | [QA and Reviewer](skills/engineering/eng-qa-reviewer/SKILL.md) | Bind conclusions to the subject and applicable checks; preserve required independence |
+| Author or restructure a dual-track project wiki/docs site | [Wiki authoring](skills/engineering/eng-wiki-authoring/SKILL.md) | Dual-audience IA, Diátaxis page types, diagram rules; does not own architecture truth or Git mutation |
 | Register/update canonical work or make scope, acceptance, dependency, candidate, gate, or remote-sync decisions | [Project](skills/engineering/eng-project-governance/SKILL.md) | Preserve the authoritative source, relevant revisions, decision authority, and actual evidence |
 | Delegate, create/reuse a Session, resolve shared ownership, or adopt delegated results | [Agent](skills/engineering/eng-agent-governance/SKILL.md) | Clarify scope and responsibility; prevent write conflicts and false independence; collect required outputs |
 | Change multi-repository topology/dependencies or supply a reproducible tuple | [Workspace](skills/engineering/eng-workspace-governance/SKILL.md) | Identify repositories, actual dependencies, and exact consumed commits when reproduction needs them |
@@ -77,7 +78,7 @@ python3 -m unittest discover -s tests
 git diff --check
 ```
 
-The repository validator checks the exact eight-entry registry, Skill frontmatter, discovery links, relative Markdown links, dependency acyclicity, and the single [behavior case collection](tests/routing_scenarios.json). Scenario routes are unordered required owner sets, not execution sequences. It validates case structure, not Agent behavior or the meaning of the responsibility contract. Behavioral evaluation must separately observe decisions and forbidden side effects; declared cases are not claimed as executed tests.
+The repository validator checks the exact nine-entry registry, Skill frontmatter, discovery links, relative Markdown links, dependency acyclicity, and the single [behavior case collection](tests/routing_scenarios.json). Scenario routes are unordered required owner sets, not execution sequences. It validates case structure, not Agent behavior or the meaning of the responsibility contract. Behavioral evaluation must separately observe decisions and forbidden side effects; declared cases are not claimed as executed tests.
 
 Project discovery links in `.agents/skills/` point to the source folders with relative symlinks. Installing or removing user-level Skills, pushing, publishing, and writing production systems are separate authorized actions.
 
