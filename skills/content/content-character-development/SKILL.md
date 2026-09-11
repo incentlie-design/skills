@@ -1,6 +1,6 @@
 ---
 name: content-character-development
-description: Design distinct character psychology, speech, and relationships for a 10-episode narrated drama. Use for 人物塑造、声口、动机、对白区分; not for portraits, TTS provider choice, or locking visual sheets.
+description: "Design distinct character psychology, speech, and relationships for a 10-episode narrated drama. Use for 人物塑造、声口、动机、对白区分; not for portraits, TTS provider choice, or locking visual sheets."
 ---
 
 # 人物塑造与声口

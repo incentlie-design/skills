@@ -1,6 +1,6 @@
 ---
 name: content-ambience-foley
-description: Design environmental beds, room tone, and motivated Foley so 60–120s narrated episodes have a place without masking speech. Use for 环境音、背景音、拟音、room tone、现场声; not for score/BGM, loudness delivery, or live sound-effect APIs.
+description: "Design environmental beds, room tone, and motivated Foley so 60–120s narrated episodes have a place without masking speech. Use for 环境音、背景音、拟音、room tone、现场声; not for score/BGM, loudness delivery, or live sound-effect APIs."
 ---
 
 # 环境声、背景音与拟音
@@ -21,9 +21,9 @@ description: Design environmental beds, room tone, and motivated Foley so 60–1
 
 ## 方法
 
-1. **三层，不要糊成一条「氛围」。**  
-   - **Room tone / 底噪：** 该空间在无人说话时的空气（空调、远交通）。每地点一条，跨镜连续。  
-   - **Ambience / 环境床：** 可识别的世界声（雨、市场、虫鸣），标 diegetic。  
+1. **三层，不要糊成一条「氛围」。**
+   - **Room tone / 底噪：** 该空间在无人说话时的空气（空调、远交通）。每地点一条，跨镜连续。
+   - **Ambience / 环境床：** 可识别的世界声（雨、市场、虫鸣），标 diegetic。
    - **Foley / 拟音：** 与画面动作对齐的脚步、布料、门、物件。无对应动作则不配。
 2. **听得见谁。** 环境声默认 diegetic。非叙事的转场 whoosh 才是 non-diegetic，且短制里要克制，避免游戏 UI 音色。
 3. **地点身份。** 同一 `locationId` 十集复用同一 room tone 家族；时间/天气变化写变量，不换「另一个世界」。

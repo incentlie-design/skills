@@ -1,6 +1,6 @@
 ---
 name: content-production-plan-shortform
-description: Plan bounded short-form production: media form, parallel writers, cost stops, and whole-episode rework. Use for 制作计划、并行、成本上限、返工; not for Architecture changes, Provider live runs, or Stage Gates.
+description: "Plan bounded short-form production: media form, parallel writers, cost stops, and whole-episode rework. Use for 制作计划、并行、成本上限、返工; not for Architecture changes, Provider live runs, or Stage Gates."
 ---
 
 # 短制制作计划

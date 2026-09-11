@@ -1,6 +1,6 @@
 ---
 name: content-manga-panel-language
-description: Apply comics/manga panel grammar (closure, gutters, transitions) to narrated-drama still sequences. Use for 分格、漫画、条漫、动态漫画、gutter; not for full scripts, anime production management, or model choice.
+description: "Apply comics/manga panel grammar (closure, gutters, transitions) to narrated-drama still sequences. Use for 分格、漫画、条漫、动态漫画、gutter; not for full scripts, anime production management, or model choice."
 ---
 
 # 漫画格语言

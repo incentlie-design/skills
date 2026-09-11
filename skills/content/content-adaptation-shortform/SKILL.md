@@ -1,6 +1,6 @@
 ---
 name: content-adaptation-shortform
-description: Adapt a novel or web-novel into a 10-episode 60–120s narrated-drama outline. Use for 改编、大纲、信息密度、解说剧拆集、cliffhanger; not for writing full scripts, locking Cast, or choosing Providers.
+description: "Adapt a novel or web-novel into a 10-episode 60–120s narrated-drama outline. Use for 改编、大纲、信息密度、解说剧拆集、cliffhanger; not for writing full scripts, locking Cast, or choosing Providers."
 ---
 
 # 短制改编与十集大纲

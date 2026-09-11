@@ -1,6 +1,6 @@
 ---
 name: content-story-bible-canon
-description: Build a series canon / story bible that separates source facts, adaptation choices and inferences. Use for story bible、canon、谁知道什么、世界观规则; not for character portraits, scripts, or product Character schema.
+description: "Build a series canon / story bible that separates source facts, adaptation choices and inferences. Use for story bible、canon、谁知道什么、世界观规则; not for character portraits, scripts, or product Character schema."
 ---
 
 # 系列 Canon 与故事圣经

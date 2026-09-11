@@ -1,6 +1,6 @@
 ---
 name: content-audio-mix-probe
-description: Mix and probe 60–120s spoken-word episode audio for intelligibility, loudness, and measured duration. Use for 混音、响度、LUFS、时长probe、可听度、duck; not for writing BGM/Foley plans, choosing ffmpeg as a product dependency, or calling live TTS.
+description: "Mix and probe 60–120s spoken-word episode audio for intelligibility, loudness, and measured duration. Use for 混音、响度、LUFS、时长probe、可听度、duck; not for writing BGM/Foley plans, choosing ffmpeg as a product dependency, or calling live TTS."
 ---
 
 # 混音与时长探针

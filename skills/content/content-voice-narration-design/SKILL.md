@@ -1,6 +1,6 @@
 ---
 name: content-voice-narration-design
-description: Design distinct narration and character voice identities without selecting a TTS Provider. Use for 旁白声线、角色声音、cast voice、解说语气; not for ElevenLabs/Qwen adapter code, cloning real people, or paid TTS calls.
+description: "Design distinct narration and character voice identities without selecting a TTS Provider. Use for 旁白声线、角色声音、cast voice、解说语气; not for ElevenLabs/Qwen adapter code, cloning real people, or paid TTS calls."
 ---
 
 # 旁白与角色声音身份

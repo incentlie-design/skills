@@ -1,6 +1,6 @@
 ---
 name: content-series-identity-lock
-description: Freeze series-level invariants versus allowed episode variation for cast, look, voice, and locations. Use for 系列身份、十集一致性、什么可以变; not for implementing Cast schema or regenerating failed episodes.
+description: "Freeze series-level invariants versus allowed episode variation for cast, look, voice, and locations. Use for 系列身份、十集一致性、什么可以变; not for implementing Cast schema or regenerating failed episodes."
 ---
 
 # 系列身份锁定

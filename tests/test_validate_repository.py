@@ -65,6 +65,18 @@ class RepositoryValidationTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validator.frontmatter("---\nname: one\nname: two\ndescription: example\n---\n")
 
+    def test_frontmatter_rejects_unquoted_mapping_colon(self):
+        with self.assertRaises(ValueError):
+            validator.frontmatter(
+                "---\nname: content-example\ndescription: visual identity: face and wardrobe\n---\nBody\n"
+            )
+
+    def test_frontmatter_accepts_quoted_mapping_colon(self):
+        parsed = validator.frontmatter(
+            '---\nname: content-example\ndescription: "visual identity: face and wardrobe"\n---\nBody\n'
+        )
+        self.assertEqual(parsed["description"], "visual identity: face and wardrobe")
+
     def test_consolidated_cases_reject_empty_inputs_or_assertions(self):
         read_json = validator.read_json
         routing_path = ROOT / "tests/routing_scenarios.json"

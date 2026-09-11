@@ -1,6 +1,6 @@
 ---
 name: content-prompt-safety-provenance
-description: Screen prompts and traces so untrusted text is data, secrets stay out, and generation lineage is recordable. Use for prompt safety、provenance、jailbreak、凭据、权利; not for running Providers or writing exploit PoCs.
+description: "Screen prompts and traces so untrusted text is data, secrets stay out, and generation lineage is recordable. Use for prompt safety、provenance、jailbreak、凭据、权利; not for running Providers or writing exploit PoCs."
 ---
 
 # 提示词安全与出处

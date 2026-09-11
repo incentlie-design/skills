@@ -1,6 +1,6 @@
 ---
 name: content-episode-writing-narration
-description: Write one 60–120s narrated-drama episode script with narration/dialogue budget and asset IDs. Use for 单集剧本、旁白、解说、对白时长; not for storyboards, TTS, or changing the season outline.
+description: "Write one 60–120s narrated-drama episode script with narration/dialogue budget and asset IDs. Use for 单集剧本、旁白、解说、对白时长; not for storyboards, TTS, or changing the season outline."
 ---
 
 # 单集旁白剧本

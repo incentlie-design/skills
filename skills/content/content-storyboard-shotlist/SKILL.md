@@ -1,6 +1,6 @@
 ---
 name: content-storyboard-shotlist
-description: Compile a timed shot list and storyboard from a locked episode script. Use for 分镜、镜号、shot list、animatic; not for generating images, mixing audio, or rewriting dialogue.
+description: "Compile a timed shot list and storyboard from a locked episode script. Use for 分镜、镜号、shot list、animatic; not for generating images, mixing audio, or rewriting dialogue."
 ---
 
 # 分镜与镜号表

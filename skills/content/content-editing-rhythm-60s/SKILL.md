@@ -1,6 +1,6 @@
 ---
 name: content-editing-rhythm-60s
-description: Edit 60–120s narrated episodes so each cut adds information and speech is not sped to fit. Use for 剪辑、节奏、切点、J-cut、信息密度; not for color grading tools, music licensing, or regenerating shots.
+description: "Edit 60–120s narrated episodes so each cut adds information and speech is not sped to fit. Use for 剪辑、节奏、切点、J-cut、信息密度; not for color grading tools, music licensing, or regenerating shots."
 ---
 
 # 六十到一百二十秒节奏

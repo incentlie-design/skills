@@ -1,6 +1,6 @@
 ---
 name: content-evaluation-rubric
-description: Define and apply PASS/REWORK/ABANDON rubrics that separate technical validity from content quality. Use for 评价量表、验收、返工、放弃; not for authoring the candidate, minting Stage Gates, or substituting tests for human review.
+description: "Define and apply PASS/REWORK/ABANDON rubrics that separate technical validity from content quality. Use for 评价量表、验收、返工、放弃; not for authoring the candidate, minting Stage Gates, or substituting tests for human review."
 ---
 
 # 评价量表

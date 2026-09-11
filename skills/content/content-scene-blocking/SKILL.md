@@ -1,6 +1,6 @@
 ---
 name: content-scene-blocking
-description: Plan actor and camera positions, eyelines, and screen direction for a scene. Use for 调度、站位、走位、blocking; not for rewriting dialogue, picking lenses as product truth, or generating media.
+description: "Plan actor and camera positions, eyelines, and screen direction for a scene. Use for 调度、站位、走位、blocking; not for rewriting dialogue, picking lenses as product truth, or generating media."
 ---
 
 # 场面调度

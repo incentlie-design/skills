@@ -1,6 +1,6 @@
 ---
 name: content-cinematography-shortform
-description: Design camera language for 60–120s narrated episodes, including shot size, axis, aspect ratio, and motivated movement. Use for 摄影、景别、轴线、运镜、竖屏构图; not for storyboards, blocking execution, or image generation.
+description: "Design camera language for 60–120s narrated episodes, including shot size, axis, aspect ratio, and motivated movement. Use for 摄影、景别、轴线、运镜、竖屏构图; not for storyboards, blocking execution, or image generation."
 ---
 
 # 短制镜头语言

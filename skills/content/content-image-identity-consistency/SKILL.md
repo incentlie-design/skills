@@ -1,6 +1,6 @@
 ---
 name: content-image-identity-consistency
-description: Choose the lightest identity-preserving image method that survives planned pose/scene change. Use for 人物一致性、IP-Adapter、cref、character lock in generation; not for installing ComfyUI, picking a product image Provider, or live paid generation.
+description: "Choose the lightest identity-preserving image method that survives planned pose/scene change. Use for 人物一致性、IP-Adapter、cref、character lock in generation; not for installing ComfyUI, picking a product image Provider, or live paid generation."
 ---
 
 # 生成图身份一致性

@@ -1,6 +1,6 @@
 ---
 name: content-music-bed-design
-description: Design series-level music beds, themes, and cue function for 60–120s narrated drama without covering speech. Use for BGM、配乐、主题曲、音乐床、underscore; not for mixing loudness probes, Foley, TTS, or picking a music Provider.
+description: "Design series-level music beds, themes, and cue function for 60–120s narrated drama without covering speech. Use for BGM、配乐、主题曲、音乐床、underscore; not for mixing loudness probes, Foley, TTS, or picking a music Provider."
 ---
 
 # 配乐与音乐床

@@ -59,6 +59,9 @@ def read_json(path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+UNQUOTED_UNSAFE = re.compile(r":\s|#|^[\s]*[&*!%@`{,|?>]")
+
+
 def frontmatter(text):
     match = re.match(r"\A---\n(.*?)\n---(?:\n|$)", text, re.S)
     if not match:
@@ -68,11 +71,20 @@ def frontmatter(text):
         found = re.findall(r"^" + key + r":\s*(.+)$", match.group(1), re.M)
         if len(found) != 1:
             raise ValueError(f"expected exactly one {key}")
-        value = found[0].strip()
-        if value.startswith('"'):
-            value = json.loads(value)
-        elif value.startswith("'") and value.endswith("'"):
-            value = value[1:-1].replace("''", "'")
+        raw = found[0].strip()
+        if raw.startswith('"'):
+            try:
+                value = json.loads(raw)
+            except json.JSONDecodeError as exc:
+                raise ValueError(f"{key} is not a valid quoted JSON string: {exc}") from exc
+        elif raw.startswith("'") and raw.endswith("'"):
+            value = raw[1:-1].replace("''", "'")
+        else:
+            if UNQUOTED_UNSAFE.search(raw):
+                raise ValueError(
+                    f"{key} has unquoted YAML-unsafe characters; wrap the value in double quotes"
+                )
+            value = raw
         if not isinstance(value, str) or not value.strip():
             raise ValueError(f"empty {key}")
         values[key] = value

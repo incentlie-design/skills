@@ -1,6 +1,6 @@
 ---
 name: content-continuity-review
-description: Audit cross-episode continuity of knowledge, costume, props, geography, injuries, and screen direction. Use for 连续性、穿帮、E05到E06交接; not for rewriting story, regenerating media, or independent QA acceptance.
+description: "Audit cross-episode continuity of knowledge, costume, props, geography, injuries, and screen direction. Use for 连续性、穿帮、E05到E06交接; not for rewriting story, regenerating media, or independent QA acceptance."
 ---
 
 # 连续性审查
