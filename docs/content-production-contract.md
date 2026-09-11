@@ -9,7 +9,7 @@ the exclusive nine-entry `registry.json` contract.
 ## Audience
 
 Agents producing or reviewing narrated-drama / 解说剧 / 漫画 / 漫剧 **methods**: adaptation,
-character, visuals, camera, storyboard, voice, mix, continuity, evaluation.
+character, visuals, camera, storyboard, voice, music bed, ambience/Foley, mix, continuity, evaluation.
 
 ## Invariants
 

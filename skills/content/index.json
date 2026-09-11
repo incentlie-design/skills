@@ -2569,6 +2569,276 @@
       "include": "yes",
       "security": "none",
       "why": "本地响度探针候选，非产品选型"
+    },
+    {
+      "id": "SRC-181",
+      "title": "facebookresearch/audiocraft",
+      "url": "https://github.com/facebookresearch/audiocraft",
+      "type": "paper-code",
+      "category": "music",
+      "quality": "stars=23620",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "MusicGen/AudioGen 方法；权重多为 NC，不作产品 Provider"
+    },
+    {
+      "id": "SRC-182",
+      "title": "haoheliu/AudioLDM",
+      "url": "https://github.com/haoheliu/AudioLDM",
+      "type": "paper-code",
+      "category": "ambience",
+      "quality": "stars=2907",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "文本生成环境/音效；非发布默认"
+    },
+    {
+      "id": "SRC-183",
+      "title": "haoheliu/AudioLDM2",
+      "url": "https://github.com/haoheliu/AudioLDM2",
+      "type": "paper-code",
+      "category": "ambience",
+      "quality": "stars=2642",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "更完整的 TTA/TTM；许可需单独审"
+    },
+    {
+      "id": "SRC-184",
+      "title": "Stability-AI/stable-audio-tools",
+      "url": "https://github.com/Stability-AI/stable-audio-tools",
+      "type": "tool",
+      "category": "music",
+      "quality": "stars=3856",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "Stable Audio 训练/推理工具；样本与音效设计"
+    },
+    {
+      "id": "SRC-185",
+      "title": "librosa/librosa",
+      "url": "https://github.com/librosa/librosa",
+      "type": "tool",
+      "category": "audio",
+      "quality": "stars=8600",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "分析/切片循环床的本地库，非生成器"
+    },
+    {
+      "id": "SRC-186",
+      "title": "MTG/essentia",
+      "url": "https://github.com/MTG/essentia",
+      "type": "tool",
+      "category": "music",
+      "quality": "stars=3718",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "音乐信息检索，可检主题/能量而非听感验收"
+    },
+    {
+      "id": "SRC-187",
+      "title": "LCAV/pyroomacoustics",
+      "url": "https://github.com/LCAV/pyroomacoustics",
+      "type": "tool",
+      "category": "ambience",
+      "quality": "stars=1937",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "房间声学模拟；diegetic 空间感方法"
+    },
+    {
+      "id": "SRC-188",
+      "title": "BinWang28/audio-ai-hub",
+      "url": "https://github.com/BinWang28/audio-ai-hub",
+      "type": "collection",
+      "category": "music",
+      "quality": "stars=953",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "maybe",
+      "security": "none",
+      "why": "音乐/环境生成论文与模型索引"
+    },
+    {
+      "id": "SRC-189",
+      "title": "Diegetic music Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Diegetic_music",
+      "type": "article",
+      "category": "music",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "角色能听到 vs 观众轨配乐"
+    },
+    {
+      "id": "SRC-190",
+      "title": "Diegesis Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Diegesis",
+      "type": "article",
+      "category": "music",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R3"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "叙事内外声音的总定义"
+    },
+    {
+      "id": "SRC-191",
+      "title": "BBC Maestro diegetic vs non-diegetic",
+      "url": "https://www.bbcmaestro.com/blog/diegetic-vs-non-diegetic-sound",
+      "type": "article",
+      "category": "ambience",
+      "quality": "unverified-views",
+      "r_alignment": [
+        "R3",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "环境/对白/score 的可听边界"
+    },
+    {
+      "id": "SRC-192",
+      "title": "Foley filmmaking Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Foley_(filmmaking)",
+      "type": "article",
+      "category": "ambience",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "拟音对齐可见动作"
+    },
+    {
+      "id": "SRC-193",
+      "title": "Room tone Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Room_tone",
+      "type": "article",
+      "category": "ambience",
+      "quality": "encyclopedia",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "地点底噪连续性"
+    },
+    {
+      "id": "SRC-194",
+      "title": "MusicGen paper",
+      "url": "https://arxiv.org/abs/2306.05284",
+      "type": "paper",
+      "category": "music",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "可控文本配乐；商用受权重许可限制"
+    },
+    {
+      "id": "SRC-195",
+      "title": "AudioGen paper",
+      "url": "https://arxiv.org/abs/2209.15352",
+      "type": "paper",
+      "category": "ambience",
+      "quality": "citations=unverified",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "文本引导环境声生成"
+    },
+    {
+      "id": "SRC-196",
+      "title": "Freesound",
+      "url": "https://freesound.org/",
+      "type": "docs",
+      "category": "ambience",
+      "quality": "canonical-library",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "CC 环境/拟音库；逐条许可不是一刀免费"
+    },
+    {
+      "id": "SRC-197",
+      "title": "BBC Sound Effects Rewind",
+      "url": "https://sound-effects.bbcrewind.co.uk/",
+      "type": "docs",
+      "category": "ambience",
+      "quality": "official-library",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "BBC 音效库；遵守其非商用/署名条款"
+    },
+    {
+      "id": "SRC-198",
+      "title": "Incompetech royalty-free music",
+      "url": "https://incompetech.com/music/royalty-free/",
+      "type": "docs",
+      "category": "music",
+      "quality": "canonical-library",
+      "r_alignment": [
+        "R2",
+        "R4"
+      ],
+      "include": "yes",
+      "security": "review",
+      "why": "CC-BY 音乐床常见来源；必须署名且气质要对片种"
+    },
+    {
+      "id": "SRC-199",
+      "title": "video-shotcraft sound-design notes",
+      "url": "https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/sound-design.md",
+      "type": "skill",
+      "category": "music",
+      "quality": "stars=8076-repo",
+      "r_alignment": [
+        "R4"
+      ],
+      "include": "yes",
+      "security": "none",
+      "why": "先锁画面再铺 BGM 再钉 SFX；禁游戏 UI 音色"
     }
   ]
 }

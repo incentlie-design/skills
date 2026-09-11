@@ -19,6 +19,8 @@ Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 | manga | 格与格之间读者补什么 | R3 | content-manga-panel-language |
 | continuity | 跨集会不会穿帮 | R3 R6 | content-continuity-review |
 | voice | 旁白与角色声线是否可辨 | R2 R4 | content-voice-narration-design |
+| music | 配乐是否让路、十集是否同一家族 | R2 R4 | content-music-bed-design |
+| ambience | 地点底噪/环境/拟音是否成立 | R2 R4 | content-ambience-foley |
 | audio | 能不能听清、时长是否合格 | R4 R5 | content-audio-mix-probe |
 | image-consistency | 生成图会不会换脸换衣 | R2 R4 | content-image-identity-consistency |
 | editing | 60–120s 信息密度 | R4 R5 | content-editing-rhythm-60s |
@@ -29,6 +31,6 @@ Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 
 ## Index categories (for sources, not Skills)
 
-`story` `character` `visual-consistency` `cinematography` `directing` `editing` `storyboard` `image-gen` `voice` `audio` `manga-anime` `continuity` `production-planning` `evaluation` `safety` `meta-format`
+`story` `character` `visual-consistency` `cinematography` `directing` `editing` `storyboard` `image-gen` `voice` `music` `ambience` `audio` `manga-anime` `continuity` `production-planning` `evaluation` `safety` `meta-format`
 
 `meta-format` 只解释 Skill 文件格式（如 anthropics/skills），不把它的业务技能当权威。

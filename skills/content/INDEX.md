@@ -2,15 +2,29 @@
 
 Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 
-机器可读副本：[index.json](index.json)（180 条，上限 200）。
+机器可读副本：[index.json](index.json)（199 条，上限 200）。
 质量数字能核到的写在 `quality`；核不到标 `unverified`。
 `include=yes` 只表示方法值得蒸馏，不是拷贝授权。
 
 | include | count |
 | --- | --- |
-| yes | 116 |
-| maybe | 58 |
+| yes | 131 |
+| maybe | 62 |
 | no | 6 |
+
+## ambience
+
+| ID | Title | Type | Quality | R | Include | Security | Why |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| SRC-182 | [haoheliu/AudioLDM](https://github.com/haoheliu/AudioLDM) | paper-code | stars=2907 | R4 | yes | review | 文本生成环境/音效；非发布默认 |
+| SRC-183 | [haoheliu/AudioLDM2](https://github.com/haoheliu/AudioLDM2) | paper-code | stars=2642 | R4 | yes | review | 更完整的 TTA/TTM；许可需单独审 |
+| SRC-187 | [LCAV/pyroomacoustics](https://github.com/LCAV/pyroomacoustics) | tool | stars=1937 | R4 | maybe | none | 房间声学模拟；diegetic 空间感方法 |
+| SRC-191 | [BBC Maestro diegetic vs non-diegetic](https://www.bbcmaestro.com/blog/diegetic-vs-non-diegetic-sound) | article | unverified-views | R3,R4 | yes | none | 环境/对白/score 的可听边界 |
+| SRC-192 | [Foley filmmaking Wikipedia](https://en.wikipedia.org/wiki/Foley_(filmmaking)) | article | encyclopedia | R4 | yes | none | 拟音对齐可见动作 |
+| SRC-193 | [Room tone Wikipedia](https://en.wikipedia.org/wiki/Room_tone) | article | encyclopedia | R2,R4 | yes | none | 地点底噪连续性 |
+| SRC-195 | [AudioGen paper](https://arxiv.org/abs/2209.15352) | paper | citations=unverified | R4 | yes | review | 文本引导环境声生成 |
+| SRC-196 | [Freesound](https://freesound.org/) | docs | canonical-library | R4 | yes | review | CC 环境/拟音库；逐条许可不是一刀免费 |
+| SRC-197 | [BBC Sound Effects Rewind](https://sound-effects.bbcrewind.co.uk/) | docs | official-library | R4 | yes | review | BBC 音效库；遵守其非商用/署名条款 |
 
 ## audio
 
@@ -30,6 +44,7 @@ Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 | SRC-152 | [Apple Podcasts audio requirements](https://podcasters.apple.com/support/893-audio-requirements) | standard | official-docs | R4 | yes | none | 口语 −16 LKFS 候选 |
 | SRC-177 | [ACX audiobook requirements summary](https://www.acx.com/help/acx-audio-submission-requirements/201456300) | standard | official-docs | R4 | maybe | none | 头尾静音与底噪；勿用 RMS 替代 LUFS |
 | SRC-180 | [ffmpeg loudnorm filter docs](https://ffmpeg.org/ffmpeg-filters.html#loudnorm) | docs | official-docs | R4,R5 | yes | none | 本地响度探针候选，非产品选型 |
+| SRC-185 | [librosa/librosa](https://github.com/librosa/librosa) | tool | stars=8600 | R4 | maybe | none | 分析/切片循环床的本地库，非生成器 |
 
 ## canon
 
@@ -156,6 +171,20 @@ Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 | SRC-085 | [travisvn/awesome-claude-skills](https://github.com/travisvn/awesome-claude-skills) | collection | stars=15033 | R4 | maybe | none | 较小 Claude skill 目录 |
 | SRC-086 | [BehiSecc/awesome-claude-skills](https://github.com/BehiSecc/awesome-claude-skills) | collection | stars=10119 | R4 | maybe | none | 含 Media & Content 分区 |
 | SRC-178 | [agentskills.io](https://agentskills.io) | docs | official-docs | R4 | maybe | none | Skill 标准站点 |
+
+## music
+
+| ID | Title | Type | Quality | R | Include | Security | Why |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| SRC-181 | [facebookresearch/audiocraft](https://github.com/facebookresearch/audiocraft) | paper-code | stars=23620 | R4 | yes | review | MusicGen/AudioGen 方法；权重多为 NC，不作产品 Provider |
+| SRC-184 | [Stability-AI/stable-audio-tools](https://github.com/Stability-AI/stable-audio-tools) | tool | stars=3856 | R4 | yes | review | Stable Audio 训练/推理工具；样本与音效设计 |
+| SRC-186 | [MTG/essentia](https://github.com/MTG/essentia) | tool | stars=3718 | R4 | maybe | none | 音乐信息检索，可检主题/能量而非听感验收 |
+| SRC-188 | [BinWang28/audio-ai-hub](https://github.com/BinWang28/audio-ai-hub) | collection | stars=953 | R4 | maybe | none | 音乐/环境生成论文与模型索引 |
+| SRC-189 | [Diegetic music Wikipedia](https://en.wikipedia.org/wiki/Diegetic_music) | article | encyclopedia | R2,R4 | yes | none | 角色能听到 vs 观众轨配乐 |
+| SRC-190 | [Diegesis Wikipedia](https://en.wikipedia.org/wiki/Diegesis) | article | encyclopedia | R3 | yes | none | 叙事内外声音的总定义 |
+| SRC-194 | [MusicGen paper](https://arxiv.org/abs/2306.05284) | paper | citations=unverified | R4 | yes | review | 可控文本配乐；商用受权重许可限制 |
+| SRC-198 | [Incompetech royalty-free music](https://incompetech.com/music/royalty-free/) | docs | canonical-library | R2,R4 | yes | review | CC-BY 音乐床常见来源；必须署名且气质要对片种 |
+| SRC-199 | [video-shotcraft sound-design notes](https://github.com/Vincentwei1021/video-shotcraft/blob/main/references/sound-design.md) | skill | stars=8076-repo | R4 | yes | none | 先锁画面再铺 BGM 再钉 SFX；禁游戏 UI 音色 |
 
 ## production-planning
 

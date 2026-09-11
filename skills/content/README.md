@@ -35,7 +35,9 @@ Load **one** Skill for the current action. Do not load the whole catalog.
 | 漫画格、gutter、转场类型 | [content-manga-panel-language](content-manga-panel-language/SKILL.md) |
 | 跨集连续性审查 | [content-continuity-review](content-continuity-review/SKILL.md) |
 | 旁白/角色声音身份 | [content-voice-narration-design](content-voice-narration-design/SKILL.md) |
-| 混音、响度、60–120s 实测 | [content-audio-mix-probe](content-audio-mix-probe/SKILL.md) |
+| 配乐、BGM、主题音乐床 | [content-music-bed-design](content-music-bed-design/SKILL.md) |
+| 环境音、背景音、拟音、room tone | [content-ambience-foley](content-ambience-foley/SKILL.md) |
+| 混音、响度、duck、60–120s 实测 | [content-audio-mix-probe](content-audio-mix-probe/SKILL.md) |
 | 生成图身份一致性（方法，非选型） | [content-image-identity-consistency](content-image-identity-consistency/SKILL.md) |
 | 60–120s 剪辑节奏 | [content-editing-rhythm-60s](content-editing-rhythm-60s/SKILL.md) |
 | PASS/REWORK/ABANDON 量表 | [content-evaluation-rubric](content-evaluation-rubric/SKILL.md) |

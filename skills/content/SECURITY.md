@@ -33,6 +33,15 @@ Prefer: GitHub stars ≥200 **or** official standards **or** canonical craft tex
 Lower-star Skill repos may be listed when they uniquely document a method we need;
 mark `quality` honestly (`stars=N` or `unverified`). Do not invent counts.
 
+## Music / ambience rights
+
+Callable music and ambience Skills must:
+
+- record license class (`licensed-library` / `cc-with-attribution` / `original-commission` / `generated-research-only`);
+- not treat Creative Commons as unconditional commercial use;
+- not treat MusicGen/Stable Audio **weights** (often NC/research) as a product Provider or release bed;
+- not strip copyrighted film/TV stems as “reference ambience”.
+
 ## RVC / clone / lip-sync
 
 High-star engineering (GPT-SoVITS, RVC, Wav2Lip, SadTalker, OpenVoice) is indexed

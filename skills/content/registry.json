@@ -14,6 +14,8 @@
     {"name": "content-manga-panel-language", "category": "content", "path": "skills/content/content-manga-panel-language", "r_alignment": ["R3"], "status": "active"},
     {"name": "content-continuity-review", "category": "content", "path": "skills/content/content-continuity-review", "r_alignment": ["R3", "R6"], "status": "active"},
     {"name": "content-voice-narration-design", "category": "content", "path": "skills/content/content-voice-narration-design", "r_alignment": ["R2", "R4"], "status": "active"},
+    {"name": "content-music-bed-design", "category": "content", "path": "skills/content/content-music-bed-design", "r_alignment": ["R2", "R4"], "status": "active"},
+    {"name": "content-ambience-foley", "category": "content", "path": "skills/content/content-ambience-foley", "r_alignment": ["R2", "R4"], "status": "active"},
     {"name": "content-audio-mix-probe", "category": "content", "path": "skills/content/content-audio-mix-probe", "r_alignment": ["R4", "R5"], "status": "active"},
     {"name": "content-image-identity-consistency", "category": "content", "path": "skills/content/content-image-identity-consistency", "r_alignment": ["R2", "R4"], "status": "active"},
     {"name": "content-editing-rhythm-60s", "category": "content", "path": "skills/content/content-editing-rhythm-60s", "r_alignment": ["R4", "R5"], "status": "active"},
