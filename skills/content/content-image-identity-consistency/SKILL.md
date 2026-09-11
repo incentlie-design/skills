@@ -22,6 +22,31 @@ description: "Choose the lightest identity-preserving image method that survives
 
 `artifact_kind=image-identity-plan`：每角色控制策略、允许变化、禁止变化、所需参考图、未选型声明。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `visual_director`。`r_alignment` = R2, R4。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `character_visual_lock_ref` | yes | ref | 指向 character-visual-lock |
+| `shot_list_ref` | no | ref | shot-list |
+| `reference_image_refs` | no | ref[] | 有权利的外形参考图 |
+| `rights_status` | no | enum:rights_status | 该 source 是否允许改编/生成 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `image-identity-plan` | `visual_director`, `producer` |
+
+禁止：`provider_submit`, `install_weights`, `embed_secrets`。
+
 ## 停止
 
 不安装权重，不写 API key，不把 IP-Adapter/PuLID/InstantID 写成产品依赖。

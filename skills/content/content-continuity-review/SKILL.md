@@ -22,6 +22,32 @@ description: "Audit cross-episode continuity of knowledge, costume, props, geogr
 
 `artifact_kind=continuity-report`：问题列表（id、集、事实冲突、建议回流的 R 或写者）、无问题项也要写已检查范围。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `validator`。`r_alignment` = R3, R6。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `episode_script_refs` | yes | ref[] | 多集脚本，连续性用 |
+| `series_canon_ref` | yes | ref | 指向 series-canon 产物 |
+| `character_visual_lock_ref` | no | ref | 指向 character-visual-lock |
+| `voice_identity_pack_ref` | no | ref | voice-identity-pack |
+| `shot_list_refs` | no | ref[] | 多集分镜 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `continuity-report` | `producer`, `story_director`, `visual_director` |
+
+禁止：`hot_fix_candidate`, `claim_unseen_media`。
+
 ## 停止
 
 不在审查里热修剧本。回流到唯一 owner。不宣称画面一致，除非实际看过图/片。

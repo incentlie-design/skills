@@ -35,6 +35,30 @@ description: "Design environmental beds, room tone, and motivated Foley so 60–
 
 `artifact_kind=ambience-foley-plan`：每地点 room tone、环境床、每镜拟音动机、与说话人的让路、权利、循环要求。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `audio_director`。`r_alignment` = R2, R4。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `episode_script_ref` | yes | ref | 单集 episode-script |
+| `shot_list_ref` | no | ref | shot-list |
+| `location_ids` | no | id[] | 本集出现的地点 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `ambience-foley-plan` | `audio_director`, `editor` |
+
+禁止：`write_music_cues`, `provider_submit`, `media_generate`。
+
 ## 停止
 
 不写配乐 cue（交给音乐床 Skill），不测最终 LUFS（交给混音 probe），不把「加一点氛围」当成完成。

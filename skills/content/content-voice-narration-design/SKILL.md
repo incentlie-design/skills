@@ -22,6 +22,29 @@ description: "Design distinct narration and character voice identities without s
 
 `artifact_kind=voice-identity-pack`：每说话人 profile、对比说明、禁止项、是否允许 clone（默认否）。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `audio_director`。`r_alignment` = R2, R4。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `character_voice_profiles_ref` | yes | ref | 指向 character-voice-profiles |
+| `series_canon_ref` | no | ref | 指向 series-canon 产物 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `voice-identity-pack` | `audio_director`, `producer`, `validator` |
+
+禁止：`provider_submit`, `call_tts`, `clone_without_rights`。
+
 ## 停止
 
 不发起 TTS，不把 API key 写入示例，不建议超时重放。

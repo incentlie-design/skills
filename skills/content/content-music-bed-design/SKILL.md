@@ -38,6 +38,31 @@ description: "Design series-level music beds, themes, and cue function for 60–
 
 `r_alignment` 含 R2 与 R4。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `audio_director`。`r_alignment` = R2, R4。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `episode_script_ref` | yes | ref | 单集 episode-script |
+| `duration_s_range` | yes | int_pair | 每集体测秒数闭区间，固定 [60, 120] |
+| `season_outline_ref` | no | ref | 指向 season-outline 产物 |
+| `series_identity_rules_ref` | no | ref | series-identity-rules |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `music-bed-plan` | `audio_director`, `editor`, `producer` |
+
+禁止：`provider_submit`, `media_generate`, `assume_cc_commercial`。
+
 ## 停止
 
 不混最终母带，不生成音频，不把 CC 曲当无条件免费商用。超时不得建议重放付费 API。

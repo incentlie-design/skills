@@ -36,6 +36,7 @@ ROUTING_COVERAGE = set(EXPECTED_NAMES[:5])
 VISUAL_CONTRACT_LINK = "../../../docs/prd-td-visual-contract.md"
 VISUAL_CONTRACT_SKILLS = {"eng-pm", "eng-dev", "eng-qa-reviewer"}
 CONTENT_CONTRACT_LINK = "../../../docs/content-production-contract.md"
+IO_CONTRACT_LINK = "../../../docs/content-skill-io.md"
 CONTENT_R_IDS = {"R1", "R2", "R3", "R4", "R5", "R6"}
 CONTENT_INDEX_LIMIT = 200
 CONTENT_INDEX_REQUIRED = (
@@ -196,8 +197,71 @@ def validate(root):
                 errors.append(f"{name}: description is too long")
             if CONTENT_CONTRACT_LINK not in skill_text:
                 errors.append(f"{name}: content production contract is not referenced")
+            if IO_CONTRACT_LINK not in skill_text:
+                errors.append(f"{name}: content I/O contract is not referenced")
             if SECRETISH.search(skill_text):
                 errors.append(f"{name}: looks like it embeds a secret")
+        io_dir = root / "skills" / "content" / "io"
+        if content_dirs:
+            for required in ("fields.json", "skills.json", "roles.json", "envelope.schema.json"):
+                if not (io_dir / required).exists():
+                    errors.append(f"content I/O catalog missing {required}")
+            if (io_dir / "fields.json").exists() and (io_dir / "skills.json").exists() and (io_dir / "roles.json").exists():
+                field_book = read_json(io_dir / "fields.json")
+                skill_book = read_json(io_dir / "skills.json")
+                role_book = read_json(io_dir / "roles.json")
+                field_names = set((field_book.get("fields") or {}).keys())
+                role_names = set((role_book.get("roles") or {}).keys())
+                listed = skill_book.get("skills") or {}
+                if set(listed) != set(content_names):
+                    errors.append(
+                        f"content I/O skills.json mismatch: {sorted(set(listed) ^ set(content_names))}"
+                    )
+                known_kinds = set()
+                for skill_name, spec in listed.items():
+                    if not isinstance(spec, dict):
+                        errors.append(f"{skill_name}: I/O spec must be an object")
+                        continue
+                    for key in ("r_alignment", "roles", "required_inputs", "optional_inputs", "outputs", "forbidden"):
+                        if key not in spec:
+                            errors.append(f"{skill_name}: missing I/O key {key}")
+                    for field in list(spec.get("required_inputs") or []) + list(spec.get("optional_inputs") or []):
+                        if field not in field_names:
+                            errors.append(f"{skill_name}: unknown field {field}")
+                    for role in spec.get("roles") or []:
+                        if role not in role_names:
+                            errors.append(f"{skill_name}: unknown role {role}")
+                    if set(spec.get("r_alignment") or []) - CONTENT_R_IDS:
+                        errors.append(f"{skill_name}: I/O r_alignment must be R1–R6")
+                    outputs = spec.get("outputs") or []
+                    if not isinstance(outputs, list) or not outputs:
+                        errors.append(f"{skill_name}: outputs must be a nonempty list")
+                    kinds = []
+                    for item in outputs:
+                        kind = item.get("artifact_kind") if isinstance(item, dict) else None
+                        if not kind:
+                            errors.append(f"{skill_name}: output missing artifact_kind")
+                            continue
+                        kinds.append(kind)
+                        for consumer in item.get("consumers") or []:
+                            if consumer not in role_names:
+                                errors.append(f"{skill_name}: unknown consumer role {consumer}")
+                    if len(kinds) != len(set(kinds)):
+                        errors.append(f"{skill_name}: duplicate artifact_kind")
+                    known_kinds.update(kinds)
+                    skill_text = (root / "skills" / "content" / skill_name / "SKILL.md").read_text(encoding="utf-8")
+                    for field in spec.get("required_inputs") or []:
+                        if f"`{field}`" not in skill_text:
+                            errors.append(f"{skill_name}: SKILL.md missing required field `{field}`")
+                    for kind in kinds:
+                        if f"`{kind}`" not in skill_text:
+                            errors.append(f"{skill_name}: SKILL.md missing artifact_kind `{kind}`")
+                for role, body in (role_book.get("roles") or {}).items():
+                    for skill_name in body.get("skills") or []:
+                        if skill_name not in listed:
+                            errors.append(f"role {role}: unknown skill {skill_name}")
+                        elif role not in (listed[skill_name].get("roles") or []):
+                            errors.append(f"role {role}: skill {skill_name} does not list this role")
         if len(content_names) != len(set(content_names)):
             errors.append("duplicate content Skill directory names")
 

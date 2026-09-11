@@ -77,6 +77,16 @@ class RepositoryValidationTests(unittest.TestCase):
         )
         self.assertEqual(parsed["description"], "visual identity: face and wardrobe")
 
+    def test_content_io_catalog_covers_every_content_skill(self):
+        report = validator.validate(ROOT)
+        self.assertEqual(report["errors"], [])
+        skills = validator.read_json(ROOT / "skills/content/io/skills.json")["skills"]
+        roles = validator.read_json(ROOT / "skills/content/io/roles.json")["roles"]
+        self.assertEqual(len(skills), report["content_skills_checked"])
+        self.assertEqual(set(roles), {"story_director", "visual_director", "audio_director", "editor", "validator", "producer"})
+        for alias in ("NovelAgent", "DirectorAgent"):
+            self.assertTrue(any(alias in body.get("aliases", []) for body in roles.values()))
+
     def test_consolidated_cases_reject_empty_inputs_or_assertions(self):
         read_json = validator.read_json
         routing_path = ROOT / "tests/routing_scenarios.json"

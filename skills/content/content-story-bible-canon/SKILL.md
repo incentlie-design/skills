@@ -30,6 +30,30 @@ description: "Build a series canon / story bible that separates source facts, ad
 - 开放承诺/未兑现钩子
 - 禁止清单（破坏世界观的视觉/声音元素）
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `story_director`。`r_alignment` = R1, R2。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `source_ref` | yes | ref | 不可变源小说身份 |
+| `adaptation_strategy_ref` | yes | ref | 指向 adaptation-strategy 产物 |
+| `season_outline_ref` | no | ref | 指向 season-outline 产物 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `series-canon` | `story_director`, `visual_director`, `audio_director`, `validator` |
+
+禁止：`provider_submit`, `media_generate`, `mint_product_schema`。
+
 ## 停止
 
 缺关键源事实时 `blocked`。不生成画像，不把 canon 写成产品 JSON schema。

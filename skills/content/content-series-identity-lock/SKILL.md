@@ -21,6 +21,31 @@ description: "Freeze series-level invariants versus allowed episode variation fo
 
 `artifact_kind=series-identity-rules`：不变量、变量、first-use、失效规则。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `producer`, `visual_director`, `audio_director`。`r_alignment` = R2, R6。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `character_visual_lock_ref` | yes | ref | 指向 character-visual-lock |
+| `voice_identity_pack_ref` | yes | ref | voice-identity-pack |
+| `music_bed_plan_ref` | no | ref | music-bed-plan |
+| `ambience_foley_plan_ref` | no | ref | ambience-foley-plan |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `series-identity-rules` | `producer`, `visual_director`, `audio_director`, `validator` |
+
+禁止：`media_generate`, `mint_product_schema`。
+
 ## 停止
 
 不发明产品 CharacterRevision 字段名当事实。不生成媒体。

@@ -21,6 +21,30 @@ description: "Apply comics/manga panel grammar (closure, gutters, transitions) t
 
 `artifact_kind=panel-plan`：每格信息变化、转场类型、旁白是否重复画面、时长暗示。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `story_director`, `visual_director`。`r_alignment` = R3。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `episode_script_ref` | yes | ref | 单集 episode-script |
+| `shot_list_ref` | no | ref | shot-list |
+| `duration_s_range` | no | int_pair | 每集体测秒数闭区间，固定 [60, 120] |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `panel-plan` | `visual_director`, `editor` |
+
+禁止：`replace_shot_list`, `media_generate`。
+
 ## 停止
 
 不替代分镜表的生产字段，不把漫画理论当产品 UI。

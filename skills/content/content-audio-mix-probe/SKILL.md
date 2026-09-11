@@ -23,6 +23,32 @@ description: "Mix and probe 60–120s spoken-word episode audio for intelligibil
 
 `artifact_kind=audio-probe-report`：byteLength、hash、durationSeconds、playable、loudness 若测了则写方法与数值、负例结果。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `audio_director`, `editor`, `validator`。`r_alignment` = R4, R5。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `media_ref` | yes | ref | 实际媒体 bytes；须能 sha256 |
+| `duration_s_range` | yes | int_pair | 每集体测秒数闭区间，固定 [60, 120] |
+| `music_bed_plan_ref` | no | ref | music-bed-plan |
+| `ambience_foley_plan_ref` | no | ref | ambience-foley-plan |
+| `loudness_target` | no | object | 可选；产品选择后的 LUFS/true-peak，Skill 不擅自宣布 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `audio-probe-report` | `editor`, `validator`, `producer` |
+
+禁止：`provider_submit`, `paid_replay`, `select_ffmpeg_as_product`。
+
 ## 停止
 
 零网络默认。不把 mock WAV 标成 live Provider。超预算或无授权不得建议付费重跑。

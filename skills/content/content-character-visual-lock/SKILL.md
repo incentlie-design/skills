@@ -22,6 +22,31 @@ description: "Lock reusable character visual identity: face, body, wardrobe, pal
 
 `artifact_kind=character-visual-lock`：矩阵、锁定句、可变规则、参考图 refs/hash/rights、禁止项。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `visual_director`。`r_alignment` = R2。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `character_voice_profiles_ref` | yes | ref | 指向 character-voice-profiles |
+| `rights_status` | yes | enum:rights_status | 该 source 是否允许改编/生成 |
+| `reference_image_refs` | no | ref[] | 有权利的外形参考图 |
+| `series_canon_ref` | no | ref | 指向 series-canon 产物 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `character-visual-lock` | `visual_director`, `producer`, `validator` |
+
+禁止：`media_generate`, `mint_product_schema`。
+
 ## 停止
 
 不生成图，不把 lock 当成 #95 schema。无权利 → `blocked`。

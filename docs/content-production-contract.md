@@ -37,17 +37,13 @@ character, visuals, camera, storyboard, voice, music bed, ambience/Foley, mix, c
 
 ## Handoff fields
 
-Every content Skill output that is meant to be consumed downstream includes:
+Field names, types, per-Skill required inputs and `artifact_kind` values are owned by
+[content-skill-io.md](content-skill-io.md) and `skills/content/io/*.json`. Do not invent
+a parallel parameter vocabulary in a Skill body.
 
-| Field | Meaning |
-| --- | --- |
-| `artifact_kind` | Stable kind name from the Skill |
-| `status` | `pass` / `revise` / `blocked` |
-| `maturity` | `provisional` / `design-ready` |
-| `input_refs` | Exact paths, hashes or IDs actually used |
-| `open_questions` | Residual unknowns |
-| `consumers` | Who may use this artifact |
-| `r_alignment` | One or more of R1–R6 from REQ-75 |
+Every response uses the shared envelope: `status` (`pass` / `revise` / `blocked`),
+`maturity` (`provisional` / `design-ready`), `input_refs`, `open_questions`,
+`needs_input`, `consumers`, `r_alignment`, and `artifacts[]`.
 
 `pass` means the Skill finished its own scope. It is not independent QA, asset lock,
 Provider success, Stage Gate or human acceptance.

@@ -22,6 +22,31 @@ description: "Plan bounded short-form production: media form, parallel writers, 
 
 `artifact_kind=production-plan`：形态、并行表、上限、失败策略、provenance 标记（hybrid/manual/live 候选）。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `producer`。`r_alignment` = R4, R6。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `media_form` | yes | enum:media_form | 成品形态 |
+| `season_outline_ref` | yes | ref | 指向 season-outline 产物 |
+| `budget_limits` | yes | object | 调用/成本/时间上限与停止条件 |
+| `series_identity_rules_ref` | no | ref | series-identity-rules |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `production-plan` | `producer`, `story_director`, `visual_director`, `audio_director`, `editor` |
+
+禁止：`paid_live_authorize`, `claim_release`。
+
 ## 停止
 
 不授权 paid/live。不把十个文件叫 1.0。

@@ -21,6 +21,32 @@ description: "Design camera language for 60–120s narrated episodes, including 
 
 `artifact_kind=camera-treatment` 与 `shot-language-notes`。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `visual_director`。`r_alignment` = R3, R4。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `episode_script_ref` | yes | ref | 单集 episode-script |
+| `aspect_ratio` | no | string | 如 9:16 或 16:9；未选则不得宣称原生构图完成 |
+| `location_id` | no | id | 稳定地点 slug |
+| `character_visual_lock_ref` | no | ref | 指向 character-visual-lock |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `camera-treatment` | `visual_director`, `editor` |
+| `shot-language-notes` | `visual_director` |
+
+禁止：`rewrite_dialogue`, `media_generate`。
+
 ## 停止
 
 不改剧本，不编译逐帧，不生成媒体。

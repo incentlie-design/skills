@@ -16,7 +16,9 @@ They serve narrated-drama content work (REQ-75 R1–R6): 10 episodes, 60–120s,
 | [INDEX.md](INDEX.md) | 人类可读索引 |
 | [index.json](index.json) | 机器可读索引（≤200） |
 | [registry.json](registry.json) | 可调用 content Skills |
-| [content production contract](../../docs/content-production-contract.md) | 输入/输出/禁止事项 |
+| [I/O 契约](../../docs/content-skill-io.md) | 共享字段、信封、角色路由 |
+| [io/](io/) | fields / skills / roles JSON |
+| [content production contract](../../docs/content-production-contract.md) | 安全与禁止事项 |
 
 ## Routing
 

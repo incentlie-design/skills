@@ -21,6 +21,31 @@ description: "Define and apply PASS/REWORK/ABANDON rubrics that separate technic
 
 `artifact_kind=evaluation-policy`（冻结量表）或 `review-record`（一次评价：verdict、subject refs、理由、回流）。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `validator`, `producer`。`r_alignment` = R1, R5。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `evaluation_subject_ref` | yes | ref | 被评价的 exact bytes 或脚本 revision |
+| `reviewer_id` | yes | string | 具名评价人，不得等于作者 |
+| `evaluation_policy_ref` | no | ref | 已冻结评价量表 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `evaluation-policy` | `producer`, `validator` |
+| `review-record` | `producer` |
+
+禁止：`author_self_accept`, `treat_ci_green_as_acceptance`。
+
 ## 停止
 
 不改候选内容。不把 CI 绿当人类接受。

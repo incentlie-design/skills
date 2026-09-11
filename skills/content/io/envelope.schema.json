@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://incentlie-design.local/skills/content/io/envelope.schema.json",
+  "title": "ContentSkillEnvelope",
+  "description": "Shared request/response wrapper for every content Skill. Product public contracts remain in narrated-drama.",
+  "$defs": {
+    "revision": {
+      "oneOf": [
+        {"type": "integer", "minimum": 1},
+        {"enum": ["unknown", "provisional"]}
+      ]
+    },
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "revision"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"type": "string", "minLength": 1},
+        "revision": {"$ref": "#/$defs/revision"},
+        "uri": {"type": "string"},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "status": {"enum": ["pass", "revise", "blocked"]},
+    "maturity": {"enum": ["provisional", "design-ready"]},
+    "role": {
+      "enum": [
+        "story_director",
+        "visual_director",
+        "audio_director",
+        "editor",
+        "validator",
+        "producer"
+      ]
+    },
+    "r_id": {"enum": ["R1", "R2", "R3", "R4", "R5", "R6"]},
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["artifact_kind", "artifact_revision", "payload"],
+      "properties": {
+        "artifact_kind": {"type": "string", "minLength": 1},
+        "artifact_revision": {"type": "integer", "minimum": 1},
+        "payload": {"type": "object"}
+      }
+    }
+  },
+  "oneOf": [
+    {
+      "title": "ContentSkillRequest",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "skill", "role", "r_alignment", "inputs"],
+      "properties": {
+        "schema_version": {"const": 1},
+        "skill": {"type": "string", "pattern": "^content-[a-z0-9-]+$"},
+        "role": {"$ref": "#/$defs/role"},
+        "r_alignment": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/r_id"}},
+        "context": {"type": "object"},
+        "inputs": {"type": "object"}
+      }
+    },
+    {
+      "title": "ContentSkillResponse",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "skill",
+        "role",
+        "status",
+        "maturity",
+        "r_alignment",
+        "input_refs",
+        "artifacts",
+        "open_questions",
+        "needs_input",
+        "consumers"
+      ],
+      "properties": {
+        "schema_version": {"const": 1},
+        "skill": {"type": "string", "pattern": "^content-[a-z0-9-]+$"},
+        "role": {"$ref": "#/$defs/role"},
+        "status": {"$ref": "#/$defs/status"},
+        "maturity": {"$ref": "#/$defs/maturity"},
+        "r_alignment": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/r_id"}},
+        "input_refs": {"type": "array", "items": {"$ref": "#/$defs/ref"}},
+        "artifacts": {"type": "array", "items": {"$ref": "#/$defs/artifact"}},
+        "open_questions": {"type": "array", "items": {"type": "string"}},
+        "needs_input": {"type": "array", "items": {"type": "string"}},
+        "consumers": {"type": "array", "items": {"$ref": "#/$defs/role"}}
+      }
+    }
+  ]
+}

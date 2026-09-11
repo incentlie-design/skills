@@ -22,6 +22,31 @@ description: "Edit 60–120s narrated episodes so each cut adds information and 
 
 `artifact_kind=edit-decision-notes`：切点列表、每刀新增信息、预计秒数、与脚本行的绑定。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `editor`。`r_alignment` = R4, R5。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `episode_script_ref` | yes | ref | 单集 episode-script |
+| `duration_s_range` | yes | int_pair | 每集体测秒数闭区间，固定 [60, 120] |
+| `shot_list_ref` | no | ref | shot-list |
+| `panel_plan_ref` | no | ref | panel-plan |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `edit-decision-notes` | `editor`, `validator` |
+
+禁止：`speed_speech_to_fit`, `media_generate`, `change_identity`。
+
 ## 停止
 
 不改锁定身份，不调用生成，不把粗剪当验收。

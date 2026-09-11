@@ -21,6 +21,34 @@ description: "Compile a timed shot list and storyboard from a locked episode scr
 
 `artifact_kind=shot-list` 与可选 `storyboard-notes`。每镜绑定脚本行与资产 ID。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `visual_director`。`r_alignment` = R3, R4。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `episode_script_ref` | yes | ref | 单集 episode-script |
+| `duration_s_range` | yes | int_pair | 每集体测秒数闭区间，固定 [60, 120] |
+| `camera_treatment_ref` | no | ref | camera-treatment |
+| `blocking_plan_ref` | no | ref | blocking-plan |
+| `character_visual_lock_ref` | no | ref | 指向 character-visual-lock |
+| `aspect_ratio` | no | string | 如 9:16 或 16:9；未选则不得宣称原生构图完成 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `shot-list` | `visual_director`, `audio_director`, `editor` |
+| `storyboard-notes` | `visual_director` |
+
+禁止：`rewrite_dialogue`, `media_generate`。
+
 ## 停止
 
 不改对白，不调用模型，不把 panel 叫成 Episode。

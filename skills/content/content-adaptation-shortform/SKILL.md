@@ -43,6 +43,36 @@ description: "Adapt a novel or web-novel into a 10-episode 60–120s narrated-dr
 
 `status=pass|revise|blocked`，`r_alignment=["R1"]`。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `story_director`, `producer`。`r_alignment` = R1。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `source_ref` | yes | ref | 不可变源小说身份 |
+| `rights_status` | yes | enum:rights_status | 该 source 是否允许改编/生成 |
+| `language` | yes | string | BCP 47，如 zh-Hans |
+| `episode_count` | yes | integer | 本契约固定 10 |
+| `duration_s_range` | yes | int_pair | 每集体测秒数闭区间，固定 [60, 120] |
+| `audience` | no | string | 给谁看的一句话 |
+| `intent_ref` | no | ref | 已冻结 creative intent |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `series-product-brief` | `story_director`, `producer` |
+| `adaptation-strategy` | `story_director`, `producer` |
+| `season-outline` | `story_director`, `producer`, `visual_director`, `audio_director` |
+
+禁止：`provider_submit`, `media_generate`, `rewrite_source`。
+
 ## 停止
 
 十集无缺/重/多，每集有核心事件与钩子后停止。不写对白全文，不锁人物外形，不调用模型。

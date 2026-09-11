@@ -21,6 +21,30 @@ description: "Design distinct character psychology, speech, and relationships fo
 
 `artifact_kind=character-voice-profiles`：每角色 id、want/need、说话规则、例白、与其他角色的区分点、出场集。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `story_director`。`r_alignment` = R2, R3。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `source_ref` | yes | ref | 不可变源小说身份 |
+| `series_canon_ref` | yes | ref | 指向 series-canon 产物 |
+| `season_outline_ref` | no | ref | 指向 season-outline 产物 |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `character-voice-profiles` | `story_director`, `audio_director`, `visual_director` |
+
+禁止：`provider_submit`, `select_voice_id`, `write_visual_prompt`。
+
 ## 停止
 
 不写外形 prompt，不选 ElevenLabs/Qwen voice_id（那是产品选择）。缺源依据的年龄/身份标 `inference`。

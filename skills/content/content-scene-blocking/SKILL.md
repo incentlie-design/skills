@@ -21,6 +21,30 @@ description: "Plan actor and camera positions, eyelines, and screen direction fo
 
 `artifact_kind=blocking-plan`：平面描述、走位关键帧、视线、与镜头语言的依赖。
 
+## 参数
+
+字段名以 [I/O 契约](../../../docs/content-skill-io.md) 为准。`role` 只能是 `visual_director`。`r_alignment` = R3。
+
+### 输入
+
+| 字段 | 必填 | 类型 | 含义 |
+| --- | --- | --- | --- |
+| `episode_script_ref` | yes | ref | 单集 episode-script |
+| `location_id` | no | id | 稳定地点 slug |
+| `camera_treatment_ref` | no | ref | camera-treatment |
+
+缺必填字段 → `status=blocked`，`needs_input` 填字段名。
+
+### 输出
+
+先返回共享 envelope（`status` / `maturity` / `input_refs` / `open_questions` / `consumers`），再给下列 payload。
+
+| artifact_kind | consumers |
+| --- | --- |
+| `blocking-plan` | `visual_director` |
+
+禁止：`rewrite_dialogue`, `media_generate`。
+
 ## 停止
 
 不生成图，不发明新对白。
