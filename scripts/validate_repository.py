@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate engineering Skills plus the optional content catalog using the standard library."""
+"""Validate ten engineering Skills plus the optional content catalog using the standard library."""
 
 import argparse
 import json
@@ -20,6 +20,7 @@ EXPECTED_NAMES = (
     "eng-dev",
     "eng-qa-reviewer",
     "eng-wiki-authoring",
+    "eng-pr-feedback-triage",
 )
 EXPECTED_DEPENDENCIES = {
     "eng-repo-governance": [],
@@ -31,8 +32,9 @@ EXPECTED_DEPENDENCIES = {
     "eng-dev": [],
     "eng-qa-reviewer": [],
     "eng-wiki-authoring": [],
+    "eng-pr-feedback-triage": [],
 }
-ROUTING_COVERAGE = set(EXPECTED_NAMES[:5])
+ROUTING_COVERAGE = set(EXPECTED_NAMES[:5]) | {"eng-pr-feedback-triage"}
 VISUAL_CONTRACT_LINK = "../../../docs/prd-td-visual-contract.md"
 VISUAL_CONTRACT_SKILLS = {"eng-pm", "eng-dev", "eng-qa-reviewer"}
 CONTENT_CONTRACT_LINK = "../../../docs/content-production-contract.md"
@@ -153,7 +155,7 @@ def validate(root):
         if registry.get("schema_version") != 1:
             errors.append("registry schema_version must be 1")
         if names != EXPECTED_NAMES:
-            errors.append(f"registry must contain the exact ordered nine Skills: {EXPECTED_NAMES}")
+            errors.append(f"registry must contain the exact ordered ten Skills: {EXPECTED_NAMES}")
         graph = {entry["name"]: entry.get("dependencies", []) for entry in entries}
         if graph != EXPECTED_DEPENDENCIES:
             errors.append("registry dependency graph does not match the ownership design")
@@ -440,7 +442,7 @@ def validate(root):
             if len(errors) == scenario_error_count:
                 routing_scenarios_validated += 1
         if not ROUTING_COVERAGE.issubset(covered):
-            errors.append("routing scenarios do not cover all five governance and decision Skills")
+            errors.append("routing scenarios do not cover all governance and advisory Skills")
 
         markdown_paths = list(root.glob("*.md")) + list((root / "docs").rglob("*.md")) + list((root / "skills").rglob("*.md"))
         for path in markdown_paths:

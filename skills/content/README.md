@@ -2,7 +2,7 @@
 
 Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 
-Content Skills are a **second catalog**. They do not replace the nine engineering Skills
+Content Skills are a **second catalog**. They do not replace the ten engineering Skills
 and they are **not** counted against that engineering cap.
 
 They serve narrated-drama content work (REQ-75 R1–R6): 10 episodes, 60–120s, 解说剧 /

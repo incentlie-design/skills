@@ -4,7 +4,7 @@ Ticket: https://github.com/incentlie-design/narrated-drama/issues/112
 
 This contract binds **content Skills** under `skills/content/`. It does not own product
 Architecture, Git mutation, Provider selection, or paid submit. Engineering Skills remain
-the exclusive nine-entry `registry.json` contract.
+the exclusive ten-entry `registry.json` contract.
 
 ## Audience
 
@@ -50,7 +50,7 @@ Provider success, Stage Gate or human acceptance.
 
 ## Catalog vs engineering
 
-- `registry.json` stays the nine engineering Skills.
+- `registry.json` stays the ten engineering Skills.
 - `skills/content/registry.json` lists content Skills with no numeric cap.
 - `skills/content/index.json` is the source probe index (≤200). Inclusion in the index is
   not inclusion in the callable library.
