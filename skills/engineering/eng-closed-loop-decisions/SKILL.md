@@ -32,6 +32,38 @@ Read [research basis and derived principles](references/decision-principles.md) 
 
 When two routes both close the loop, prefer shorter time to evidence, fewer irreversible commitments, less accidental complexity, easier rollback or replacement, and stronger evidence per unit of effort—in that order unless the user supplies a different priority. Do not create a weighted decision framework unless one is requested.
 
+## Close Architecture conflicts without false stops
+
+When the current Architecture path appears unable to close an accepted goal, do
+not silently narrow the goal, treat every baseline choice as immutable, or bypass
+an actual invariant. Use project-defined constraint levels when supplied;
+otherwise classify the conflicting statement by its real consequence:
+
+| Level | Meaning | Default treatment |
+| --- | --- | --- |
+| `C0` | Non-deferrable authority, safety, privacy, compliance, data-integrity, or irreversible-effect constraint | Stop any path that would violate it |
+| `C1` | Accepted product or domain invariant | Obtain the owning product/domain decision before changing it |
+| `C2` | Architecture guardrail or cross-boundary ownership rule | Make the delta explicit; evidence may proceed when safely admitted, but promotion waits for acceptance |
+| `C3` | Accepted but replaceable baseline design choice | Prefer it; compare the smallest safe relaxation when it cannot close the goal |
+| `C4` | Local implementation detail | Let the implementing owner decide and verify it proportionally |
+
+Add an `ArchitectureConflict` block to the `ClosureDecision` with the signed
+goal/acceptance, exact current constraint and revision, level, current-path result
+across the complete flow, effect, and known-consumer axes, smallest relaxed
+assumption, result under that assumption, affected actions, and promotion
+condition. If either result is unknown, name one falsifiable probe instead of
+returning a vague blocker.
+
+Candidate admission and promotion are separate decisions. Recommend an isolated,
+bounded, reversible candidate only when it preserves `C0` and `C1`, exposes any
+`C2` delta, has no unauthorized live/provider/paid/destructive effect, and can
+produce decision-relevant evidence. Promotion that depends on an unaccepted delta
+waits for its owner, current applicable independent evidence, and the actual
+promotion authority. Return one recommendation—`retain`, `revise`,
+`relax-for-candidate`, or `defer`—plus at most one fallback for a materially
+different risk. Pause only affected actions; unrelated analysis and admitted
+offline evidence work continue while their inputs remain current.
+
 ## Keep simple and keep clean
 
 `Keep simple` minimizes moving parts and decisions required before the loop runs. `Keep clean` preserves explicit boundaries, one authoritative state, understandable control flow, basic failure behavior, and a credible removal or migration seam. A shortcut that makes the next iteration opaque or unsafe is not simple; it merely moves cost out of view.
@@ -45,6 +77,8 @@ Return one concise `ClosureDecision`. Lead with the exact decision subject, reco
 - the actor-to-evidence loop and success signal;
 - the recommended vertical path and why it closes first;
 - `decide_now`, `default_now`, `defer_until`, and `reject` decisions;
+- any `ArchitectureConflict`, candidate admission, promotion condition, and
+  owning decision;
 - clean-boundary and non-deferrable invariants;
 - the first runnable check, known ceiling, rollback or replacement seam;
 - unresolved risks, next evidence review, and owning workflow.

@@ -82,6 +82,14 @@ impose a fixed Architecture → TD → QA chain.
 
 - Tie each material risk to the affected outcome/criterion, impact, response or
   acceptance decision, observable trigger, required evidence, and decision owner.
+- When a current Architecture statement appears unable to close a signed goal or
+  acceptance criterion, preserve both exact revisions and use the Architecture
+  conflict method from `eng-closed-loop-decisions`: classify the actual constraint,
+  compare the current path with the smallest safe relaxed assumption across the
+  complete flow, effect, and known-consumer axes, and name the affected actions.
+  Carry one recommendation and the promotion condition into the handoff. PM may
+  frame this decision but does not accept an Architecture delta or silently narrow
+  product intent.
 - Do not defer known security, privacy, integrity, compliance, accessibility, or
   irreversible risks as optional future work.
 - PM self-check may challenge source coverage, scope, dependencies, observable

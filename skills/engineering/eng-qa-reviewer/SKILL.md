@@ -9,9 +9,16 @@ Own the bounded QA or review evidence artifact for a supplied subject and contra
 
 ## Freeze the subject and select evidence
 
-- Identify the exact subject revision or content identity, scope and exclusions, supplied acceptance or test contract, changed behavior and consumers, material risks, environment and data required by the selected evidence, any explicit budget, and applicable independence requirement. A separate Session or numeric budget is not a prerequisite for review.
+- Identify the exact subject revision or content identity, scope and exclusions, supplied acceptance or test contract, applicable Architecture baseline and any pending delta, changed behavior and consumers, material risks, environment and data required by the selected evidence, any explicit budget, and applicable independence requirement. A separate Session or numeric budget is not a prerequisite for review.
 - If the subject, acceptance, key contract, authority, required independence, or an environment or data set required by selected evidence is missing, provide the smallest useful plan or finding and stop without a pass conclusion.
 - Map each in-scope criterion or demonstrated risk to a check, observable assertion, appropriate layer, environment or data, selector or manual step, owner, and stop condition. Do not add checks merely to populate every layer.
+- For an Architecture conflict, test the current path and the explicitly admitted
+  relaxed candidate against the same complete flow, effect, and known-consumer
+  assertions before investing in broad green implementation evidence. Treat an
+  older accepted revision only as regression evidence after a superseding product
+  decision; it cannot prove the new goal. Judge candidate evidence separately from
+  promotion eligibility, and invalidate only evidence affected by a changed goal,
+  constraint, delta, subject, environment, or consumer.
 - Use unit evidence for local invariants, boundaries, and error branches; smoke for loadability or one shortest runnable path; feature evidence for one user behavior and its rejection or state change; integration only for changed interfaces, schemas, consumers, cross-module behavior, or candidate interactions; release regression only under an explicit release gate or authorization.
 - Higher risk calls for more targeted evidence, not automatic full regression. State what each selected layer cannot prove.
 
@@ -20,7 +27,7 @@ Own the bounded QA or review evidence artifact for a supplied subject and contra
 - Keep plans, executions, reuse, and fixtures distinct. Command text, a dry run, a fixture, an exit code without assertions, or zero discovered tests is not actual passing evidence.
 - Bind observations to the subject and relevant environment. Code, test, configuration, data, interface, or environment changes can stale affected evidence; reuse only with an explicit impact analysis and the original evidence.
 - Preserve failed attempts and actual observations. Use the supplied status vocabulary; at minimum distinguish an observed assertion failure, inability to evaluate, and a check not run rather than collapsing them into pass or fail.
-- Give a positive conclusion only for the named scope and revision when every required check has current executed or justified reusable evidence and no unresolved material risk. Do not relabel required coverage as optional to obtain a pass.
+- Give a positive conclusion only for the named scope and revision when every required check has current executed or justified reusable evidence and no unresolved material risk. A safe candidate may receive a bounded evidence verdict while an unaccepted Architecture delta still prevents a promotion pass. Do not relabel required coverage as optional to obtain a pass.
 
 ## Review implementation evidence
 

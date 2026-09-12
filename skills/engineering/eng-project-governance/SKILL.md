@@ -29,6 +29,14 @@ Read [work items and adapters](references/work-items-and-adapters.md) for canoni
 - Classify actual dependencies when decomposition is needed: a definition/input reference selects exact meaning, a code dependency selects an implementation that must be consumed, and a promotion dependency constrains ordering or gates. A dependency is not a required role-to-role or Session-to-Session hop. Do not force definition or promotion dependencies into Git ancestry.
 - Evaluate changed context before invalidating evidence. A changed candidate head requires new or justified reusable evidence for that head; an unrelated planning revision does not automatically pause all work or require project reapproval.
 - Explicit authority may allow bounded analysis, probes, or reversible implementation from an exact proposal before its acceptance. Keep promotion blocked until the canonical decision accepts the applicable input and evidence. Derive this boundary from the canonical record; do not add a copied `speculative` status.
+- For an Architecture conflict, keep one canonical decision record with the signed
+  goal/acceptance and revision, exact Architecture statement and revision, actual
+  constraint level, current-path and smallest-relaxed-path results, affected
+  actions, one recommendation, decision owner, and promotion condition. Record
+  candidate admission separately from Architecture acceptance and promotion.
+  Invalidate only dependent evidence and actions when any of those inputs changes;
+  do not turn a local conflict into a project-wide stop or copy the decision into
+  parallel trackers.
 - Revise the current WorkItem when its goal, scope, acceptance, dependency, risk, or authority changes. Create a lightweight child WorkItem when a discovered future slice has independently actionable scope and acceptance. Do not turn every later milestone into another revision of the active delivery.
 - Artifact correctness remains with the appropriate author or reviewer capability. This ownership boundary does not require another person or Session unless independence or approval authority actually demands it.
 
