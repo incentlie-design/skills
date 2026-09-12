@@ -1,6 +1,6 @@
 # skill-creator
 
-A public source repository for ten orthogonal engineering Skills: four state-owning governance Skills, two advisors, three artifact-owning role Skills, and one documentation-authoring Skill.
+A public source repository for ten orthogonal engineering Skills (four state-owning governance Skills, two advisors, three artifact-owning role Skills, and one documentation-authoring Skill) plus a separate **content catalog**. Content Skills live under `skills/content/` and are **not** counted against that engineering closed set.
 
 ## Constrain actions, not orchestration
 
@@ -22,6 +22,7 @@ Loading a Skill does not require creating its objects. A normal local change can
 | Delegate, create/reuse a Session, resolve shared ownership, or adopt delegated results | [Agent](skills/engineering/eng-agent-governance/SKILL.md) | Clarify scope and responsibility; prevent write conflicts and false independence; collect required outputs |
 | Change multi-repository topology/dependencies or supply a reproducible tuple | [Workspace](skills/engineering/eng-workspace-governance/SKILL.md) | Identify repositories, actual dependencies, and exact consumed commits when reproduction needs them |
 | Mutate Git state | [Repo](skills/engineering/eng-repo-governance/SKILL.md) | Resolve exact targets, preserve ownership and dirty state, enforce authority, and report actual resulting refs |
+| Adapt, lock identity, storyboard, voice, mix, or evaluate narrated-drama content | [Content catalog](skills/content/README.md) | Distilled methods for R1–R6 production problems; not product Architecture, Git, or Provider selection |
 
 These are routing choices, not stages. The same Agent can use compatible capabilities in any order consistent with real input dependencies, safety, and authority. A role boundary does not require a different executor except for required independence or approval authority. Read-only Git inspection does not trigger mutation governance.
 
@@ -79,9 +80,9 @@ python3 -m unittest discover -s tests
 git diff --check
 ```
 
-The repository validator checks the exact ten-entry registry, Skill frontmatter, discovery links, relative Markdown links, dependency acyclicity, and the single [behavior case collection](tests/routing_scenarios.json). Scenario routes are unordered required owner sets, not execution sequences. It validates case structure, not Agent behavior or the meaning of the responsibility contract. Behavioral evaluation must separately observe decisions and forbidden side effects; declared cases are not claimed as executed tests.
+The repository validator checks the exact ten-entry **engineering** registry, Skill frontmatter, discovery links, relative Markdown links, dependency acyclicity, and the single [behavior case collection](tests/routing_scenarios.json). If `skills/content/` exists, it also checks the content registry, source index (≤200), content Skill frontmatter, and extra discovery links. Scenario routes are unordered required owner sets, not execution sequences. It validates case structure, not Agent behavior or the meaning of the responsibility contract. Behavioral evaluation must separately observe decisions and forbidden side effects; declared cases are not claimed as executed tests.
 
-Project discovery links in `.agents/skills/` point to the source folders with relative symlinks. Installing or removing user-level Skills, pushing, publishing, and writing production systems are separate authorized actions.
+Project discovery links in `.agents/skills/` point to the source folders with relative symlinks. All ten engineering Skills are required; content Skills may add extra links. Installing or removing user-level Skills, pushing, publishing, and writing production systems are separate authorized actions.
 
 ## Cross-project work
 

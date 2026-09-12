@@ -15,7 +15,14 @@ class RepositoryValidationTests(unittest.TestCase):
     def test_current_repository_contract(self):
         report = validator.validate(ROOT)
         self.assertEqual(report["errors"], [])
-        self.assertEqual(report["skills_checked"], 10)
+        self.assertEqual(report["engineering_skills_checked"], 10)
+        self.assertGreaterEqual(report["content_skills_checked"], 1)
+        self.assertEqual(
+            report["skills_checked"],
+            report["engineering_skills_checked"] + report["content_skills_checked"],
+        )
+        self.assertGreater(report["content_index_entries"], 0)
+        self.assertLessEqual(report["content_index_entries"], 200)
         scenarios = validator.read_json(ROOT / "tests/routing_scenarios.json")["scenarios"]
         self.assertEqual(report["routing_scenarios_validated"], len(scenarios))
         self.assertEqual(report["behavior_cases_executed"], 0)
@@ -57,6 +64,28 @@ class RepositoryValidationTests(unittest.TestCase):
         self.assertEqual(parsed["name"], "eng-example-one")
         with self.assertRaises(ValueError):
             validator.frontmatter("---\nname: one\nname: two\ndescription: example\n---\n")
+
+    def test_frontmatter_rejects_unquoted_mapping_colon(self):
+        with self.assertRaises(ValueError):
+            validator.frontmatter(
+                "---\nname: content-example\ndescription: visual identity: face and wardrobe\n---\nBody\n"
+            )
+
+    def test_frontmatter_accepts_quoted_mapping_colon(self):
+        parsed = validator.frontmatter(
+            '---\nname: content-example\ndescription: "visual identity: face and wardrobe"\n---\nBody\n'
+        )
+        self.assertEqual(parsed["description"], "visual identity: face and wardrobe")
+
+    def test_content_io_catalog_covers_every_content_skill(self):
+        report = validator.validate(ROOT)
+        self.assertEqual(report["errors"], [])
+        skills = validator.read_json(ROOT / "skills/content/io/skills.json")["skills"]
+        roles = validator.read_json(ROOT / "skills/content/io/roles.json")["roles"]
+        self.assertEqual(len(skills), report["content_skills_checked"])
+        self.assertEqual(set(roles), {"story_director", "visual_director", "audio_director", "editor", "validator", "producer"})
+        for alias in ("NovelAgent", "DirectorAgent"):
+            self.assertTrue(any(alias in body.get("aliases", []) for body in roles.values()))
 
     def test_consolidated_cases_reject_empty_inputs_or_assertions(self):
         read_json = validator.read_json
