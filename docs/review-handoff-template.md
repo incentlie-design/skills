@@ -1,9 +1,11 @@
 # Review and handoff information template
 
-Use this template for human-facing Review, QA evidence, PR-feedback, and PM/DEV/PIC
-handoffs. It defines information priority, not a lifecycle or mandatory report
-shape. Keep the project's existing vocabulary and omit sections that have no
-content.
+This reusable contract defines information priority for human-facing Review, QA
+evidence, PR-feedback, and PM/DEV/PIC handoffs. It is not a copyable business
+template, lifecycle, or mandatory report shape. An explicit user-supplied or
+repository-local template owns the artifact fields and vocabulary; apply this
+ordering without loading or copying a central outline when the project already
+has one. Omit sections that have no content.
 
 ## Information priority
 

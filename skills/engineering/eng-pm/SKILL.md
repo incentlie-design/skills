@@ -38,17 +38,24 @@ or take over the surrounding governance decisions.
 
 ## Requirement format profiles
 
-Select one marker for a new Requirement/PRD and preserve an existing marker when
-revising a document:
+Use an explicit user-supplied template or reference first, then the active
+repository-local template or accepted project convention. Read only the selected
+template. Project-local material owns business fields, vocabulary, roles,
+locations, and lifecycle semantics; do not replace it with a central outline or
+copy changing project facts into this Skill.
+
+Only when no project template applies, select one compatibility fallback marker.
+Preserve an existing marker when revising a document:
 
 | Marker | Use when | Template |
 | --- | --- | --- |
-| `full-visual-design-package` | The user/project requests the complete design-package profile or the existing artifact uses it. | [PRD and TD visual template](../../../docs/prd-td-visual-template.md) |
-| `reader-first-requirement` | The product owner needs a compact decision document or the existing artifact uses it. | [reader-first Requirement template](../../../docs/requirement-reader-first-template.md) |
+| `full-visual-design-package` | The user/project requests the complete design-package profile or the existing artifact uses it. | [PRD and TD visual fallback](../../../docs/prd-td-visual-template.md) |
+| `reader-first-requirement` | The product owner needs a compact decision document or the existing artifact uses it. | [reader-first Requirement fallback](../../../docs/requirement-reader-first-template.md) |
 
-Obey an explicit marker. When no marker or project convention exists, retain
-`full-visual-design-package` for backward compatibility. That profile requires
-complete treatment of material decisions, not a larger page or diagram quota.
+Obey an explicit marker. When no marker or project convention exists, default a
+new Requirement to the smaller `reader-first-requirement` fallback; use
+`full-visual-design-package` only when the subject needs that depth. Neither
+fallback creates a larger page or diagram quota.
 
 Both profiles lead with exact source/subject, proposed decision/status, material
 findings or open product decisions, and the required owner/action. Remove empty

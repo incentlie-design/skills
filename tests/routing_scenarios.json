@@ -443,6 +443,17 @@
       ],
       "stop": "Return the derived page candidate and actual validation evidence; publication remains separate.",
       "forbid": ["Archify required for project authoring", "generated interpretation as canonical truth", "canonical source rewrite", "implicit publication"]
+    },
+    {
+      "id": "project-template-precedes-central-fallback",
+      "request": "Create a Requirement in a repository that already has an accepted local Requirement template and project vocabulary; the reusable Skills checkout also contains generic fallback outlines.",
+      "expected_route": ["eng-pm"],
+      "expected_owner_actions": [
+        "Use the repository-local template as the artifact shape and preserve its business fields, vocabulary, and fact owners.",
+        "Apply only the reusable information-priority and diagram-decision invariants without reading or copying the unused central fallback."
+      ],
+      "stop": "Deliver the bounded project-shaped Requirement without creating a second template authority.",
+      "forbid": ["central fallback overriding the project template", "duplicated business fields", "invented lifecycle or role chain", "unnecessary template context"]
     }
   ]
 }

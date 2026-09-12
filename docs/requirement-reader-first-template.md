@@ -1,9 +1,11 @@
 # Reader-first Requirement template
 
-Use this copyable template when a product Requirement or PRD selects
-`reader-first-requirement`. It is a product decision document, not a compressed
-Architecture, TD, QA plan, or fixed delivery sequence. Delete every unused
-optional section instead of leaving placeholders.
+This is a compatibility fallback, not an active project template. Use it only
+when no explicit user-supplied or repository-local template applies and a
+Requirement or PRD selects `reader-first-requirement`. Projects own their
+business fields, vocabulary, roles, locations, and lifecycle semantics. This is
+a product decision outline, not a compressed Architecture, TD, QA plan, or fixed
+delivery sequence. Delete every unused optional section.
 
 See the [visual documentation contract](prd-td-visual-contract.md) and
 [review/handoff priority](review-handoff-template.md).

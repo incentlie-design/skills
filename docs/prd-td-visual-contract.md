@@ -7,25 +7,41 @@ every document.
 
 The words **MUST**, **SHOULD**, and **MAY** express requirement strength.
 
+## Template ownership and resolution
+
+Resolve the artifact shape in this order:
+
+1. an explicit user-supplied template or reference;
+2. the active repository-local template or accepted project convention;
+3. the compact compatibility fallbacks in this repository.
+
+Read only the selected template. Project-local templates own business fields,
+roles, vocabulary, document locations, and lifecycle semantics; this reusable
+contract owns only the cross-project information priority, diagram decision, and
+review invariants. GitHub Issue/PR templates are appropriate for intake and
+review entry points, while longer Requirement/PRD/TD shapes normally live with
+the project's documentation. Do not copy changing project facts into this
+contract or treat a central fallback as a second project authority.
+
 ## Artifact profiles
 
-New Requirement/PRD documents declare one format marker in document control.
-Existing unmarked documents retain their format until explicitly migrated. A
-marker selects reading depth, not a mandatory set of figures.
+These markers apply only when an existing artifact or the selected template uses
+them. Existing unmarked documents retain their project format until explicitly
+migrated. A marker selects reading depth, not a mandatory set of figures.
 
 ### `full-visual-design-package`
 
 Use when the user requests a complete design package, the existing document uses
-this marker, the project has selected it, or no Requirement profile is selected
-and backward compatibility applies. Use the
-[PRD and TD visual template](prd-td-visual-template.md). Include all contracts,
+this marker, or the project has selected it. If no project template exists, use
+the [PRD and TD visual fallback](prd-td-visual-template.md). Include all contracts,
 decisions, risks, and views needed to remove the material ambiguities of the
 subject; do not fill a fixed diagram catalog.
 
 ### `reader-first-requirement`
 
-Use when the Requirement is primarily a product-owner decision document. Use the
-[reader-first Requirement template](requirement-reader-first-template.md). Lead
+Use when the Requirement is primarily a product-owner decision document. If no
+project template exists, use the
+[reader-first Requirement fallback](requirement-reader-first-template.md). Lead
 with problem, outcome, scope, acceptance, ownership, and decisions requested now.
 Technical detail belongs in a later artifact only when that artifact is actually
 needed; the marker does not impose an Architecture → TD → QA sequence.

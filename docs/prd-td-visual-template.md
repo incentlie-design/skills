@@ -1,9 +1,10 @@
 # PRD and TD visual template
 
-Use this copyable template when document control selects
-`full-visual-design-package`. It is complete with respect to material decisions,
-not a fixed number of sections or diagrams. Delete unused optional sections; do
-not leave empty tables or placeholder headings.
+This is a compatibility fallback, not an active project template. Use it only
+when no explicit user-supplied or repository-local template applies and the
+subject selects `full-visual-design-package`. Projects own their business fields,
+vocabulary, roles, locations, and lifecycle semantics. Keep only the sections
+needed for the material decisions; do not leave empty tables or placeholders.
 
 See the [visual documentation contract](prd-td-visual-contract.md) and
 [review/handoff priority](review-handoff-template.md).
