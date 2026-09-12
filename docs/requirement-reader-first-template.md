@@ -1,223 +1,129 @@
 # Reader-first Requirement template
 
-Use this template for a product Requirement or PRD that a product owner must be
-able to review in one pass after explicitly selecting the
-`reader-first-requirement` marker. It complements, rather than replaces, the
-[PRD and TD visual documentation contract](prd-td-visual-contract.md).
+This is a compatibility fallback, not an active project template. Use it only
+when no explicit user-supplied or repository-local template applies and a
+Requirement or PRD selects `reader-first-requirement`. Projects own their
+business fields, vocabulary, roles, locations, and lifecycle semantics. This is
+a product decision outline, not a compressed Architecture, TD, QA plan, or fixed
+delivery sequence. Delete every unused optional section.
 
-## Authoring rules
+See the [visual documentation contract](prd-td-visual-contract.md) and
+[review/handoff priority](review-handoff-template.md).
 
-- Write the primary narrative in the user's requested language. Keep stable IDs,
-  code symbols, and exact contract names unchanged when they are later handoff
-  inputs.
-- Keep the main reading path compact: aim for two to four rendered pages before
-  figures. A reviewer should reach the requested product decisions without
-  reading schemas, component diagrams, runtime sequences, or test matrices.
-- Use a small number of end-to-end business flows. Each flow names the trigger,
-  visible outcome, rejection/recovery behavior, and acceptance it supports.
-- Record dependent work as an ownership boundary, not copied requirements. A
-  dependent ticket's implementation, fixture, test result, or acceptance remains
-  its owner's evidence.
-- State whether every core diagram is `present`, `deferred`, or `N/A`. A
-  `deferred` view names its target artifact, owner, question, and entry condition.
-  Do not use `N/A` when the subject exists.
-
----
-
-# REQ-<id>: <user-visible outcome>
-
-## Document control
+## Exact subject and decision
 
 | Field | Value |
 | --- | --- |
-| Document ID | `REQ-...` |
+| Document ID / title | `REQ-...`: user-visible outcome |
 | Format profile | `reader-first-requirement` |
-| Status | draft / proposed / approved / superseded |
-| Owner | product owner |
-| Source or revision | issue, brief, or accepted requirement revision |
-| Updated | YYYY-MM-DD |
+| Exact source/revision | issue, brief, or accepted requirement revision |
+| Status/conclusion | draft / proposed / decision-ready / approved / superseded |
+| Product owner |  |
 | Scope | one sentence |
-| Supersedes | `N/A` or exact prior revision |
+| Supersedes | omit when none |
 
-> State whether this is the authority or a local review draft. Name the current
-> authority when it is not this document.
+State whether this document is authoritative or a review candidate. Link the
+current authority when it is not this document.
+
+### Material findings or open product decisions
+
+Omit when none. Put scope/acceptance conflicts and required product decisions
+here, before flows or supporting evidence.
+
+| Decision/finding | Evidence and impact | Owner/action | Recheck |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+### Required decision/action now
+
+Name the smallest decision the product owner must accept, reject, or amend. Use
+`none` only when the bounded Requirement is already decision-ready without an
+open material item.
 
 ## One-page review
 
 ### Problem and outcome
 
-- **Problem:** what is missing or harmful today?
-- **Actor:** who receives value or makes the decision?
-- **Outcome:** what can they observably do or learn after this work?
-- **Why now:** what makes this the next bounded decision?
+- Problem and current evidence:
+- Actor receiving value or making the decision:
+- Desired observable outcome:
+- Why now:
 
-### Scope and non-goals
+### Scope and selected direction
 
-- **In scope:**
-- **Not in scope:**
-- **Hard constraints:** privacy, integrity, compatibility, ownership, or other
-  non-negotiable rule.
-
-### Selected direction
-
-- **Decision:** what product direction is proposed?
-- **Reason:** why is it preferable to the material alternative?
-- **Boundary:** what does this Requirement hand off, and to which owner?
+- In scope:
+- Non-goals:
+- Hard constraints:
+- Selected product direction and reason:
+- Ownership boundary handed to another artifact or dependency:
 
 ## Core business flows
 
-### 1. <actor reaches the primary outcome>
+Include only distinct flows that change product scope or acceptance. Each names
+the trigger, business action, visible success, rejection/recovery, and acceptance
+IDs. Do not specify components, queues, schemas, retry algorithms, or storage
+unless the product decision depends on them.
 
-Describe the trigger, the business action, visible success, and relevant
-acceptance IDs.
+### <Actor reaches the primary outcome>
 
-Describe the stable rejection or recovery behavior. Do not specify a component,
-schema, queue, retry algorithm, or storage mechanism here unless the product
-decision itself depends on it.
-
-### 2. <second meaningful flow>
-
-Repeat only for a distinct user or business outcome.
-
-### 3. <optional history, exception, or recovery flow>
-
-Include only when it changes scope or acceptance.
+<Trigger → action → visible result; rejection/recovery; linked AC.>
 
 ## Acceptance criteria
 
-| ID | Observable result | Owner |
+| ID | Observable result | Owning requirement/dependency |
 | --- | --- | --- |
-| `AC-001` |  | this Requirement or named dependency |
-| `AC-002` |  |  |
+| `AC-001` |  |  |
 
-Keep each row independently checkable. Place detailed test cases, fixtures, and
-commands in the QA plan.
-
-## Execution constraints
-
-| ID | Product invariant or boundary constraint | Intended downstream evidence |
-| --- | --- | --- |
-| `FR-001` |  | Architecture / TD / QA artifact |
-
-Use only the minimum constraints needed to stop downstream work from inventing
-product behavior. Put schemas, physical storage, error enumerations, and
-implementation algorithms in Architecture or TD.
+Keep each row independently checkable. Detailed cases, fixtures, commands, and
+executed evidence belong to QA artifacts.
 
 ## Ownership boundaries
 
-| Topic | This Requirement owns | Owned elsewhere |
+| Topic/handoff | This Requirement owns | Owned elsewhere and exact authority |
 | --- | --- | --- |
-| <domain or handoff> |  | ticket, service, or role |
+|  |  |  |
 
-Do not repeat another owner's requirements. State the bounded input/output
-contract and name its authority.
+Reference dependent facts once. Do not copy another ticket's requirements,
+implementation, fixture, evidence, or acceptance.
 
-## Decisions requested now
+## Dependent artifacts and stop conditions
 
-1. **<decision>:** the product owner accepts, rejects, or amends <direction>.
-2. **<decision>:** ...
+List an Architecture, TD, QA, or another artifact only when it must answer a real
+question before the outcome can proceed. Order by actual input dependency; do not
+impose a role or approval sequence.
 
-List technical questions explicitly delegated to the next artifact. A delegated
-question needs a named owner and must not silently block the Requirement:
-
-- `OPEN-001`: <question> - owner: <Architecture or TD owner>.
-
-## Next artifacts and stop conditions
-
-| Artifact | Question it must answer | Entry condition |
+| Artifact/owner | Question or bounded output | Entry/recheck condition |
 | --- | --- | --- |
-| Architecture / ER / ADR |  | accepted Requirement revision |
-| TD |  | accepted Architecture decision |
-| QA plan |  | accepted TD contract |
+|  |  |  |
 
-State the events that require returning to the product owner, such as a changed
-scope boundary, a changed dependent input contract, a privacy/integrity conflict,
-or a material new user outcome.
+Return to the product owner only for a changed scope/acceptance boundary, a
+material dependent-contract change, a privacy/integrity conflict, or another
+decision this Requirement owns.
 
-## Visual index
+## Diagram disposition
 
-Only include figures that help the product owner understand the decision. Keep
-the figure source with this document and render it before review.
+Choose the smallest applicable statement:
 
-| ID | Type | Status | Owner / target artifact | Question and entry condition |
+- `Diagram: N/A — <specific reason no scope, relationship, order, state, data, trust, or failure ambiguity needs a visual>`
+- `Diagram: deferred — <real technical question, owning artifact/owner, entry condition>`
+- `Diagram: present — <figure ID/type and the product ambiguity it resolves>`
+
+For present figures, keep editable source with the document and map each figure
+to the body heading, outcome, risk, AC, or decision it supports. Product
+Requirements typically use a context, concept, journey, or decision view, but
+none is mandatory by name. Do not enumerate unused diagram types.
+
+| ID/type | Question | Body/outcome/risk/AC mapping | Editable source/revision | Render/inspection |
 | --- | --- | --- | --- | --- |
-| `D-01` | concept map | present | Requirement | Which product concepts must remain distinct? |
-| `D-02` | system context | present | Requirement | Who owns the boundary and each handoff? |
-| `D-03` | conceptual ER | present or `N/A: no persisted domain facts` | Requirement / Architecture | What entities and ownership exist at product level? |
-| `D-04` | component diagram | deferred | TD | Which implementation components own the selected behavior after TD starts? |
-| `D-05` | runtime sequence | deferred | TD | How does the selected implementation succeed or fail after its contracts are chosen? |
-| `D-06` | lifecycle state machine | deferred | Architecture or TD | Which technical lifecycle applies after persistence and invalidation decisions are chosen? |
-| `D-07` | user journey/activity | present or `N/A: no user or operator flow` | Requirement | How does the actor reach value and recover? |
+| `D-01` |  |  |  |  |
 
-### D-01 - Concept map
-
-Question: Which product concepts must remain distinct?
-
-```mermaid
-mindmap
-  root((Bounded requirement))
-    Actor
-    Outcome
-    Domain facts
-    Rules
-    Ownership boundary
-    Open decisions
-```
-
-Figure D-01. Product concepts only; do not add component or deployment detail.
-
-### D-02 - System context
-
-Question: Who owns each boundary and handoff?
-
-```mermaid
-flowchart TB
-  actor["Actor"]
-  owner["Product owner"]
-  dependency["Dependency owned elsewhere"]
-  subgraph requirement["Requirement scope"]
-    domain["Product domain and outcome"]
-  end
-  actor -->|"business action"| domain
-  domain -->|"bounded input or output"| dependency
-  owner -->|"scope decision"| requirement
-```
-
-Figure D-02. Context and ownership; not a component diagram.
-
-### D-03 - Conceptual ER
-
-Include only when domain facts are persisted or ownership cannot be understood
-without relationships.
-
-```mermaid
-erDiagram
-  PARENT ||--o{ CHILD : owns
-  PARENT }o--o{ REFERENCE : selects
-```
-
-Figure D-03. Conceptual only: no physical fields, indexes, or storage choices.
-
-### D-07 - User activity
-
-Question: How does the actor reach value and recover from a business rejection?
-
-```mermaid
-flowchart TB
-  start(["Actor enters"]) --> action["Performs business action"]
-  action --> valid{"Accepted?"}
-  valid -->|Yes| success["Receives outcome"]
-  success --> done(["Value reached"])
-  valid -->|No| recovery["Receives reason and recovery path"]
-  recovery --> action
-```
-
-Figure D-07. Business path only; runtime implementation belongs in TD.
+Omit the table when `Diagram: N/A` and no existing project format requires it.
 
 ## Review evidence and change impact
 
-- **Source checked:** exact source/revision:
-- **Figures rendered and visually inspected:** renderer/version and figure IDs:
-- **Not yet performed:** Architecture, TD, QA, implementation, or external work:
-- **Change impact:** which downstream artifacts must be re-reviewed if this
-  Requirement changes:
+- Exact source checked:
+- Acceptance coverage and exclusions:
+- Figures/checks actually performed:
+- Residual risk or unverified assumptions:
+- Downstream artifacts whose evidence becomes stale if this Requirement changes:
+- Optional history/P3/appendix (last; omit when empty):

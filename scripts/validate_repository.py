@@ -59,19 +59,51 @@ SECRETISH = re.compile(r"(api[_-]?key|secret[_-]?key|begin [a-z ]*private key|sk
 REQUIREMENT_TEMPLATE_LINK = "../../../docs/requirement-reader-first-template.md"
 REQUIREMENT_TEMPLATE_SECTIONS = (
     "# Reader-first Requirement template",
+    "## Exact subject and decision",
     "## One-page review",
     "## Core business flows",
     "## Acceptance criteria",
     "## Ownership boundaries",
-    "## Decisions requested now",
-    "## Next artifacts and stop conditions",
-    "## Visual index",
+    "## Dependent artifacts and stop conditions",
+    "## Diagram disposition",
+    "## Review evidence and change impact",
 )
 FULL_VISUAL_TEMPLATE_SECTIONS = (
     "# PRD and TD visual template",
     "`full-visual-design-package`",
+    "## Exact subject and review decision",
     "| Format profile | `full-visual-design-package` |",
+    "## Diagram disposition",
+    "## Evidence and change impact",
 )
+REVIEW_HANDOFF_TEMPLATE_SECTIONS = (
+    "# Review and handoff information template",
+    "## Information priority",
+    "## Short clean result",
+    "## Material result",
+    "## Capability-specific use",
+)
+REVIEW_EXAMPLE_KINDS = {
+    "review",
+    "qa_evidence",
+    "pr_feedback",
+    "pm_handoff",
+    "dev_handoff",
+}
+REVIEW_SECTION_PHASE = {
+    "exact_subject": 0,
+    "conclusion": 1,
+    "material_findings": 2,
+    "required_decision": 3,
+    "required_action": 3,
+    "coverage": 4,
+    "evidence": 4,
+    "decision_ledger": 4,
+    "residual_risk": 5,
+    "nits": 6,
+    "history": 6,
+    "appendix": 6,
+}
 
 
 def read_json(path):
@@ -138,6 +170,94 @@ def dependency_errors(graph):
     return errors
 
 
+def review_handoff_example_errors(payload):
+    """Validate information priority as behavior data, not template prose."""
+    errors = []
+    validated = 0
+    if payload.get("schema_version") != 1:
+        errors.append("review/handoff examples schema_version must be 1")
+    examples = payload.get("examples")
+    if not isinstance(examples, list) or not examples:
+        return errors + ["review/handoff examples must be a nonempty list"], validated
+
+    seen_ids = set()
+    observed_kinds = set()
+    short_clean = False
+    for example in examples:
+        before = len(errors)
+        if not isinstance(example, dict):
+            errors.append("review/handoff example must be an object")
+            continue
+        example_id = example.get("id")
+        kind = example.get("kind")
+        count = example.get("material_findings_count")
+        sections = example.get("sections")
+        if not isinstance(example_id, str) or not example_id.strip():
+            errors.append("review/handoff example needs a nonempty id")
+            continue
+        if example_id in seen_ids:
+            errors.append(f"duplicate review/handoff example id {example_id}")
+        seen_ids.add(example_id)
+        if kind not in REVIEW_EXAMPLE_KINDS:
+            errors.append(f"{example_id}: unknown review/handoff kind {kind}")
+        else:
+            observed_kinds.add(kind)
+        if not isinstance(count, int) or isinstance(count, bool) or count < 0:
+            errors.append(f"{example_id}: material_findings_count must be a nonnegative integer")
+            continue
+        if not isinstance(sections, list) or not sections:
+            errors.append(f"{example_id}: sections must be a nonempty list")
+            continue
+
+        section_kinds = []
+        contents = []
+        for section in sections:
+            if not isinstance(section, dict):
+                errors.append(f"{example_id}: section must be an object")
+                continue
+            section_kind = section.get("kind")
+            content = section.get("content")
+            if section_kind not in REVIEW_SECTION_PHASE:
+                errors.append(f"{example_id}: unknown section kind {section_kind}")
+            if not isinstance(content, str) or not content.strip():
+                errors.append(f"{example_id}: section {section_kind} has empty content")
+            else:
+                contents.append(" ".join(content.split()).casefold())
+            section_kinds.append(section_kind)
+
+        if section_kinds[:2] != ["exact_subject", "conclusion"]:
+            errors.append(f"{example_id}: exact subject and conclusion must be first")
+        if len(section_kinds) != len(set(section_kinds)):
+            errors.append(f"{example_id}: duplicate sections are not allowed")
+        if len(contents) != len(set(contents)):
+            errors.append(f"{example_id}: repeated section content is not allowed")
+        phases = [REVIEW_SECTION_PHASE.get(name, 99) for name in section_kinds]
+        if phases != sorted(phases):
+            errors.append(f"{example_id}: detailed or low-priority information precedes the required decision path")
+
+        has_material = "material_findings" in section_kinds
+        action_kinds = {"required_decision", "required_action"} & set(section_kinds)
+        if not action_kinds:
+            errors.append(f"{example_id}: result needs a required decision or action")
+        if count > 0:
+            if not has_material:
+                errors.append(f"{example_id}: material findings are missing")
+        elif has_material:
+            errors.append(f"{example_id}: clean result must omit material findings")
+
+        if count == 0 and len(section_kinds) <= 3 and "decision_ledger" not in section_kinds:
+            short_clean = True
+        if len(errors) == before:
+            validated += 1
+
+    missing_kinds = REVIEW_EXAMPLE_KINDS - observed_kinds
+    if missing_kinds:
+        errors.append(f"review/handoff examples missing kinds: {sorted(missing_kinds)}")
+    if not short_clean:
+        errors.append("review/handoff examples need a short clean result without a ledger")
+    return errors, validated
+
+
 def link_errors(path, root):
     errors = []
     text = re.sub(r"```.*?```", "", path.read_text(encoding="utf-8"), flags=re.S)
@@ -161,6 +281,7 @@ def validate(root):
     root = Path(root).resolve()
     errors = []
     routing_scenarios_validated = 0
+    review_handoff_examples_validated = 0
     content_names = []
     index_count = 0
 
@@ -429,6 +550,15 @@ def validate(root):
             if section not in full_visual_template:
                 errors.append(f"full visual template: missing section {section}")
 
+        review_handoff_template = (root / "docs" / "review-handoff-template.md").read_text(encoding="utf-8")
+        for section in REVIEW_HANDOFF_TEMPLATE_SECTIONS:
+            if section not in review_handoff_template:
+                errors.append(f"review/handoff template: missing section {section}")
+        example_errors, review_handoff_examples_validated = review_handoff_example_errors(
+            read_json(root / "tests" / "review_handoff_examples.json")
+        )
+        errors.extend(example_errors)
+
         discovery = root / ".agents/skills"
         actual_links = {path.name for path in discovery.iterdir()} if discovery.exists() else set()
         missing_engineering = set(EXPECTED_NAMES) - actual_links
@@ -501,7 +631,11 @@ def validate(root):
             markdown_paths
             + list((root / "contracts").rglob("*.json"))
             + list((root / "skills").rglob("*.json"))
-            + [root / "registry.json", root / "tests/routing_scenarios.json"]
+            + [
+                root / "registry.json",
+                root / "tests/routing_scenarios.json",
+                root / "tests/review_handoff_examples.json",
+            ]
         )
         for path in authored_paths:
             if not path.exists():
@@ -513,6 +647,7 @@ def validate(root):
         errors.append(f"invalid required repository artifact: {exc}")
         content_names = []
         index_count = 0
+        review_handoff_examples_validated = 0
 
     return {
         "status": "pass" if not errors else "fail",
@@ -522,6 +657,7 @@ def validate(root):
         "content_index_entries": index_count,
         "behavior_cases_executed": 0,
         "routing_scenarios_validated": routing_scenarios_validated,
+        "review_handoff_examples_validated": review_handoff_examples_validated,
         "errors": errors,
     }
 

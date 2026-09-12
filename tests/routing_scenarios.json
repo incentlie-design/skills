@@ -355,6 +355,105 @@
       ],
       "stop": "Return a ledger that accounts for every semantic item without pretending local keys are provider thread IDs.",
       "forbid": ["repetition treated as resolution", "distinct decisions collapsed by proximity", "inline reply or resolved state invented for a review summary"]
+    },
+    {
+      "id": "parallel-definition-without-ancestry",
+      "request": "Two authorized contributors need the same exact Requirement proposal while its docs PR remains under review. Start them from the selected stable code base, keep true code dependencies explicit, and later integrate selected frozen candidates over current stable main. Promotion still requires canonical acceptance.",
+      "expected_route": ["eng-project-governance", "eng-repo-governance"],
+      "expected_owner_actions": [
+        "Project governance records the exact definition input, distinguishes definition, code, and promotion dependencies, and derives the promotion block from the canonical decision.",
+        "Repository governance creates isolated contributors from the stable code base without merging the docs branch, preserves actual code ancestry, and combines selected candidates from the current stable integration base."
+      ],
+      "stop": "Return exact local candidates or integration evidence while leaving acceptance and remote actions to their stated authorities.",
+      "forbid": ["definition ancestry invented as a Git requirement", "copied speculative status", "automatic rebase of frozen candidates", "remote branch per draft revision"]
+    },
+    {
+      "id": "clean-review-short-result",
+      "request": "Review exact commit C against the supplied acceptance and changed paths. No material finding or evidence gap exists, and the user wants only the actionable result.",
+      "expected_route": ["eng-qa-reviewer"],
+      "expected_owner_actions": [
+        "Lead with exact subject C, the bounded no-material-finding conclusion, and that no action is required.",
+        "Stop after the short result unless one material unreviewed boundary changes how the conclusion may be consumed."
+      ],
+      "stop": "Return the short exact-subject result without expanding the review.",
+      "forbid": ["empty findings or coverage sections", "zero-row ledger", "repeated ticket and project facts", "approval or release claim"]
+    },
+    {
+      "id": "material-review-priority",
+      "request": "Review exact PR head H. A P1 data-integrity defect and its smallest required repair are known; coverage evidence and two P3 naming nits also exist.",
+      "expected_route": ["eng-qa-reviewer"],
+      "expected_owner_actions": [
+        "Put head H, the bounded verdict, the P1 finding, and owner/repair/recheck before coverage details.",
+        "Place residual risk and the P3 naming nits after the material decision path."
+      ],
+      "stop": "Return the actionable review bound to H.",
+      "forbid": ["P1 hidden after coverage or nits", "P3 treated as a blocker", "material finding without owner or recheck"]
+    },
+    {
+      "id": "clean-pr-feedback-without-ledger",
+      "request": "Triage exact PR head H after all review channels are read. There are no current feedback items and no material evidence gap; do not write provider state.",
+      "expected_route": ["eng-pr-feedback-triage"],
+      "expected_owner_actions": [
+        "Return the exact head, bounded clean triage conclusion, and no required action.",
+        "Omit the item ledger because no current item exists."
+      ],
+      "stop": "Stop at the short read-only result.",
+      "forbid": ["empty decision ledger", "invented comments", "approval inferred from no feedback", "provider write"]
+    },
+    {
+      "id": "requirement-diagram-na-by-ambiguity",
+      "request": "Write a reader-first Requirement for a local wording correction with no changed actor, scope, ownership, relationship, flow, state, data, trust, failure behavior, or acceptance semantics.",
+      "expected_route": ["eng-pm"],
+      "expected_owner_actions": [
+        "Use a concrete diagram N/A because a visual would not change this bounded product decision.",
+        "Keep the Requirement decision-first and omit unused diagram families and downstream role stages."
+      ],
+      "stop": "Deliver the compact Requirement candidate.",
+      "forbid": ["fixed seven-diagram inventory", "decorative figure", "mandatory Architecture to TD to QA sequence", "Archify dependency"]
+    },
+    {
+      "id": "td-selects-one-sequence-view",
+      "request": "Author a TD for an existing async timeout repair. Components and data ownership are unchanged and already clear; only retry ordering and terminal failure are ambiguous.",
+      "expected_route": ["eng-dev"],
+      "expected_owner_actions": [
+        "Select one sequence view covering retry ordering and terminal failure, mapped to the affected risk and acceptance.",
+        "Keep editable source and validate that figure without manufacturing ER, component, context, state, or journey views."
+      ],
+      "stop": "Deliver the bounded TD and its selected visual evidence.",
+      "forbid": ["diagram family quota", "unrelated topology design", "bitmap-only source", "Archify as authoring prerequisite"]
+    },
+    {
+      "id": "pic-selects-view-without-second-owner",
+      "request": "As PIC, aggregate exact PM and DEV outputs. Their only cross-output ambiguity is which owner controls one handoff; select the minimum view needed for the human decision.",
+      "expected_route": ["eng-agent-governance"],
+      "expected_owner_actions": [
+        "Select a minimal context or ownership table for the aggregate decision and keep the exact source outputs visible.",
+        "Leave product and technical diagram meaning with the PM/DEV artifacts rather than authoring a second canonical design."
+      ],
+      "stop": "Return the aggregate decision view and next owner/action.",
+      "forbid": ["PIC-owned duplicate design", "fixed diagram set", "role label used as authority", "new approval chain"]
+    },
+    {
+      "id": "wiki-archify-derived-only",
+      "request": "Build a derived wiki explanation from an accepted exact architecture source. A presentation transform may help, but the canonical project diagram must remain editable and unchanged.",
+      "expected_route": ["eng-wiki-authoring"],
+      "expected_owner_actions": [
+        "Freeze the exact source, preserve provenance, and keep any transformed output explicitly derived.",
+        "Treat Archify as an optional asynchronous presentation transform, validate semantic fidelity, and never write it back to canonical source."
+      ],
+      "stop": "Return the derived page candidate and actual validation evidence; publication remains separate.",
+      "forbid": ["Archify required for project authoring", "generated interpretation as canonical truth", "canonical source rewrite", "implicit publication"]
+    },
+    {
+      "id": "project-template-precedes-central-fallback",
+      "request": "Create a Requirement in a repository that already has an accepted local Requirement template and project vocabulary; the reusable Skills checkout also contains generic fallback outlines.",
+      "expected_route": ["eng-pm"],
+      "expected_owner_actions": [
+        "Use the repository-local template as the artifact shape and preserve its business fields, vocabulary, and fact owners.",
+        "Apply only the reusable information-priority and diagram-decision invariants without reading or copying the unused central fallback."
+      ],
+      "stop": "Deliver the bounded project-shaped Requirement without creating a second template authority.",
+      "forbid": ["central fallback overriding the project template", "duplicated business fields", "invented lifecycle or role chain", "unnecessary template context"]
     }
   ]
 }

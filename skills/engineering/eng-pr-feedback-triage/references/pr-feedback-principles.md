@@ -26,6 +26,12 @@ Evaluate in this order so convenience cannot hide material feedback:
 
 Do not manufacture a follow-up issue to make deferral look tracked. If issue-write authority is absent, return a draft follow-up and keep the source item explicit.
 
+The decision test controls disposition, not report length. Present the exact head
+and conclusion before material unresolved items and required actions; the
+item-by-item ledger is supporting detail. With no items, omit the ledger. With
+items, preserve complete accounting but place evidence-only no-action preferences
+and P3/nits after material decisions so they cannot obscure a blocker.
+
 One provider review can contain several decisions. When no item-level identity exists, derive local keys under the review revision and treat any review edit as changing all of them. Group repetitions only when all decision fields match, while retaining every source reference. Repetition is not resolution.
 
 ## GitHub evidence and capabilities

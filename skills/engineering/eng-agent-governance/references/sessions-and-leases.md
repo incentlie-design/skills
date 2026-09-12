@@ -25,6 +25,8 @@ A title records the context selected for that Session; it does not follow provid
 
 Provide the expected output location or return destination when it matters to retrieval. Use existing artifacts, task results, or messages rather than a mandatory push-and-acknowledge protocol. Cross-task communication still follows the tool's authorization boundary.
 
+A handoff begins with the exact output subject, bounded conclusion/status, any material limitation or required decision, and the next owner/action. A clean result can stop there. Add checks, coverage, provenance, residual risk, and history only when they change consumption; do not repeat assignment or project facts already available by exact locator.
+
 A failed callback does not invalidate a completed artifact and does not justify rerunning the producer. The coordinator can retrieve and inspect the result through an authorized read mechanism. If neither delivery nor retrieval is available, report the missing input without claiming it was received.
 
 Wait or read only as needed to satisfy the current request. A first-completion wait accounts for that result, not every outstanding dependency. An aggregate completion claim must cover its required outputs or explicitly name the gap. This does not require all child Sessions to end, a persistent child roster, or continuous polling. Do not claim background monitoring unless a supported mechanism is active.

@@ -70,6 +70,18 @@ Plugin installation, authentication, accounts, and permissions remain in the Cod
 
 When an owned goal, architecture, task, acceptance, candidate, or release decision changes, preserve its relevant revision and assess which downstream inputs or evidence are affected. Do not suspend unrelated work or require a new project approval for every upstream edit. Evidence for a changed subject cannot be presented as current without rechecking or justified reuse. Artifact authors and reviewers retain their own correctness authority; this Skill records references and gate decisions.
 
+Keep three dependency meanings distinct:
+
+| Meaning | Project record | Repository consequence |
+| --- | --- | --- |
+| Definition/input | Exact source revision or immutable artifact locator | Consumers read the selected bytes. Git ancestry is optional unless the content itself must ship in that branch. |
+| Code | Exact candidate that another candidate executes, imports, or extends | Repository governance preserves the required ancestry or declared combine order. |
+| Promotion | Required decision, gate, or delivery ordering | Blocks the affected promotion action without rewriting contributor history. |
+
+An exact proposal may be selected for explicitly authorized early analysis, feasibility work, or reversible implementation. This selection does not assert acceptance. The project derives promotability from the canonical decision and current evidence instead of synchronizing a `draft`, `speculative`, or `ready` flag across tasks, branches, and Sessions.
+
+Use the next revision for a material change to the same goal, scope, acceptance, dependency, risk, or authority. Use a child WorkItem when a future slice can be assigned, accepted, deferred, or cancelled independently. Evidence-only edits and newly discovered future work do not automatically revise the current delivery.
+
 Candidate selection answers what enters a target and when. Repository governance performs the resulting Git operations. A pipeline gate reports evidence against exact refs; closing a WorkItem still requires current acceptance and unresolved-risk decisions.
 
 ## RemoteSyncPlan

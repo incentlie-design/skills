@@ -28,9 +28,10 @@ Keep reusable decision methods and role checklists in Skills. Use an Agent defin
 
 ## Handing off or adopting results
 
-- Make the output locatable and identify its scope, relevant revision, checks, remaining work, and material limitations. Reuse existing artifacts and messages; a separate record, callback, or receipt is not universally required.
+- Make the output locatable and lead with its exact subject, conclusion/status, material limitations or cross-output conflicts, and required owner/action. Put checks, coverage, residual risk, history, and low-priority notes afterward; use the [review and handoff priority](../../../docs/review-handoff-template.md) and omit empty sections.
 - Base downstream work on the required artifact and evidence, not Session status or title. When a revision changes, assess its effect and suspend only actions whose input or evidence is no longer valid.
 - When responsible for an aggregate result, account for the required inputs or explicitly report what is missing. One completed child does not prove that all required results are available; unrelated Sessions need not reach a terminal state.
+- When coordinating as PIC, select only the smallest diagram or table needed to expose a cross-output owner, dependency, join, or decision ambiguity. Diagram authorship stays with the owning PM/DEV artifact; PIC does not generate a fixed view set or become a second design owner. Follow the [visual documentation contract](../../../docs/prd-td-visual-contract.md) when a visual is justified.
 - Report only observed progress. Do not equate execution completion, successful message delivery, acceptance, project closure, branch merge, or archival.
 
 ## Boundaries and stopping

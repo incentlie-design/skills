@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "examples": [
+    {
+      "id": "clean-review-short-form",
+      "kind": "review",
+      "material_findings_count": 0,
+      "sections": [
+        {
+          "kind": "exact_subject",
+          "content": "incentlie-design/example pull/42@0123456789abcdef0123456789abcdef01234567"
+        },
+        {
+          "kind": "conclusion",
+          "content": "no_material_finding for the selected diff and acceptance scope"
+        },
+        {
+          "kind": "required_action",
+          "content": "none"
+        }
+      ]
+    },
+    {
+      "id": "qa-material-first",
+      "kind": "qa_evidence",
+      "material_findings_count": 1,
+      "sections": [
+        {
+          "kind": "exact_subject",
+          "content": "candidate@1111111111111111111111111111111111111111 in ci-run-803"
+        },
+        {
+          "kind": "conclusion",
+          "content": "failed for AC-004 on the tested candidate"
+        },
+        {
+          "kind": "material_findings",
+          "content": "P1: rejection path committed partial state; see case QA-17 log assertion 9"
+        },
+        {
+          "kind": "required_action",
+          "content": "DEV restores atomic rejection; QA reruns QA-17 against the new exact head"
+        },
+        {
+          "kind": "coverage",
+          "content": "AC-001 through AC-004 selected; AC-005 excluded as unchanged deployment behavior"
+        },
+        {
+          "kind": "evidence",
+          "content": "ci-run-803 cases QA-11 through QA-17 with timestamped logs"
+        },
+        {
+          "kind": "residual_risk",
+          "content": "live-provider behavior remains untested because this run used the accepted mock boundary"
+        },
+        {
+          "kind": "nits",
+          "content": "P3: rename one test description after the blocking repair"
+        }
+      ]
+    },
+    {
+      "id": "pr-feedback-material-first",
+      "kind": "pr_feedback",
+      "material_findings_count": 1,
+      "sections": [
+        {
+          "kind": "exact_subject",
+          "content": "incentlie-design/example pull/51@2222222222222222222222222222222222222222"
+        },
+        {
+          "kind": "conclusion",
+          "content": "one material discussion remains unresolved"
+        },
+        {
+          "kind": "material_findings",
+          "content": "authorization comment c17 changes the accepted trust boundary"
+        },
+        {
+          "kind": "required_decision",
+          "content": "product owner selects whether delegated writes are in scope before code changes"
+        },
+        {
+          "kind": "evidence",
+          "content": "comment c17 revision 2026-09-12T10:00:00Z and contract POL-4"
+        },
+        {
+          "kind": "decision_ledger",
+          "content": "c17 discuss; c18 no_action with repository-style evidence"
+        },
+        {
+          "kind": "residual_risk",
+          "content": "head changes invalidate both item dispositions"
+        }
+      ]
+    },
+    {
+      "id": "pm-handoff-material-first",
+      "kind": "pm_handoff",
+      "material_findings_count": 1,
+      "sections": [
+        {
+          "kind": "exact_subject",
+          "content": "requirement REQ-9@r3"
+        },
+        {
+          "kind": "conclusion",
+          "content": "decision-ready except for one product boundary"
+        },
+        {
+          "kind": "material_findings",
+          "content": "AC-006 cannot be observed until the retention owner is selected"
+        },
+        {
+          "kind": "required_decision",
+          "content": "data owner selects the retention boundary and revises REQ-9"
+        },
+        {
+          "kind": "coverage",
+          "content": "all other in-scope outcomes map to AC-001 through AC-005"
+        },
+        {
+          "kind": "residual_risk",
+          "content": "downstream storage design remains intentionally unselected"
+        }
+      ]
+    },
+    {
+      "id": "dev-handoff-material-first",
+      "kind": "dev_handoff",
+      "material_findings_count": 1,
+      "sections": [
+        {
+          "kind": "exact_subject",
+          "content": "working tree snapshot patch-id 3333333333333333333333333333333333333333"
+        },
+        {
+          "kind": "conclusion",
+          "content": "implementation complete but candidate is blocked on compatibility evidence"
+        },
+        {
+          "kind": "material_findings",
+          "content": "the supported older schema fixture is unavailable, so backward compatibility is unknown"
+        },
+        {
+          "kind": "required_action",
+          "content": "fixture owner supplies schema v2 data; DEV runs selector compatibility-v2 before commit"
+        },
+        {
+          "kind": "evidence",
+          "content": "focused current-schema selectors passed on the identified dirty snapshot"
+        },
+        {
+          "kind": "residual_risk",
+          "content": "no claim is made for schema v2 until the blocked selector executes"
+        }
+      ]
+    }
+  ]
+}

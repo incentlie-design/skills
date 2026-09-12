@@ -40,7 +40,7 @@ For coding or implementation design, pair this Skill with `ponytail` when it is 
 
 ## Output and boundaries
 
-Return one concise `ClosureDecision` containing:
+Return one concise `ClosureDecision`. Lead with the exact decision subject, recommendation/status, the material uncertainty that could invalidate it, and the next owner/action. Put evidence, limits, and deferred detail afterward; omit empty categories instead of filling a decision ledger. Follow the [review and handoff priority](../../../docs/review-handoff-template.md) when the result is handed off.
 
 - the actor-to-evidence loop and success signal;
 - the recommended vertical path and why it closes first;
@@ -48,6 +48,8 @@ Return one concise `ClosureDecision` containing:
 - clean-boundary and non-deferrable invariants;
 - the first runnable check, known ceiling, rollback or replacement seam;
 - unresolved risks, next evidence review, and owning workflow.
+
+Use prose or a small table by default. Add a diagram only when scope, ownership, sequence, state, or data ambiguity would otherwise obscure the recommendation; select the smallest view under the [visual documentation contract](../../../docs/prd-td-visual-contract.md). A `ClosureDecision` does not require a diagram inventory.
 
 Do not author or approve the final product specification or architecture, create project/task state, assign agents, perform repository mutations, redefine test semantics, or execute external writes. Load the owning product or architecture Skill for the artifact, `eng-project-governance` for canonical work and gate decisions, `eng-agent-governance` for assignments, and `eng-repo-governance` for Git mutations.
 

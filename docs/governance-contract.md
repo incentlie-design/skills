@@ -36,7 +36,10 @@ An explicitly requested consumer format remains a task-specific constraint; it d
 ## Evidence, authority, and blocking
 
 - Bind Git and reproducible workspace claims to exact commits, and external writes to expected revisions. Reassess evidence affected by changed inputs; unrelated revisions do not automatically block all work.
+- Project governance classifies definition, code, and promotion dependencies. Repository governance enforces ancestry only for actual code consumption; an exact definition reference need not become a contributor's Git ancestor.
 - Project governance records remote-sync intent and selected refs/timing. Repository governance validates exact local/remote revisions and authorized refspecs; it may reject unsafe intent but cannot expand it.
 - Delegation, a lease, a plan, or a local commit grants no new tracker, push, publication, rewrite, cleanup, deployment, or production authority.
 - A missing required fact blocks the dependent action. Continue independent authorized work where safe, without creating a substitute system of record or claiming the blocked action succeeded.
 - Runtime completion, message delivery, artifact acceptance, integration, and archival are separate facts. Depend on required outputs and evidence, not titles or terminal Session states.
+
+When these owners report a decision or handoff, use the shared [review and handoff information priority](review-handoff-template.md): exact subject and conclusion first, then material blockers and required action. Detailed evidence and low-priority information follow and are omitted when empty. This presentation rule does not create another state owner or mandatory packet.
