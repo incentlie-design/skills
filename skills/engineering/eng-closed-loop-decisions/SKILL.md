@@ -32,6 +32,30 @@ Read [research basis and derived principles](references/decision-principles.md) 
 
 When two routes both close the loop, prefer shorter time to evidence, fewer irreversible commitments, less accidental complexity, easier rollback or replacement, and stronger evidence per unit of effort—in that order unless the user supplies a different priority. Do not create a weighted decision framework unless one is requested.
 
+## Close Architecture conflicts without false stops
+
+When the current Architecture path cannot close an accepted goal, preserve both
+instead of narrowing the goal or bypassing an invariant. Use project-defined
+levels when supplied; otherwise classify the conflicting statement by consequence:
+
+| Level | Meaning | Default treatment |
+| --- | --- | --- |
+| `C0` | Non-deferrable authority, safety, privacy, compliance, data-integrity, or irreversible-effect constraint | Stop any path that would violate it |
+| `C1` | Accepted product or domain invariant | Obtain the owning product/domain decision before changing it |
+| `C2` | Architecture guardrail or cross-boundary ownership rule | Make the delta explicit; evidence may proceed when safely admitted, but promotion waits for acceptance |
+| `C3` | Accepted but replaceable baseline design choice | Prefer it; compare the smallest safe relaxation when it cannot close the goal |
+| `C4` | Local implementation detail | Let the implementing owner decide and verify it proportionally |
+
+Record one `ArchitectureConflict`: signed goal, exact constraint/revision, level,
+current and smallest-relaxed results across flow/effect/known consumers, affected
+actions, one recommendation, at most one fallback, and promotion condition. An
+unknown result names one falsifiable probe.
+
+Candidate and promotion admission are separate. A candidate may proceed only when
+isolated, bounded, reversible, preserving `C0`/`C1`, explicit about any `C2` delta,
+and free of unauthorized effects. Promotion waits for delta acceptance, current
+independent evidence, and promotion authority. Pause only affected actions.
+
 ## Keep simple and keep clean
 
 `Keep simple` minimizes moving parts and decisions required before the loop runs. `Keep clean` preserves explicit boundaries, one authoritative state, understandable control flow, basic failure behavior, and a credible removal or migration seam. A shortcut that makes the next iteration opaque or unsafe is not simple; it merely moves cost out of view.
@@ -45,6 +69,8 @@ Return one concise `ClosureDecision`. Lead with the exact decision subject, reco
 - the actor-to-evidence loop and success signal;
 - the recommended vertical path and why it closes first;
 - `decide_now`, `default_now`, `defer_until`, and `reject` decisions;
+- any `ArchitectureConflict`, candidate admission, promotion condition, and
+  owning decision;
 - clean-boundary and non-deferrable invariants;
 - the first runnable check, known ceiling, rollback or replacement seam;
 - unresolved risks, next evidence review, and owning workflow.
