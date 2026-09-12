@@ -10,6 +10,60 @@ complete design package MUST let a human reviewer understand the proposal and an
 implementing Agent execute it without inventing product behavior, interfaces,
 data rules, or lifecycle semantics.
 
+## Artifact profiles
+
+Use the same traceability vocabulary across product, Architecture, TD, and QA
+artifacts, but do not force every artifact to carry every level of detail. New
+Requirement/PRD documents MUST declare one format marker in document control.
+Existing unmarked documents retain their existing format until explicitly
+migrated.
+
+### `full-visual-design-package`
+
+This is the existing complete PRD/design-package profile. Use it when a user
+requests the full visual package, when the document already uses it, or when no
+profile is selected. It preserves the original complete visual contract:
+
+- Use the [PRD and TD visual template](prd-td-visual-template.md).
+- Include the human review layer and the full Agent execution contract.
+- Account for each applicable core visual as rendered `present` or concrete
+  `N/A`; do not use `deferred`.
+- Use this profile for an Architecture proposal or TD unless the project defines
+  a narrower, accepted local artifact profile.
+
+### `reader-first-requirement`
+
+A Requirement is the product owner's decision document. Its primary reading path
+MUST let a human reviewer decide the problem, outcome, scope, ownership boundary,
+observable acceptance, and open product decisions in one pass. It is not a
+compressed TD.
+
+- Use the [reader-first Requirement template](requirement-reader-first-template.md)
+  unless the project supplies an equivalent local template.
+- Keep the main body to the problem/outcome, scope and non-goals, selected product
+  direction, a small number of business flows, acceptance criteria, ownership
+  boundaries, decisions requested now, and the next-artifact gates.
+- Present only the diagrams needed for product comprehension: a concept map,
+  system context, conceptual ER when persisted domain concepts exist, and a user
+  journey/activity flow when a person or operator receives value.
+- Component structure, physical ER/schema, runtime sequence, typed failure
+  taxonomy, detailed lifecycle transitions, test matrices, fixtures, and E2E
+  candidates belong in Architecture, TD, or QA unless the product decision
+  itself cannot be understood without that exact detail.
+- A Requirement manifest MAY mark an applicable technical view as `deferred`
+  only when it identifies the owning artifact, owner, question, and entry
+  condition. `deferred` is not `N/A`, is not verification evidence, and must not
+  be used to claim technical approval.
+
+### Architecture, TD, and QA artifacts
+
+Architecture turns ownership and logical data decisions into a complete
+architecture/ER/ADR proposal. TD selects the implementation contracts,
+components, runtime interactions, lifecycle mechanics, and failure semantics.
+QA maps accepted criteria to test cases, environments, fixtures, and evidence.
+Each artifact MUST link back to the accepted Requirement revision and MUST avoid
+repeating upstream product narrative unless it changes the decision.
+
 ## Two-reader contract
 
 Keep two complementary layers in one source-controlled document:
@@ -63,8 +117,11 @@ stable link to an authoritative artifact:
    checked, what is not yet verified, and which evidence becomes stale when the
    design changes.
 
-Use the [copyable PRD and TD template](prd-td-visual-template.md) when creating a
-new document.
+Use the [reader-first Requirement template](requirement-reader-first-template.md)
+only when `reader-first-requirement` is selected. Use the
+[PRD and TD visual template](prd-td-visual-template.md) for
+`full-visual-design-package`, Architecture, TD, or an equivalent complete design
+package.
 
 ## Diagram manifest
 
@@ -74,23 +131,26 @@ The document MUST include a manifest before its figures:
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `D-01` | context | present | Who uses the system and what is outside it? | target system | human + Agent | `FR-001` | inline Mermaid | proposed, document revision |
 
-Each required family below MUST have either a rendered, source-controlled diagram
-or an explicit `N/A` entry with the concrete reason it has no subject in this
-design. Silence is not `N/A`. A package with persisted entities, component
-boundaries, runtime interaction, or a stateful core object cannot mark the
-corresponding diagram `N/A`.
+Each required family below MUST be accounted for in the manifest. In a
+`full-visual-design-package`, Architecture, TD, or QA design package it MUST
+have a rendered, source-controlled diagram or an explicit `N/A` entry with the
+concrete reason it has no subject. In a `reader-first-requirement`, an
+unselected technical view MAY be `deferred` only under the conditions in that
+profile. Silence is not `N/A` or `deferred`. A package with persisted entities,
+component boundaries, runtime interaction, or a stateful core object cannot mark
+the corresponding diagram `N/A`.
 
 ## Core visual set
 
-| Visual | PRD expectation | TD expectation | Minimum semantic content |
-| --- | --- | --- | --- |
-| Concept mind map | MUST decompose the problem and domain | MUST include or link the shared domain map and add technical concerns only when useful | One root scope; actors, outcomes, concepts, rules, states, integrations, risks, and open questions as distinct branches |
-| System context | MUST | MUST reuse or update the same scope model | System boundary, people or Agents, external systems, and labelled interaction purposes; no internal components |
-| ER diagram | Logical model when domain data exists; otherwise explicit `N/A` | Physical or implementation model for persisted data changes; otherwise explicit `N/A` | Entities, keys, cardinality, optionality, ownership, and important uniqueness or lifecycle constraints |
-| Component/class diagram | Technology-neutral functional blocks when a solution shape is part of the PRD | MUST for a non-trivial TD | One abstraction level, component responsibilities, interfaces, dependency direction, technology where selected, and boundary or deployable-unit grouping |
-| Sequence diagram | User journey MAY carry early ordering; use a sequence when system interactions affect the requirement | MUST cover each architecturally significant scenario, with at least the critical success path and its material failure branch | Actor and participants, ordered messages, sync/async semantics, contract or payload IDs, alternatives, timeout/retry/compensation, and final visible result |
-| State machine | MUST for each stateful core domain object; otherwise explicit `N/A` | MUST refine every changed lifecycle; otherwise explicit `N/A` | Initial and terminal states; `event [guard] / effect`; rejection, timeout, retry, cancellation or compensation; persistence and atomicity boundary |
-| User journey/activity flow | MUST for a user-facing or operator-facing behavior | Link it to the runtime realization | Persona, entrance, actions and decisions, feedback, failure/recovery, success, and exit |
+| Visual | Reader-first Requirement expectation | Full visual package expectation | TD expectation | Minimum semantic content |
+| --- | --- | --- | --- | --- |
+| Concept mind map | MUST decompose the product problem and domain | MUST decompose the problem and domain | MUST include or link the shared domain map and add technical concerns only when useful | One root scope; actors, outcomes, concepts, rules, states, integrations, risks, and open questions as distinct branches |
+| System context | MUST | MUST | MUST reuse or update the same scope model | System boundary, people or Agents, external systems, and labelled interaction purposes; no internal components |
+| ER diagram | Conceptual model when persisted domain facts exist; otherwise explicit `N/A` | Logical model when domain data exists; otherwise explicit `N/A` | Physical or implementation model for persisted data changes; otherwise explicit `N/A` | Entities, keys, cardinality, optionality, ownership, and important uniqueness or lifecycle constraints |
+| Component/class diagram | Include only when the product decision depends on a selected functional boundary; otherwise defer to Architecture/TD | Technology-neutral functional blocks when a solution shape is part of the PRD | MUST for a non-trivial TD | One abstraction level, component responsibilities, interfaces, dependency direction, technology where selected, and boundary or deployable-unit grouping |
+| Sequence diagram | Include a business sequence only when ordering changes acceptance; defer runtime mechanics to TD | User journey MAY carry early ordering; use a sequence when system interactions affect the requirement | MUST cover each architecturally significant scenario, with at least the critical success path and its material failure branch | Actor and participants, ordered messages, sync/async semantics, contract or payload IDs, alternatives, timeout/retry/compensation, and final visible result |
+| State machine | Include only the selected product lifecycle; defer persistence and implementation transitions to Architecture/TD | MUST for each stateful core domain object; otherwise explicit `N/A` | MUST refine every changed lifecycle; otherwise explicit `N/A` | Initial and terminal states; `event [guard] / effect`; rejection, timeout, retry, cancellation or compensation; persistence and atomicity boundary |
+| User journey/activity flow | MUST for a user-facing or operator-facing behavior | MUST for a user-facing or operator-facing behavior | Link it to the runtime realization | Persona, entrance, actions and decisions, feedback, failure/recovery, success, and exit |
 
 The concept mind map is an index for discussion, not a substitute for requirements
 or traceability. A component diagram is not a folder tree. A code-level class

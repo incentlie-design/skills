@@ -1,5 +1,10 @@
 # PRD and TD visual template
 
+Use this template when the document-control marker is
+`full-visual-design-package`. This preserves the existing complete PRD/design
+package format. For the explicit `reader-first-requirement` marker, use the
+[reader-first Requirement template](requirement-reader-first-template.md).
+
 Copy only the sections that apply, but retain the diagram manifest and account for
 every core diagram family as `present` or `N/A` under the
 [PRD and TD visual documentation contract](prd-td-visual-contract.md).
@@ -9,6 +14,7 @@ every core diagram family as `present` or `N/A` under the
 | Field | Value |
 | --- | --- |
 | Document ID | `PRD-...` or `TD-...` |
+| Format profile | `full-visual-design-package` |
 | Title |  |
 | Status | draft / proposed / approved / superseded |
 | Owner |  |
