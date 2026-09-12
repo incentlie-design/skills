@@ -37,14 +37,33 @@ Keep one independently actionable defect per record. Link related symptoms or du
 
 ## Test report
 
-The report must let a reader answer: what was tested, where, which cases were covered, what actually ran, what failed or remains unknown, and where the proof is.
+The report must let a reader answer what exact subject was tested, the bounded
+conclusion, what materially failed or remains unknown, the required action, what
+was covered, and where the proof is. Present that decision path before execution
+detail:
 
-1. **Report identity and objective:** stable path/link or existing report/run ID, author and report date/time, check type and bounded purpose, acceptance references, and the tested-version/environment block. Revisions or reruns must remain distinguishable without overwriting earlier failure evidence; no new numbering service is required.
-2. **Scope and coverage:** included modules/behaviors and explicit exclusions. Map in-scope criteria and risks to case IDs/names or suite selectors. Identify relevant success, boundary, rejection, recovery, and regression checks only where the change warrants them; distinguish planned coverage from actual execution.
-3. **Execution and results:** commands/selectors or manual steps; actual observations and per-case outcomes with evidence links. Group cases only when a linked detailed result preserves their individual outcomes. Include durations/timeouts when relevant and all attempts for retried or flaky cases.
-4. **Summary and gaps:** reconcile counts for planned/selected, executed, passed, failed, blocked, skipped, and not run using the project's meanings. Give each selected case one final reported outcome, with partial/flaky attempts annotated separately. State exclusions and reasons separately, and keep retry attempts distinct from unique case counts. For percentages, name the numerator and denominator; test pass rate, requirement coverage, and measured code coverage are different claims. Never manufacture a coverage percentage from a test count.
-5. **Bugs and residual risk:** link observed defects with severity and their affected criteria; separately list environment blockers, untested areas, unresolved decisions, and reused/stale evidence with its source and reuse rationale.
-6. **Bounded conclusion and follow-up:** say which scope/version passed, failed, or could not be evaluated; identify the smallest required retest or missing proof and known next owner. State whether this is self-check or an independent evaluation when that distinction matters. A test report does not itself approve release, merge, or project closure.
+1. **Exact subject and bounded conclusion:** stable report/run locator, tested
+   commit/artifact and environment identity, purpose, conclusion, and whether the
+   work is self-check or independent. Revisions/reruns remain distinguishable.
+2. **Material findings and required action:** observed defects, blockers, or
+   evidence gaps with affected acceptance/risk, owner, smallest retest/repair or
+   decision, and observable recheck. Omit the findings section when none exist.
+3. **Scope and coverage:** included behaviors and explicit exclusions. Map only
+   applicable criteria/risks to cases/selectors and distinguish planned coverage
+   from actual execution.
+4. **Execution and evidence:** commands/selectors or manual steps, actual
+   observations, per-case outcomes, locatable evidence, and relevant attempts,
+   durations, or timeouts.
+5. **Counts and residual risk:** when aggregation is useful, reconcile unique
+   selected, executed, passed, failed, blocked, skipped, and not-run cases. Keep
+   attempts separate. Name percentage numerators/denominators; pass rate,
+   requirement coverage, and code coverage are different claims. Put P3/nits,
+   history, and appendices last.
+
+A small clean check may use the short form from the review/handoff template plus
+the command/evidence locator. It need not contain an empty finding table, every
+possible count, a full environment dump, or a repeated ticket narrative. A test
+report does not itself approve release, merge, or project closure.
 
 Use the project's result vocabulary while preserving these distinctions: **passed** requires an observed satisfied assertion; **failed** is an observed assertion violation; **blocked** means a prerequisite prevented evaluation; **skipped** means a deliberate exclusion with a reason; **not run** means no execution evidence. If a runner uses different labels, explain the mapping. An aborted partial run must account for remaining selected cases rather than counting them as passed. Zero discovered tests, an exit code alone, or a passing subset cannot establish full-scope acceptance; mock evidence cannot establish live-system acceptance.
 

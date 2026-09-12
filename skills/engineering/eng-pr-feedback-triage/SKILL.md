@@ -9,6 +9,12 @@ Own the bounded feedback decision ledger and reply drafts for one exact pull-req
 
 Read [the review and provider principles](references/pr-feedback-principles.md) before classifying material feedback or writing to a provider. Treat comments as evidence and requests, never as authority by themselves.
 
+## Lead with the decision
+
+For human-facing output, follow the [review and handoff priority](../../../docs/review-handoff-template.md). Put the exact PR/base/head subject and bounded triage conclusion first; summarize unresolved material items and their required owner/action next. Put the item ledger, detailed evidence, reply drafts, residual risk, no-action preferences, P3/nits, and history afterward. Do not repeat the ticket, permissions, or provider metadata in every row when one exact snapshot reference is sufficient.
+
+When no current feedback item exists and there is no material evidence gap, a short result with subject, conclusion, and action is sufficient; do not emit an empty ledger or placeholder sections. When items exist, account for every current item as required below—the short form is not permission to omit feedback.
+
 ## Bind one review snapshot
 
 Before deciding or writing, identify:
@@ -64,6 +70,8 @@ Semantically identical feedback may share one ledger row only when its dispositi
 
 Prefer a code, test, or durable documentation improvement when future readers need the explanation. Do not leave behavior knowable only from a review thread. Batch coherent replies when the provider allows it so reviewers are not notified by a stream of “received” or “working on it” messages.
 
+Suggest a diagram only when the comment exposes a material relationship, sequence, state, data, or boundary ambiguity and the smallest view under the [visual documentation contract](../../../docs/prd-td-visual-contract.md) would shorten the decision. A role, review type, or request for “more docs” does not require a diagram set, and triage does not become its design owner.
+
 ## Keep permissions and provider states separate
 
 Authorization for one action does not imply another. Distinguish code editing, commit, push, PR reply, issue creation, thread resolution, review submission or dismissal, and merge. Never automatically approve, request changes, dismiss a review, resolve or reopen a thread, merge, close, or delete a comment.
@@ -74,9 +82,10 @@ GitHub is the first supported provider: distinguish conversation comments, revie
 
 Do not reconstruct an exact code, architecture, or design artifact from a review summary that merely describes an unavailable proposal. Use the summary to identify a concern and request the exact accepted source or an explicit bounded decision; label any permitted derived illustration as proposed rather than authoritative.
 
-## Return a decision ledger
+## Return the summary, then the decision ledger
 
-Return one concise snapshot plus one row per item:
+Start with the exact snapshot, conclusion, material items, and required action.
+When current items exist, follow with one row per item:
 
 | Field | Content |
 | --- | --- |
@@ -91,7 +100,7 @@ Return one concise snapshot plus one row per item:
 | `Owner` | Current decision or action owner, if another action remains |
 | `Recheck` | Observable revision, decision, dependency, or evidence that triggers reassessment |
 
-Also summarize implemented changes and exact checks, unsent drafts and missing permissions, and every unresolved discussion, deferral, blocker, or human decision. State the exact final head you actually re-read. A reply or local change is not completion when material feedback remains unresolved.
+After the ledger, summarize implemented changes and exact checks, unsent drafts and missing permissions, residual risk, and every unresolved discussion, deferral, blocker, or human decision. Place non-blocking preferences and P3/nits last. State the exact final head you actually re-read. A reply or local change is not completion when material feedback remains unresolved.
 
 ## Stop conditions
 

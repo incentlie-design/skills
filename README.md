@@ -43,9 +43,11 @@ The [governance contract](docs/governance-contract.md) defines four responsibili
 
 Closed Loop and `ponytail` are complementary: the former narrows the product/architecture decision, the latter minimizes the implementation. Neither waives safety, data integrity, or explicit requirements.
 
-## PRD and TD visual contract
+## Review, handoff, and visual contracts
 
-Non-trivial product and technical designs follow the shared [PRD and TD visual documentation contract](docs/prd-td-visual-contract.md). Requirement/PRD documents select and declare one format marker: [`full-visual-design-package`](docs/prd-td-visual-template.md) preserves the existing complete design-package format, while [`reader-first-requirement`](docs/requirement-reader-first-template.md) leads with product decisions, acceptance, and ownership boundaries before deferring unselected technical views. Architecture/TD normally uses the full profile. PM authors the bounded Requirement, DEV authors the bounded technical design, and QA/Reviewer judges the supplied contract without becoming a second design owner.
+Human-facing Review, QA evidence, PR feedback, and PM/DEV/PIC handoffs use the shared [information-priority template](docs/review-handoff-template.md): exact subject and bounded conclusion first, material findings and required action next, then coverage/evidence, residual risk, and finally P3/nits/history/appendix. A clean result may be three lines; no empty section or zero-row ledger is required.
+
+Non-trivial product and technical designs follow the shared [PRD and TD visual documentation contract](docs/prd-td-visual-contract.md). Requirement/PRD documents retain the selectable [`full-visual-design-package`](docs/prd-td-visual-template.md) and [`reader-first-requirement`](docs/requirement-reader-first-template.md) markers, but neither marker nor an author role imposes a fixed diagram set. PM and DEV add only the smallest editable view needed to remove a material product or technical ambiguity; QA/Reviewer validates the supplied subject without becoming a second design owner; PIC selects the minimum aggregate view; Wiki may transform accepted sources only as a derived build. Project diagram authoring never depends on Archify.
 
 ## GitHub remote and branch synchronization
 

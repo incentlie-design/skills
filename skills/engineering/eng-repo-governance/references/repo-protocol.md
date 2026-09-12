@@ -33,7 +33,7 @@ After a write, capture the exact resulting head, changed paths, command class, v
 
 ## Branch and worktree roles
 
-- A contributor branch carries one bounded change from an exact base.
+- A contributor branch carries one bounded change from an exact stable code base. It may read an immutable definition commit outside its ancestry.
 - A review branch is optional and must not become a second writer for contributor-owned paths.
 - An aggregate branch combines compatible candidates without declaring them stable.
 - An integration branch freezes an ordered candidate set and exact head for verification.
@@ -41,9 +41,11 @@ After a write, capture the exact resulting head, changed paths, command class, v
 
 These roles describe optional uses, not a required sequence. Branches carry changes independently of Session lifetime. One worktree has one active writer; concurrent repository writers use isolated worktrees, while read-only collaborators need no separate write worktree. A branch already checked out elsewhere is not silently moved. A handed-off commit is immutable; subsequent corrections are new commits or an authorized integration operation.
 
+Do not confuse three dependency types. A definition/input dependency identifies exact bytes and needs no ancestry by default. A code dependency means one candidate consumes another and therefore needs exact ancestry or an explicit combine operation. A promotion dependency controls selection, gate, or merge order and does not rewrite contributor history. Record the project-selected references with the existing ticket or PR rather than creating another state registry.
+
 ## Freeze, verification, and promotion
 
-For integration, bind evidence to the selected candidate commits, relevant base, resulting head, and required verification. A multiple-candidate integration also identifies the selected set and dependency order. Do not create a freeze record or an integration branch for an unrelated Git action. If candidates or the base change, reassess affected evidence and verify or justify reuse for the new head; never label evidence from another head as current without that basis.
+For integration, bind evidence to the selected candidate commits, definition references, selected current stable base, resulting head, and required verification. A multiple-candidate integration starts from that stable base and identifies the selected set and code-dependency order. Contributors may have different historical bases; do not rewrite frozen candidates merely because stable advanced. Do not create a freeze record or an integration branch for an unrelated Git action. If candidates or the integration base change, reassess affected evidence and verify or justify reuse for the new head; never label evidence from another head as current without that basis.
 
 Project governance owns candidate and release-window selection. This Skill confirms ancestry and performs the profile-authorized merge, cherry-pick, or fast-forward. Squash or rewrite creates a new head and therefore needs evidence on that resulting head.
 
@@ -60,6 +62,8 @@ Validate the plan against these repository guardrails:
 - A selected release branch must correspond to an actual release workflow. Tags remain a separate publication decision and are never added implicitly or bulk-pushed.
 
 Repository governance may reject a stale, ambiguous, unauthorized, or unsafe plan, but it must not choose a new synchronization need or time. Before pushing, read remote refs, compare the expected remote revision, verify the exact local head and intended paths, and obtain authority for the named refspecs. Push those refspecs individually. A non-fast-forward update, remote deletion, force update, or cleanup requires a separate decision and recovery evidence. Afterward, re-read the remote refs and report the exact result; partial success must not be summarized as full synchronization.
+
+For one open proposal, prefer one remote review branch and PR; push subsequent pre-freeze revisions to that line. Create another remote branch when it represents independently reviewable scope, a selected competing candidate, or a distinct remote purpose. Do not publish every local docs or feasibility branch. Preserve exact review commits in canonical evidence before any authorized cleanup.
 
 ## History rewrite and cleanup
 

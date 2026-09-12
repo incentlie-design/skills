@@ -1,263 +1,114 @@
 # PRD and TD visual template
 
-Use this template when the document-control marker is
-`full-visual-design-package`. This preserves the existing complete PRD/design
-package format. For the explicit `reader-first-requirement` marker, use the
-[reader-first Requirement template](requirement-reader-first-template.md).
+Use this copyable template when document control selects
+`full-visual-design-package`. It is complete with respect to material decisions,
+not a fixed number of sections or diagrams. Delete unused optional sections; do
+not leave empty tables or placeholder headings.
 
-Copy only the sections that apply, but retain the diagram manifest and account for
-every core diagram family as `present` or `N/A` under the
-[PRD and TD visual documentation contract](prd-td-visual-contract.md).
+See the [visual documentation contract](prd-td-visual-contract.md) and
+[review/handoff priority](review-handoff-template.md).
 
-## Document control
+## Exact subject and review decision
 
 | Field | Value |
 | --- | --- |
-| Document ID | `PRD-...` or `TD-...` |
+| Document ID / title |  |
 | Format profile | `full-visual-design-package` |
-| Title |  |
-| Status | draft / proposed / approved / superseded |
+| Exact subject/source revision | issue, brief, commit, or document revision |
+| Status/conclusion | draft / proposed / review-ready / approved / superseded |
 | Owner |  |
-| Source or revision | issue, brief, commit, or document revision |
-| Updated | YYYY-MM-DD |
 | Scope |  |
-| Supersedes | `N/A` or document ID |
+| Supersedes | omit when none |
+
+### Material findings or open decisions
+
+Omit when none. Put each blocking/material item before design detail:
+
+| Finding/decision | Evidence and impact | Required owner/action | Recheck |
+| --- | --- | --- | --- |
+|  |  |  |  |
+
+### Required action
+
+State the decision or review action required now. Use `none` only for a bounded
+clean result.
 
 ## Human review layer
 
 ### Problem, actors, and outcome
 
 - Problem and current evidence:
-- Human/Agent actors:
-- Desired observable outcome:
+- Actor and desired observable outcome:
 - Why now:
 
-### Scope and decision
+### Scope and selected direction
 
-- In scope:
-- Non-goals:
-- Hard constraints:
+- In scope / non-goals:
+- Hard constraints and invariants:
 - Selected direction and why:
 - Material alternative and rejection reason:
-- Top risks, assumptions, and open decisions:
+- Top risks and assumptions:
 
 ## Agent execution contract
 
-### Requirements
+Keep only rows needed by the subject.
 
-| ID | Actor | Trigger/preconditions | Behavior | Inputs/outputs | Success | Failure/recovery | Invariants | Acceptance/evidence |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `FR-001` |  |  |  |  |  |  |  |  |
+| ID | Trigger/preconditions | Observable behavior | Inputs/outputs | Success | Failure/recovery | Invariants | Acceptance/evidence |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| `FR-001` |  |  |  |  |  |  |  |
 
-### Quality requirements
-
-| ID | Attribute | Workload and threshold | Measurement | Design consequence |
-| --- | --- | --- | --- | --- |
-| `NFR-001` | reliability / latency / security / cost / ... |  |  |  |
-
-### Authoritative contracts
-
-| Contract ID | Type | Location/revision | Producer/owner | Consumers | Compatibility rule |
-| --- | --- | --- | --- | --- | --- |
-| `API-001` | OpenAPI / AsyncAPI / schema / migration / policy |  |  |  |  |
-
-## Diagram manifest
-
-| ID | Type | Coverage | Question answered | Scope/viewpoint | Audience | Requirement/ADR IDs | Source | Status/revision |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `D-01` | concept mind map | present | What concepts must stay distinct? | product/domain | human + Agent |  | inline Mermaid |  |
-| `D-02` | system context | present | Who interacts with the system and what is outside it? | target system | human + Agent |  | inline Mermaid |  |
-| `D-03` | ER | present or `N/A: reason` | What entities, ownership, and cardinalities exist? | conceptual/logical/physical | human + Agent |  | inline Mermaid |  |
-| `D-04` | component/class | present or `N/A: reason` | Which components own behavior and dependencies? | functional/container/component/code | human + Agent |  | inline Mermaid |  |
-| `D-05` | sequence | present or `N/A: reason` | How does a named scenario succeed or fail over time? | named scenario | human + Agent |  | inline Mermaid |  |
-| `D-06` | state machine | present or `N/A: reason` | Which lifecycle transitions are allowed? | named object/workflow | human + Agent |  | inline Mermaid |  |
-| `D-07` | user journey/activity | present or `N/A: reason` | How does an actor reach value and recover? | named actor and outcome | human + Agent |  | inline Mermaid |  |
-
-Add conditional deployment/network, data-flow/trust, identity/access,
-availability/resilience, or requirement-trace views when their trigger exists.
-
-## Visuals
-
-Replace labels with domain terms and stable IDs. These are semantic skeletons,
-not a sample solution.
-
-### D-01 — Concept mind map
-
-Question: What concepts must reviewers and implementers keep distinct?
-
-```mermaid
-mindmap
-  root((Product or bounded problem))
-    Actors
-      Human role
-      Agent role
-    Outcomes
-      FR-001 observable value
-    Domain
-      Entity
-      Rule
-      State
-    Integrations
-      External system
-    Risks and unknowns
-      RISK-001
-      OPEN-001
-```
-
-Figure D-01. Concept decomposition; leaves link to formal definitions below.
-
-### D-02 — System context
-
-Question: Who interacts with the system, and what is outside its boundary?
-
-```mermaid
-flowchart LR
-  person["Person<br/>Desired outcome"]
-  agent["Agent<br/>Authorized task"]
-  external["External system<br/>Owned elsewhere"]
-  subgraph scope["System in scope — purpose"]
-    system["System<br/>Black box at context level"]
-  end
-  person -->|"initiates FR-001"| system
-  agent -->|"executes under policy POL-001"| system
-  system -->|"sends/receives via contract API-001"| external
-```
-
-Figure D-02. System context and external interaction purposes.
-
-### D-03 — ER diagram
-
-Question: What are the authoritative entities and their cardinalities?
-
-```mermaid
-erDiagram
-  PARENT ||--o{ CHILD : owns
-  PARENT {
-    uuid id PK
-    string natural_key UK
-    string state
-  }
-  CHILD {
-    uuid id PK
-    uuid parent_id FK
-  }
-```
-
-Figure D-03. Logical or physical data model; label the level in the narrative.
-
-### D-04 — Component/class diagram
-
-Question: Which components own the behavior and how may they depend on each other?
-
-```mermaid
-classDiagram
-  direction LR
-  class EntryPoint {
-    <<component>>
-    +handle(command)
-  }
-  class DomainService {
-    <<component>>
-    +execute(FR-001)
-  }
-  class Repository {
-    <<interface>>
-    +load(id)
-    +save(entity)
-  }
-  EntryPoint --> DomainService : invokes
-  DomainService --> Repository : requires
-```
-
-Figure D-04. One component abstraction level with responsibilities and directed
-dependencies.
-
-### D-05 — Sequence diagram
-
-Question: How does the critical scenario succeed or fail over time?
-
-```mermaid
-sequenceDiagram
-  actor User
-  participant Entry as Entry point
-  participant Service as Domain service
-  participant Store as Authoritative store
-  User->>Entry: command (API-001)
-  Entry->>Entry: validate and authorize (POL-001)
-  Entry->>Service: execute FR-001
-  Service->>Store: conditional write
-  alt accepted
-    Store-->>Service: committed revision
-    Service-->>User: success outcome
-  else conflict, timeout, or rejection
-    Store-->>Service: typed failure
-    Service-->>User: safe failure and recovery action
-  end
-```
-
-Figure D-05. Critical success and material failure behavior.
-
-### D-06 — State machine
-
-Question: What lifecycle transitions are allowed for the core object?
-
-```mermaid
-stateDiagram-v2
-  [*] --> Draft
-  Draft --> Submitted: submit [valid] / persist request
-  Draft --> Draft: submit [invalid] / return violations
-  Submitted --> Completed: complete [work committed] / publish result
-  Submitted --> Cancelled: cancel [cancellable] / compensate
-  Submitted --> Failed: timeout [retry exhausted] / preserve evidence
-  Completed --> [*]
-  Cancelled --> [*]
-  Failed --> [*]
-```
-
-Figure D-06. Core lifecycle using `event [guard] / effect` transitions.
-
-### D-07 — User journey or activity flow
-
-Question: How does the actor reach value and recover from a blocked path?
-
-```mermaid
-flowchart LR
-  start(["Actor enters"]) --> act["Performs FR-001 action"]
-  act --> decision{"Accepted?"}
-  decision -->|Yes| feedback["Receives success feedback"]
-  feedback --> done(["Outcome achieved"])
-  decision -->|No| recovery["Receives reason and recovery action"]
-  recovery --> act
-```
-
-Figure D-07. Actor journey, feedback, and recovery.
+Link authoritative API, message, schema, migration, or policy contracts instead
+of copying them. Add quantified quality requirements only when they change the
+design.
 
 ## Decisions and risks
 
-| ADR/Risk ID | Context or trigger | Options/impact | Decision/response | Status/owner | Recheck or supersession condition |
+| ID | Context/trigger | Decision or response | Owner/status | Recheck or supersession condition |
+| --- | --- | --- | --- | --- |
+| `ADR-001` / `RISK-001` |  |  |  |  |
+
+## Diagram disposition
+
+Choose one:
+
+- `Diagram: N/A — <specific reason no visual ambiguity exists or prose/table is clearer>`
+- `Diagram: deferred — <real question, owning artifact/owner, entry condition>`
+- `Diagram: present — see selected-figure manifest below`
+
+Do not list unused diagram families. Select the smallest type from the contract's
+ambiguity table.
+
+### Selected-figure manifest
+
+Include only when one or more figures are present.
+
+| ID/type | Question and scope | Body/goal/risk/AC mapping | Authoritative source | Editable source/revision | Render/inspection status |
 | --- | --- | --- | --- | --- | --- |
-| `ADR-001` |  |  |  | proposed |  |
-| `RISK-001` |  |  |  | open |  |
+| `D-01` |  |  |  | inline or repository path |  |
+
+### Selected figures
+
+For each figure: introduce the question, include or link the editable source,
+give a short caption, and state the decision/invariant it supports. Split figures
+that mix abstraction levels or try to express scope, data, order, and state at
+once.
 
 ## Traceability and delivery
 
-| Outcome/source | Requirement | Figures/contracts/ADR | Work package | Verification | Status |
-| --- | --- | --- | --- | --- | --- |
-|  | `FR-001` | `D-02`, `D-05`, `API-001` |  |  | planned |
+Use when several requirements or artifacts need cross-reference.
 
-### Rollout, rollback, and operations
+| Outcome/source | Requirement/decision | Figure/contract | Work package or implementation | Verification/status |
+| --- | --- | --- | --- | --- |
+|  | `FR-001` |  |  |  |
 
-- Migration and compatibility:
-- Rollout stages and abort signals:
-- Rollback or replacement seam:
-- Observability and alert evidence:
-- Security/privacy/data handling:
+Record rollout, compatibility, rollback/replacement, operations, and data
+handling only when the subject creates those concerns.
 
-### Review evidence
+## Evidence and change impact
 
-- Renderer and version:
-- Rendered figures visually inspected:
-- Contract/schema validation:
-- Human comprehension reviewer and result:
-- Agent precision/self-check or evaluation and result:
-- Not run, unknown, stale, or blocked evidence:
+- Exact source checked:
+- Checks/rendering actually performed:
+- Coverage and exclusions:
+- Residual risk or unverified claims:
+- Downstream evidence made stale by a change:
+- Optional P3/nits/appendix (last; omit when empty):

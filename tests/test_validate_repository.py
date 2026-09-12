@@ -25,7 +25,39 @@ class RepositoryValidationTests(unittest.TestCase):
         self.assertLessEqual(report["content_index_entries"], 200)
         scenarios = validator.read_json(ROOT / "tests/routing_scenarios.json")["scenarios"]
         self.assertEqual(report["routing_scenarios_validated"], len(scenarios))
+        examples = validator.read_json(ROOT / "tests/review_handoff_examples.json")["examples"]
+        self.assertEqual(report["review_handoff_examples_validated"], len(examples))
         self.assertEqual(report["behavior_cases_executed"], 0)
+
+    def test_review_handoff_examples_enforce_information_priority(self):
+        payload = validator.read_json(ROOT / "tests/review_handoff_examples.json")
+        errors, validated = validator.review_handoff_example_errors(payload)
+        self.assertEqual(errors, [])
+        self.assertEqual(validated, len(payload["examples"]))
+
+        reordered = copy.deepcopy(payload)
+        sections = reordered["examples"][1]["sections"]
+        sections[3], sections[4] = sections[4], sections[3]
+        errors, _ = validator.review_handoff_example_errors(reordered)
+        self.assertTrue(any("precedes the required decision path" in error for error in errors))
+
+    def test_review_handoff_examples_allow_short_clean_without_empty_ledger(self):
+        payload = validator.read_json(ROOT / "tests/review_handoff_examples.json")
+        clean = next(example for example in payload["examples"] if example["material_findings_count"] == 0)
+        self.assertEqual(
+            [section["kind"] for section in clean["sections"]],
+            ["exact_subject", "conclusion", "required_action"],
+        )
+
+        invalid = copy.deepcopy(payload)
+        invalid["examples"][0]["sections"].append({"kind": "decision_ledger", "content": ""})
+        errors, _ = validator.review_handoff_example_errors(invalid)
+        self.assertTrue(any("empty content" in error for error in errors))
+
+        missing_action = copy.deepcopy(payload)
+        missing_action["examples"][0]["sections"].pop()
+        errors, _ = validator.review_handoff_example_errors(missing_action)
+        self.assertTrue(any("needs a required decision or action" in error for error in errors))
 
     def test_dependency_cycle_and_missing_are_rejected(self):
         errors = validator.dependency_errors({"a": ["b"], "b": ["a", "missing"]})
