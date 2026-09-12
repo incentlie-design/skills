@@ -45,7 +45,7 @@ Closed Loop and `ponytail` are complementary: the former narrows the product/arc
 
 ## PRD and TD visual contract
 
-Non-trivial product and technical designs follow the shared [PRD and TD visual documentation contract](docs/prd-td-visual-contract.md). It separates a human review layer from an ID-based Agent execution contract and requires a source-controlled diagram manifest covering concept, context, data, component, runtime, lifecycle, and user-flow viewpoints as applicable. PM authors the bounded requirements artifact, DEV authors the bounded technical design, and QA/Reviewer judges the supplied contract without becoming a second design owner. The [copyable template](docs/prd-td-visual-template.md) provides Mermaid-first skeletons.
+Non-trivial product and technical designs follow the shared [PRD and TD visual documentation contract](docs/prd-td-visual-contract.md). Requirement/PRD documents select and declare one format marker: [`full-visual-design-package`](docs/prd-td-visual-template.md) preserves the existing complete design-package format, while [`reader-first-requirement`](docs/requirement-reader-first-template.md) leads with product decisions, acceptance, and ownership boundaries before deferring unselected technical views. Architecture/TD normally uses the full profile. PM authors the bounded Requirement, DEV authors the bounded technical design, and QA/Reviewer judges the supplied contract without becoming a second design owner.
 
 ## GitHub remote and branch synchronization
 

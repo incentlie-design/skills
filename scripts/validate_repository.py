@@ -56,6 +56,22 @@ CONTENT_INDEX_REQUIRED = (
 CONTENT_INCLUDE = {"yes", "maybe", "no"}
 CONTENT_SECURITY = {"none", "review", "exclude"}
 SECRETISH = re.compile(r"(api[_-]?key|secret[_-]?key|begin [a-z ]*private key|sk-[a-z0-9]{16,})", re.I)
+REQUIREMENT_TEMPLATE_LINK = "../../../docs/requirement-reader-first-template.md"
+REQUIREMENT_TEMPLATE_SECTIONS = (
+    "# Reader-first Requirement template",
+    "## One-page review",
+    "## Core business flows",
+    "## Acceptance criteria",
+    "## Ownership boundaries",
+    "## Decisions requested now",
+    "## Next artifacts and stop conditions",
+    "## Visual index",
+)
+FULL_VISUAL_TEMPLATE_SECTIONS = (
+    "# PRD and TD visual template",
+    "`full-visual-design-package`",
+    "| Format profile | `full-visual-design-package` |",
+)
 
 
 def read_json(path):
@@ -387,6 +403,31 @@ def validate(root):
                 errors.append(f"{name}: shared contract is not referenced")
             if name in VISUAL_CONTRACT_SKILLS and VISUAL_CONTRACT_LINK not in skill_text:
                 errors.append(f"{name}: PRD/TD visual contract is not referenced")
+            if name == "eng-pm":
+                if REQUIREMENT_TEMPLATE_LINK not in skill_text:
+                    errors.append("eng-pm: reader-first Requirement template is not referenced")
+                if "## Requirement format profiles" not in skill_text:
+                    errors.append("eng-pm: Requirement format profiles are missing")
+                if "`full-visual-design-package`" not in skill_text or "`reader-first-requirement`" not in skill_text:
+                    errors.append("eng-pm: Requirement profile markers are incomplete")
+
+        visual_contract = (root / "docs" / "prd-td-visual-contract.md").read_text(encoding="utf-8")
+        if (
+            "## Artifact profiles" not in visual_contract
+            or "### `full-visual-design-package`" not in visual_contract
+            or "### `reader-first-requirement`" not in visual_contract
+        ):
+            errors.append("PRD/TD visual contract: selectable Requirement profiles are incomplete")
+
+        requirement_template = (root / "docs" / "requirement-reader-first-template.md").read_text(encoding="utf-8")
+        for section in REQUIREMENT_TEMPLATE_SECTIONS:
+            if section not in requirement_template:
+                errors.append(f"reader-first Requirement template: missing section {section}")
+
+        full_visual_template = (root / "docs" / "prd-td-visual-template.md").read_text(encoding="utf-8")
+        for section in FULL_VISUAL_TEMPLATE_SECTIONS:
+            if section not in full_visual_template:
+                errors.append(f"full visual template: missing section {section}")
 
         discovery = root / ".agents/skills"
         actual_links = {path.name for path in discovery.iterdir()} if discovery.exists() else set()
