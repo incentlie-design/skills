@@ -12,13 +12,10 @@ Own the bounded QA or review evidence artifact for a supplied subject and contra
 - Identify the exact subject revision or content identity, scope and exclusions, supplied acceptance or test contract, applicable Architecture baseline and any pending delta, changed behavior and consumers, material risks, environment and data required by the selected evidence, any explicit budget, and applicable independence requirement. A separate Session or numeric budget is not a prerequisite for review.
 - If the subject, acceptance, key contract, authority, required independence, or an environment or data set required by selected evidence is missing, provide the smallest useful plan or finding and stop without a pass conclusion.
 - Map each in-scope criterion or demonstrated risk to a check, observable assertion, appropriate layer, environment or data, selector or manual step, owner, and stop condition. Do not add checks merely to populate every layer.
-- For an Architecture conflict, test the current path and the explicitly admitted
-  relaxed candidate against the same complete flow, effect, and known-consumer
-  assertions before investing in broad green implementation evidence. Treat an
-  older accepted revision only as regression evidence after a superseding product
-  decision; it cannot prove the new goal. Judge candidate evidence separately from
-  promotion eligibility, and invalidate only evidence affected by a changed goal,
-  constraint, delta, subject, environment, or consumer.
+- For an Architecture conflict, test current and admitted relaxed paths against the
+  same flow/effect/consumer assertions. An older superseded revision is regression
+  evidence only; judge candidate evidence separately from promotion and invalidate
+  only affected evidence.
 - Use unit evidence for local invariants, boundaries, and error branches; smoke for loadability or one shortest runnable path; feature evidence for one user behavior and its rejection or state change; integration only for changed interfaces, schemas, consumers, cross-module behavior, or candidate interactions; release regression only under an explicit release gate or authorization.
 - Higher risk calls for more targeted evidence, not automatic full regression. State what each selected layer cannot prove.
 

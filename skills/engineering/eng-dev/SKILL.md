@@ -18,14 +18,10 @@ Own the bounded implementation artifact and produce the smallest complete change
 ## Implement the smallest complete change
 
 - Before editing, trace the affected end-to-end path, callers and consumers, current contract, state and error side effects, and nearby tests. Read only enough history to resolve a real constraint.
-- When supplied product intent and Architecture appear to conflict, do not make
-  them agree by silently shrinking the goal, weakening an invariant, or adding a
-  second truth/control path. Return the smallest concrete counterexample, the
-  actual constraint level, current-path result, smallest relaxed assumption, and
-  affected actions to the owning decision. If the canonical decision admits an
-  isolated, reversible candidate that preserves non-deferrable and product/domain
-  invariants and has no unauthorized effect, implement only that bounded evidence
-  path; candidate readiness does not imply Architecture acceptance or promotion.
+- When supplied product intent and Architecture conflict, return the smallest
+  counterexample and `eng-closed-loop-decisions` inputs; do not shrink the goal or
+  add a second truth/control path. Implement only an admitted bounded candidate;
+  its readiness grants no Architecture acceptance or promotion.
 - When the assigned artifact is a TD, architecture proposal, or non-trivial design crossing data, component, interface, lifecycle, deployment, or trust boundaries, read and apply the [PRD and TD visual documentation contract](../../../docs/prd-td-visual-contract.md) before implementation. DEV owns the affected call path, contracts, data, components, runtime, failure/recovery, and compatibility decisions. Add only the smallest component/data/sequence/state/runtime view that resolves a material technical ambiguity, map it to the body/goal/risk/AC, and keep editable source; an ordinary localized change may use a concrete `Diagram: N/A` or no diagram when the project format does not ask for a disposition.
 - Fix the root cause at the narrowest shared boundary that covers the affected paths. Avoid copied guards, unrelated cleanup, dependency upgrades, and abstractions for hypothetical callers.
 - Keep the diff small but behaviorally complete: validate trust-boundary input, preserve public contracts and data invariants, handle the relevant failure path, and keep rollback or replacement possible.

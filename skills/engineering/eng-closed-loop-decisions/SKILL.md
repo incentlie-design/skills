@@ -34,10 +34,9 @@ When two routes both close the loop, prefer shorter time to evidence, fewer irre
 
 ## Close Architecture conflicts without false stops
 
-When the current Architecture path appears unable to close an accepted goal, do
-not silently narrow the goal, treat every baseline choice as immutable, or bypass
-an actual invariant. Use project-defined constraint levels when supplied;
-otherwise classify the conflicting statement by its real consequence:
+When the current Architecture path cannot close an accepted goal, preserve both
+instead of narrowing the goal or bypassing an invariant. Use project-defined
+levels when supplied; otherwise classify the conflicting statement by consequence:
 
 | Level | Meaning | Default treatment |
 | --- | --- | --- |
@@ -47,22 +46,15 @@ otherwise classify the conflicting statement by its real consequence:
 | `C3` | Accepted but replaceable baseline design choice | Prefer it; compare the smallest safe relaxation when it cannot close the goal |
 | `C4` | Local implementation detail | Let the implementing owner decide and verify it proportionally |
 
-Add an `ArchitectureConflict` block to the `ClosureDecision` with the signed
-goal/acceptance, exact current constraint and revision, level, current-path result
-across the complete flow, effect, and known-consumer axes, smallest relaxed
-assumption, result under that assumption, affected actions, and promotion
-condition. If either result is unknown, name one falsifiable probe instead of
-returning a vague blocker.
+Record one `ArchitectureConflict`: signed goal, exact constraint/revision, level,
+current and smallest-relaxed results across flow/effect/known consumers, affected
+actions, one recommendation, at most one fallback, and promotion condition. An
+unknown result names one falsifiable probe.
 
-Candidate admission and promotion are separate decisions. Recommend an isolated,
-bounded, reversible candidate only when it preserves `C0` and `C1`, exposes any
-`C2` delta, has no unauthorized live/provider/paid/destructive effect, and can
-produce decision-relevant evidence. Promotion that depends on an unaccepted delta
-waits for its owner, current applicable independent evidence, and the actual
-promotion authority. Return one recommendation—`retain`, `revise`,
-`relax-for-candidate`, or `defer`—plus at most one fallback for a materially
-different risk. Pause only affected actions; unrelated analysis and admitted
-offline evidence work continue while their inputs remain current.
+Candidate and promotion admission are separate. A candidate may proceed only when
+isolated, bounded, reversible, preserving `C0`/`C1`, explicit about any `C2` delta,
+and free of unauthorized effects. Promotion waits for delta acceptance, current
+independent evidence, and promotion authority. Pause only affected actions.
 
 ## Keep simple and keep clean
 
